@@ -9,7 +9,7 @@ export const SITE = {
     'موقع لعرض وتحميل تعريبات الألعاب والمودات العربية، مع شروحات التثبيت وسجل التحديثات.',
   lang: 'ar',
   // رابط زر "ادعمنا" — اتركه فارغاً '' لإخفاء الزر
-  donateUrl: 'https://ko-fi.com/',
+  donateUrl: 'https://ko-fi.com/ibrahimalobaidi',
   // رقم يظهر في الإحصائيات بالصفحة الرئيسية (عدّله يدوياً)
   totalDownloads: '120K',
 };
@@ -19,6 +19,7 @@ export const SOCIAL: { label: string; url: string; icon: string }[] = [
   { label: 'ديسكورد', url: 'https://discord.gg/MNmtmnSsu', icon: 'discord' },
   { label: 'يوتيوب', url: 'https://www.youtube.com/@IBO-MO', icon: 'youtube' },
   { label: 'إكس (تويتر)', url: 'https://x.com/Web3Nftvisitor', icon: 'x' },
+  { label: 'ادعمنا على Ko-fi', url: 'https://ko-fi.com/ibrahimalobaidi', icon: 'heart' },
 ];
 
 export const NAV = [
