@@ -1,0 +1,175 @@
+---
+import { NAV, SITE } from '../config';
+import Icon from './Icon.astro';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="/" class="logo" aria-label={SITE.name}>
+      <img src="/logo.svg" alt="" width="44" height="44" />
+      <span>{SITE.name}</span>
+    </a>
+
+    <nav id="main-nav" class="nav" aria-label="القائمة الرئيسية">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class:list={{ active: isActive(item.href) }}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <form class="search" action="/search/" method="get" role="search">
+      <label class="sr-only" for="q">بحث</label>
+      <input id="q" name="q" type="search" placeholder="بحث" autocomplete="off" />
+      <button type="submit" aria-label="بحث"><Icon name="search" size={18} /></button>
+    </form>
+
+    <button class="menu-btn" aria-label="القائمة" aria-expanded="false" aria-controls="main-nav">
+      <Icon name="menu" size={26} />
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgb(11 13 23 / 0.75);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgb(255 255 255 / 0.06);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    height: 76px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .nav {
+    display: flex;
+    gap: 26px;
+    flex: 1;
+  }
+  .nav a {
+    color: var(--muted);
+    font-weight: 700;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav a:hover,
+  .nav a.active {
+    color: var(--text);
+  }
+  .nav a.active::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: -6px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+  .search {
+    display: flex;
+    align-items: center;
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding-inline: 14px 6px;
+    width: 260px;
+  }
+  .search:focus-within {
+    border-color: var(--accent);
+  }
+  .search input {
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: 0;
+    color: var(--text);
+    font: inherit;
+    padding: 8px 0;
+    outline: none;
+  }
+  .search button {
+    background: none;
+    border: 0;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 6px;
+    display: grid;
+  }
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 0;
+    color: var(--text);
+    cursor: pointer;
+    margin-inline-start: auto;
+  }
+
+  @media (max-width: 900px) {
+    .bar {
+      gap: 12px;
+    }
+    .search {
+      width: auto;
+      flex: 1;
+    }
+    .menu-btn {
+      display: grid;
+    }
+    .nav {
+      display: none;
+      position: absolute;
+      top: 76px;
+      inset-inline: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px 16px;
+    }
+    .nav.open {
+      display: flex;
+    }
+    .nav a {
+      padding: 12px 4px;
+      border-bottom: 1px solid rgb(255 255 255 / 0.05);
+    }
+    .nav a.active::after {
+      display: none;
+    }
+    .nav a.active {
+      color: var(--accent);
+    }
+  }
+  @media (max-width: 480px) {
+    .logo span {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+  const nav = document.getElementById('main-nav');
+  btn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(!!open));
+  });
+</script>

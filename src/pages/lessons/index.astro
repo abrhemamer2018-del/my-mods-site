@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import { getArticles } from '../../lib/utils';
+
+const items = await getArticles('lesson');
+---
+
+<BaseLayout title="الدروس" description="دروس وشروحات في تعريب الألعاب وصناعة المودات.">
+  <div class="container section">
+    <h1>الدروس</h1>
+    <ArticleList items={items} />
+  </div>
+</BaseLayout>

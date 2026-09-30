@@ -1,0 +1,229 @@
+/* ============ ألوان وخطوط الموقع — غيّرها من هنا ============ */
+:root {
+  --bg: #0b0d17;
+  --bg-2: #11142a;
+  --card: #151931;
+  --card-hover: #1b2040;
+  --border: #252a4a;
+  --text: #eef0fa;
+  --muted: #9aa0c3;
+  --accent: #19c3d6; /* اللون المميز */
+  --accent-2: #e0344f; /* لون ثانوي (أحمر) */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --radius: 18px;
+  --radius-sm: 10px;
+  --container: 1240px;
+  --font: 'Tajawal', system-ui, sans-serif;
+  --font-display: 'Reem Kufi', 'Tajawal', sans-serif;
+  --shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.3;
+  margin: 0 0 0.5em;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+/* ============ أزرار ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.6em 1.4em;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgb(255 255 255 / 0.06);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.btn:hover {
+  background: rgb(255 255 255 / 0.12);
+  border-color: var(--accent);
+}
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #04141a;
+}
+.btn-primary:hover {
+  background: #3fd6e6;
+  transform: translateY(-1px);
+}
+
+/* ============ شارات ============ */
+.badge {
+  display: inline-block;
+  padding: 0.1em 0.7em;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgb(11 13 23 / 0.8);
+  backdrop-filter: blur(6px);
+  color: var(--text);
+  border: 1px solid rgb(255 255 255 / 0.12);
+}
+.badge-new {
+  background: var(--accent);
+  color: #04141a;
+  border-color: var(--accent);
+}
+.badge-green {
+  background: var(--success);
+  color: #03220f;
+  border-color: var(--success);
+}
+.badge-warn {
+  background: var(--warning);
+  color: #2a1800;
+  border-color: var(--warning);
+}
+
+/* ============ عناوين الأقسام ============ */
+.section {
+  padding-block: 48px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.section-head h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  margin: 0;
+}
+.section-head a {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.section-head a:hover {
+  color: var(--accent);
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+/* ============ نصوص المقالات و Markdown ============ */
+.prose {
+  max-width: 75ch;
+}
+.prose h2 {
+  font-size: 1.5rem;
+  margin-top: 1.8em;
+}
+.prose h3 {
+  font-size: 1.2rem;
+  margin-top: 1.4em;
+}
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose code {
+  background: var(--bg-2);
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+.prose pre {
+  direction: ltr;
+  text-align: left;
+  background: var(--bg-2) !important;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+}
+.prose pre code {
+  background: none;
+  padding: 0;
+}
+.prose blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-inline-start: 4px solid var(--accent);
+  background: var(--bg-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.prose img {
+  border-radius: var(--radius-sm);
+}
+.prose li {
+  margin-block: 0.3em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="بحث" description="ابحث في التعريبات والمقالات والدروس.">
+  <div class="container section wrap">
+    <h1>بحث</h1>
+    <div id="search"></div>
+    <noscript>البحث يحتاج إلى تفعيل JavaScript.</noscript>
+    <p id="dev-note" class="muted" hidden>
+      البحث يعمل فقط بعد بناء الموقع (<code>npm run build</code> ثم <code>npm run preview</code>).
+    </p>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .wrap {
+    max-width: 860px;
+  }
+  #search {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-background: var(--card);
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-tag: var(--bg-2);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 12px;
+    --pagefind-ui-font: var(--font);
+  }
+  #search .pagefind-ui__search-input {
+    padding-right: 80px !important;
+  }
+  #search .pagefind-ui__result-link {
+    color: var(--text);
+  }
+  #search .pagefind-ui__result-excerpt {
+    color: var(--muted);
+  }
+  #search mark {
+    background: rgb(25 195 214 / 0.25);
+    color: var(--text);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const s = document.createElement('script');
+    s.src = '/pagefind/pagefind-ui.js';
+    s.onload = function () {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/pagefind/pagefind-ui.css';
+      document.head.appendChild(link);
+      const ui = new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        translations: { placeholder: 'اكتب اسم اللعبة أو كلمة للبحث...' },
+      });
+      const q = new URLSearchParams(location.search).get('q');
+      if (q) ui.triggerSearch(q);
+    };
+    s.onerror = function () {
+      document.getElementById('dev-note').hidden = false;
+    };
+    document.head.appendChild(s);
+  })();
+</script>

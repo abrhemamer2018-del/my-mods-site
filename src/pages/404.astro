@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="الصفحة غير موجودة">
+  <div class="container section nf">
+    <p class="code">404</p>
+    <h1>الصفحة غير موجودة</h1>
+    <p class="muted">ربما تم نقل الصفحة أو حذفها.</p>
+    <a href="/" class="btn btn-primary">العودة للرئيسية</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .nf {
+    text-align: center;
+    padding-block: 96px;
+  }
+  .code {
+    font-size: 6rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 0;
+    line-height: 1;
+  }
+</style>

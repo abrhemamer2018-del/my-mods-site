@@ -1,0 +1,42 @@
+---
+import { SITE } from '../config';
+import Icon from './Icon.astro';
+---
+
+{
+  SITE.donateUrl && (
+    <a href={SITE.donateUrl} class="donate" target="_blank" rel="noopener">
+      <Icon name="heart" size={22} />
+      <span>ادعمنا</span>
+    </a>
+  )
+}
+
+<style>
+  .donate {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #04141a;
+    font-weight: 800;
+    box-shadow: 0 8px 24px rgb(25 195 214 / 0.35);
+    transition: transform 0.2s;
+  }
+  .donate:hover {
+    transform: translateY(-2px) scale(1.03);
+  }
+  @media (max-width: 600px) {
+    .donate {
+      bottom: 16px;
+      left: 16px;
+      padding: 10px 16px;
+    }
+  }
+</style>

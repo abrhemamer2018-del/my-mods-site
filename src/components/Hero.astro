@@ -1,0 +1,168 @@
+---
+import { Image } from 'astro:assets';
+import type { Translation } from '../lib/utils';
+
+interface Props {
+  items: Translation[];
+}
+const { items } = Astro.props;
+---
+
+<section class="hero" aria-roledescription="carousel" aria-label="تعريبات مميزة">
+  {
+    items.map((item, i) => (
+      <div class:list={['slide', { active: i === 0 }]} aria-hidden={i !== 0 ? 'true' : undefined}>
+        <Image
+          class="bg"
+          src={item.data.banner ?? item.data.cover}
+          alt=""
+          width={1920}
+          height={820}
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+        <div class="content container">
+          <h2 class="title" dir="ltr">{item.data.title}</h2>
+          <p class="ar">{item.data.titleAr}</p>
+          <p class="summary">{item.data.summary}</p>
+          <a href={`/translations/${item.id}/`} class="btn">
+            صفحة التعريب
+          </a>
+        </div>
+      </div>
+    ))
+  }
+
+  {
+    items.length > 1 && (
+      <div class="dots">
+        {items.map((_, i) => (
+          <button class:list={['dot', { active: i === 0 }]} aria-label={`الشريحة ${i + 1}`} data-i={i} />
+        ))}
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: clamp(380px, 62vh, 620px);
+    overflow: hidden;
+    margin-top: -76px; /* يمتد تحت الهيدر الشفاف */
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    display: flex;
+    align-items: flex-end;
+  }
+  .slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  .slide :global(.bg) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.04);
+    transition: transform 7s ease;
+  }
+  .slide.active :global(.bg) {
+    transform: scale(1);
+  }
+  .slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, var(--bg) 0%, rgb(11 13 23 / 0.6) 45%, rgb(11 13 23 / 0.25) 100%),
+      radial-gradient(ellipse at center, transparent 30%, rgb(11 13 23 / 0.6) 100%);
+  }
+  .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-bottom: 64px;
+  }
+  .title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin: 0;
+    text-shadow: 0 4px 24px rgb(0 0 0 / 0.6);
+    letter-spacing: 0.02em;
+  }
+  .ar {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .summary {
+    max-width: 60ch;
+    margin: 8px auto 20px;
+    color: #d6d9ee;
+  }
+  .content .btn {
+    backdrop-filter: blur(6px);
+  }
+  .dots {
+    position: absolute;
+    z-index: 3;
+    bottom: 22px;
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 0;
+    padding: 0;
+    background: rgb(255 255 255 / 0.3);
+    cursor: pointer;
+    transition: width 0.3s, background 0.3s;
+  }
+  .dot.active {
+    width: 28px;
+    background: var(--accent);
+  }
+</style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('.hero');
+  if (hero) {
+    const slides = [...hero.querySelectorAll<HTMLElement>('.slide')];
+    const dots = [...hero.querySelectorAll<HTMLButtonElement>('.dot')];
+    let current = 0;
+    let timer: number | undefined;
+
+    const show = (i: number) => {
+      slides[current].classList.remove('active');
+      slides[current].setAttribute('aria-hidden', 'true');
+      dots[current]?.classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      slides[current].removeAttribute('aria-hidden');
+      dots[current]?.classList.add('active');
+    };
+    const start = () => {
+      if (slides.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = window.setInterval(() => show(current + 1), 6000);
+      }
+    };
+
+    dots.forEach((d) =>
+      d.addEventListener('click', () => {
+        clearInterval(timer);
+        show(Number(d.dataset.i));
+        start();
+      }),
+    );
+    start();
+  }
+</script>

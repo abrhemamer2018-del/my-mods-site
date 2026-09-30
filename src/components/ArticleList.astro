@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/utils';
+
+interface Props {
+  items: CollectionEntry<'articles'>[];
+}
+const { items } = Astro.props;
+---
+
+{items.length === 0 && <p class="muted">لا يوجد محتوى بعد.</p>}
+<div class="list">
+  {
+    items.map((a) => (
+      <a href={`/articles/${a.id}/`} class="item panel">
+        {a.data.cover && <Image src={a.data.cover} alt="" width={360} height={200} class="thumb" />}
+        <div>
+          <span class="badge">{a.data.kind === 'lesson' ? 'درس' : 'مقال'}</span>
+          <h2>{a.data.title}</h2>
+          <p class="muted">{a.data.description}</p>
+          <time class="muted" datetime={a.data.date.toISOString()}>
+            {formatDate(a.data.date)}
+          </time>
+        </div>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .list {
+    display: grid;
+    gap: 18px;
+  }
+  .item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transition: border-color 0.2s;
+  }
+  .item:hover {
+    border-color: var(--accent);
+  }
+  .item :global(.thumb) {
+    width: 240px;
+    border-radius: 12px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin: 8px 0 4px;
+  }
+  p {
+    margin: 0 0 6px;
+  }
+  time {
+    font-size: 0.85rem;
+  }
+  @media (max-width: 600px) {
+    .item {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .item :global(.thumb) {
+      width: 100%;
+    }
+  }
+</style>

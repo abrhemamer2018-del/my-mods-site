@@ -1,0 +1,53 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getArticles, formatDate } from '../../lib/utils';
+
+export async function getStaticPaths() {
+  const all = await getArticles();
+  return all.map((a) => ({ params: { slug: a.id }, props: { item: a } }));
+}
+
+const { item } = Astro.props as { item: CollectionEntry<'articles'> };
+const d = item.data;
+const { Content } = await render(item);
+const og = d.cover ? (await getImage({ src: d.cover, width: 1200, format: 'jpg' })).src : undefined;
+const back = d.kind === 'lesson' ? { href: '/lessons/', label: 'الدروس' } : { href: '/articles/', label: 'المقالات' };
+---
+
+<BaseLayout title={d.title} description={d.description} image={og}>
+  <article class="container section wrap" data-pagefind-body>
+    <a href={back.href} class="muted back">› {back.label}</a>
+    <h1>{d.title}</h1>
+    <p class="muted meta">
+      <time datetime={d.date.toISOString()}>{formatDate(d.date)}</time>
+      {d.tags.length > 0 && <span> · {d.tags.join('، ')}</span>}
+    </p>
+    {d.cover && <Image src={d.cover} alt="" width={1000} class="cover" loading="eager" />}
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: 860px;
+  }
+  .back:hover {
+    color: var(--accent);
+  }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-top: 12px;
+  }
+  .meta {
+    margin-top: -8px;
+  }
+  .wrap :global(.cover) {
+    width: 100%;
+    border-radius: var(--radius);
+    margin: 20px 0;
+  }
+</style>

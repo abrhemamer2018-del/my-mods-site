@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { SOCIAL } from '../config';
+---
+
+<BaseLayout title="تواصل" description="تواصل معنا لطلب تعريب أو للإبلاغ عن مشكلة.">
+  <div class="container section wrap">
+    <h1>تواصل معنا</h1>
+    <p class="muted">
+      لطلب تعريب لعبة، أو للإبلاغ عن خطأ في تعريب، أو للانضمام إلى الفريق، تواصل معنا عبر إحدى القنوات التالية:
+    </p>
+    <div class="grid">
+      {
+        SOCIAL.map((s) => (
+          <a href={s.url} class="panel ch" target="_blank" rel="noopener">
+            <Icon name={s.icon} size={28} />
+            <span>{s.label}</span>
+          </a>
+        ))
+      }
+    </div>
+    <div class="panel note">
+      <h2>قبل الإبلاغ عن مشكلة</h2>
+      <ul>
+        <li>تأكد من أن نسخة اللعبة مطابقة للنسخة المذكورة في صفحة التعريب.</li>
+        <li>اذكر اسم التعريب ورقم إصداره.</li>
+        <li>أرفق صورة للمشكلة إن أمكن.</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: 860px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .ch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .ch:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .note h2 {
+    font-size: 1.2rem;
+  }
+  .note ul {
+    margin: 0;
+  }
+</style>

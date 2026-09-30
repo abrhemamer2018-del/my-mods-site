@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TranslationCard from '../../components/TranslationCard.astro';
+import { getTranslations } from '../../lib/utils';
+import { CATEGORY_LABELS, STATUS_LABELS } from '../../config';
+
+const translations = await getTranslations();
+const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].sort();
+---
+
+<BaseLayout title="التعريبات" description="كل تعريبات الألعاب والمودات العربية المتوفرة للتحميل.">
+  <div class="container section">
+    <h1 class="page-title">التعريبات</h1>
+    <p class="muted">{translations.length} تعريب متوفر</p>
+
+    <div class="filters panel">
+      <input id="f-text" type="search" placeholder="ابحث باسم اللعبة..." aria-label="ابحث باسم اللعبة" />
+      <select id="f-category" aria-label="التصنيف">
+        <option value="">كل التصنيفات</option>
+        {Object.entries(CATEGORY_LABELS).map(([k, v]) => <option value={k}>{v}</option>)}
+      </select>
+      <select id="f-platform" aria-label="المنصة">
+        <option value="">كل المنصات</option>
+        {platforms.map((p) => <option value={p}>{p}</option>)}
+      </select>
+      <select id="f-status" aria-label="الحالة">
+        <option value="">كل الحالات</option>
+        {Object.entries(STATUS_LABELS).map(([k, v]) => <option value={k}>{v}</option>)}
+      </select>
+    </div>
+
+    <div class="cards" id="cards">
+      {translations.map((t) => <TranslationCard item={t} />)}
+    </div>
+    <p id="empty" class="empty muted" hidden>لا توجد نتائج مطابقة.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 24px 0 28px;
+    padding: 14px;
+  }
+  .filters input,
+  .filters select {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font: inherit;
+  }
+  .filters input {
+    flex: 1 1 240px;
+  }
+  .filters select {
+    flex: 0 1 180px;
+  }
+  .filters :is(input, select):focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .empty {
+    text-align: center;
+    padding: 48px 0;
+  }
+  @media (max-width: 520px) {
+    .filters select {
+      flex: 1 1 100%;
+    }
+  }
+</style>
+
+<script>
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const text = $<HTMLInputElement>('f-text');
+  const cat = $<HTMLSelectElement>('f-category');
+  const plat = $<HTMLSelectElement>('f-platform');
+  const status = $<HTMLSelectElement>('f-status');
+  const cards = [...document.querySelectorAll<HTMLElement>('#cards > .card')];
+  const empty = $('empty');
+
+  function apply() {
+    const q = text.value.trim().toLowerCase();
+    let visible = 0;
+    for (const c of cards) {
+      const d = c.dataset;
+      const ok =
+        (!q || d.search!.includes(q)) &&
+        (!cat.value || d.category === cat.value) &&
+        (!status.value || d.status === status.value) &&
+        (!plat.value || d.platforms!.split('|').includes(plat.value));
+      c.hidden = !ok;
+      if (ok) visible++;
+    }
+    empty.hidden = visible > 0;
+  }
+
+  [text, cat, plat, status].forEach((el) => el.addEventListener('input', apply));
+</script>

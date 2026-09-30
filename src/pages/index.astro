@@ -1,0 +1,291 @@
+---
+import { getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TranslationCard from '../components/TranslationCard.astro';
+import { getArticles, getTranslations, lastTouched, formatDate } from '../lib/utils';
+import { SITE } from '../config';
+
+const translations = await getTranslations();
+const featured = translations.filter((t) => t.data.featured);
+const heroItems = featured.length ? featured : translations.slice(0, 1);
+const latest = translations.slice(0, 6);
+
+// آخر التحديثات: التعريبات التي لديها updatedDate
+const updates = translations
+  .filter((t) => t.data.updatedDate)
+  .sort((a, b) => lastTouched(b).getTime() - lastTouched(a).getTime())
+  .slice(0, 4);
+
+// صورة تعريب اليوم: تُختار في المتصفح حسب تاريخ اليوم من كل لقطات الشاشة
+const shots = await Promise.all(
+  translations.flatMap((t) =>
+    t.data.screenshots.map(async (s) => ({
+      src: (await getImage({ src: s, width: 640 })).src,
+      title: t.data.titleAr,
+      href: `/translations/${t.id}/`,
+    })),
+  ),
+);
+
+const articles = (await getArticles()).slice(0, 3);
+const complete = translations.filter((t) => t.data.status === 'complete').length;
+---
+
+<BaseLayout>
+  {heroItems.length > 0 && <Hero items={heroItems} />}
+
+  <div class="container home-grid section">
+    <section class="latest">
+      <div class="section-head">
+        <h2>جديد التعريبات</h2>
+        <a href="/translations/">المزيد ‹</a>
+      </div>
+      <div class="cards">
+        {latest.map((t) => <TranslationCard item={t} />)}
+      </div>
+    </section>
+
+    <aside class="side">
+      {
+        shots.length > 0 && (
+          <section>
+            <div class="section-head">
+              <h2>صورة تعريب اليوم</h2>
+            </div>
+            <a class="panel shot" id="daily-shot" href={shots[0].href} data-shots={JSON.stringify(shots)}>
+              <img src={shots[0].src} alt={`لقطة من تعريب ${shots[0].title}`} loading="lazy" />
+              <span class="shot-title">{shots[0].title}</span>
+            </a>
+          </section>
+        )
+      }
+
+      {
+        updates.length > 0 && (
+          <section>
+            <div class="section-head">
+              <h2>آخر التحديثات</h2>
+            </div>
+            <ul class="updates">
+              {updates.map((t) => (
+                <li>
+                  <a href={`/translations/${t.id}/#changelog`} class="update">
+                    <time
+                      class="badge badge-green"
+                      datetime={lastTouched(t).toISOString()}
+                      data-ago="محدث "
+                      title={formatDate(lastTouched(t))}
+                    >
+                      محدث {formatDate(lastTouched(t))}
+                    </time>
+                    <strong dir="ltr">{t.data.title}</strong>
+                    <span class="muted">{t.data.titleAr}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <section class="stats">
+        <div class="panel stat">
+          <strong>{translations.length}</strong>
+          <span class="muted">تعريب</span>
+        </div>
+        <div class="panel stat">
+          <strong>{complete}</strong>
+          <span class="muted">مكتمل</span>
+        </div>
+        <div class="panel stat wide">
+          <strong dir="ltr">{SITE.totalDownloads}</strong>
+          <span class="muted">تحميل</span>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  {
+    articles.length > 0 && (
+      <section class="container section">
+        <div class="section-head">
+          <h2>أحدث المقالات والدروس</h2>
+          <a href="/articles/">المزيد ‹</a>
+        </div>
+        <div class="articles">
+          {articles.map((a) => (
+            <a href={`/articles/${a.id}/`} class="panel article">
+              <span class="badge">{a.data.kind === 'lesson' ? 'درس' : 'مقال'}</span>
+              <h3>{a.data.title}</h3>
+              <p class="muted">{a.data.description}</p>
+              <time class="muted" datetime={a.data.date.toISOString()}>
+                {formatDate(a.data.date)}
+              </time>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .home-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 40px;
+    align-items: start;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .shot {
+    display: block;
+    padding: 12px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .shot:hover {
+    border-color: var(--accent);
+  }
+  .shot img {
+    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .shot-title {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .updates {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 22px;
+  }
+  .update {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: visible;
+    transition: border-color 0.2s;
+  }
+  .update:hover {
+    border-color: var(--accent);
+  }
+  .update .badge {
+    position: absolute;
+    top: -11px;
+    inset-inline-end: 14px;
+  }
+  .update strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+  .update span {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .stat {
+    text-align: center;
+    padding: 18px 10px;
+  }
+  .stat.wide {
+    grid-column: span 2;
+  }
+  .stat strong {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--accent);
+  }
+  .articles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .article {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .article:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+  .article h3 {
+    font-size: 1.2rem;
+    margin: 4px 0 0;
+  }
+  .article p {
+    margin: 0;
+  }
+  .article time {
+    margin-top: auto;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 1100px) {
+    .home-grid {
+      grid-template-columns: 1fr;
+    }
+    .side {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+  @media (max-width: 800px) {
+    .cards,
+    .articles {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 520px) {
+    .cards,
+    .articles {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // اختيار لقطة مختلفة كل يوم
+  const el = document.getElementById('daily-shot') as HTMLAnchorElement | null;
+  if (el?.dataset.shots) {
+    const shots: { src: string; title: string; href: string }[] = JSON.parse(el.dataset.shots);
+    const day = Math.floor(Date.now() / 86400000);
+    const pick = shots[day % shots.length];
+    const img = el.querySelector('img')!;
+    img.src = pick.src;
+    img.alt = `لقطة من تعريب ${pick.title}`;
+    el.href = pick.href;
+    el.querySelector('.shot-title')!.textContent = pick.title;
+  }
+</script>

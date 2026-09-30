@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import { CATEGORY_LABELS, STATUS_LABELS } from '../config';
+import { formatMonth, isNew, type Translation } from '../lib/utils';
+
+interface Props {
+  item: Translation;
+}
+const { item } = Astro.props;
+const d = item.data;
+---
+
+<a
+  href={`/translations/${item.id}/`}
+  class="card"
+  data-category={d.category}
+  data-status={d.status}
+  data-platforms={d.platforms.join('|')}
+  data-search={`${d.title} ${d.titleAr}`.toLowerCase()}
+>
+  <div class="thumb">
+    <Image src={d.cover} alt={d.titleAr} width={480} height={270} />
+    <div class="badges">
+      <span class="badge">{CATEGORY_LABELS[d.category]}</span>
+      {isNew(item) && <span class="badge badge-new">جديد</span>}
+      {d.status !== 'complete' && (
+        <span class="badge badge-warn">
+          {STATUS_LABELS[d.status]}
+          {d.progress !== undefined && ` ${d.progress}%`}
+        </span>
+      )}
+    </div>
+  </div>
+  <div class="body">
+    <h3 class="title-en" dir="ltr">{d.title}</h3>
+    <p class="title-ar">{d.titleAr}</p>
+    <div class="meta">
+      <span>{formatMonth(d.releaseDate)}</span>
+      <span dir="ltr">{d.platforms.join(', ')}</span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    transition: transform 0.25s, border-color 0.25s, background 0.25s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    background: var(--card-hover);
+  }
+  .thumb {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+  .thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .card:hover .thumb :global(img) {
+    transform: scale(1.05);
+  }
+  .badges {
+    position: absolute;
+    top: 8px;
+    inset-inline-start: 8px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .body {
+    padding: 14px 6px 4px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .title-en {
+    font-family: var(--font);
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .title-ar {
+    color: var(--muted);
+    margin: 2px 0 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+</style>

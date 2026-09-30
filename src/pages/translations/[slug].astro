@@ -1,0 +1,389 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { getTranslations, formatDate, type Translation } from '../../lib/utils';
+import { CATEGORY_LABELS, STATUS_LABELS } from '../../config';
+
+export async function getStaticPaths() {
+  const all = await getTranslations();
+  return all.map((t) => ({ params: { slug: t.id }, props: { item: t } }));
+}
+
+const { item } = Astro.props as { item: Translation };
+const d = item.data;
+const { Content } = await render(item);
+const og = await getImage({ src: d.banner ?? d.cover, width: 1200, format: 'jpg' });
+const shots = await Promise.all(
+  d.screenshots.map(async (s) => ({ thumb: s, full: (await getImage({ src: s, width: 1600 })).src })),
+);
+---
+
+<BaseLayout title={`تعريب ${d.titleAr} (${d.title})`} description={d.summary} image={og.src}>
+  <section class="banner" data-pagefind-body>
+    <Image class="banner-bg" src={d.banner ?? d.cover} alt="" width={1920} height={600} loading="eager" />
+    <div class="container banner-content">
+      <Image class="cover" src={d.cover} alt={d.titleAr} width={420} height={236} loading="eager" />
+      <div>
+        <div class="tags">
+          <span class="badge">{CATEGORY_LABELS[d.category]}</span>
+          <span class:list={['badge', d.status === 'complete' ? 'badge-green' : 'badge-warn']}>
+            {STATUS_LABELS[d.status]}
+          </span>
+        </div>
+        <h1 dir="ltr">{d.title}</h1>
+        <p class="ar">{d.titleAr}</p>
+        <p class="summary">{d.summary}</p>
+        {
+          d.status !== 'complete' && d.progress !== undefined && (
+            <div class="progress" role="progressbar" aria-valuenow={d.progress} aria-valuemin="0" aria-valuemax="100">
+              <div style={`width:${d.progress}%`} />
+              <span>نسبة الإنجاز {d.progress}%</span>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="container layout">
+    <article class="main" data-pagefind-body>
+      <div class="prose">
+        <Content />
+      </div>
+
+      {
+        shots.length > 0 && (
+          <section class="block" data-pagefind-ignore>
+            <h2>صور من التعريب</h2>
+            <div class="gallery">
+              {shots.map((s, i) => (
+                <a href={s.full} target="_blank" class="shot">
+                  <Image src={s.thumb} alt={`لقطة ${i + 1} من تعريب ${d.titleAr}`} width={600} />
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        d.changelog.length > 0 && (
+          <section class="block" id="changelog">
+            <h2>سجل التحديثات</h2>
+            <ol class="changelog">
+              {d.changelog.map((c) => (
+                <li>
+                  <div class="cl-head" data-pagefind-ignore>
+                    <strong dir="ltr">v{c.version}</strong>
+                    <time class="muted" datetime={c.date.toISOString()}>
+                      {formatDate(c.date)}
+                    </time>
+                  </div>
+                  <ul>
+                    {c.notes.map((n) => (
+                      <li>{n}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )
+      }
+    </article>
+
+    <aside class="sidebar">
+      <div class="panel downloads" id="download">
+        <h2><Icon name="download" /> التحميل</h2>
+        {
+          d.downloads.length ? (
+            d.downloads.map((dl) => (
+              <a href={dl.url} class="btn btn-primary dl" target="_blank" rel="noopener">
+                <span>{dl.label}</span>
+                {dl.size && <small dir="ltr">{dl.size}</small>}
+              </a>
+            ))
+          ) : (
+            <p class="muted">روابط التحميل ستتوفر قريباً.</p>
+          )
+        }
+      </div>
+
+      <div class="panel">
+        <h2><Icon name="info" /> معلومات</h2>
+        <dl class="info">
+          <dt>إصدار التعريب</dt>
+          <dd dir="ltr">v{d.version}</dd>
+          {
+            d.gameVersion && (
+              <>
+                <dt>نسخة اللعبة</dt>
+                <dd dir="ltr">{d.gameVersion}</dd>
+              </>
+            )
+          }
+          <dt>المنصة</dt>
+          <dd dir="ltr">{d.platforms.join(', ')}</dd>
+          <dt>تاريخ الإصدار</dt>
+          <dd>{formatDate(d.releaseDate)}</dd>
+          {
+            d.updatedDate && (
+              <>
+                <dt>آخر تحديث</dt>
+                <dd>{formatDate(d.updatedDate)}</dd>
+              </>
+            )
+          }
+        </dl>
+      </div>
+
+      {
+        d.requirements.length > 0 && (
+          <div class="panel">
+            <h2><Icon name="list" /> المتطلبات</h2>
+            <ul class="plain">
+              {d.requirements.map((r) => (
+                <li>{r}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      {
+        d.team.length > 0 && (
+          <div class="panel">
+            <h2><Icon name="users" /> فريق العمل</h2>
+            <dl class="info">
+              {d.team.map((m) => (
+                <>
+                  <dt>{m.role}</dt>
+                  <dd>{m.name}</dd>
+                </>
+              ))}
+            </dl>
+          </div>
+        )
+      }
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .banner {
+    position: relative;
+    margin-top: -76px;
+    padding: 140px 0 48px;
+    overflow: hidden;
+  }
+  .banner :global(.banner-bg) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(6px) brightness(0.5);
+    transform: scale(1.1);
+  }
+  .banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg), rgb(11 13 23 / 0.4));
+  }
+  .banner-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+  .banner-content :global(.cover) {
+    width: min(420px, 40%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgb(255 255 255 / 0.1);
+  }
+  .tags {
+    display: flex;
+    gap: 8px;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    margin: 10px 0 0;
+    text-align: right;
+  }
+  .ar {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .summary {
+    color: #d6d9ee;
+    max-width: 60ch;
+  }
+  .progress {
+    position: relative;
+    height: 28px;
+    background: var(--bg-2);
+    border-radius: 999px;
+    overflow: hidden;
+    max-width: 420px;
+    border: 1px solid var(--border);
+  }
+  .progress div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #5ee7f5);
+  }
+  .progress span {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 40px;
+    padding-top: 24px;
+    align-items: start;
+  }
+  .block {
+    margin-top: 48px;
+  }
+  .block h2 {
+    font-size: 1.5rem;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .shot {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .shot :global(img) {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  .shot:hover :global(img) {
+    transform: scale(1.05);
+  }
+  .changelog {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-inline-start: 2px solid var(--border);
+  }
+  .changelog > li {
+    position: relative;
+    padding: 0 22px 22px;
+  }
+  .changelog > li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: -7px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .cl-head {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .changelog ul {
+    margin: 6px 0 0;
+    padding-inline-start: 20px;
+  }
+
+  .sidebar {
+    display: grid;
+    gap: 18px;
+    position: sticky;
+    top: 96px;
+  }
+  .sidebar h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.15rem;
+    font-family: var(--font);
+    font-weight: 800;
+  }
+  .sidebar h2 :global(svg) {
+    color: var(--accent);
+  }
+  .downloads {
+    display: grid;
+    gap: 10px;
+  }
+  .downloads h2 {
+    margin: 0 0 4px;
+  }
+  .dl {
+    justify-content: space-between;
+    border-radius: var(--radius-sm);
+  }
+  .dl small {
+    white-space: nowrap;
+    opacity: 0.75;
+    font-weight: 500;
+  }
+  .info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    margin: 0;
+  }
+  .info dt {
+    color: var(--muted);
+  }
+  .info dd {
+    margin: 0;
+    text-align: left;
+  }
+  .plain {
+    margin: 0;
+    padding-inline-start: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .banner-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    .banner-content :global(.cover) {
+      width: min(420px, 100%);
+    }
+    h1 {
+      text-align: center;
+    }
+    .tags {
+      justify-content: center;
+    }
+    .summary,
+    .progress {
+      margin-inline: auto;
+    }
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      position: static;
+      order: -1;
+    }
+  }
+</style>
