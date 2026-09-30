@@ -1,42 +1,30 @@
 ---
-title: Chrono Trigger
-titleAr: كرونو تريغر
+title: "Rune Factory: Guardians of Azuma"
+titleAr: "مصنع الرون: حراس أزوما"
 summary: تعريب للنسخة الكلاسيكية من أشهر ألعاب تقمص الأدوار اليابانية على جهاز SNES.
-category: retro
-platforms: [SNES]
+category: mod
+platforms:
+  - Pc
 status: complete
-releaseDate: 2026-07-14
-updatedDate: 2026-09-25
-version: '1.2'
-gameVersion: 'Chrono Trigger (USA).sfc'
-cover: ./cover.webp
-banner: ./banner.webp
-screenshots: [./shot-1.webp, ./shot-2.webp]
+releaseDate: 2026-09-30
+updatedDate: 2026-09-30
+version: "1.1"
+featured: true
+cover: ./cover-munztac8.webp
+banner: ./banner-munztelp.webp
+screenshots:
+  - ./shot-munzu0sdtm1.webp
+  - ./shot-munzu6ubu4a.webp
 downloads:
   - label: ملف الباتش (IPS)
-    url: https://github.com/
-    size: 1.2 MB
+    url: https://www.nexusmods.com/runefactoryguardiansofazuma/mods/220
+    size: "2.3"
 requirements:
-  - نسخة ROM من لعبتك الأصلية
-  - محاكي SNES مثل Snes9x
-  - برنامج Floating IPS لتطبيق الباتش
-changelog:
-  - version: '1.2'
-    date: 2026-09-25
-    notes:
-      - تصحيح أخطاء إملائية في الفصل الثالث
-  - version: '1.0'
-    date: 2026-07-14
-    notes:
-      - الإصدار الأول
+  - Pc
+team:
+  - name: abrhem
+    role: معرب العاب
+changelog: []
 ---
 
-> **ملاحظة:** هذا تعريب تجريبي (مثال).
-
-## طريقة التثبيت
-
-1. افتح برنامج **Floating IPS** واختر **Apply patch**.
-2. اختر ملف الباتش `.ips` ثم ملف اللعبة `.sfc`.
-3. احفظ الملف الجديد وشغّله على المحاكي.
-
-> لا نوفّر ملفات ROM. استخدم نسخة من لعبة تملكها.
+طريقة التثبيت (Installation): 1. قم بتحميل الملف المضغوط وفك الضغط عنه (ستجد بداخله 6 ملفات:. 2. اذهب إلى مجلد تثبيت اللعبة الرئيسي، ثم ادخل إلى المسار التالي: Game\Content\Paks\~mods (ملاحظة: إذا لم يكن مجلد ~mods موجوداً داخل مجلد Paks، قم بإنشاء مجلد جديد وسمّه ~mods انسخ الملفات الستة وضعها داخل مجلد ~mods شغّل اللعبة وتأكد من ضبط لغة النصوص داخل إعدادات اللعبة على اللغة الإنجليزية (English)، وستتحول النصوص تلقائياً إلى اللغة العربية.
