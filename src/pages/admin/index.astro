@@ -1,0 +1,1109 @@
+---
+import '../../styles/global.css';
+import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
+---
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>لوحة التحكم | {SITE.name}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container bar">
+        <a href="/admin/" class="brand"><img src="/logo.svg" alt="" width="36" height="36" /> لوحة التحكم</a>
+        <div class="bar-actions">
+          <a href="/" target="_blank" class="btn small">عرض الموقع ↗</a>
+          <button id="logout" class="btn small" hidden>تسجيل الخروج</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- ============ تسجيل الدخول ============ -->
+      <section id="view-login" class="view" hidden>
+        <form id="login-form" class="panel login">
+          <h1>تسجيل الدخول</h1>
+          <label>اسم المستخدم <input name="username" autocomplete="username" required /></label>
+          <label>كلمة المرور <input name="password" type="password" autocomplete="current-password" required /></label>
+          <button class="btn btn-primary" type="submit">دخول</button>
+          <p class="error" id="login-error"></p>
+        </form>
+      </section>
+
+      <!-- ============ القائمة ============ -->
+      <section id="view-list" class="view" hidden>
+        <div class="tabs">
+          <button class="tab active" data-type="translations">التعريبات</button>
+          <button class="tab" data-type="articles">المقالات والدروس</button>
+        </div>
+        <div class="list-head">
+          <h1 id="list-title">التعريبات</h1>
+          <button id="add-new" class="btn btn-primary">+ إضافة جديد</button>
+        </div>
+        <p class="muted hint">ملاحظة: بعد أي حفظ يحتاج الموقع دقيقة إلى دقيقتين حتى تظهر التغييرات.</p>
+        <ul id="entries" class="entries"></ul>
+      </section>
+
+      <!-- ============ محرر التعريب ============ -->
+      <section id="view-translation" class="view" hidden>
+        <form id="t-form" class="editor" novalidate>
+          <div class="editor-head">
+            <button type="button" class="btn small back">→ رجوع</button>
+            <h1 class="editor-title">تعريب جديد</h1>
+          </div>
+
+          <fieldset class="panel">
+            <legend>المعلومات الأساسية</legend>
+            <div class="grid2">
+              <label>اسم اللعبة الأصلي (إنجليزي) * <input name="title" dir="ltr" required /></label>
+              <label>اسم اللعبة بالعربية * <input name="titleAr" required /></label>
+            </div>
+            <label>
+              رابط الصفحة (slug) *
+              <input name="slug" dir="ltr" required pattern="[a-z0-9]+(-[a-z0-9]+)*" />
+              <small class="muted">أحرف إنجليزية صغيرة وأرقام وشرطات فقط، مثل: silent-hill-2. لا يمكن تغييره بعد الإنشاء.</small>
+            </label>
+            <label>وصف قصير * <textarea name="summary" rows="2" required></textarea></label>
+            <div class="grid3">
+              <label>
+                التصنيف
+                <select name="category">
+                  {Object.entries(CATEGORY_LABELS).map(([k, v]) => <option value={k}>{v}</option>)}
+                </select>
+              </label>
+              <label>
+                الحالة
+                <select name="status">
+                  {Object.entries(STATUS_LABELS).map(([k, v]) => <option value={k}>{v}</option>)}
+                </select>
+              </label>
+              <label>نسبة الإنجاز % <input name="progress" type="number" min="0" max="100" /></label>
+            </div>
+            <div class="grid3">
+              <label>المنصات (افصل بفاصلة) <input name="platforms" dir="ltr" placeholder="PC, PS4" /></label>
+              <label>إصدار التعريب <input name="version" dir="ltr" placeholder="1.0" /></label>
+              <label>نسخة اللعبة المدعومة <input name="gameVersion" dir="ltr" /></label>
+            </div>
+            <div class="grid3">
+              <label>تاريخ الإصدار * <input name="releaseDate" type="date" required /></label>
+              <label>تاريخ آخر تحديث <input name="updatedDate" type="date" /></label>
+              <div class="checks">
+                <label class="check"><input name="featured" type="checkbox" /> يظهر في البانر الرئيسي</label>
+                <label class="check"><input name="draft" type="checkbox" /> مسودة (مخفي عن الزوار)</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="panel">
+            <legend>الصور</legend>
+            <div class="grid2">
+              <div class="img-field" data-img="cover" data-max="1280">
+                <span class="label">صورة الغلاف * <small class="muted">(يفضّل 16:9)</small></span>
+                <div class="img-box"></div>
+                <input type="file" accept="image/*" hidden />
+                <button type="button" class="btn small pick">اختيار صورة</button>
+              </div>
+              <div class="img-field" data-img="banner" data-max="1920">
+                <span class="label">صورة البانر العريضة <small class="muted">(اختياري)</small></span>
+                <div class="img-box"></div>
+                <input type="file" accept="image/*" hidden />
+                <button type="button" class="btn small pick">اختيار صورة</button>
+                <button type="button" class="btn small remove-img">إزالة</button>
+              </div>
+            </div>
+            <div class="shots-field">
+              <span class="label">لقطات من التعريب</span>
+              <div class="shots"></div>
+              <input type="file" accept="image/*" multiple hidden />
+              <button type="button" class="btn small pick-shots">+ إضافة لقطات</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="panel">
+            <legend>روابط التحميل</legend>
+            <div class="repeater" data-repeater="downloads"></div>
+          </fieldset>
+
+          <fieldset class="panel">
+            <legend>الوصف وطريقة التثبيت</legend>
+            <ul class="muted small-text md-help">
+              <li>ابدأ السطر بـ <code dir="ltr">##</code> ثم مسافة لكتابة عنوان.</li>
+              <li>ابدأ السطر بـ <code dir="ltr">1.</code> لخطوة مرقمة، أو بـ <code dir="ltr">-</code> لنقطة.</li>
+              <li>ضع النص بين <code dir="ltr">**</code> و <code dir="ltr">**</code> ليصبح عريضاً.</li>
+              <li>اترك سطراً فارغاً بين الفقرات.</li>
+            </ul>
+            <button type="button" class="btn small" id="t-insert-template">إدراج قالب جاهز</button>
+            <textarea name="body" rows="16" class="body-area"></textarea>
+          </fieldset>
+
+          <fieldset class="panel">
+            <legend>المتطلبات</legend>
+            <label>كل متطلب في سطر <textarea name="requirements" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset class="panel">
+            <legend>فريق العمل</legend>
+            <div class="repeater" data-repeater="team"></div>
+          </fieldset>
+
+          <fieldset class="panel">
+            <legend>سجل التحديثات</legend>
+            <p class="muted small-text">ضع أحدث إصدار في الأعلى.</p>
+            <div class="repeater" data-repeater="changelog"></div>
+          </fieldset>
+
+          <div class="save-bar">
+            <button type="submit" class="btn btn-primary">💾 حفظ ونشر</button>
+            <span class="status"></span>
+          </div>
+        </form>
+      </section>
+
+      <!-- ============ محرر المقال ============ -->
+      <section id="view-article" class="view" hidden>
+        <form id="a-form" class="editor" novalidate>
+          <div class="editor-head">
+            <button type="button" class="btn small back">→ رجوع</button>
+            <h1 class="editor-title">مقال جديد</h1>
+          </div>
+          <fieldset class="panel">
+            <legend>المعلومات</legend>
+            <label>العنوان * <input name="title" required /></label>
+            <label>
+              رابط الصفحة (slug) *
+              <input name="slug" dir="ltr" required pattern="[a-z0-9]+(-[a-z0-9]+)*" />
+              <small class="muted">أحرف إنجليزية صغيرة وأرقام وشرطات فقط، مثل: how-to-install-mods</small>
+            </label>
+            <label>وصف قصير * <textarea name="description" rows="2" required></textarea></label>
+            <div class="grid3">
+              <label>
+                النوع
+                <select name="kind"><option value="article">مقال</option><option value="lesson">درس</option></select>
+              </label>
+              <label>التاريخ * <input name="date" type="date" required /></label>
+              <label>الوسوم (افصل بفاصلة) <input name="tags" /></label>
+            </div>
+            <label class="check"><input name="draft" type="checkbox" /> مسودة (مخفي عن الزوار)</label>
+          </fieldset>
+          <fieldset class="panel">
+            <legend>صورة الغلاف (اختياري)</legend>
+            <div class="img-field" data-img="cover" data-max="1600">
+              <div class="img-box"></div>
+              <input type="file" accept="image/*" hidden />
+              <button type="button" class="btn small pick">اختيار صورة</button>
+              <button type="button" class="btn small remove-img">إزالة</button>
+            </div>
+          </fieldset>
+          <fieldset class="panel">
+            <legend>المحتوى (Markdown)</legend>
+            <textarea name="body" rows="20" class="body-area"></textarea>
+          </fieldset>
+          <div class="save-bar">
+            <button type="submit" class="btn btn-primary">💾 حفظ ونشر</button>
+            <span class="status"></span>
+          </div>
+        </form>
+      </section>
+
+      <div id="loading" class="loading" hidden>جارٍ التحميل...</div>
+    </main>
+
+    <div id="toast" class="toast" hidden></div>
+  </body>
+</html>
+
+<style is:global>
+  .topbar {
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+  }
+  .bar-actions {
+    display: flex;
+    gap: 8px;
+  }
+  main {
+    padding-block: 32px 96px;
+  }
+  .btn.small {
+    padding: 0.35em 1em;
+    font-size: 0.9rem;
+  }
+  .login {
+    max-width: 400px;
+    margin: 64px auto;
+    display: grid;
+    gap: 16px;
+  }
+  .login h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  label {
+    display: grid;
+    gap: 6px;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  input,
+  select,
+  textarea {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font: inherit;
+    width: 100%;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  input:invalid.touched,
+  textarea:invalid.touched {
+    border-color: var(--accent-2);
+  }
+  input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+  }
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .checks {
+    padding-top: 28px;
+  }
+  textarea {
+    resize: vertical;
+    line-height: 1.7;
+  }
+  .body-area {
+    font-family: ui-monospace, Consolas, 'Tajawal', monospace;
+    margin-top: 10px;
+  }
+  .error {
+    color: #ff6b81;
+    margin: 0;
+    min-height: 1.5em;
+    text-align: center;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .tab {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #04141a;
+  }
+  .list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .list-head h1 {
+    margin: 0;
+  }
+  .hint {
+    font-size: 0.9rem;
+  }
+  .entries {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    display: grid;
+    gap: 10px;
+  }
+  .entries li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .entries .name {
+    flex: 1;
+    min-width: 0;
+  }
+  .entries .name strong {
+    display: block;
+  }
+  .entries .name small {
+    color: var(--muted);
+    direction: ltr;
+    display: block;
+    text-align: right;
+  }
+  .entries .actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .btn.danger:hover {
+    border-color: var(--accent-2);
+    color: #ff6b81;
+  }
+  .editor {
+    display: grid;
+    gap: 20px;
+    max-width: 960px;
+  }
+  .editor-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .editor-head h1 {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+  fieldset {
+    margin: 0;
+  }
+  legend {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    padding: 0 8px;
+    color: var(--accent);
+  }
+  .grid2,
+  .grid3 {
+    display: grid;
+    gap: 0 16px;
+  }
+  .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .img-field {
+    margin-bottom: 14px;
+  }
+  .img-box {
+    aspect-ratio: 16 / 9;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: var(--bg-2);
+    color: var(--muted);
+  }
+  .img-box:empty::after {
+    content: 'لا توجد صورة';
+  }
+  .img-box img,
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .shot {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .shot button {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: rgb(0 0 0 / 0.7);
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+  }
+  .repeater .row {
+    display: grid;
+    gap: 0 10px;
+    align-items: end;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 12px 0;
+    margin-bottom: 10px;
+  }
+  .repeater .row .rm {
+    margin-bottom: 14px;
+  }
+  .repeater .row input,
+  .repeater .row textarea {
+    background: var(--card);
+  }
+  .save-bar {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgb(11 13 23 / 0.9);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--border);
+  }
+  .save-bar .btn {
+    font-size: 1.05rem;
+    padding: 0.7em 2em;
+  }
+  .small-text {
+    font-size: 0.9rem;
+    margin-top: 0;
+  }
+  .md-help {
+    padding-inline-start: 20px;
+  }
+  .md-help code {
+    background: var(--bg-2);
+    color: var(--text);
+    padding: 0 6px;
+    border-radius: 4px;
+  }
+  .loading {
+    text-align: center;
+    padding: 48px;
+    color: var(--muted);
+  }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card);
+    border: 1px solid var(--accent);
+    padding: 12px 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    z-index: 100;
+    max-width: calc(100% - 32px);
+  }
+  .toast.err {
+    border-color: var(--accent-2);
+  }
+  @media (max-width: 700px) {
+    .grid2,
+    .grid3 {
+      grid-template-columns: 1fr;
+    }
+    .checks {
+      padding-top: 0;
+    }
+    .entries li {
+      flex-wrap: wrap;
+    }
+    .repeater .row {
+      grid-template-columns: 1fr !important;
+    }
+    .repeater .row .rm {
+      justify-self: start;
+    }
+  }
+</style>
+
+<script>
+  type Type = 'translations' | 'articles';
+  type Img = { name: string; url: string; base64?: string; isNew?: boolean };
+
+  const $ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = document) =>
+    root.querySelector(sel) as T;
+  const $$ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = document) =>
+    [...root.querySelectorAll(sel)] as T[];
+
+  let currentType: Type = 'translations';
+
+  // ------------------------------------------------ أدوات عامة
+  async function api(path: string, init: RequestInit = {}) {
+    const res = await fetch('/api/' + path, {
+      ...init,
+      headers: init.body ? { 'Content-Type': 'application/json' } : {},
+      credentials: 'same-origin',
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 401 && path !== 'login') {
+      show('login');
+      throw new Error('انتهت الجلسة، سجّل الدخول مرة أخرى');
+    }
+    if (!res.ok) throw new Error(data.error || 'حدث خطأ');
+    return data;
+  }
+
+  function show(view: 'login' | 'list' | 'translation' | 'article' | 'loading') {
+    $$('.view').forEach((v) => (v.hidden = true));
+    $('#loading').hidden = view !== 'loading';
+    if (view !== 'loading') $('#view-' + view).hidden = false;
+    $('#logout').hidden = view === 'login';
+    window.scrollTo(0, 0);
+  }
+
+  let toastTimer: number;
+  function toast(msg: string, isError = false) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.toggle('err', isError);
+    t.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => (t.hidden = true), isError ? 7000 : 5000);
+  }
+
+  const today = () => new Date().toISOString().slice(0, 10);
+  const dateStr = (v: unknown) => (v ? String(v).slice(0, 10) : '');
+  const slugify = (s: string) =>
+    s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const lines = (s: string) => s.split('\n').map((l) => l.trim()).filter(Boolean);
+  const list = (s: string) => s.split(/[,،]/).map((l) => l.trim()).filter(Boolean);
+  const esc = (s: string) =>
+    s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+
+  /** يحوّل الصورة إلى WebP ويصغّرها قبل الرفع */
+  async function processImage(file: File, maxW: number): Promise<{ base64: string; url: string; ext: string }> {
+    const bmp = await createImageBitmap(file);
+    const scale = Math.min(1, maxW / bmp.width);
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(bmp.width * scale);
+    canvas.height = Math.round(bmp.height * scale);
+    canvas.getContext('2d')!.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+    let blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, 'image/webp', 0.85));
+    let ext = 'webp';
+    if (!blob || blob.type !== 'image/webp') {
+      blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, 'image/jpeg', 0.88));
+      ext = 'jpg';
+    }
+    const dataUrl = await new Promise<string>((r) => {
+      const fr = new FileReader();
+      fr.onload = () => r(fr.result as string);
+      fr.readAsDataURL(blob!);
+    });
+    return { base64: dataUrl.split(',')[1], url: URL.createObjectURL(blob!), ext };
+  }
+
+  const stamp = () => Date.now().toString(36);
+
+  // ------------------------------------------------ تسجيل الدخول
+  $('#login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target as HTMLFormElement;
+    const err = $('#login-error');
+    err.textContent = '';
+    try {
+      await api('login', {
+        method: 'POST',
+        body: JSON.stringify({ username: f.username.value, password: f.password.value }),
+      });
+      f.password.value = '';
+      await loadList();
+    } catch (ex) {
+      err.textContent = (ex as Error).message;
+    }
+  });
+
+  $('#logout').addEventListener('click', async () => {
+    await api('logout', { method: 'POST' }).catch(() => {});
+    show('login');
+  });
+
+  // ------------------------------------------------ القائمة
+  $$('.tab').forEach((tab) =>
+    tab.addEventListener('click', () => {
+      $$('.tab').forEach((t) => t.classList.toggle('active', t === tab));
+      currentType = tab.dataset.type as Type;
+      loadList();
+    }),
+  );
+
+  async function loadList() {
+    show('loading');
+    try {
+      const items: { slug: string; title: string | null }[] = await api('list?type=' + currentType);
+      $('#list-title').textContent = currentType === 'translations' ? 'التعريبات' : 'المقالات والدروس';
+      const ul = $('#entries');
+      ul.innerHTML = items.length ? '' : '<li class="muted">لا يوجد شيء بعد. اضغط "إضافة جديد".</li>';
+      const base = currentType === 'translations' ? '/translations/' : '/articles/';
+      for (const it of items) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="name"><strong>${esc(it.title || it.slug)}</strong><small>${esc(it.slug)}</small></div>
+          <div class="actions">
+            <a class="btn small" href="${base}${it.slug}/" target="_blank">عرض</a>
+            <button class="btn small edit">تعديل</button>
+            <button class="btn small danger del">حذف</button>
+          </div>`;
+        $('.edit', li).addEventListener('click', () => openEditor(currentType, it.slug));
+        $('.del', li).addEventListener('click', () => removeEntry(it.slug, it.title || it.slug));
+        ul.appendChild(li);
+      }
+      show('list');
+    } catch (ex) {
+      if (!$('#view-login').hidden) return;
+      show('list');
+      toast((ex as Error).message, true);
+    }
+  }
+
+  async function removeEntry(slug: string, title: string) {
+    if (!confirm(`هل أنت متأكد من حذف "${title}" نهائياً؟ سيتم حذف كل صوره أيضاً.`)) return;
+    try {
+      show('loading');
+      await api(`entry?type=${currentType}&slug=${encodeURIComponent(slug)}`, { method: 'DELETE' });
+      toast('تم الحذف. سيختفي من الموقع خلال دقيقة أو دقيقتين.');
+    } catch (ex) {
+      toast((ex as Error).message, true);
+    }
+    loadList();
+  }
+
+  $('#add-new').addEventListener('click', () => openEditor(currentType, null));
+  $$('.back').forEach((b) => b.addEventListener('click', () => loadList()));
+
+  // ------------------------------------------------ المكررات (روابط التحميل، الفريق، السجل)
+  type Field = { key: string; label: string; type?: 'text' | 'date' | 'lines' | 'url'; ltr?: boolean; w?: string };
+  const REPEATERS: Record<string, { fields: Field[]; addLabel: string; blank: () => any }> = {
+    downloads: {
+      addLabel: '+ إضافة رابط تحميل',
+      fields: [
+        { key: 'label', label: 'اسم الرابط', w: '2fr' },
+        { key: 'url', label: 'الرابط', type: 'url', ltr: true, w: '3fr' },
+        { key: 'size', label: 'الحجم', ltr: true, w: '1fr' },
+      ],
+      blank: () => ({ label: 'تحميل مباشر', url: '', size: '' }),
+    },
+    team: {
+      addLabel: '+ إضافة عضو',
+      fields: [
+        { key: 'name', label: 'الاسم', w: '1fr' },
+        { key: 'role', label: 'الدور', w: '1fr' },
+      ],
+      blank: () => ({ name: '', role: '' }),
+    },
+    changelog: {
+      addLabel: '+ إضافة إصدار',
+      fields: [
+        { key: 'version', label: 'الإصدار', ltr: true, w: '1fr' },
+        { key: 'date', label: 'التاريخ', type: 'date', w: '1fr' },
+        { key: 'notes', label: 'التغييرات (كل تغيير في سطر)', type: 'lines', w: '3fr' },
+      ],
+      blank: () => ({ version: '', date: today(), notes: [] }),
+    },
+  };
+
+  function renderRepeater(container: HTMLElement, name: string, items: any[]) {
+    const def = REPEATERS[name];
+    container.innerHTML = '';
+    const rows = document.createElement('div');
+    container.appendChild(rows);
+
+    const addRow = (item: any, atTop = false) => {
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.style.gridTemplateColumns = def.fields.map((f) => f.w || '1fr').join(' ') + ' auto';
+      for (const f of def.fields) {
+        const label = document.createElement('label');
+        label.textContent = f.label;
+        const el =
+          f.type === 'lines' ? document.createElement('textarea') : document.createElement('input');
+        if (el instanceof HTMLInputElement) el.type = f.type === 'date' ? 'date' : f.type === 'url' ? 'url' : 'text';
+        if (el instanceof HTMLTextAreaElement) el.rows = 2;
+        if (f.ltr) el.dir = 'ltr';
+        el.dataset.key = f.key;
+        const v = item[f.key];
+        el.value = f.type === 'lines' ? (v || []).join('\n') : f.type === 'date' ? dateStr(v) : (v ?? '');
+        label.appendChild(el);
+        row.appendChild(label);
+      }
+      const rm = document.createElement('button');
+      rm.type = 'button';
+      rm.className = 'btn small danger rm';
+      rm.textContent = '✕';
+      rm.title = 'حذف';
+      rm.addEventListener('click', () => row.remove());
+      row.appendChild(rm);
+      atTop ? rows.prepend(row) : rows.appendChild(row);
+    };
+
+    (items || []).forEach((it) => addRow(it));
+    const add = document.createElement('button');
+    add.type = 'button';
+    add.className = 'btn small';
+    add.textContent = def.addLabel;
+    add.addEventListener('click', () => addRow(def.blank(), name === 'changelog'));
+    container.appendChild(add);
+  }
+
+  function readRepeater(container: HTMLElement, name: string) {
+    const def = REPEATERS[name];
+    return $$('.row', container)
+      .map((row) => {
+        const out: any = {};
+        for (const f of def.fields) {
+          const el = $<HTMLInputElement>(`[data-key="${f.key}"]`, row);
+          out[f.key] = f.type === 'lines' ? lines(el.value) : el.value.trim();
+        }
+        return out;
+      })
+      .filter((o) => Object.values(o).some((v) => (Array.isArray(v) ? v.length : v)));
+  }
+
+  // ------------------------------------------------ حقول الصور
+  let uploads: { name: string; base64: string }[] = [];
+  let deletes: string[] = [];
+  let imgState: Record<string, Img | null> = {};
+  let shots: Img[] = [];
+  let editing: { type: Type; slug: string | null; dir: string; prefix: string } | null = null;
+
+  function fileUrl(name: string) {
+    return `/api/file?path=${encodeURIComponent(editing!.dir + '/' + name)}`;
+  }
+  function nameFromPath(p?: string) {
+    return p ? String(p).split('/').pop()! : '';
+  }
+  function markDelete(img: Img | null) {
+    if (img && !img.isNew) deletes.push(img.name);
+    if (img?.isNew) uploads = uploads.filter((u) => u.name !== img.name);
+  }
+
+  function setupImageFields(form: HTMLElement) {
+    for (const field of $$('.img-field', form)) {
+      const key = field.dataset.img!;
+      const box = $('.img-box', field);
+      const input = $<HTMLInputElement>('input[type=file]', field);
+      const render = () => {
+        const img = imgState[key];
+        box.innerHTML = img ? `<img src="${img.url}" alt="">` : '';
+      };
+      render();
+      field.onclick = null;
+      $('.pick', field).onclick = () => input.click();
+      const rm = field.querySelector<HTMLButtonElement>('.remove-img');
+      if (rm)
+        rm.onclick = () => {
+          markDelete(imgState[key]);
+          imgState[key] = null;
+          render();
+        };
+      input.onchange = async () => {
+        const file = input.files?.[0];
+        input.value = '';
+        if (!file) return;
+        const p = await processImage(file, Number(field.dataset.max));
+        const base = editing!.type === 'translations' ? key : `${editing!.slug || 'new'}-${key}`;
+        const name = `${base}-${stamp()}.${p.ext}`;
+        markDelete(imgState[key]);
+        uploads.push({ name, base64: p.base64 });
+        imgState[key] = { name, url: p.url, isNew: true };
+        render();
+      };
+    }
+
+    const sf = form.querySelector<HTMLElement>('.shots-field');
+    if (sf) {
+      const wrap = $('.shots', sf);
+      const input = $<HTMLInputElement>('input[type=file]', sf);
+      const render = () => {
+        wrap.innerHTML = '';
+        shots.forEach((s, i) => {
+          const d = document.createElement('div');
+          d.className = 'shot';
+          d.innerHTML = `<img src="${s.url}" alt=""><button type="button" title="حذف">✕</button>`;
+          $('button', d).addEventListener('click', () => {
+            markDelete(s);
+            shots.splice(i, 1);
+            render();
+          });
+          wrap.appendChild(d);
+        });
+      };
+      render();
+      $('.pick-shots', sf).onclick = () => input.click();
+      input.onchange = async () => {
+        const files = [...(input.files || [])];
+        input.value = '';
+        for (const file of files) {
+          const p = await processImage(file, 1600);
+          const name = `shot-${stamp()}${Math.random().toString(36).slice(2, 5)}.${p.ext}`;
+          uploads.push({ name, base64: p.base64 });
+          shots.push({ name, url: p.url, isNew: true });
+          render();
+        }
+      };
+    }
+  }
+
+  // ------------------------------------------------ فتح المحرر
+  async function openEditor(type: Type, slug: string | null) {
+    show('loading');
+    let entry: { data: any; body: string } = { data: {}, body: '' };
+    try {
+      if (slug) entry = await api(`entry?type=${type}&slug=${encodeURIComponent(slug)}`);
+    } catch (ex) {
+      toast((ex as Error).message, true);
+      return loadList();
+    }
+    const d = entry.data;
+    uploads = [];
+    deletes = [];
+    editing = {
+      type,
+      slug,
+      dir: type === 'translations' ? `src/content/translations/${slug}` : 'src/content/articles/images',
+      prefix: type === 'translations' ? './' : './images/',
+    };
+    const toImg = (p?: string): Img | null => (p ? { name: nameFromPath(p), url: fileUrl(nameFromPath(p)) } : null);
+
+    const form = $<HTMLFormElement>(type === 'translations' ? '#t-form' : '#a-form');
+    form.reset();
+    $$('.touched', form).forEach((el) => el.classList.remove('touched'));
+    $('.editor-title', form).textContent = slug
+      ? `تعديل: ${d.titleAr || d.title}`
+      : type === 'translations'
+        ? 'تعريب جديد'
+        : 'مقال جديد';
+    $('.status', form).textContent = '';
+
+    const set = (name: string, v: any) => {
+      const el = form.elements.namedItem(name) as HTMLInputElement;
+      if (el.type === 'checkbox') el.checked = !!v;
+      else el.value = v ?? '';
+    };
+    const slugInput = form.elements.namedItem('slug') as HTMLInputElement;
+    slugInput.readOnly = !!slug;
+    slugInput.dataset.auto = slug ? '' : '1';
+    set('slug', slug || '');
+    set('body', entry.body);
+
+    if (type === 'translations') {
+      set('title', d.title);
+      set('titleAr', d.titleAr);
+      set('summary', d.summary);
+      set('category', d.category || 'modern');
+      set('status', d.status || 'complete');
+      set('progress', d.progress);
+      set('platforms', (d.platforms || ['PC']).join(', '));
+      set('version', d.version || '1.0');
+      set('gameVersion', d.gameVersion);
+      set('releaseDate', dateStr(d.releaseDate) || today());
+      set('updatedDate', dateStr(d.updatedDate));
+      set('featured', d.featured);
+      set('draft', d.draft);
+      set('requirements', (d.requirements || []).join('\n'));
+      imgState = { cover: toImg(d.cover), banner: toImg(d.banner) };
+      shots = (d.screenshots || []).map((p: string) => toImg(p)!);
+      renderRepeater($('[data-repeater=downloads]', form), 'downloads', d.downloads || (slug ? [] : [REPEATERS.downloads.blank()]));
+      renderRepeater($('[data-repeater=team]', form), 'team', d.team || []);
+      renderRepeater(
+        $('[data-repeater=changelog]', form),
+        'changelog',
+        d.changelog || (slug ? [] : [{ version: '1.0', date: today(), notes: ['الإصدار الأول'] }]),
+      );
+    } else {
+      set('title', d.title);
+      set('description', d.description);
+      set('kind', d.kind || 'article');
+      set('date', dateStr(d.date) || today());
+      set('tags', (d.tags || []).join(', '));
+      set('draft', d.draft);
+      imgState = { cover: toImg(d.cover) };
+      shots = [];
+    }
+    setupImageFields(form);
+    show(type === 'translations' ? 'translation' : 'article');
+  }
+
+  // توليد الرابط تلقائياً من العنوان للعناصر الجديدة
+  for (const form of [$<HTMLFormElement>('#t-form'), $<HTMLFormElement>('#a-form')]) {
+    const title = form.elements.namedItem('title') as HTMLInputElement;
+    const slug = form.elements.namedItem('slug') as HTMLInputElement;
+    title.addEventListener('input', () => {
+      if (slug.dataset.auto) slug.value = slugify(title.value);
+    });
+    slug.addEventListener('input', () => (slug.dataset.auto = ''));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      save(form);
+    });
+  }
+
+  $('#t-insert-template').addEventListener('click', () => {
+    const ta = $<HTMLTextAreaElement>('#t-form textarea[name=body]');
+    if (ta.value.trim() && !confirm('سيتم استبدال النص الحالي بالقالب. متابعة؟')) return;
+    ta.value = `## عن اللعبة
+
+اكتب هنا نبذة عن اللعبة.
+
+## ماذا يشمل التعريب؟
+
+- تعريب الحوارات والقوائم.
+- خط عربي واضح.
+
+## طريقة التثبيت
+
+1. حمّل ملف التعريب من روابط التحميل.
+2. فك الضغط عن الملف.
+3. انسخ الملفات إلى مجلد اللعبة ووافق على الاستبدال.
+4. شغّل اللعبة.
+
+## إلغاء التعريب
+
+تحقق من ملفات اللعبة من Steam: **Properties** ← **Installed Files** ← **Verify integrity of game files**.
+`;
+  });
+
+  // ------------------------------------------------ الحفظ
+  async function save(form: HTMLFormElement) {
+    const type = editing!.type;
+    const v = (n: string) => ((form.elements.namedItem(n) as HTMLInputElement).value || '').trim();
+    const checked = (n: string) => (form.elements.namedItem(n) as HTMLInputElement).checked;
+
+    // التحقق من الحقول المطلوبة
+    const invalid = $$<HTMLInputElement>('[required]', form).filter((el) => !el.checkValidity());
+    invalid.forEach((el) => el.classList.add('touched'));
+    if (invalid.length) {
+      invalid[0].focus();
+      return toast('يرجى تعبئة الحقول المطلوبة (*) بشكل صحيح', true);
+    }
+    if (type === 'translations' && !imgState.cover) return toast('صورة الغلاف مطلوبة', true);
+
+    const slug = v('slug');
+    const pre = editing!.prefix;
+    let data: any;
+    if (type === 'translations') {
+      const progress = v('progress');
+      data = {
+        title: v('title'),
+        titleAr: v('titleAr'),
+        summary: v('summary'),
+        category: v('category'),
+        platforms: list(v('platforms')).length ? list(v('platforms')) : ['PC'],
+        status: v('status'),
+        progress: progress === '' ? undefined : Math.max(0, Math.min(100, Number(progress))),
+        releaseDate: v('releaseDate'),
+        updatedDate: v('updatedDate'),
+        version: v('version') || '1.0',
+        gameVersion: v('gameVersion'),
+        featured: checked('featured') || undefined,
+        draft: checked('draft') || undefined,
+        cover: pre + imgState.cover!.name,
+        banner: imgState.banner ? pre + imgState.banner.name : undefined,
+        screenshots: shots.map((s) => pre + s.name),
+        downloads: readRepeater($('[data-repeater=downloads]', form), 'downloads'),
+        requirements: lines(v('requirements')),
+        team: readRepeater($('[data-repeater=team]', form), 'team'),
+        changelog: readRepeater($('[data-repeater=changelog]', form), 'changelog'),
+      };
+      if (data.changelog.some((c: any) => !c.version || !c.date)) {
+        return toast('كل إصدار في سجل التحديثات يحتاج رقم إصدار وتاريخ', true);
+      }
+      if (data.downloads.some((dl: any) => !dl.label || !dl.url)) {
+        return toast('كل رابط تحميل يحتاج اسماً ورابطاً', true);
+      }
+    } else {
+      data = {
+        title: v('title'),
+        description: v('description'),
+        date: v('date'),
+        kind: v('kind'),
+        tags: list(v('tags')),
+        draft: checked('draft') || undefined,
+        cover: imgState.cover ? pre + imgState.cover.name : undefined,
+      };
+    }
+
+    // لمقال جديد: أسماء الصور تعتمد على الرابط النهائي
+    const btn = $<HTMLButtonElement>('button[type=submit]', form);
+    const status = $('.status', form);
+    btn.disabled = true;
+    status.textContent = 'جارٍ الحفظ...';
+    try {
+      await api('entry', {
+        method: 'POST',
+        body: JSON.stringify({
+          type,
+          slug,
+          isNew: !editing!.slug,
+          data,
+          body: v('body'),
+          uploads,
+          deletes: [...new Set(deletes)],
+        }),
+      });
+      toast('✅ تم الحفظ! ستظهر التغييرات على الموقع خلال دقيقة أو دقيقتين.');
+      await loadList();
+    } catch (ex) {
+      status.textContent = '';
+      toast((ex as Error).message, true);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  // ------------------------------------------------ البداية
+  (async () => {
+    show('loading');
+    try {
+      const { user } = await api('me');
+      if (user) return loadList();
+    } catch {}
+    show('login');
+  })();
+</script>

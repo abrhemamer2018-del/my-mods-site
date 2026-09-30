@@ -2,8 +2,16 @@
 {
   "name": "my-mods-site",
   "compatibility_date": "2026-09-30",
+  "main": "./worker/index.js",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "GITHUB_REPO": "abrhemamer2018-del/my-mods-site",
+    "GITHUB_BRANCH": "main"
+  },
+  "observability": { "enabled": true }
 }
