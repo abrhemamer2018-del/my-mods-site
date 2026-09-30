@@ -8,7 +8,12 @@ import { SITE } from '../config';
 
 const translations = await getTranslations();
 const featured = translations.filter((t) => t.data.featured);
-const heroItems = featured.length ? featured : translations.slice(0, 1);
+// البانر: التعريبات المميزة أولاً، ثم نكمل بالأحدث حتى 5 شرائح
+const HERO_MAX = 5;
+const heroItems = [
+  ...featured,
+  ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
+].slice(0, Math.max(HERO_MAX, featured.length));
 const latest = translations.slice(0, 6);
 
 // آخر التحديثات: التعريبات التي لديها updatedDate
