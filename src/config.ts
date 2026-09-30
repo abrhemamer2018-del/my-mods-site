@@ -16,10 +16,9 @@ export const SITE = {
 
 // روابط التواصل — احذف أي سطر لا تحتاجه
 export const SOCIAL: { label: string; url: string; icon: string }[] = [
-  { label: 'ديسكورد', url: 'https://discord.gg/', icon: 'discord' },
-  { label: 'إكس (تويتر)', url: 'https://x.com/', icon: 'x' },
-  { label: 'يوتيوب', url: 'https://youtube.com/', icon: 'youtube' },
-  { label: 'البريد', url: 'mailto:you@example.com', icon: 'mail' },
+  { label: 'ديسكورد', url: 'https://discord.gg/MNmtmnSsu', icon: 'discord' },
+  { label: 'يوتيوب', url: 'https://www.youtube.com/@IBO-MO', icon: 'youtube' },
+  { label: 'إكس (تويتر)', url: 'https://x.com/Web3Nftvisitor', icon: 'x' },
 ];
 
 export const NAV = [
