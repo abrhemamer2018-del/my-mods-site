@@ -13,6 +13,7 @@ banner: ./banner-muo003h9.webp
 screenshots:
   - ./shot-muo008te4y8.webp
   - ./shot-muo00b5gsg7.webp
+  - ./shot-muo17v0em86.webp
 downloads:
   - label: تحميل مباشر
     url: https://www.nexusmods.com/runefactoryguardiansofazuma/mods/220?tab=description
