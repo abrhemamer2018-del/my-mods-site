@@ -16,7 +16,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://www.nexusmods.com/hades/mods/244
-    size: "3.1"
+    size: 3.1 MB
 requirements: []
 team:
   - name: ibrahim
