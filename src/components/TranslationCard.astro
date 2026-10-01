@@ -5,14 +5,16 @@ import { formatMonth, isNew, type Translation } from '../lib/utils';
 
 interface Props {
   item: Translation;
+  hidden?: boolean;
 }
-const { item } = Astro.props;
+const { item, hidden } = Astro.props;
 const d = item.data;
 ---
 
 <a
   href={`/translations/${item.id}/`}
   class="card"
+  hidden={hidden}
   data-category={d.category}
   data-status={d.status}
   data-platforms={d.platforms.join('|')}

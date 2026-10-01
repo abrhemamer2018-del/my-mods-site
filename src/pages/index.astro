@@ -14,7 +14,8 @@ const heroItems = [
   ...featured,
   ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
 ].slice(0, Math.max(HERO_MAX, featured.length));
-const latest = translations.slice(0, 6);
+// جديد التعريبات: تظهر أول 6 ثم تظهر 6 أخرى كلما وصل الزائر لنهاية القائمة
+const PAGE_SIZE = 6;
 
 // آخر التحديثات: التعريبات التي لديها updatedDate
 const updates = translations
@@ -46,9 +47,10 @@ const complete = translations.filter((t) => t.data.status === 'complete').length
         <h2>جديد التعريبات</h2>
         <a href="/translations/">المزيد ‹</a>
       </div>
-      <div class="cards">
-        {latest.map((t) => <TranslationCard item={t} />)}
+      <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
+        {translations.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
       </div>
+      {translations.length > PAGE_SIZE && <div id="latest-more" class="more-loader" aria-hidden="true" />}
     </section>
 
     <aside class="side">
@@ -146,6 +148,10 @@ const complete = translations.filter((t) => t.data.status === 'complete').length
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
+  }
+  .more-loader {
+    height: 1px;
+    margin-top: 20px;
   }
   .side {
     display: flex;
@@ -281,6 +287,30 @@ const complete = translations.filter((t) => t.data.status === 'complete').length
 </style>
 
 <script>
+  // التمرير اللانهائي: إظهار دفعة جديدة من التعريبات عند الاقتراب من نهاية القائمة
+  const sentinel = document.getElementById('latest-more');
+  const grid = document.getElementById('latest-cards');
+  if (sentinel && grid) {
+    const size = Number(grid.dataset.pageSize) || 6;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) return;
+        const rest = grid.querySelectorAll<HTMLElement>(':scope > [hidden]');
+        [...rest].slice(0, size).forEach((c) => (c.hidden = false));
+        if (rest.length <= size) {
+          observer.disconnect();
+          sentinel.remove();
+        } else {
+          // إعادة المراقبة حتى تُفحص من جديد إن بقيت ظاهرة بعد إضافة الدفعة
+          observer.unobserve(sentinel);
+          requestAnimationFrame(() => observer.observe(sentinel));
+        }
+      },
+      { rootMargin: '400px 0px' },
+    );
+    observer.observe(sentinel);
+  }
+
   // اختيار لقطة مختلفة كل يوم
   const el = document.getElementById('daily-shot') as HTMLAnchorElement | null;
   if (el?.dataset.shots) {

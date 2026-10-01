@@ -25,6 +25,11 @@
   box-sizing: border-box;
 }
 
+/* حتى يعمل الإخفاء بـ hidden على العناصر التي لها display مثل .card و .btn */
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
