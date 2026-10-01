@@ -19,7 +19,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://www.nexusmods.com/fantasylifeithegirlwhostealstime/mods/87?tab=description
-    size: 16.8mb
+    size: 16.8 MB
 requirements: []
 team:
   - name: Ibrahim
