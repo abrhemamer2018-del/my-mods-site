@@ -7,7 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-09-30
-version: "1.0"
+version: "2.0"
 cover: ./cover-muo37t37.webp
 banner: ./banner-muo37l1r.webp
 screenshots:
