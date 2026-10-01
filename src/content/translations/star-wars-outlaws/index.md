@@ -20,7 +20,9 @@ downloads:
     url: https://www.mediafire.com/file/1jdxk98zlwuwi2m/StarWarsOutlaws_Arabic_Mod.zip/file
     size: 7.06 MB
 requirements: []
-team: []
+team:
+  - name: ibrahim
+    role: معرب العاب
 changelog:
   - version: "1.0"
     date: 2026-10-01
