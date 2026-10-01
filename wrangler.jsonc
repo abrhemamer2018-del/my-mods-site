@@ -11,6 +11,14 @@
     "not_found_handling": "404-page",
     "run_worker_first": ["/api/*"]
   },
+  // حد محاولات تسجيل الدخول: 5 محاولات في الدقيقة لكل IP
+  "ratelimits": [
+    {
+      "name": "LOGIN_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 5, "period": 60 }
+    }
+  ],
   "vars": {
     "GITHUB_REPO": "abrhemamer2018-del/my-mods-site",
     "GITHUB_BRANCH": "main"

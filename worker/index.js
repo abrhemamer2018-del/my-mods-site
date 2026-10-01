@@ -71,6 +71,11 @@ async function login(request, env) {
   if (!env.ADMIN_USER || !env.ADMIN_PASSWORD) {
     throw httpError(500, 'لم يتم ضبط ADMIN_USER و ADMIN_PASSWORD في إعدادات Cloudflare');
   }
+  if (env.LOGIN_LIMITER) {
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const { success } = await env.LOGIN_LIMITER.limit({ key: ip });
+    if (!success) throw httpError(429, 'محاولات كثيرة، انتظر دقيقة ثم حاول مرة أخرى');
+  }
   const { username = '', password = '' } = await request.json().catch(() => ({}));
   const ok =
     (await safeEqual(String(username), env.ADMIN_USER)) &
@@ -304,7 +309,22 @@ async function saveEntry(gh, payload) {
     files.push({ path: `${dir}/${name}`, delete: true });
   }
 
-  const front = stringify(clean(data), { lineWidth: 0 }).trimEnd();
+  // الصور المتاحة بعد الحفظ = الموجودة في المستودع + المرفوعة − المحذوفة
+  const images = new Set(
+    (await gh.tree())
+      .filter((t) => t.type === 'blob' && t.path.startsWith(dir + '/'))
+      .map((t) => t.path.slice(dir.length + 1)),
+  );
+  for (const f of files) {
+    const name = f.path.slice(dir.length + 1);
+    f.delete ? images.delete(name) : images.add(name);
+  }
+
+  const cleaned = clean(data);
+  const problem = validate(type, cleaned, images);
+  if (problem) throw httpError(400, problem);
+
+  const front = stringify(cleaned, { lineWidth: 0 }).trimEnd();
   const body = String(payload.body || '').replace(/\r\n/g, '\n').trim();
   files.push({ path, text: `---\n${front}\n---\n\n${body}\n` });
 
@@ -339,6 +359,56 @@ function clean(value) {
   }
   if (value === '' || value === null || value === undefined) return undefined;
   return value;
+}
+
+/**
+ * يتحقق من البيانات بنفس شروط src/content.config.ts قبل الحفظ،
+ * حتى لا يُحفظ ملف يُفشل بناء الموقع ويوقف النشر.
+ * يُرجع رسالة الخطأ، أو null إذا كانت البيانات سليمة.
+ */
+function validate(type, d, images) {
+  const isStr = (v) => typeof v === 'string' && v.trim() !== '';
+  const isDate = (v) => (typeof v === 'string' || v instanceof Date) && !isNaN(new Date(v).getTime());
+  const strList = (v) => v === undefined || (Array.isArray(v) && v.every(isStr));
+  const objList = (v, check) => v === undefined || (Array.isArray(v) && v.every((o) => o && typeof o === 'object' && check(o)));
+  const optional = (v, check) => v === undefined || check(v);
+  const isBool = (v) => typeof v === 'boolean';
+  const prefix = type === 'translations' ? './' : './images/';
+  const imageOk = (v) => isStr(v) && v.startsWith(prefix) && images.has(v.slice(prefix.length));
+
+  if (type === 'translations') {
+    if (!isStr(d.title)) return 'اسم اللعبة الأصلي مطلوب';
+    if (!isStr(d.titleAr)) return 'اسم اللعبة بالعربية مطلوب';
+    if (!isStr(d.summary)) return 'الوصف القصير مطلوب';
+    if (!['modern', 'retro', 'vn', 'mod'].includes(d.category)) return 'التصنيف غير صحيح';
+    if (!optional(d.status, (v) => ['complete', 'beta', 'in-progress'].includes(v))) return 'الحالة غير صحيحة';
+    if (!optional(d.progress, (v) => typeof v === 'number' && v >= 0 && v <= 100)) return 'نسبة الإنجاز يجب أن تكون بين 0 و 100';
+    if (!strList(d.platforms)) return 'المنصات غير صحيحة';
+    if (!isDate(d.releaseDate)) return 'تاريخ الإصدار مطلوب';
+    if (!optional(d.updatedDate, isDate)) return 'تاريخ آخر تحديث غير صحيح';
+    if (!optional(d.version, isStr) || !optional(d.gameVersion, isStr)) return 'رقم الإصدار غير صحيح';
+    if (!optional(d.featured, isBool) || !optional(d.draft, isBool)) return 'بيانات غير صحيحة';
+    if (!imageOk(d.cover)) return 'صورة الغلاف مطلوبة';
+    if (!optional(d.banner, imageOk)) return 'صورة البانر غير موجودة، أعد اختيارها';
+    if (!(d.screenshots === undefined || (Array.isArray(d.screenshots) && d.screenshots.every(imageOk)))) {
+      return 'إحدى لقطات الشاشة غير موجودة، احذفها وأعد إضافتها';
+    }
+    const dlOk = (o) => isStr(o.label) && isStr(o.url) && /^https?:\/\//i.test(o.url) && optional(o.size, isStr);
+    if (!objList(d.downloads, dlOk)) return 'كل رابط تحميل يحتاج اسماً ورابطاً يبدأ بـ https://';
+    if (!strList(d.requirements)) return 'المتطلبات غير صحيحة';
+    if (!objList(d.team, (o) => isStr(o.name) && isStr(o.role))) return 'كل عضو في الفريق يحتاج اسماً ودوراً';
+    const clOk = (o) => isStr(o.version) && isDate(o.date) && Array.isArray(o.notes) && o.notes.every(isStr);
+    if (!objList(d.changelog, clOk)) return 'كل إصدار في سجل التحديثات يحتاج رقم إصدار وتاريخ';
+  } else {
+    if (!isStr(d.title)) return 'العنوان مطلوب';
+    if (!isStr(d.description)) return 'الوصف القصير مطلوب';
+    if (!isDate(d.date)) return 'التاريخ مطلوب';
+    if (!optional(d.kind, (v) => ['article', 'lesson'].includes(v))) return 'النوع غير صحيح';
+    if (!optional(d.cover, imageOk)) return 'صورة الغلاف غير موجودة، أعد اختيارها';
+    if (!strList(d.tags)) return 'الوسوم غير صحيحة';
+    if (!optional(d.draft, isBool)) return 'بيانات غير صحيحة';
+  }
+  return null;
 }
 
 // ------------------------------------------------------------

@@ -619,7 +619,9 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
   /** يحوّل الصورة إلى WebP ويصغّرها قبل الرفع */
   async function processImage(file: File, maxW: number): Promise<{ base64: string; url: string; ext: string }> {
-    const bmp = await createImageBitmap(file);
+    const bmp = await createImageBitmap(file).catch(() => {
+      throw new Error(`تعذّرت قراءة الصورة "${file.name}". استخدم صيغة JPG أو PNG أو WebP.`);
+    });
     const scale = Math.min(1, maxW / bmp.width);
     const canvas = document.createElement('canvas');
     canvas.width = Math.round(bmp.width * scale);
@@ -846,7 +848,12 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         const file = input.files?.[0];
         input.value = '';
         if (!file) return;
-        const p = await processImage(file, Number(field.dataset.max));
+        let p;
+        try {
+          p = await processImage(file, Number(field.dataset.max));
+        } catch (ex) {
+          return toast((ex as Error).message, true);
+        }
         const base = editing!.type === 'translations' ? key : `${editing!.slug || 'new'}-${key}`;
         const name = `${base}-${stamp()}.${p.ext}`;
         markDelete(imgState[key]);
@@ -880,7 +887,13 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         const files = [...(input.files || [])];
         input.value = '';
         for (const file of files) {
-          const p = await processImage(file, 1600);
+          let p;
+          try {
+            p = await processImage(file, 1600);
+          } catch (ex) {
+            toast((ex as Error).message, true);
+            continue;
+          }
           const name = `shot-${stamp()}${Math.random().toString(36).slice(2, 5)}.${p.ext}`;
           uploads.push({ name, base64: p.base64 });
           shots.push({ name, url: p.url, isNew: true });
