@@ -22,7 +22,7 @@ downloads:
     size: 16.8 MB
 requirements: []
 team:
-  - name: Ibrahim
+  - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
   - version: "2.0"
