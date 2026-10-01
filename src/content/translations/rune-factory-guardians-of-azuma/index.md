@@ -1,7 +1,7 @@
 ---
 title: Rune Factory Guardians of Azuma
 titleAr: "مصنع الرون: حراس أزوما"
-summary: "أهلاً بكم في مشروع تعريب لعبة Rune Factory: Guardians of Azuma يقدم هذا المود ترجمة عربية شاملة للعبة لتسهيل الاستمتاع بالقصة، المهام، والقوائم باللغة العربية الفصحى السلسة.Describe the main purpose of your mod"
+summary: "أهلاً بكم في مشروع تعريب لعبة Rune Factory: Guardians of Azuma يقدم هذا المود ترجمة عربية شاملة للعبة لتسهيل الاستمتاع بالقصة، المهام، والقوائم باللغة العربية الفصحى السلسة."
 category: modern
 platforms:
   - PC
