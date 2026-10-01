@@ -1,7 +1,7 @@
 ---
 title: FANTASY LIFE i
 titleAr: فانتاسي لايف
-summary: "أهلاً بكم في مشروع تعريب لعبة FANTASY LIFE i: The Girl Who Steals Time! يقدم هذا المود ترجمة عربية شاملة للعبة لتسهيل الاستمتاع بالقصة، المهام، والقوائم باللغة العربية الفصحى السلسة. Describe the main purpose of your mod"
+summary: "أهلاً بكم في مشروع تعريب لعبة FANTASY LIFE i: The Girl Who Steals Time! يقدم هذا المود ترجمة عربية شاملة للعبة لتسهيل الاستمتاع بالقصة، المهام، والقوائم باللغة العربية الفصحى السلسة."
 category: modern
 platforms:
   - PC
