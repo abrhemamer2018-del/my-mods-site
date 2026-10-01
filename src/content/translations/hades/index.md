@@ -1,6 +1,6 @@
 ---
 title: Hades
-titleAr: حادس
+titleAr: هادس
 summary: مشروع تعريب لعبة Hades
 category: mod
 platforms:
@@ -19,7 +19,7 @@ downloads:
     size: 3.1 MB
 requirements: []
 team:
-  - name: ibrahim
+  - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
   - version: "1.0"
