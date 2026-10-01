@@ -25,7 +25,7 @@ team:
   - name: Ibrahim
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "2.0"
     date: 2026-09-30
     notes:
       - الإصدار الأول
