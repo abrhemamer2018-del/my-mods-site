@@ -17,7 +17,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://www.nexusmods.com/runefactoryguardiansofazuma/mods/220?tab=description
-    size: "2.3"
+    size: 2.3 MB
 requirements: []
 team:
   - name: ibrahim
