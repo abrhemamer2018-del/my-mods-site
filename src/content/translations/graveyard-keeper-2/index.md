@@ -17,7 +17,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://www.mediafire.com/file/a6nhsty3v357exa/GK2_Arabic_Mod.zip/file
-    size: 245kb
+    size: 245 KB
 requirements: []
 team:
   - name: Ibrahim
