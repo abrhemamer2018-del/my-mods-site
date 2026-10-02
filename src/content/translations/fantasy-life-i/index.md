@@ -16,6 +16,7 @@ screenshots:
   - ./shot-muo381f90yo.webp
   - ./shot-muo381ibfkg.webp
   - ./shot-muo381kufpy.webp
+video: https://www.youtube.com/watch?v=raApuFKC0ME
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_FantasyLifeI_Installer.zip
