@@ -2,12 +2,12 @@
 title: Graveyard Keeper 2
 titleAr: حارس المقبرة 2
 summary: تعود إليكم اللعبة في محاكاة مقابر العصور الوسطى! قم بإعادة إعمار البلدة، وإدارة المقبرة، وأتمتة عمليات الإنتاج، وقُد جيش الموتى الأحياء إلى المعركة، وحوّل مشكلة الزومبي إلى مشروع تجاري مزدهر! إن Graveyard Keeper 2 هي التكملة المروعة التي تتجاوز في عمقها "الأقدام الستة" (عمق القبر التقليدي)، وتفوق كل ما سبقها جنوناً وغرابة!
-category: modern
+category: mod
 platforms:
   - PC
 status: complete
 releaseDate: 2026-09-30
-version: "1.0"
+version: "2.0"
 cover: ./cover-muo4y57y.webp
 banner: ./banner-muo52583.webp
 screenshots:
@@ -16,8 +16,8 @@ screenshots:
   - ./shot-muo50un0w99.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/graveyard-keeper-2-arabic.zip
-    size: 245 KB
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_GK2_Installer.zip
+    size: 287 KB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -26,7 +26,7 @@ changelog:
   - version: "1.0"
     date: 2026-09-30
     notes:
-      - الإصدار الأول
+      - الإصدار  الثاني
 ---
 
 طريقة التثبيت
