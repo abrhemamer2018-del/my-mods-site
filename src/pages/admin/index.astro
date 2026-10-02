@@ -650,6 +650,8 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   }
 
   const stamp = () => Date.now().toString(36);
+  // العضو الافتراضي في "فريق العمل" لكل تعريب
+  const DEFAULT_MEMBER = { name: 'IBRAHIM ALOBAIDI', role: 'معرب العاب' };
   // رابط فيديو يوتيوب: watch / youtu.be / shorts / embed / live
   const YOUTUBE_RE = /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)[\w-]{11}/;
 
@@ -784,6 +786,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         label.appendChild(el);
         row.appendChild(label);
       }
+      if (name === 'downloads') watchDownloadSize(row);
       const rm = document.createElement('button');
       rm.type = 'button';
       rm.className = 'btn small danger rm';
@@ -801,6 +804,31 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     add.textContent = def.addLabel;
     add.addEventListener('click', () => addRow(def.blank(), name === 'changelog'));
     container.appendChild(add);
+  }
+
+  // عند لصق رابط تحميل من GitHub Releases يُملأ الحجم تلقائياً
+  const GITHUB_ASSET_RE = /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/releases\/download\/[^/]+\/[^/?#]+$/;
+  function watchDownloadSize(row: HTMLElement) {
+    const urlEl = $<HTMLInputElement>('[data-key="url"]', row);
+    const sizeEl = $<HTMLInputElement>('[data-key="size"]', row);
+    let timer: number | undefined;
+    urlEl.addEventListener('input', () => {
+      clearTimeout(timer);
+      const link = urlEl.value.trim();
+      if (!GITHUB_ASSET_RE.test(link)) return;
+      timer = window.setTimeout(async () => {
+        sizeEl.value = '';
+        sizeEl.placeholder = 'جارٍ جلب الحجم...';
+        try {
+          const { size } = await api('asset-size?url=' + encodeURIComponent(link));
+          if (urlEl.value.trim() === link) sizeEl.value = size;
+        } catch (ex) {
+          toast((ex as Error).message, true);
+        } finally {
+          sizeEl.placeholder = '';
+        }
+      }, 400);
+    });
   }
 
   function readRepeater(container: HTMLElement, name: string) {
@@ -974,7 +1002,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       imgState = { cover: toImg(d.cover), banner: toImg(d.banner) };
       shots = (d.screenshots || []).map((p: string) => toImg(p)!);
       renderRepeater($('[data-repeater=downloads]', form), 'downloads', d.downloads || (slug ? [] : [REPEATERS.downloads.blank()]));
-      renderRepeater($('[data-repeater=team]', form), 'team', d.team || []);
+      renderRepeater($('[data-repeater=team]', form), 'team', d.team?.length ? d.team : [{ ...DEFAULT_MEMBER }]);
       renderRepeater(
         $('[data-repeater=changelog]', form),
         'changelog',

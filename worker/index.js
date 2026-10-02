@@ -63,6 +63,7 @@ async function handleApi(request, env, url) {
   if (route === 'entry' && method === 'POST') return json(await saveEntry(gh, await request.json()));
   if (route === 'entry' && method === 'DELETE') return json(await deleteEntry(gh, url));
   if (route === 'file' && method === 'GET') return readFile(gh, url);
+  if (route === 'asset-size' && method === 'GET') return json(await assetSize(env, url));
 
   throw httpError(404, 'غير موجود');
 }
@@ -324,6 +325,40 @@ async function readFile(gh, url) {
   return new Response(res.body, {
     headers: { 'Content-Type': types[ext], 'Cache-Control': 'private, max-age=300' },
   });
+}
+
+/** حجم ملف من GitHub Releases انطلاقاً من رابط التحميل المباشر، مثل "7.06 MB" */
+async function assetSize(env, url) {
+  const link = url.searchParams.get('url') || '';
+  const m = link.match(/^https:\/\/github\.com\/([\w.-]+)\/([\w.-]+)\/releases\/download\/([^/]+)\/([^/?#]+)$/);
+  if (!m) throw httpError(400, 'ليس رابط تحميل من GitHub Releases');
+  const [, owner, repo, tag, file] = m;
+  const res = await fetch(
+    `${env.GITHUB_API || 'https://api.github.com'}/repos/${owner}/${repo}/releases/tags/${encodeURIComponent(decodeURIComponent(tag))}`,
+    {
+      headers: {
+        Accept: 'application/vnd.github+json',
+        'User-Agent': 'mods-site-admin',
+        'X-GitHub-Api-Version': '2022-11-28',
+        ...(env.GITHUB_TOKEN ? { Authorization: `Bearer ${env.GITHUB_TOKEN}` } : {}),
+      },
+    },
+  );
+  if (!res.ok) throw httpError(404, 'لم يُعثر على صفحة الملفات في GitHub');
+  const asset = ((await res.json()).assets || []).find((a) => a.name === decodeURIComponent(file));
+  if (!asset) throw httpError(404, 'لم يُعثر على الملف في GitHub، تأكد من الرابط');
+  return { bytes: asset.size, size: formatSize(asset.size) };
+}
+
+function formatSize(bytes) {
+  const units = ['B', 'KB', 'MB', 'GB'];
+  let i = 0;
+  let n = bytes;
+  while (n >= 1024 && i < units.length - 1) {
+    n /= 1024;
+    i++;
+  }
+  return `${i >= 2 ? n.toFixed(2) : Math.round(n)} ${units[i]}`;
 }
 
 async function saveEntry(gh, payload) {
