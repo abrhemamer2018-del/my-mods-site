@@ -17,8 +17,8 @@ screenshots:
   - ./shot-muprpwbh39s.webp
 downloads:
   - label: تحميل مباشر
-    url: https://www.mediafire.com/file/f27i5buyu6yyphf/Stardew_Valley.rar/file
-    size: 336.77 MB
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_StardewValley_Installer.zip
+    size: 14.7 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
