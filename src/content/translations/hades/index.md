@@ -15,8 +15,8 @@ screenshots:
   - ./shot-muo0qt5djwi.webp
 downloads:
   - label: تحميل مباشر
-    url: https://www.nexusmods.com/hades/mods/244
-    size: 3.1 MB
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_Hades_Installer.zip
+    size: 3.74 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
