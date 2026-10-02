@@ -29,17 +29,13 @@ changelog:
       - الإصدار  الثاني
 ---
 
-طريقة التثبيت
--------------
-1) افتح مجلد اللعبة. الطريقة السهلة:
-   Steam > المكتبة > زر الفأرة الأيمن على Graveyard Keeper 2 > Manage > Browse local files
-   المسار الافتراضي:
-   C:\Program Files (x86)\Steam\steamapps\common\Graveyard Keeper 2
+حمّل الملف وفك ضغطه.
+أغلق اللعبة إن كانت مفتوحة.
+شغّل الاداة واضغط تثبيت.
+شغّل اللعبة، وستفتح بالعربية مباشرة.
+الاداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط «اختيار يدوي» وحدد مجلد اللعبة.
 
-2) فك ضغط الملف داخل هذا المجلد بحيث يصبح المسار هكذا:
-   Graveyard Keeper 2\Languages\ar\language.json
-   Graveyard Keeper 2\Languages\ar\strings.csv
-   (يجب أن يكون المجلد Languages بجانب الملف GraveyardKeeper2.exe مباشرة)
+قد تظهر رسالة "Windows protected your PC"، أو تحذير هذا طبيعي.
 
-3) شغّل اللعبة، ثم من: الإعدادات > اللغة  اختر «العربية».
-   إذا كانت اللعبة مفتوحة أثناء التثبيت اضغط Shift+F10 لإعادة تحميل المودات.
+في المتصفح: اضغط على النقاط الثلاث بجانب الملف ← Keep ← Keep anyway.
+عند التشغيل: اضغط More info ← Run anyway.
