@@ -44,5 +44,6 @@ export const STATUS_LABELS = {
   'in-progress': 'قيد العمل',
 } as const;
 
-// كم يوماً يبقى فيها التعريب مُعلَّماً بشارة "جديد"
+// شارة "جديد": تظهر على أحدث NEW_BADGE_MAX تعريبات فقط، بشرط ألا يتجاوز عمرها NEW_BADGE_DAYS يوماً
 export const NEW_BADGE_DAYS = 30;
+export const NEW_BADGE_MAX = 3;

@@ -2,7 +2,7 @@
 title: Hades
 titleAr: هادس
 summary: مشروع تعريب لعبة Hades
-category: mod
+category: modern
 platforms:
   - PC
 status: complete

@@ -11,10 +11,11 @@ interface Props {
   image?: string; // صورة المشاركة في تويتر وديسكورد
 }
 
-const { title, description = SITE.description, image } = Astro.props;
+// الصورة الافتراضية للمشاركة (public/og.png) للصفحات التي ليس لها صورة خاصة
+const { title, description = SITE.description, image = '/og.png' } = Astro.props;
 const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = image ? new URL(image, Astro.site).href : undefined;
+const ogImage = new URL(image, Astro.site).href;
 ---
 
 <!doctype html>

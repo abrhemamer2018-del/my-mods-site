@@ -2,7 +2,7 @@
 title: Starfield
 titleAr: ستار فيلد
 summary: "تُعد Starfield أول عالم جديد تقدمه استوديوهات Bethesda Game Studios منذ 25 عاماً، وهي الاستوديوهات الحائزة على جوائز ومبتكرة لعبتي The Elder Scrolls V: Skyrim وFallout 4."
-category: mod
+category: modern
 platforms:
   - PC
 status: complete

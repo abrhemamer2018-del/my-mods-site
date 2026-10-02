@@ -9,6 +9,7 @@ interface Props {
 }
 const { item, hidden } = Astro.props;
 const d = item.data;
+const fresh = await isNew(item);
 ---
 
 <a
@@ -24,7 +25,7 @@ const d = item.data;
     <Image src={d.cover} alt={d.titleAr} width={480} height={270} />
     <div class="badges">
       <span class="badge">{CATEGORY_LABELS[d.category]}</span>
-      {isNew(item) && <span class="badge badge-new">جديد</span>}
+      {fresh && <span class="badge badge-new">جديد</span>}
       {d.status !== 'complete' && (
         <span class="badge badge-warn">
           {STATUS_LABELS[d.status]}

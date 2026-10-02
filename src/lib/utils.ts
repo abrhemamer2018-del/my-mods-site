@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { NEW_BADGE_DAYS } from '../config';
+import { NEW_BADGE_DAYS, NEW_BADGE_MAX } from '../config';
 
 export type Translation = CollectionEntry<'translations'>;
 
@@ -11,8 +11,11 @@ export const formatDate = (d: Date) => fullDateFmt.format(d);
 
 export const lastTouched = (t: Translation) => t.data.updatedDate ?? t.data.releaseDate;
 
-export const isNew = (t: Translation) =>
-  Date.now() - t.data.releaseDate.getTime() < NEW_BADGE_DAYS * 24 * 60 * 60 * 1000;
+/** هل يحمل التعريب شارة "جديد"؟ (من أحدث NEW_BADGE_MAX، وعمره أقل من NEW_BADGE_DAYS) */
+export async function isNew(t: Translation) {
+  const newest = (await getTranslations()).slice(0, NEW_BADGE_MAX).map((x) => x.id);
+  return newest.includes(t.id) && Date.now() - t.data.releaseDate.getTime() < NEW_BADGE_DAYS * 86400000;
+}
 
 /** كل التعريبات المنشورة، الأحدث أولاً */
 export async function getTranslations() {

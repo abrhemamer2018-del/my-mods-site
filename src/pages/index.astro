@@ -4,7 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import TranslationCard from '../components/TranslationCard.astro';
 import { getArticles, getTranslations, lastTouched, formatDate } from '../lib/utils';
-import { SITE } from '../config';
+import Icon from '../components/Icon.astro';
+import { SITE, SOCIAL } from '../config';
 
 const translations = await getTranslations();
 const featured = translations.filter((t) => t.data.featured);
@@ -34,8 +35,13 @@ const shots = await Promise.all(
   ),
 );
 
-const articles = (await getArticles()).slice(0, 3);
-const complete = translations.filter((t) => t.data.status === 'complete').length;
+// قسم المقالات يظهر فقط عند وجود 3 مقالات أو أكثر، حتى لا يبدو الموقع غير نشط
+const ARTICLES_MIN = 3;
+const allArticles = await getArticles();
+const articles = allArticles.length >= ARTICLES_MIN ? allArticles.slice(0, 3) : [];
+
+const lastAdded = translations[0]?.data.releaseDate;
+const discord = SOCIAL.find((s) => s.icon === 'discord');
 ---
 
 <BaseLayout>
@@ -51,6 +57,7 @@ const complete = translations.filter((t) => t.data.status === 'complete').length
         {translations.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
       </div>
       {translations.length > PAGE_SIZE && <div id="latest-more" class="more-loader" aria-hidden="true" />}
+      <a href="/translations/" class="btn all-link">عرض كل التعريبات مع البحث والتصنيفات ‹</a>
     </section>
 
     <aside class="side">
@@ -102,14 +109,33 @@ const complete = translations.filter((t) => t.data.status === 'complete').length
           <span class="muted">تعريب</span>
         </div>
         <div class="panel stat">
-          <strong>{complete}</strong>
-          <span class="muted">مكتمل</span>
-        </div>
-        <div class="panel stat wide">
           <strong dir="ltr">{SITE.totalDownloads}</strong>
           <span class="muted">تحميل</span>
         </div>
+        {
+          lastAdded && (
+            <div class="panel stat wide">
+              <time class="last-added" datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
+                {formatDate(lastAdded)}
+              </time>
+              <span class="muted">آخر تعريب أُضيف</span>
+            </div>
+          )
+        }
       </section>
+
+      {
+        discord && (
+          <section class="panel cta">
+            <Icon name="discord" size={34} />
+            <h2>عندك لعبة تتمنى تعريبها؟</h2>
+            <p class="muted">اطلبها في ديسكورد، وتابع أخبار التعريبات القادمة أولاً بأول.</p>
+            <a href={discord.url} class="btn btn-primary" target="_blank" rel="noopener">
+              انضم إلى ديسكورد
+            </a>
+          </section>
+        )
+      }
     </aside>
   </div>
 
@@ -152,6 +178,37 @@ const complete = translations.filter((t) => t.data.status === 'complete').length
   .more-loader {
     height: 1px;
     margin-top: 20px;
+  }
+  .all-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .last-added {
+    display: block;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--accent);
+  }
+  .cta {
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    border-color: rgb(88 101 242 / 0.45);
+    background:
+      radial-gradient(circle at 50% 0%, rgb(88 101 242 / 0.28), transparent 70%),
+      var(--card);
+  }
+  .cta :global(svg) {
+    color: #8b95ff;
+  }
+  .cta h2 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  .cta p {
+    margin: 0 0 6px;
   }
   .side {
     display: flex;
