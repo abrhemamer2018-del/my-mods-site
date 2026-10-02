@@ -650,6 +650,24 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   }
 
   const stamp = () => Date.now().toString(36);
+  // قالب "الوصف وطريقة التثبيت": يُكتب تلقائياً في كل تعريب جديد، ويُدرج بزر "إدراج قالب جاهز"
+  const INSTALL_TEMPLATE = `## طريقة التثبيت
+
+1. حمّل الملف وفك ضغطه.
+2. أغلق اللعبة إن كانت مفتوحة.
+3. شغّل الأداة واضغط **تثبيت**.
+4. شغّل اللعبة، وستفتح بالعربية مباشرة.
+
+الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
+
+## ملاحظة
+
+قد تظهر رسالة "Windows protected your PC" أو تحذير، وهذا طبيعي:
+
+- **في المتصفح:** اضغط على النقاط الثلاث بجانب الملف ← **Keep** ← **Keep anyway**.
+- **عند التشغيل:** اضغط **More info** ← **Run anyway**.
+`;
+
   // العضو الافتراضي في "فريق العمل" لكل تعريب
   const DEFAULT_MEMBER = { name: 'IBRAHIM ALOBAIDI', role: 'معرب العاب' };
   // رابط فيديو يوتيوب: watch / youtu.be / shorts / embed / live
@@ -981,7 +999,8 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     slugInput.readOnly = !!slug;
     slugInput.dataset.auto = slug ? '' : '1';
     set('slug', slug || '');
-    set('body', entry.body);
+    // التعريب الجديد يبدأ بقالب طريقة التثبيت جاهزاً
+    set('body', !slug && type === 'translations' ? INSTALL_TEMPLATE : entry.body);
 
     if (type === 'translations') {
       set('title', d.title);
@@ -1039,26 +1058,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   $('#t-insert-template').addEventListener('click', () => {
     const ta = $<HTMLTextAreaElement>('#t-form textarea[name=body]');
     if (ta.value.trim() && !confirm('سيتم استبدال النص الحالي بالقالب. متابعة؟')) return;
-    ta.value = `## عن اللعبة
-
-اكتب هنا نبذة عن اللعبة.
-
-## ماذا يشمل التعريب؟
-
-- تعريب الحوارات والقوائم.
-- خط عربي واضح.
-
-## طريقة التثبيت
-
-1. حمّل ملف التعريب من روابط التحميل.
-2. فك الضغط عن الملف.
-3. انسخ الملفات إلى مجلد اللعبة ووافق على الاستبدال.
-4. شغّل اللعبة.
-
-## إلغاء التعريب
-
-تحقق من ملفات اللعبة من Steam: **Properties** ← **Installed Files** ← **Verify integrity of game files**.
-`;
+    ta.value = INSTALL_TEMPLATE;
   });
 
   // ------------------------------------------------ الحفظ
