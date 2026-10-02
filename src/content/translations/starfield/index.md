@@ -17,8 +17,8 @@ screenshots:
   - ./shot-mupr26cruh9.webp
 downloads:
   - label: تحميل مباشر
-    url: https://www.mediafire.com/file/ivzzizgml7bguyd/Starfield_Arabic_Mod.zip/file
-    size: 7.42 MB
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_Starfield_Installer.zip
+    size: 7.46 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
