@@ -83,7 +83,7 @@ const videoId = youtubeId(d.video);
             <h2>صور من التعريب</h2>
             <div class="gallery">
               {shots.map((s, i) => (
-                <a href={s.full} target="_blank" class="shot">
+                <a href={s.full} class="shot" data-index={i}>
                   <Image src={s.thumb} alt={`لقطة ${i + 1} من تعريب ${d.titleAr}`} width={600} />
                 </a>
               ))}
@@ -193,6 +193,28 @@ const videoId = youtubeId(d.video);
       }
     </aside>
   </div>
+
+  {
+    shots.length > 0 && (
+      <dialog class="lightbox" aria-label={`صور تعريب ${d.titleAr}`}>
+        <img class="lb-img" alt="" />
+        <button class="lb-btn lb-close" aria-label="إغلاق">
+          <Icon name="close" size={24} />
+        </button>
+        {shots.length > 1 && (
+          <>
+            <button class="lb-btn lb-prev" aria-label="الصورة السابقة">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+            </button>
+            <button class="lb-btn lb-next" aria-label="الصورة التالية">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+            </button>
+          </>
+        )}
+        <span class="lb-count" dir="ltr" />
+      </dialog>
+    )
+  }
 </BaseLayout>
 
 <style>
@@ -326,6 +348,86 @@ const videoId = youtubeId(d.video);
   }
   .yt:hover .play {
     transform: scale(1.1);
+  }
+  /* عارض الصور داخل الموقع */
+  .lightbox {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+  }
+  .lightbox[open] {
+    display: grid;
+    place-items: center;
+  }
+  .lightbox::backdrop {
+    background: rgb(5 6 12 / 0.92);
+    backdrop-filter: blur(6px);
+  }
+  .lb-img {
+    max-width: calc(100vw - 160px);
+    max-height: calc(100dvh - 120px);
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgb(0 0 0 / 0.6);
+    user-select: none;
+  }
+  .lb-btn {
+    position: fixed;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgb(255 255 255 / 0.15);
+    background: rgb(20 23 40 / 0.75);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .lb-btn:hover {
+    background: rgb(25 195 214 / 0.35);
+    border-color: var(--accent);
+  }
+  .lb-close {
+    top: 20px;
+    left: 20px;
+  }
+  .lb-prev,
+  .lb-next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .lb-prev {
+    right: 24px;
+  }
+  .lb-next {
+    left: 24px;
+  }
+  .lb-count {
+    position: fixed;
+    bottom: 22px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #c9cde6;
+    font-weight: 700;
+  }
+  @media (max-width: 700px) {
+    .lb-img {
+      max-width: 100vw;
+      border-radius: 0;
+    }
+    .lb-prev,
+    .lb-next {
+      top: auto;
+      bottom: 12px;
+      transform: none;
+    }
   }
   .gallery {
     display: grid;
@@ -469,4 +571,56 @@ const videoId = youtubeId(d.video);
       el.removeAttribute('href');
     });
   });
+</script>
+
+<script>
+  // عارض الصور: يفتح الصورة كبيرة داخل الموقع بدل فتحها في نافذة جديدة
+  const box = document.querySelector<HTMLDialogElement>('.lightbox');
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.gallery .shot')];
+  if (box && links.length) {
+    const img = box.querySelector<HTMLImageElement>('.lb-img')!;
+    const count = box.querySelector<HTMLElement>('.lb-count')!;
+    let current = 0;
+
+    const show = (i: number) => {
+      current = (i + links.length) % links.length;
+      img.src = links[current].href;
+      img.alt = links[current].querySelector('img')?.alt || '';
+      count.textContent = links.length > 1 ? `${current + 1} / ${links.length}` : '';
+    };
+    const open = (i: number) => {
+      show(i);
+      box.showModal();
+      document.documentElement.style.overflow = 'hidden';
+    };
+
+    links.forEach((a, i) =>
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        open(i);
+      }),
+    );
+    box.addEventListener('close', () => (document.documentElement.style.overflow = ''));
+    box.querySelector('.lb-close')?.addEventListener('click', () => box.close());
+    box.querySelector('.lb-next')?.addEventListener('click', () => show(current + 1));
+    box.querySelector('.lb-prev')?.addEventListener('click', () => show(current - 1));
+    // الضغط خارج الصورة يغلق العارض
+    box.addEventListener('click', (e) => {
+      if (e.target === box) box.close();
+    });
+    // الأسهم في لوحة المفاتيح (الصفحة من اليمين لليسار: السهم الأيسر = التالي)
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(current + 1);
+      if (e.key === 'ArrowRight') show(current - 1);
+    });
+    // السحب باللمس على الجوال
+    let x0: number | null = null;
+    box.addEventListener('touchstart', (e) => (x0 = e.touches[0].clientX), { passive: true });
+    box.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+    });
+  }
 </script>
