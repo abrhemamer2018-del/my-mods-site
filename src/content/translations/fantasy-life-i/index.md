@@ -18,8 +18,8 @@ screenshots:
   - ./shot-muo381kufpy.webp
 downloads:
   - label: تحميل مباشر
-    url: https://www.nexusmods.com/fantasylifeithegirlwhostealstime/mods/87?tab=description
-    size: 16.8 MB
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_FantasyLifeI_Installer.zip
+    size: 42 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
