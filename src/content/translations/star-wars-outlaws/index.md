@@ -17,8 +17,8 @@ screenshots:
   - ./shot-muozdixql0h.webp
 downloads:
   - label: تحميل مباشر
-    url: https://www.mediafire.com/file/1jdxk98zlwuwi2m/StarWarsOutlaws_Arabic_Mod.zip/file
-    size: 7.06 MB
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_StarWarsOutlaws_Installer.zip
+    size: 7.1 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
