@@ -128,6 +128,11 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
               <input type="file" accept="image/*" multiple hidden />
               <button type="button" class="btn small pick-shots">+ إضافة لقطات</button>
             </div>
+            <label class="video-field">
+              فيديو من يوتيوب <small class="muted">(اختياري)</small>
+              <input name="video" type="url" dir="ltr" placeholder="https://www.youtube.com/watch?v=..." />
+              <small class="muted">الصق رابط الفيديو من يوتيوب. إذا تركته فارغاً لن يظهر قسم الفيديو في صفحة التعريب.</small>
+            </label>
           </fieldset>
 
           <fieldset class="panel">
@@ -452,6 +457,9 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     height: 100%;
     object-fit: cover;
   }
+  .video-field {
+    margin-top: 18px;
+  }
   .shots {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -642,6 +650,8 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   }
 
   const stamp = () => Date.now().toString(36);
+  // رابط فيديو يوتيوب: watch / youtu.be / shorts / embed / live
+  const YOUTUBE_RE = /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)[\w-]{11}/;
 
   // ------------------------------------------------ تسجيل الدخول
   $('#login-form').addEventListener('submit', async (e) => {
@@ -955,6 +965,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       set('platforms', (d.platforms || ['PC']).join(', '));
       set('version', d.version || '1.0');
       set('gameVersion', d.gameVersion);
+      set('video', d.video);
       set('releaseDate', dateStr(d.releaseDate) || today());
       set('updatedDate', dateStr(d.updatedDate));
       set('featured', d.featured);
@@ -1059,6 +1070,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         cover: pre + imgState.cover!.name,
         banner: imgState.banner ? pre + imgState.banner.name : undefined,
         screenshots: shots.map((s) => pre + s.name),
+        video: v('video'),
         downloads: readRepeater($('[data-repeater=downloads]', form), 'downloads'),
         requirements: lines(v('requirements')),
         team: readRepeater($('[data-repeater=team]', form), 'team'),
@@ -1069,6 +1081,9 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       }
       if (data.downloads.some((dl: any) => !dl.label || !dl.url)) {
         return toast('كل رابط تحميل يحتاج اسماً ورابطاً', true);
+      }
+      if (data.video && !YOUTUBE_RE.test(data.video)) {
+        return toast('رابط الفيديو يجب أن يكون رابط فيديو من يوتيوب', true);
       }
     } else {
       data = {

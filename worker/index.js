@@ -433,6 +433,10 @@ function validate(type, d, images) {
     if (!(d.screenshots === undefined || (Array.isArray(d.screenshots) && d.screenshots.every(imageOk)))) {
       return 'إحدى لقطات الشاشة غير موجودة، احذفها وأعد إضافتها';
     }
+    const ytOk = (v) =>
+      isStr(v) && /^https:\/\/(www\.|m\.)?(youtube\.com|youtu\.be)\//i.test(v) &&
+      /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)[\w-]{11}/.test(v);
+    if (!optional(d.video, ytOk)) return 'رابط الفيديو يجب أن يكون رابط فيديو من يوتيوب يبدأ بـ https://';
     const dlOk = (o) => isStr(o.label) && isStr(o.url) && /^https?:\/\//i.test(o.url) && optional(o.size, isStr);
     if (!objList(d.downloads, dlOk)) return 'كل رابط تحميل يحتاج اسماً ورابطاً يبدأ بـ https://';
     if (!strList(d.requirements)) return 'المتطلبات غير صحيحة';

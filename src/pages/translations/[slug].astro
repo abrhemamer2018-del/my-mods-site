@@ -3,7 +3,7 @@ import { Image, getImage } from 'astro:assets';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
-import { getTranslations, formatDate, type Translation } from '../../lib/utils';
+import { getTranslations, formatDate, youtubeId, type Translation } from '../../lib/utils';
 import { CATEGORY_LABELS, STATUS_LABELS } from '../../config';
 
 export async function getStaticPaths() {
@@ -18,6 +18,8 @@ const og = await getImage({ src: d.banner ?? d.cover, width: 1200, format: 'jpg'
 const shots = await Promise.all(
   d.screenshots.map(async (s) => ({ thumb: s, full: (await getImage({ src: s, width: 1600 })).src })),
 );
+// فيديو يوتيوب اختياري: لا يظهر القسم إذا لم يوضع رابط
+const videoId = youtubeId(d.video);
 ---
 
 <BaseLayout title={`تعريب ${d.titleAr} (${d.title})`} description={d.summary} image={og.src}>
@@ -52,6 +54,28 @@ const shots = await Promise.all(
       <div class="prose">
         <Content />
       </div>
+
+      {
+        videoId && (
+          <section class="block" data-pagefind-ignore>
+            <h2>فيديو التعريب</h2>
+            {/* صورة الفيديو وزر التشغيل أولاً، ومشغّل يوتيوب يُحمَّل عند الضغط فقط حتى تبقى الصفحة سريعة */}
+            <a
+              href={`https://www.youtube.com/watch?v=${videoId}`}
+              class="yt"
+              data-id={videoId}
+              target="_blank"
+              rel="noopener"
+              aria-label={`تشغيل فيديو تعريب ${d.titleAr}`}
+            >
+              <img src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt="" loading="lazy" />
+              <span class="play" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              </span>
+            </a>
+          </section>
+        )
+      }
 
       {
         shots.length > 0 && (
@@ -260,6 +284,49 @@ const shots = await Promise.all(
   .block h2 {
     font-size: 1.5rem;
   }
+  .yt {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #000;
+  }
+  .yt img,
+  .yt :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+  .yt img {
+    transition: transform 0.4s, filter 0.3s;
+    filter: brightness(0.8);
+  }
+  .yt:hover img {
+    transform: scale(1.03);
+    filter: brightness(0.65);
+  }
+  .play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 76px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: #e0242b;
+    color: #fff;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.45);
+    transition: transform 0.2s;
+  }
+  .yt:hover .play {
+    transform: scale(1.1);
+  }
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -387,3 +454,19 @@ const shots = await Promise.all(
     }
   }
 </style>
+
+<script>
+  // تشغيل فيديو يوتيوب داخل الصفحة عند الضغط (بدل فتحه في تبويب جديد)
+  document.querySelectorAll<HTMLAnchorElement>('.yt[data-id]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${el.dataset.id}?autoplay=1&rel=0`;
+      frame.title = el.getAttribute('aria-label') || 'YouTube';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      frame.allowFullscreen = true;
+      el.replaceChildren(frame);
+      el.removeAttribute('href');
+    });
+  });
+</script>

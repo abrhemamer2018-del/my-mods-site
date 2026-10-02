@@ -26,6 +26,7 @@ const translations = defineCollection({
       cover: image(),
       banner: image().optional(),
       screenshots: z.array(image()).default([]),
+      video: z.string().url().optional(), // (اختياري) رابط فيديو يوتيوب يظهر في صفحة التعريب
       downloads: z
         .array(z.object({ label: z.string(), url: z.string(), size: z.string().optional() }))
         .default([]),

@@ -28,6 +28,12 @@ export async function getArticles(kind?: 'article' | 'lesson') {
   return all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
+/** يستخرج معرّف الفيديو من أي رابط يوتيوب (watch / youtu.be / shorts / embed / live) */
+export function youtubeId(url?: string) {
+  const m = url?.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]{11})/);
+  return m?.[1];
+}
+
 /** "محدث منذ يومين" */
 export function timeAgo(d: Date) {
   const rtf = new Intl.RelativeTimeFormat('ar', { numeric: 'auto' });
