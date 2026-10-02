@@ -16,8 +16,8 @@ screenshots:
   - ./shot-muo17v0em86.webp
 downloads:
   - label: تحميل مباشر
-    url: https://www.nexusmods.com/runefactoryguardiansofazuma/mods/220?tab=description
-    size: 2.3 MB
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_RuneFactory_Azuma_Installer.zip
+    size: 2.74 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
