@@ -10,8 +10,9 @@ export const SITE = {
   lang: 'ar',
   // رابط زر "ادعمنا" — اتركه فارغاً '' لإخفاء الزر
   donateUrl: 'https://ko-fi.com/ibrahimalobaidi',
-  // رقم يظهر في الإحصائيات بالصفحة الرئيسية (عدّله يدوياً)
-  totalDownloads: '120K',
+  // عدد التحميلات في الرئيسية يُحسب تلقائياً من GitHub Releases.
+  // أضف هنا تحميلات سابقة من خارج GitHub (مثل Nexus و MediaFire) لتُجمع معه، أو اتركه 0
+  downloadsOffset: 0,
 };
 
 // روابط التواصل — احذف أي سطر لا تحتاجه

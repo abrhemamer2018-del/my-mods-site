@@ -109,7 +109,7 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
           <span class="muted">تعريب</span>
         </div>
         <div class="panel stat">
-          <strong dir="ltr">{SITE.totalDownloads}</strong>
+          <strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset}>…</strong>
           <span class="muted">تحميل</span>
         </div>
         {
@@ -344,6 +344,17 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
 </style>
 
 <script>
+  // عدد التحميلات الحقيقي من GitHub (عبر /api/downloads)
+  const dlEl = document.getElementById('downloads-count');
+  if (dlEl) {
+    const offset = Number(dlEl.dataset.offset) || 0;
+    const fmt = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
+    fetch('/api/downloads')
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then(({ total }) => (dlEl.textContent = fmt.format(total + offset)))
+      .catch(() => (dlEl.textContent = offset ? fmt.format(offset) : '—'));
+  }
+
   // التمرير اللانهائي: إظهار دفعة جديدة من التعريبات عند الاقتراب من نهاية القائمة
   const sentinel = document.getElementById('latest-more');
   const grid = document.getElementById('latest-cards');

@@ -47,6 +47,9 @@ async function handleApi(request, env, url) {
     return json({ ok: true }, 200, { 'Set-Cookie': cookie('', 0) });
   }
 
+  // عدد التحميلات الحقيقي (عام، لا يحتاج تسجيل دخول)
+  if (route === 'downloads' && method === 'GET') return downloadsCount(env);
+
   // كل ما بعد هذا يحتاج تسجيل دخول
   const user = await currentUser(request, env);
   if (route === 'me') return json({ user });
@@ -128,6 +131,43 @@ async function safeEqual(a, b) {
   let diff = 0;
   for (let i = 0; i < x.length; i++) diff |= x[i] ^ y[i];
   return diff === 0;
+}
+
+// ------------------------------------------------------------
+//  عدد التحميلات: مجموع تحميلات كل ملفات GitHub Releases
+//  يُحفظ مؤقتاً 15 دقيقة حتى لا نطلب GitHub مع كل زائر
+// ------------------------------------------------------------
+const DOWNLOADS_CACHE_SECONDS = 900;
+
+async function downloadsCount(env) {
+  const cacheKey = new Request('https://cache.internal/downloads-count');
+  const cache = caches.default;
+  const cached = await cache.match(cacheKey);
+  if (cached) return cached;
+
+  const res = await fetch(`${env.GITHUB_API || 'https://api.github.com'}/repos/${env.GITHUB_REPO}/releases?per_page=100`, {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'User-Agent': 'mods-site',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(env.GITHUB_TOKEN ? { Authorization: `Bearer ${env.GITHUB_TOKEN}` } : {}),
+    },
+  });
+  if (!res.ok) throw httpError(502, 'تعذّر جلب عدد التحميلات');
+  const releases = await res.json();
+  const total = releases.reduce(
+    (sum, r) => sum + (r.assets || []).reduce((s, a) => s + (a.download_count || 0), 0),
+    0,
+  );
+
+  const out = new Response(JSON.stringify({ total }), {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': `public, max-age=${DOWNLOADS_CACHE_SECONDS}`,
+    },
+  });
+  await cache.put(cacheKey, out.clone());
+  return out;
 }
 
 // ------------------------------------------------------------
