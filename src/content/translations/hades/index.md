@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-09-30
 version: "1.0"
-cover: ./cover-muo0qooq.webp
+cover: ./cover-murhbbxe.webp
 banner: ./banner-muo0pqjy.webp
 screenshots:
   - ./shot-muo0qt1kqs7.webp
