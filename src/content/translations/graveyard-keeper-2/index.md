@@ -14,6 +14,7 @@ screenshots:
   - ./shot-muo50ui1wr1.webp
   - ./shot-muo50uknwx3.webp
   - ./shot-muo50un0w99.webp
+video: https://www.youtube.com/watch?v=N3D6oWd1bc0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_GK2_Installer.zip
