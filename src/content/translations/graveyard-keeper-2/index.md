@@ -16,7 +16,7 @@ screenshots:
   - ./shot-muo50un0w99.webp
 downloads:
   - label: تحميل مباشر
-    url: https://www.mediafire.com/file/a6nhsty3v357exa/GK2_Arabic_Mod.zip/file
+    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/graveyard-keeper-2-arabic.zip
     size: 245 KB
 requirements: []
 team:
