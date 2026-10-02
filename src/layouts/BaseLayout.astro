@@ -65,12 +65,6 @@ const ogImage = new URL(image, Astro.site).href;
         el.textContent = (el.dataset.ago || '') + text;
       });
     </script>
-
-    <!-- Cloudflare Web Analytics: عدّاد الزوار (لا يستخدم كوكيز) -->
-    <script
-      is:inline
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "2057f73f9b434e0596eada492de49b69"}'></script>
+    <!-- عدّاد الزوار (Cloudflare Web Analytics) يضيفه Cloudflare تلقائياً، فلا تضفه هنا حتى لا تُحسب الزيارة مرتين -->
   </body>
 </html>
