@@ -72,6 +72,13 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
   }
+  /* الجوال: بطاقتان في كل صف */
+  @media (max-width: 560px) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
   .empty {
     text-align: center;
     padding: 48px 0;

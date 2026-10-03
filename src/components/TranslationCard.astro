@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { CATEGORY_LABELS, STATUS_LABELS } from '../config';
+import { STATUS_LABELS } from '../config';
 import { formatMonth, isNew, type Translation } from '../lib/utils';
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
 const { item, hidden } = Astro.props;
 const d = item.data;
 const fresh = await isNew(item);
+// المنصة وحجم ملف التعريب، مثل "PC · 15.09 MB"
+const size = d.downloads[0]?.size;
 ---
 
 <a
@@ -24,7 +26,6 @@ const fresh = await isNew(item);
   <div class="thumb">
     <Image src={d.cover} alt={d.titleAr} width={480} height={270} />
     <div class="badges">
-      <span class="badge">{CATEGORY_LABELS[d.category]}</span>
       {fresh && <span class="badge badge-new">جديد</span>}
       {d.status !== 'complete' && (
         <span class="badge badge-warn">
@@ -39,7 +40,10 @@ const fresh = await isNew(item);
     <p class="title-ar">{d.titleAr}</p>
     <div class="meta">
       <span>{formatMonth(d.releaseDate)}</span>
-      <span dir="ltr">{d.platforms.join(', ')}</span>
+      <span dir="ltr" class="spec">
+        {d.platforms.join(', ')}
+        {size && <> · {size}</>}
+      </span>
     </div>
   </div>
 </a>
@@ -109,7 +113,40 @@ const fresh = await isNew(item);
     margin-top: auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2px 8px;
     font-size: 0.82rem;
     color: var(--muted);
+  }
+  .spec {
+    font-weight: 700;
+    color: #c9cde6;
+  }
+  /* الجوال: بطاقتان في كل صف، فنصغّر المسافات والخطوط */
+  @media (max-width: 560px) {
+    .card {
+      padding: 8px;
+      border-radius: 14px;
+    }
+    .thumb {
+      border-radius: 9px;
+    }
+    .badges {
+      top: 6px;
+      inset-inline-start: 6px;
+    }
+    .body {
+      padding: 10px 2px 2px;
+    }
+    .title-en {
+      font-size: 0.9rem;
+    }
+    .title-ar {
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .meta {
+      font-size: 0.72rem;
+    }
   }
 </style>

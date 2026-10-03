@@ -3,6 +3,7 @@ import { Image, getImage } from 'astro:assets';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import TranslationCard from '../../components/TranslationCard.astro';
 import { getTranslations, formatDate, youtubeId, type Translation } from '../../lib/utils';
 import { CATEGORY_LABELS, STATUS_LABELS } from '../../config';
 
@@ -20,6 +21,13 @@ const shots = await Promise.all(
 );
 // فيديو يوتيوب اختياري: لا يظهر القسم إذا لم يوضع رابط
 const videoId = youtubeId(d.video);
+
+// "تعريبات أخرى قد تعجبك": التعريبات الأربعة التالية لهذا التعريب بالترتيب (بشكل دائري)
+// حتى تعرض كل صفحة مجموعة مختلفة
+const RELATED_COUNT = 4;
+const all = await getTranslations();
+const pos = all.findIndex((t) => t.id === item.id);
+const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, (_, k) => all[(pos + 1 + k) % all.length]);
 ---
 
 <BaseLayout title={`تعريب ${d.titleAr} (${d.title})`} description={d.summary} image={og.src}>
@@ -195,6 +203,20 @@ const videoId = youtubeId(d.video);
   </div>
 
   {
+    related.length > 0 && (
+      <section class="container related" data-pagefind-ignore>
+        <div class="section-head">
+          <h2>تعريبات أخرى قد تعجبك</h2>
+          <a href="/translations/">كل التعريبات ‹</a>
+        </div>
+        <div class="related-cards">
+          {related.map((t) => <TranslationCard item={t} />)}
+        </div>
+      </section>
+    )
+  }
+
+  {
     shots.length > 0 && (
       <dialog class="lightbox" aria-label={`صور تعريب ${d.titleAr}`}>
         <img class="lb-img" alt="صورة مكبّرة من التعريب" />
@@ -349,6 +371,25 @@ const videoId = youtubeId(d.video);
   .yt:hover .play {
     transform: scale(1.1);
   }
+  .related {
+    padding-block: 48px 72px;
+  }
+  .related-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+  @media (max-width: 1000px) {
+    .related-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 560px) {
+    .related-cards {
+      gap: 12px;
+    }
+  }
+
   /* عارض الصور داخل الموقع */
   .lightbox {
     width: 100vw;

@@ -338,7 +338,10 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
     }
   }
   @media (max-width: 520px) {
-    .cards,
+    /* الجوال: بطاقتان في كل صف للتعريبات */
+    .cards {
+      gap: 12px;
+    }
     .articles {
       grid-template-columns: 1fr;
     }
