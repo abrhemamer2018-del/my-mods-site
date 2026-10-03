@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-02
 version: "1.0"
 cover: ./cover-mur9y8if.webp
-banner: ./banner-mur9ybl6.webp
+banner: ./banner-murslx19.webp
 screenshots:
   - ./shot-mur9uhhxnbn.webp
   - ./shot-mur9uhkl5h9.webp
