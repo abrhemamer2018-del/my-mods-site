@@ -24,7 +24,7 @@ const videoId = youtubeId(d.video);
 
 <BaseLayout title={`تعريب ${d.titleAr} (${d.title})`} description={d.summary} image={og.src}>
   <section class="banner" data-pagefind-body>
-    <Image class="banner-bg" src={d.banner ?? d.cover} alt="" width={1920} height={600} loading="eager" />
+    <Image class="banner-bg" src={d.banner ?? d.cover} alt={`خلفية ${d.title}`} aria-hidden="true" width={1920} height={600} loading="eager" />
     <div class="container banner-content">
       <Image class="cover" src={d.cover} alt={d.titleAr} width={420} height={236} loading="eager" />
       <div>
@@ -68,7 +68,7 @@ const videoId = youtubeId(d.video);
               rel="noopener"
               aria-label={`تشغيل فيديو تعريب ${d.titleAr}`}
             >
-              <img src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt="" loading="lazy" />
+              <img src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt={`فيديو تعريب ${d.titleAr}`} loading="lazy" />
               <span class="play" aria-hidden="true">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
               </span>
@@ -197,7 +197,7 @@ const videoId = youtubeId(d.video);
   {
     shots.length > 0 && (
       <dialog class="lightbox" aria-label={`صور تعريب ${d.titleAr}`}>
-        <img class="lb-img" alt="" />
+        <img class="lb-img" alt="صورة مكبّرة من التعريب" />
         <button class="lb-btn lb-close" aria-label="إغلاق">
           <Icon name="close" size={24} />
         </button>

@@ -24,7 +24,7 @@ const back = d.kind === 'lesson' ? { href: '/lessons/', label: 'الدروس' } 
       <time datetime={d.date.toISOString()}>{formatDate(d.date)}</time>
       {d.tags.length > 0 && <span> · {d.tags.join('، ')}</span>}
     </p>
-    {d.cover && <Image src={d.cover} alt="" width={1000} class="cover" loading="eager" />}
+    {d.cover && <Image src={d.cover} alt={d.title} width={1000} class="cover" loading="eager" />}
     <div class="prose">
       <Content />
     </div>

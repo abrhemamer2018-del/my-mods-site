@@ -14,7 +14,7 @@ const { items } = Astro.props;
   {
     items.map((a) => (
       <a href={`/articles/${a.id}/`} class="item panel">
-        {a.data.cover && <Image src={a.data.cover} alt="" width={360} height={200} class="thumb" />}
+        {a.data.cover && <Image src={a.data.cover} alt={a.data.title} width={360} height={200} class="thumb" />}
         <div>
           <span class="badge">{a.data.kind === 'lesson' ? 'درس' : 'مقال'}</span>
           <h2>{a.data.title}</h2>

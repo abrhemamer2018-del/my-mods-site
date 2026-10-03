@@ -20,7 +20,8 @@ const slides = multi ? [...items, items[0]] : items;
           <Image
             class="bg"
             src={item.data.banner ?? item.data.cover}
-            alt=""
+            alt={`خلفية ${item.data.title}`}
+            aria-hidden="true"
             width={480}
             loading={i === 0 ? 'eager' : 'lazy'}
           />
@@ -38,7 +39,7 @@ const slides = multi ? [...items, items[0]] : items;
               <Image
                 class="fg"
                 src={item.data.banner ?? item.data.cover}
-                alt=""
+                alt={`تعريب ${item.data.titleAr} (${item.data.title})`}
                 width={1600}
                 loading={i === 0 ? 'eager' : 'lazy'}
               />
