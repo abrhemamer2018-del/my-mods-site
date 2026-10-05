@@ -7,27 +7,28 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-02
-version: "1.0"
+version: "2.0"
 cover: ./cover-mur9y8if.webp
 banner: ./banner-murslx19.webp
 screenshots:
-  - ./shot-mur9uhhxnbn.webp
-  - ./shot-mur9uhkl5h9.webp
-  - ./shot-mur9uhn0vom.webp
-  - ./shot-mur9uhpgch8.webp
+  - ./shot-muvkec8tptm.webp
+  - ./shot-muvkecbdc9f.webp
+  - ./shot-muvkecdocah.webp
+  - ./shot-muvkecg2u96.webp
+  - ./shot-muvkeckaiic.webp
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_BG3_Installer.zip
-    size: 31.48 MB
+    size: 31.82 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "2.0"
     date: 2026-10-02
     notes:
-      - الإصدار الأول
+      - الإصدار الثاني
 ---
 
 
