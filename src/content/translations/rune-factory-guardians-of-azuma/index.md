@@ -13,7 +13,6 @@ banner: ./banner-muo003h9.webp
 screenshots:
   - ./shot-muo008te4y8.webp
   - ./shot-muo00b5gsg7.webp
-  - ./shot-muo17v0em86.webp
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_RuneFactory_Azuma_Installer.zip
