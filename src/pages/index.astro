@@ -205,22 +205,21 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 20px;
   }
+  /* زر "عرض المزيد": قصير في منتصف الصفحة (يتطابق مع منتصف الأقسام تحته) */
   .more-bar {
-    margin-top: 20px;
-  }
-  .more-bar {
-    width: 100%;
+    width: min(300px, 100%);
+    margin: 24px auto 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 14px;
+    padding: 12px 24px;
     font: inherit;
     font-weight: 700;
     color: var(--accent);
     background: rgb(25 195 214 / 0.06);
     border: 1px solid rgb(25 195 214 / 0.35);
-    border-radius: var(--radius);
+    border-radius: 999px;
     cursor: pointer;
     transition:
       background 0.2s,
