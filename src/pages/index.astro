@@ -1,9 +1,8 @@
 ---
-import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import TranslationCard from '../components/TranslationCard.astro';
-import { getArticles, getTranslations, lastTouched, formatDate } from '../lib/utils';
+import { getArticles, getTranslations, formatDate } from '../lib/utils';
 import Icon from '../components/Icon.astro';
 import { SITE, SOCIAL } from '../config';
 
@@ -15,26 +14,8 @@ const heroItems = [
   ...featured,
   ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
 ].slice(0, Math.max(HERO_MAX, featured.length));
-// جديد التعريبات: تظهر أول 12، وزر "عرض المزيد" يُظهر 12 أخرى عند كل ضغطة
-// (12 يملأ الصفوف كاملة سواء كانت 4 أعمدة أو 3 أو 2)
-const PAGE_SIZE = 12;
-
-// آخر التحديثات: التعريبات التي لديها updatedDate
-const updates = translations
-  .filter((t) => t.data.updatedDate)
-  .sort((a, b) => lastTouched(b).getTime() - lastTouched(a).getTime())
-  .slice(0, 4);
-
-// صورة تعريب اليوم: تُختار في المتصفح حسب تاريخ اليوم من كل لقطات الشاشة
-const shots = await Promise.all(
-  translations.flatMap((t) =>
-    t.data.screenshots.map(async (s) => ({
-      src: (await getImage({ src: s, width: 640 })).src,
-      title: t.data.titleAr,
-      href: `/translations/${t.id}/`,
-    })),
-  ),
-);
+// جديد التعريبات بعرض الصفحة: تظهر أول 15 (3 صفوف من 5)، و"عرض المزيد" يُظهر 15 أخرى عند كل ضغطة
+const PAGE_SIZE = 15;
 
 // قسم المقالات يظهر فقط عند وجود 3 مقالات أو أكثر، حتى لا يبدو الموقع غير نشط
 const ARTICLES_MIN = 3;
@@ -50,105 +31,72 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
   <h1 class="sr-only">{SITE.name} — {SITE.tagline}</h1>
   {heroItems.length > 0 && <Hero items={heroItems} />}
 
-  <div class="container home-grid section">
-    <section class="latest">
-      <div class="section-head">
-        <h2>جديد التعريبات</h2>
-        <a href="/translations/">المزيد ‹</a>
-      </div>
-      <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
-        {translations.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
-      </div>
+  {/* شريط الإحصائيات: سطر واحد صغير تحت البانر */}
+  <div class="container">
+    <ul class="stats-strip">
+      <li>
+        <strong>{translations.length}</strong>
+        <span>تعريب</span>
+      </li>
+      <li>
+        <strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset}>…</strong>
+        <span>تحميل</span>
+      </li>
       {
-        translations.length > PAGE_SIZE && (
-          <div class="list-actions">
-            <button type="button" id="latest-more" class="more-bar">
-              عرض المزيد
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
-            </button>
-          </div>
+        lastAdded && (
+          <li>
+            <span>آخر إضافة:</span>
+            <time datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
+              {formatDate(lastAdded)}
+            </time>
+          </li>
         )
       }
-    </section>
+      <li>
+        <strong>100%</strong>
+        <span>مجانية</span>
+      </li>
+    </ul>
+  </div>
 
-    <aside class="side">
-      {
-        shots.length > 0 && (
-          <section>
-            <div class="section-head">
-              <h2>صورة تعريب اليوم</h2>
-            </div>
-            <a class="panel shot" id="daily-shot" href={shots[0].href} data-shots={JSON.stringify(shots)}>
-              <img src={shots[0].src} alt={`لقطة من تعريب ${shots[0].title}`} loading="lazy" />
-              <span class="shot-title">{shots[0].title}</span>
-            </a>
-          </section>
-        )
-      }
+  {/* جديد التعريبات بعرض الصفحة كاملة */}
+  <section class="container section latest">
+    <div class="section-head">
+      <h2>جديد التعريبات</h2>
+      <a href="/translations/">المزيد ‹</a>
+    </div>
+    <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
+      {translations.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
+    </div>
+    {
+      translations.length > PAGE_SIZE && (
+        <button type="button" id="latest-more" class="more-bar">
+          عرض المزيد
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </button>
+      )
+    }
+  </section>
 
-      {
-        updates.length > 0 && (
-          <section>
-            <div class="section-head">
-              <h2>آخر التحديثات</h2>
-            </div>
-            <ul class="updates">
-              {updates.map((t) => (
-                <li>
-                  <a href={`/translations/${t.id}/#changelog`} class="update">
-                    <time
-                      class="badge badge-green"
-                      datetime={lastTouched(t).toISOString()}
-                      data-ago="محدث "
-                      title={formatDate(lastTouched(t))}
-                    >
-                      محدث {formatDate(lastTouched(t))}
-                    </time>
-                    <strong dir="ltr">{t.data.title}</strong>
-                    <span class="muted">{t.data.titleAr}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )
-      }
-
-      <section class="stats">
-        <div class="panel stat">
-          <strong>{translations.length}</strong>
-          <span class="muted">تعريب</span>
-        </div>
-        <div class="panel stat">
-          <strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset}>…</strong>
-          <span class="muted">تحميل</span>
-        </div>
-        {
-          lastAdded && (
-            <div class="panel stat wide">
-              <time class="last-added" datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
-                {formatDate(lastAdded)}
-              </time>
-              <span class="muted">آخر تعريب أُضيف</span>
-            </div>
-          )
-        }
-      </section>
-
-      {
-        discord && (
-          <section class="panel cta">
+  {/* شريط ديسكورد بعرض الصفحة */}
+  {
+    discord && (
+      <section class="container">
+        <div class="discord-band">
+          <span class="d-ico">
             <Icon name="discord" size={34} />
+          </span>
+          <div class="d-text">
             <h2>عندك لعبة تتمنى تعريبها؟</h2>
             <p class="muted">اطلبها في ديسكورد، وتابع أخبار التعريبات القادمة أولاً بأول.</p>
-            <a href={discord.url} class="btn btn-primary" target="_blank" rel="noopener">
-              انضم إلى ديسكورد
-            </a>
-          </section>
-        )
-      }
-    </aside>
-  </div>
+          </div>
+          <a href={discord.url} class="btn btn-primary" target="_blank" rel="noopener">
+            انضم إلى ديسكورد
+          </a>
+        </div>
+      </section>
+    )
+  }
 
   {/* كيف أثبّت التعريب؟ ثلاث خطوات تطمئن الزائر الجديد أن التثبيت سهل */}
   <section class="container section how" id="how">
@@ -209,23 +157,122 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
 </BaseLayout>
 
 <style>
-  .home-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 40px;
-    align-items: start;
+  /* شريط الإحصائيات تحت البانر */
+  .stats-strip {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 14px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 40px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+  .stats-strip li {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .stats-strip strong,
+  .stats-strip time {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 1.15rem;
+  }
+  .stats-strip li + li {
+    position: relative;
+  }
+  .stats-strip li + li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: -20px;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  /* جديد التعريبات بعرض الصفحة: 5 في الصف على أغلب الشاشات */
+  .latest {
+    padding-top: 36px;
   }
   .cards {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 20px;
   }
-  /* الشاشات الكبيرة: 4 بطاقات في الصف */
-  @media (min-width: 1500px) {
-    .cards {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
+  .more-bar {
+    margin-top: 20px;
   }
+  .more-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    font: inherit;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgb(25 195 214 / 0.06);
+    border: 1px solid rgb(25 195 214 / 0.35);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+  .more-bar:hover {
+    background: rgb(25 195 214 / 0.14);
+    border-color: var(--accent);
+  }
+  .more-bar svg {
+    transition: transform 0.2s;
+  }
+  .more-bar:hover svg {
+    transform: translateY(2px);
+  }
+
+  /* شريط ديسكورد بعرض الصفحة */
+  .discord-band {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 22px 28px;
+    border: 1px solid rgb(88 101 242 / 0.45);
+    border-radius: var(--radius);
+    background:
+      radial-gradient(circle at 100% 50%, rgb(88 101 242 / 0.3), transparent 55%),
+      var(--card);
+  }
+  .d-ico {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: #5865f2;
+    color: #fff;
+  }
+  .d-text {
+    flex: 1;
+  }
+  .d-text h2 {
+    font-size: 1.3rem;
+    margin: 0 0 4px;
+  }
+  .d-text p {
+    margin: 0;
+  }
+  .discord-band .btn {
+    flex-shrink: 0;
+  }
+
   .how-head {
     text-align: center;
     margin-bottom: 28px;
@@ -317,146 +364,7 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
       font-size: 1.1rem;
     }
   }
-  /* زر "عرض المزيد": شريط هادئ بعرض عمود التعريبات، حوافه مطابقة لحواف البطاقات */
-  .list-actions {
-    margin-top: 20px;
-  }
-  .more-bar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px;
-    font: inherit;
-    font-weight: 700;
-    color: var(--accent);
-    background: rgb(25 195 214 / 0.06);
-    border: 1px solid rgb(25 195 214 / 0.35);
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition:
-      background 0.2s,
-      border-color 0.2s;
-  }
-  .more-bar:hover {
-    background: rgb(25 195 214 / 0.14);
-    border-color: var(--accent);
-  }
-  .more-bar svg {
-    transition: transform 0.2s;
-  }
-  .more-bar:hover svg {
-    transform: translateY(2px);
-  }
-  .last-added {
-    display: block;
-    font-weight: 800;
-    font-size: 1.25rem;
-    color: var(--accent);
-  }
-  .cta {
-    text-align: center;
-    display: grid;
-    justify-items: center;
-    gap: 10px;
-    border-color: rgb(88 101 242 / 0.45);
-    background:
-      radial-gradient(circle at 50% 0%, rgb(88 101 242 / 0.28), transparent 70%),
-      var(--card);
-  }
-  .cta :global(svg) {
-    color: #8b95ff;
-  }
-  .cta h2 {
-    font-size: 1.25rem;
-    margin: 0;
-  }
-  .cta p {
-    margin: 0 0 6px;
-  }
-  .side {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-  }
-  .shot {
-    display: block;
-    padding: 12px;
-    position: relative;
-    transition: border-color 0.2s;
-  }
-  .shot:hover {
-    border-color: var(--accent);
-  }
-  .shot img {
-    border-radius: 10px;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-  .shot-title {
-    display: block;
-    margin-top: 10px;
-    text-align: center;
-    color: var(--muted);
-  }
-  .updates {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 22px;
-  }
-  .update {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 18px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: visible;
-    transition: border-color 0.2s;
-  }
-  .update:hover {
-    border-color: var(--accent);
-  }
-  .update .badge {
-    position: absolute;
-    top: -11px;
-    inset-inline-end: 14px;
-  }
-  .update strong {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
-  }
-  .update span {
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .stat {
-    text-align: center;
-    padding: 18px 10px;
-  }
-  .stat.wide {
-    grid-column: span 2;
-  }
-  .stat strong {
-    display: block;
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.2;
-    color: var(--accent);
-  }
+
   .articles {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -485,25 +393,28 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
     font-size: 0.85rem;
   }
 
-  @media (max-width: 1100px) {
-    .home-grid {
-      grid-template-columns: 1fr;
-    }
-    .side {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-  }
   @media (max-width: 800px) {
-    .cards,
     .articles {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .discord-band {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px 20px;
+    }
   }
-  @media (max-width: 520px) {
-    /* الجوال: بطاقتان في كل صف للتعريبات */
+  @media (max-width: 560px) {
+    /* الجوال: بطاقتان في كل صف */
     .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
+    }
+    .stats-strip {
+      border-radius: var(--radius);
+      gap: 8px 28px;
+    }
+    .stats-strip li + li::before {
+      display: none;
     }
     .articles {
       grid-template-columns: 1fr;
@@ -527,24 +438,25 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
   const moreBtn = document.getElementById('latest-more');
   const grid = document.getElementById('latest-cards');
   if (moreBtn && grid) {
-    const size = Number(grid.dataset.pageSize) || 12;
+    const size = Number(grid.dataset.pageSize) || 15;
+    const hiddenCards = () => [...grid.querySelectorAll<HTMLElement>(':scope > [hidden]')];
+    // يُكمل الصف الأخير حسب عدد الأعمدة في شاشة الزائر (مثلاً 15 → 16 على الجوال)
+    const fillRow = () => {
+      const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+      const shown = grid.children.length - hiddenCards().length;
+      const missing = (cols - (shown % cols)) % cols;
+      hiddenCards()
+        .slice(0, missing)
+        .forEach((c) => (c.hidden = false));
+      if (!hiddenCards().length) moreBtn.remove();
+    };
     moreBtn.addEventListener('click', () => {
-      const rest = [...grid.querySelectorAll<HTMLElement>(':scope > [hidden]')];
-      rest.slice(0, size).forEach((c) => (c.hidden = false));
-      if (rest.length <= size) moreBtn.remove();
+      hiddenCards()
+        .slice(0, size)
+        .forEach((c) => (c.hidden = false));
+      fillRow();
     });
+    fillRow();
   }
 
-  // اختيار لقطة مختلفة كل يوم
-  const el = document.getElementById('daily-shot') as HTMLAnchorElement | null;
-  if (el?.dataset.shots) {
-    const shots: { src: string; title: string; href: string }[] = JSON.parse(el.dataset.shots);
-    const day = Math.floor(Date.now() / 86400000);
-    const pick = shots[day % shots.length];
-    const img = el.querySelector('img')!;
-    img.src = pick.src;
-    img.alt = `لقطة من تعريب ${pick.title}`;
-    el.href = pick.href;
-    el.querySelector('.shot-title')!.textContent = pick.title;
-  }
 </script>
