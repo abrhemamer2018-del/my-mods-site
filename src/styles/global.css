@@ -34,6 +34,53 @@ html {
   scroll-behavior: smooth;
 }
 
+/* شريط التمرير بلون الموقع بدل الأبيض الافتراضي في ويندوز */
+html {
+  scrollbar-color: #2c3360 var(--bg);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #2c3360;
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4380;
+}
+
+/* لون تحديد النص */
+::selection {
+  background: rgb(25 195 214 / 0.35);
+  color: #fff;
+}
+
+/* ظهور ناعم للعناصر عند الوصول إليها بالتمرير (يعمل فقط مع JavaScript) */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+html.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 body {
   margin: 0;
   background: var(--bg);

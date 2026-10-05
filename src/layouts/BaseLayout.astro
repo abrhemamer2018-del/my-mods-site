@@ -56,6 +56,52 @@ const ogImage = new URL(image, Astro.site).href;
     <Footer />
     <DonateButton />
 
+    <button type="button" class="to-top" id="to-top" aria-label="العودة إلى الأعلى" hidden>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6" /></svg>
+    </button>
+
+    <script is:inline>
+      // يُفعّل تأثير الظهور الناعم فقط إذا كان JavaScript يعمل، حتى لا تبقى العناصر مخفية بدونه
+      document.documentElement.classList.add('js');
+    </script>
+    <script>
+      // ظهور ناعم للبطاقات والأقسام عند الوصول إليها بالتمرير
+      const targets = document.querySelectorAll<HTMLElement>(
+        '.card, .step, .stats-strip, .discord-band, .panel, .block, .article, .item',
+      );
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (!e.isIntersecting) continue;
+              io.unobserve(e.target);
+              const el = e.target as HTMLElement;
+              el.classList.add('in');
+              // بعد اكتمال الظهور نزيل التأثير حتى تعود حركة العنصر الأصلية (مثل رفع البطاقة عند مرور الفأرة)
+              setTimeout(() => {
+                el.classList.remove('reveal', 'in');
+                el.style.transitionDelay = '';
+              }, 900);
+            }
+          },
+          { rootMargin: '0px 0px -40px 0px' },
+        );
+        targets.forEach((el, i) => {
+          el.classList.add('reveal');
+          // تدرّج بسيط بين العناصر المتجاورة
+          el.style.transitionDelay = `${(i % 5) * 60}ms`;
+          io.observe(el);
+        });
+      }
+
+      // زر "العودة للأعلى" يظهر بعد النزول في الصفحة
+      const toTop = document.getElementById('to-top')!;
+      const toggleTop = () => (toTop.hidden = window.scrollY < 600);
+      toggleTop();
+      window.addEventListener('scroll', toggleTop, { passive: true });
+      toTop.addEventListener('click', () => window.scrollTo({ top: 0 }));
+    </script>
+
     <script>
       // تحويل التواريخ إلى صيغة "منذ يومين" في المتصفح حتى تبقى دقيقة دائماً
       const rtf = new Intl.RelativeTimeFormat('ar', { numeric: 'auto' });
@@ -71,3 +117,40 @@ const ogImage = new URL(image, Astro.site).href;
     <!-- عدّاد الزوار (Cloudflare Web Analytics) يضيفه Cloudflare تلقائياً، فلا تضفه هنا حتى لا تُحسب الزيارة مرتين -->
   </body>
 </html>
+
+<style>
+  /* زر العودة للأعلى: أسفل اليمين (زر "ادعمنا" في اليسار) */
+  .to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 40;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      transform 0.2s;
+  }
+  .to-top:hover {
+    border-color: var(--accent);
+    background: var(--card-hover);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 600px) {
+    .to-top {
+      bottom: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+    }
+  }
+</style>
