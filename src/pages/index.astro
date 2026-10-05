@@ -15,8 +15,9 @@ const heroItems = [
   ...featured,
   ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
 ].slice(0, Math.max(HERO_MAX, featured.length));
-// جديد التعريبات: تظهر أول 6 ثم تظهر 6 أخرى كلما وصل الزائر لنهاية القائمة
-const PAGE_SIZE = 6;
+// جديد التعريبات: تظهر أول 12 ثم 12 أخرى كلما وصل الزائر لنهاية القائمة
+// (12 يملأ الصفوف كاملة سواء كانت 4 أعمدة أو 3 أو 2)
+const PAGE_SIZE = 12;
 
 // آخر التحديثات: التعريبات التي لديها updatedDate
 const updates = translations
@@ -176,6 +177,12 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
+  }
+  /* الشاشات الكبيرة: 4 بطاقات في الصف */
+  @media (min-width: 1500px) {
+    .cards {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
   .more-loader {
     height: 1px;
