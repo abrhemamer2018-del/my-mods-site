@@ -142,6 +142,40 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
     </aside>
   </div>
 
+  {/* كيف أثبّت التعريب؟ ثلاث خطوات تطمئن الزائر الجديد أن التثبيت سهل */}
+  <section class="container section how" id="how">
+    <div class="how-head">
+      <h2>كيف أثبّت التعريب؟</h2>
+      <p class="muted">ثلاث خطوات فقط، وكل تعريباتنا تعمل بنفس الطريقة.</p>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <span class="num">1</span>
+        <span class="ico">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
+        </span>
+        <h3>حمّل التعريب</h3>
+        <p class="muted">اضغط "تحميل مباشر" في صفحة اللعبة، وفك ضغط الملف.</p>
+      </li>
+      <li class="step">
+        <span class="num">2</span>
+        <span class="ico">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" /></svg>
+        </span>
+        <h3>شغّل أداة التثبيت</h3>
+        <p class="muted">اضغط "تثبيت"، والأداة تجد مجلد اللعبة تلقائياً.</p>
+      </li>
+      <li class="step">
+        <span class="num">3</span>
+        <span class="ico">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5" /><path d="M7 11v3M5.5 12.5h3M15.5 12h.01M18 13.5h.01" /></svg>
+        </span>
+        <h3>العب بالعربية</h3>
+        <p class="muted">شغّل اللعبة، وستجدها بالعربية مباشرة.</p>
+      </li>
+    </ol>
+  </section>
+
   {
     articles.length > 0 && (
       <section class="container section">
@@ -182,6 +216,97 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
   @media (min-width: 1500px) {
     .cards {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .how-head {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .how-head h2 {
+    margin: 0 0 6px;
+  }
+  .how-head p {
+    margin: 0;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    counter-reset: none;
+  }
+  .step {
+    position: relative;
+    text-align: center;
+    padding: 30px 22px 26px;
+    background:
+      radial-gradient(circle at 50% 0%, rgb(25 195 214 / 0.12), transparent 65%),
+      var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  /* سهم يصل بين الخطوات (الصفحة من اليمين لليسار) */
+  .step:not(:last-child)::after {
+    content: '‹';
+    position: absolute;
+    top: 50%;
+    left: -17px;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-size: 1.4rem;
+    line-height: 1;
+    z-index: 1;
+    /* حتى لا يقلب المتصفح اتجاه السهم في الصفحة العربية */
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+  .num {
+    position: absolute;
+    top: 14px;
+    inset-inline-start: 16px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .ico {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 14px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    color: #0b0d17;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 10px 30px rgb(25 195 214 / 0.25);
+  }
+  .step h3 {
+    font-size: 1.2rem;
+    margin: 0 0 6px;
+  }
+  .step p {
+    margin: 0;
+  }
+  @media (max-width: 800px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+    .step:not(:last-child)::after {
+      content: '⌄';
+      top: auto;
+      bottom: -21px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.1rem;
     }
   }
   .more-loader {
