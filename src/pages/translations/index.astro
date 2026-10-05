@@ -33,6 +33,7 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
       {translations.map((t) => <TranslationCard item={t} />)}
     </div>
     <p id="empty" class="empty muted" hidden>لا توجد نتائج مطابقة.</p>
+    <button type="button" id="more" class="btn btn-primary more" hidden>عرض المزيد</button>
   </div>
 </BaseLayout>
 
@@ -79,6 +80,12 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
       gap: 12px;
     }
   }
+  .more {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 24px;
+  }
   .empty {
     text-align: center;
     padding: 48px 0;
@@ -98,10 +105,17 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
   const status = $<HTMLSelectElement>('f-status');
   const cards = [...document.querySelectorAll<HTMLElement>('#cards > .card')];
   const empty = $('empty');
+  const more = $<HTMLButtonElement>('more');
+
+  // يظهر أول PAGE_SIZE تعريباً، و"عرض المزيد" يضيف PAGE_SIZE أخرى.
+  // عند البحث أو استخدام الفلاتر تظهر كل النتائج المطابقة دفعة واحدة.
+  const PAGE_SIZE = 20;
+  let limit = PAGE_SIZE;
 
   function apply() {
     const q = text.value.trim().toLowerCase();
-    let visible = 0;
+    const filtering = Boolean(q || cat.value || status.value || plat.value);
+    let matches = 0;
     for (const c of cards) {
       const d = c.dataset;
       const ok =
@@ -109,11 +123,17 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
         (!cat.value || d.category === cat.value) &&
         (!status.value || d.status === status.value) &&
         (!plat.value || d.platforms!.split('|').includes(plat.value));
-      c.hidden = !ok;
-      if (ok) visible++;
+      if (ok) matches++;
+      c.hidden = !ok || (!filtering && matches > limit);
     }
-    empty.hidden = visible > 0;
+    empty.hidden = matches > 0;
+    more.hidden = filtering || matches <= limit;
   }
 
+  more.addEventListener('click', () => {
+    limit += PAGE_SIZE;
+    apply();
+  });
   [text, cat, plat, status].forEach((el) => el.addEventListener('input', apply));
+  apply();
 </script>

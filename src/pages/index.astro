@@ -15,7 +15,7 @@ const heroItems = [
   ...featured,
   ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
 ].slice(0, Math.max(HERO_MAX, featured.length));
-// جديد التعريبات: تظهر أول 12 ثم 12 أخرى كلما وصل الزائر لنهاية القائمة
+// جديد التعريبات: تظهر أول 12، وزر "عرض المزيد" يُظهر 12 أخرى عند كل ضغطة
 // (12 يملأ الصفوف كاملة سواء كانت 4 أعمدة أو 3 أو 2)
 const PAGE_SIZE = 12;
 
@@ -59,8 +59,16 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
       <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
         {translations.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
       </div>
-      {translations.length > PAGE_SIZE && <div id="latest-more" class="more-loader" aria-hidden="true" />}
-      <a href="/translations/" class="btn all-link">عرض كل التعريبات مع البحث والتصنيفات ‹</a>
+      <div class="list-actions">
+        {
+          translations.length > PAGE_SIZE && (
+            <button type="button" id="latest-more" class="btn btn-primary">
+              عرض المزيد
+            </button>
+          )
+        }
+        <a href="/translations/" class="btn all-link">كل التعريبات مع البحث والتصنيفات ‹</a>
+      </div>
     </section>
 
     <aside class="side">
@@ -309,14 +317,20 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
       font-size: 1.1rem;
     }
   }
-  .more-loader {
-    height: 1px;
-    margin-top: 20px;
-  }
-  .all-link {
+  /* "عرض المزيد" و"كل التعريبات" تحت القائمة */
+  .list-actions {
     display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .list-actions .btn {
+    flex: 1;
     justify-content: center;
-    margin-top: 20px;
+  }
+  @media (max-width: 520px) {
+    .list-actions {
+      flex-direction: column;
+    }
   }
   .last-added {
     display: block;
@@ -492,28 +506,16 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
       .catch(() => (dlEl.textContent = offset ? fmt.format(offset) : '—'));
   }
 
-  // التمرير اللانهائي: إظهار دفعة جديدة من التعريبات عند الاقتراب من نهاية القائمة
-  const sentinel = document.getElementById('latest-more');
+  // زر "عرض المزيد": يُظهر دفعة جديدة من التعريبات عند كل ضغطة
+  const moreBtn = document.getElementById('latest-more');
   const grid = document.getElementById('latest-cards');
-  if (sentinel && grid) {
-    const size = Number(grid.dataset.pageSize) || 6;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0].isIntersecting) return;
-        const rest = grid.querySelectorAll<HTMLElement>(':scope > [hidden]');
-        [...rest].slice(0, size).forEach((c) => (c.hidden = false));
-        if (rest.length <= size) {
-          observer.disconnect();
-          sentinel.remove();
-        } else {
-          // إعادة المراقبة حتى تُفحص من جديد إن بقيت ظاهرة بعد إضافة الدفعة
-          observer.unobserve(sentinel);
-          requestAnimationFrame(() => observer.observe(sentinel));
-        }
-      },
-      { rootMargin: '400px 0px' },
-    );
-    observer.observe(sentinel);
+  if (moreBtn && grid) {
+    const size = Number(grid.dataset.pageSize) || 12;
+    moreBtn.addEventListener('click', () => {
+      const rest = [...grid.querySelectorAll<HTMLElement>(':scope > [hidden]')];
+      rest.slice(0, size).forEach((c) => (c.hidden = false));
+      if (rest.length <= size) moreBtn.remove();
+    });
   }
 
   // اختيار لقطة مختلفة كل يوم
