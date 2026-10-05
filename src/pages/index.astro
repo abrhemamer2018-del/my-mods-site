@@ -59,16 +59,15 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
       <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
         {translations.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
       </div>
-      <div class="list-actions">
-        {
-          translations.length > PAGE_SIZE && (
+      {
+        translations.length > PAGE_SIZE && (
+          <div class="list-actions">
             <button type="button" id="latest-more" class="btn btn-primary">
               عرض المزيد
             </button>
-          )
-        }
-        <a href="/translations/" class="btn all-link">كل التعريبات مع البحث والتصنيفات ‹</a>
-      </div>
+          </div>
+        )
+      }
     </section>
 
     <aside class="side">
@@ -317,20 +316,15 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
       font-size: 1.1rem;
     }
   }
-  /* "عرض المزيد" و"كل التعريبات" تحت القائمة */
+  /* زر "عرض المزيد" في منتصف أسفل القائمة */
   .list-actions {
     display: flex;
-    gap: 12px;
-    margin-top: 24px;
+    justify-content: center;
+    margin-top: 28px;
   }
   .list-actions .btn {
-    flex: 1;
+    width: min(360px, 100%);
     justify-content: center;
-  }
-  @media (max-width: 520px) {
-    .list-actions {
-      flex-direction: column;
-    }
   }
   .last-added {
     display: block;
