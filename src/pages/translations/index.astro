@@ -33,7 +33,13 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
       {translations.map((t) => <TranslationCard item={t} />)}
     </div>
     <p id="empty" class="empty muted" hidden>لا توجد نتائج مطابقة.</p>
-    <button type="button" id="more" class="btn btn-primary more" hidden>عرض المزيد</button>
+    <div class="more-wrap" id="more-wrap" hidden>
+      <button type="button" id="more" class="more-bar">
+        عرض المزيد
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+      </button>
+      <span class="more-count muted" id="more-count"></span>
+    </div>
   </div>
 </BaseLayout>
 
@@ -106,6 +112,8 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
   const cards = [...document.querySelectorAll<HTMLElement>('#cards > .card')];
   const empty = $('empty');
   const more = $<HTMLButtonElement>('more');
+  const moreWrap = $('more-wrap');
+  const moreCount = $('more-count');
 
   // يظهر أول PAGE_SIZE تعريباً، و"عرض المزيد" يضيف PAGE_SIZE أخرى.
   // عند البحث أو استخدام الفلاتر تظهر كل النتائج المطابقة دفعة واحدة.
@@ -127,7 +135,11 @@ const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].so
       c.hidden = !ok || (!filtering && matches > limit);
     }
     empty.hidden = matches > 0;
-    more.hidden = filtering || matches <= limit;
+    moreWrap.hidden = filtering || matches <= limit;
+    // عدّاد صغير تحت الزر: "7 تعريبات أخرى"
+    const n = Math.max(0, matches - limit);
+    moreCount.textContent =
+      n === 1 ? 'تعريب واحد آخر' : n === 2 ? 'تعريبان آخران' : n <= 10 ? `${n} تعريبات أخرى` : `${n} تعريباً آخر`;
   }
 
   more.addEventListener('click', () => {
