@@ -386,11 +386,23 @@ async function postDiscord(env, slug, d) {
     ],
   };
 
-  const res = await fetch(env.DISCORD_WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
+  // قناة المنتدى (Forum) تحتاج عنواناً لكل منشور، بنفس صيغة المنشورات اليدوية: "تعريب Star Wars Outlaws"
+  const send = (b) =>
+    fetch(env.DISCORD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(b),
+    });
+  let res = await send({ ...body, thread_name: `تعريب ${d.title}`.slice(0, 100) });
+  // إن كان الـ Webhook لقناة نصية عادية، يرفض ديسكورد العنوان، فنعيد الإرسال بدونه
+  if (res.status === 400) {
+    const err = await res.text();
+    if (/thread/i.test(err)) res = await send(body);
+    else {
+      console.log('Discord error', res.status, err);
+      throw httpError(502, 'خطأ من ديسكورد (400)');
+    }
+  }
   if (!res.ok) {
     console.log('Discord error', res.status, await res.text());
     throw httpError(502, res.status === 429 ? 'ديسكورد طلب التمهل، حاول بعد قليل' : `خطأ من ديسكورد (${res.status})`);
