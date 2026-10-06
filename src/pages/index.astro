@@ -35,16 +35,19 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
   <div class="container">
     <ul class="stats-strip">
       <li>
+        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5" /><path d="M7 11v3M5.5 12.5h3M15.5 12h.01M18 13.5h.01" /></svg></span>
         <strong>{translations.length}</strong>
         <span>تعريب</span>
       </li>
       <li>
+        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg></span>
         <strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset}>…</strong>
         <span>تحميل</span>
       </li>
       {
         lastAdded && (
           <li>
+            <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
             <span>آخر إضافة:</span>
             <time datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
               {formatDate(lastAdded)}
@@ -53,6 +56,7 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
         )
       }
       <li>
+        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg></span>
         <strong>100%</strong>
         <span>مجانية</span>
       </li>
@@ -165,26 +169,46 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
   .stats-strip {
     list-style: none;
     margin: 28px 0 0;
-    padding: 14px 20px;
+    padding: 16px 28px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 40px;
-    background: var(--card);
+    justify-content: space-around;
+    align-items: center;
+    gap: 14px 32px;
+    background:
+      linear-gradient(90deg, rgb(224 52 79 / 0.07), transparent 35%, transparent 65%, rgb(25 195 214 / 0.08)),
+      var(--card);
     border: 1px solid var(--border);
     border-radius: 999px;
     color: var(--muted);
   }
   .stats-strip li {
     display: flex;
-    align-items: baseline;
-    gap: 6px;
+    align-items: center;
+    gap: 10px;
+  }
+  /* أيقونة صغيرة بتدرج الشعار قبل كل عنصر */
+  .s-ico {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: #0b0d17;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 6px 18px rgb(25 195 214 / 0.2);
   }
   .stats-strip strong,
   .stats-strip time {
-    color: var(--accent);
+    color: var(--text);
     font-weight: 800;
-    font-size: 1.15rem;
+    font-size: 1.45rem;
+    line-height: 1;
+  }
+  .stats-strip time {
+    font-size: 1.2rem;
+    color: var(--accent);
   }
   .stats-strip li + li {
     position: relative;
@@ -192,11 +216,11 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
   .stats-strip li + li::before {
     content: '';
     position: absolute;
-    inset-inline-start: -20px;
+    inset-inline-start: -16px;
     top: 50%;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 28px;
     background: var(--border);
   }
 
