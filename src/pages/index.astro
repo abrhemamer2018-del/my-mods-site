@@ -48,12 +48,24 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
         <div class="pin-grid">
           {pinned.map((t) => (
             <a href={`/translations/${t.id}/`} class="pin-card">
-              <Image src={t.data.banner ?? t.data.cover} alt="" width={900} />
-              <span class="badge badge-pin pin-flag">📌 مثبت</span>
-              <div class="pin-info">
-                <strong dir="ltr">{t.data.title}</strong>
-                <span>{t.data.titleAr}</span>
-              </div>
+              {/* هالة ضوء بألوان غلاف اللعبة نفسها تنعكس تحت البطاقة */}
+              <Image class="pin-glow" src={t.data.cover} alt="" width={320} aria-hidden="true" />
+              {/* إطار متدرج بألوان الشعار، والغلاف كاملاً بنسبته 16:9 بلا قص */}
+              <span class="pin-frame">
+                <span class="pin-in">
+                  <Image class="pin-img" src={t.data.cover} alt={t.data.titleAr} width={760} />
+                  {/* لوحة زجاجية للاسم */}
+                  <span class="pin-glass">
+                    <span class="pin-flag" aria-label="مثبت">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3a1 1 0 0 1 .7 1.7L15 6.4v4.2l2.6 2.6a1 1 0 0 1-.7 1.8H13v5.5a1 1 0 0 1-2 0V15H7.1a1 1 0 0 1-.7-1.8L9 10.6V6.4L7.3 4.7A1 1 0 0 1 8 3z" /></svg>
+                    </span>
+                    <span class="pin-names">
+                      <strong dir="ltr">{t.data.title}</strong>
+                      <span>{t.data.titleAr}</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
             </a>
           ))}
         </div>
@@ -254,82 +266,118 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
     background: var(--border);
   }
 
-  /* تعريبات مثبتة: بطاقات عريضة ببانر اللعبة كخلفية، تتمدد لتملأ عرض الصفحة مهما كان عددها */
+  /* تعريبات مثبتة: بطاقات مضيئة — إطار متدرج بألوان الشعار، ولوحة زجاجية، وهالة ضوء بألوان الغلاف */
   .pinned-sec {
     padding-top: 40px;
   }
   .pin-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 28px;
   }
   .pin-card {
     position: relative;
-    height: 210px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    transition:
-      transform 0.25s,
-      border-color 0.25s;
+    display: block;
+    isolation: isolate;
   }
-  .pin-card :global(img) {
+  .pin-card .pin-glow {
     position: absolute;
-    inset: 0;
+    inset: 16% 4% -14%;
+    width: 92%;
+    height: 96%;
+    object-fit: cover;
+    filter: blur(34px) saturate(1.9);
+    opacity: 0.45;
+    z-index: -1;
+    transition:
+      opacity 0.35s,
+      transform 0.35s;
+  }
+  .pin-frame {
+    position: relative;
+    display: block;
+    padding: 2px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgb(25 195 214 / 0.35), rgb(255 255 255 / 0.06), rgb(224 52 79 / 0.35));
+    transition:
+      transform 0.35s,
+      background 0.35s;
+  }
+  .pin-in {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .pin-in .pin-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s;
+    transition: transform 0.5s;
   }
-  /* تظليل سفلي حتى يُقرأ اسم اللعبة */
-  .pin-card::after {
-    content: '';
+  .pin-glass {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgb(11 13 23 / 0.92), rgb(11 13 23 / 0.25) 55%, transparent);
-  }
-  .pin-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-  }
-  .pin-card:hover :global(img) {
-    transform: scale(1.05);
+    bottom: 12px;
+    inset-inline-start: 12px;
+    max-width: calc(100% - 24px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 8px 10px;
+    border-radius: 14px;
+    background: rgb(11 13 23 / 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgb(255 255 255 / 0.12);
   }
   .pin-flag {
-    position: absolute;
-    top: 12px;
-    inset-inline-start: 12px;
-    z-index: 2;
-  }
-  .pin-info {
-    position: absolute;
-    bottom: 14px;
-    inset-inline: 18px;
-    z-index: 2;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
     display: grid;
-    gap: 2px;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent-2), #ff6b81);
+    transform: rotate(35deg);
   }
-  .pin-info strong {
-    font-size: 1.15rem;
+  .pin-names {
+    min-width: 0;
+    display: grid;
+    line-height: 1.35;
+  }
+  .pin-names strong {
+    font-size: 1rem;
     font-weight: 800;
     text-align: right;
-    text-shadow: 0 2px 10px rgb(0 0 0 / 0.8);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .pin-info span {
+  .pin-names span {
     color: #c9cde6;
-    font-size: 0.9rem;
-    text-shadow: 0 2px 10px rgb(0 0 0 / 0.8);
+    font-size: 0.82rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  @media (max-width: 560px) {
-    .pin-grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .pin-card {
-      height: 150px;
+  /* عند مرور الفأرة: يضيء الإطار بتدرج الشعار، وتشتد الهالة، وترتفع البطاقة */
+  .pin-card:hover .pin-frame {
+    transform: translateY(-6px);
+    background: conic-gradient(from 210deg, var(--accent), #8b95ff, var(--accent-2), var(--accent));
+  }
+  .pin-card:hover .pin-img {
+    transform: scale(1.05);
+  }
+  .pin-card:hover .pin-glow {
+    opacity: 0.9;
+    transform: translateY(8px) scale(1.05);
+  }
+  /* القسم للكمبيوتر فقط: يُخفى على الجوال والشاشات الصغيرة */
+  @media (max-width: 760px) {
+    .pinned-sec {
+      display: none;
     }
   }
 
