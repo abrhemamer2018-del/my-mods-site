@@ -386,14 +386,15 @@ async function postDiscord(env, slug, d) {
     ],
   };
 
-  // قناة المنتدى (Forum) تحتاج عنواناً لكل منشور، بنفس صيغة المنشورات اليدوية: "تعريب Star Wars Outlaws"
+  // قناة المنتدى (Forum) تحتاج عنواناً لكل منشور. اسم اللعبة أولاً حتى تظهر "تعريب" على اليمين
+  // في واجهة ديسكورد الإنجليزية، مثل المنشورات اليدوية: "Star Wars Outlaws تعريب"
   const send = (b) =>
     fetch(env.DISCORD_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(b),
     });
-  let res = await send({ ...body, thread_name: `تعريب ${d.title}`.slice(0, 100) });
+  let res = await send({ ...body, thread_name: `${d.title} تعريب`.slice(-100) });
   // إن كان الـ Webhook لقناة نصية عادية، يرفض ديسكورد العنوان، فنعيد الإرسال بدونه
   if (res.status === 400) {
     const err = await res.text();
