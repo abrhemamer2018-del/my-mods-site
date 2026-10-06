@@ -5,27 +5,33 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="container inner">
+  <div class="container top">
     <div class="about">
-      <a href="/" class="name">{SITE.name}</a>
+      <a href="/" class="name">
+        <img src="/logo.svg" alt="" width="40" height="40" />
+        <span>{SITE.name}</span>
+      </a>
       <p class="muted">{SITE.description}</p>
     </div>
-    <nav class="links" aria-label="روابط">
-      {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
-    </nav>
-    <div class="social">
-      <span class="follow">تابعنا</span>
-      {
-        SOCIAL.map((s) => (
-          <a href={s.url} aria-label={s.label} title={s.label} target="_blank" rel="noopener">
-            <Icon name={s.icon} />
-          </a>
-        ))
-      }
+    <div class="follow">
+      <span class="follow-title">تابعنا</span>
+      <div class="social">
+        {
+          SOCIAL.map((s) => (
+            <a href={s.url} class={`soc soc-${s.icon}`} aria-label={s.label} title={s.label} target="_blank" rel="noopener">
+              <Icon name={s.icon} size={19} />
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
-  <div class="container copy muted">
-    © {year} {SITE.name}. جميع ملفات التعريب مجانية. الألعاب وأسماؤها ملك لأصحابها.
+
+  <div class="container bottom">
+    <nav class="links" aria-label="روابط سريعة">
+      {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <p class="copy muted">© {year} {SITE.name}. جميع ملفات التعريب مجانية. الألعاب وأسماؤها ملك لأصحابها.</p>
   </div>
 </footer>
 
@@ -33,8 +39,11 @@ const year = new Date().getFullYear();
   .site-footer {
     position: relative;
     margin-top: 64px;
-    background: var(--bg-2);
-    padding-block: 40px 24px;
+    background:
+      radial-gradient(ellipse 50% 80% at 100% 0%, rgb(25 195 214 / 0.07), transparent 70%),
+      radial-gradient(ellipse 40% 70% at 0% 100%, rgb(224 52 79 / 0.06), transparent 70%),
+      var(--bg-2);
+    padding-block: 44px 22px;
   }
   /* خط متدرج رفيع بألوان الشعار يفصل المحتوى عن الفوتر */
   .site-footer::before {
@@ -45,53 +54,136 @@ const year = new Date().getFullYear();
     height: 2px;
     background: linear-gradient(90deg, var(--accent-2), var(--accent), transparent 85%);
   }
-  .inner {
-    display: grid;
-    grid-template-columns: 2fr 1fr auto;
-    gap: 32px;
-    align-items: start;
+
+  /* الصف الأول: الشعار والوصف يميناً، والتواصل يساراً */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px 40px;
+    flex-wrap: wrap;
   }
   .name {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
   }
   .about p {
-    max-width: 50ch;
-    margin: 8px 0 0;
-  }
-  .links {
-    display: grid;
-    gap: 6px;
-  }
-  .links a,
-  .social a {
-    color: var(--muted);
-  }
-  .links a:hover,
-  .social a:hover {
-    color: var(--accent);
-  }
-  .social {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    max-width: 46ch;
+    margin: 10px 0 0;
   }
   .follow {
-    color: var(--muted);
-    font-size: 0.9rem;
+    display: grid;
+    gap: 10px;
+    justify-items: end;
+  }
+  .follow-title {
     font-weight: 700;
-    margin-inline-end: 4px;
+    font-size: 0.95rem;
+  }
+  /* أيقونات التواصل: أزرار دائرية تتلون بلون كل منصة عند مرور الفأرة */
+  .social {
+    display: flex;
+    gap: 10px;
+  }
+  .soc {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--muted);
+    background: rgb(255 255 255 / 0.04);
+    border: 1px solid var(--border);
+    transition:
+      color 0.2s,
+      background 0.2s,
+      border-color 0.2s,
+      transform 0.2s;
+  }
+  .soc:hover {
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .soc-discord:hover {
+    background: #5865f2;
+    border-color: #5865f2;
+  }
+  .soc-youtube:hover {
+    background: #ff0033;
+    border-color: #ff0033;
+  }
+  .soc-x:hover {
+    background: #000;
+    border-color: #444;
+  }
+  .soc-heart:hover {
+    background: var(--accent-2);
+    border-color: var(--accent-2);
+  }
+
+  /* الصف الثاني: الروابط أفقياً في المنتصف، وتحتها سطر الحقوق في المنتصف */
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgb(255 255 255 / 0.06);
+    text-align: center;
+  }
+  .links {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .links a {
+    color: var(--muted);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .links a:hover {
+    color: var(--accent);
+  }
+  /* نقطة فاصلة بين الروابط */
+  .links a + a::before {
+    content: '•';
+    margin-inline: 12px;
+    color: var(--border);
   }
   .copy {
-    margin-top: 32px;
-    padding-top: 16px;
-    border-top: 1px solid rgb(255 255 255 / 0.05);
+    margin: 0;
     font-size: 0.85rem;
   }
-  @media (max-width: 700px) {
-    .inner {
-      grid-template-columns: 1fr;
+
+  /* الجوال: كل شيء في المنتصف وفوق بعضه */
+  @media (max-width: 800px) {
+    .top,
+    .bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+    .about {
+      display: grid;
+      justify-items: center;
+    }
+    .follow {
+      justify-items: center;
+    }
+    .links {
+      justify-content: center;
+      row-gap: 6px;
+    }
+  }
+  /* مساحة تحت سطر الحقوق حتى لا يغطيه زر "ادعمنا" */
+  @media (max-width: 600px) {
+    .site-footer {
+      padding-bottom: 84px;
     }
   }
 </style>
