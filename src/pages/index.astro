@@ -48,7 +48,7 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
         lastAdded && (
           <li>
             <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
-            <span>آخر إضافة:</span>
+            <span>آخر إضافة<span class="colon">:</span></span>
             <time datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
               {formatDate(lastAdded)}
             </time>
@@ -407,12 +407,49 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
+    /* شريط الإحصائيات على الجوال: صف واحد مضغوط من 4 أعمدة (أيقونة، رقم، كلمة) */
     .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin-top: 20px;
+      padding: 12px 6px;
       border-radius: var(--radius);
-      gap: 8px 28px;
+    }
+    .stats-strip li {
+      flex-direction: column;
+      gap: 4px;
+      text-align: center;
+      font-size: 0.72rem;
+      line-height: 1.2;
+    }
+    .s-ico {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      box-shadow: none;
+    }
+    .s-ico :global(svg) {
+      width: 15px;
+      height: 15px;
+    }
+    .stats-strip strong,
+    .stats-strip time {
+      font-size: 1rem;
+    }
+    /* "آخر إضافة": الوقت قبل الكلمة، بدون النقطتين */
+    .stats-strip time {
+      order: 1;
+    }
+    .stats-strip li > span:not(.s-ico) {
+      order: 2;
+    }
+    .stats-strip .colon {
+      display: none;
     }
     .stats-strip li + li::before {
-      display: none;
+      inset-inline-start: 0;
+      height: 36px;
     }
     .articles {
       grid-template-columns: 1fr;
