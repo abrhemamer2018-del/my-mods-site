@@ -4,6 +4,8 @@
   "compatibility_date": "2026-09-30",
   "main": "./worker/index.js",
   "workers_dev": false,
+  // لا تحذف المتغيرات المضافة من لوحة Cloudflare عند كل نشر من GitHub
+  "keep_vars": true,
   "preview_urls": false,
   "assets": {
     "directory": "./dist",
