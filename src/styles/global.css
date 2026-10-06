@@ -175,6 +175,11 @@ h3 {
   color: #03220f;
   border-color: var(--success);
 }
+.badge-pin {
+  background: var(--accent-2);
+  color: #fff;
+  border-color: var(--accent-2);
+}
 .badge-warn {
   background: var(--warning);
   color: #2a1800;

@@ -46,6 +46,21 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         <div class="tabs">
           <button class="tab active" data-type="translations">التعريبات</button>
           <button class="tab" data-type="articles">المقالات والدروس</button>
+          <button class="tab" data-type="pinned">📌 التعريبات المثبتة</button>
+        </div>
+        <div id="pinned-panel" hidden>
+          <div class="list-head">
+            <h1>التعريبات المثبتة</h1>
+            <button id="save-pinned" class="btn btn-primary">💾 حفظ ونشر</button>
+          </div>
+          <p class="muted hint">
+            اختر التعريبات التي تظهر في قسم "تعريبات مثبتة" في الصفحة الرئيسية (حتى 8)، ورتّبها بالأسهم ▲▼. إن لم تختر
+            شيئاً يختفي القسم من الرئيسية.
+          </p>
+          <h2 class="pin-sub">المثبتة حالياً <span class="muted" id="pinned-count"></span></h2>
+          <ul id="pinned-list" class="entries"></ul>
+          <h2 class="pin-sub">كل التعريبات</h2>
+          <ul id="pin-candidates" class="entries"></ul>
         </div>
         <div class="list-head">
           <h1 id="list-title">التعريبات</h1>
@@ -368,6 +383,25 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     margin: 16px 0 0;
     display: grid;
     gap: 10px;
+  }
+  /* نافذة التعريبات المثبتة: تخفي محتوى قائمة التعريبات العادية */
+  #view-list.pin-mode > :not(.tabs):not(#pinned-panel) {
+    display: none !important;
+  }
+  .pin-sub {
+    font-size: 1.15rem;
+    margin: 26px 0 0;
+  }
+  .pin-num {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent-2);
+    color: #fff;
+    font-weight: 800;
   }
   .discord-bar {
     display: flex;
@@ -742,6 +776,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   $$('.tab').forEach((tab) =>
     tab.addEventListener('click', () => {
       $$('.tab').forEach((t) => t.classList.toggle('active', t === tab));
+      if (tab.dataset.type === 'pinned') return loadPinned();
       currentType = tab.dataset.type as Type;
       loadList();
     }),
@@ -800,8 +835,97 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     if (sent) toast(`✅ تم إرسال ${sent} تعريب إلى ديسكورد.`);
   });
 
+  // ------------------------------------------------ التعريبات المثبتة في الرئيسية
+  const PIN_MAX = 8;
+  let pinned: string[] = [];
+  let pinTitles: Record<string, string> = {};
+
+  function setPinMode(on: boolean) {
+    $('#view-list').classList.toggle('pin-mode', on);
+    $('#pinned-panel').hidden = !on;
+  }
+
+  async function loadPinned() {
+    show('loading');
+    try {
+      const [items, current] = await Promise.all([
+        api('list?type=translations') as Promise<{ slug: string; title: string | null; date?: string | null }[]>,
+        api('pinned') as Promise<{ slugs: string[] }>,
+      ]);
+      items.sort((a, b) => (b.date || '9999').localeCompare(a.date || '9999'));
+      pinTitles = Object.fromEntries(items.map((it) => [it.slug, it.title || it.slug]));
+      // نتجاهل أي تعريب مثبت حُذف لاحقاً
+      pinned = current.slugs.filter((s) => s in pinTitles);
+      renderPinned();
+      setPinMode(true);
+      show('list');
+    } catch (ex) {
+      if (!$('#view-login').hidden) return;
+      show('list');
+      toast((ex as Error).message, true);
+    }
+  }
+
+  function renderPinned() {
+    $('#pinned-count').textContent = `(${pinned.length} من ${PIN_MAX})`;
+    const list = $('#pinned-list');
+    list.innerHTML = pinned.length ? '' : '<li class="muted">لا يوجد تعريب مثبت. اختر من القائمة بالأسفل.</li>';
+    pinned.forEach((slug, i) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span class="pin-num">${i + 1}</span>
+        <div class="name"><strong>${esc(pinTitles[slug])}</strong><small>${esc(slug)}</small></div>
+        <div class="actions">
+          <button class="btn small up" title="تحريك للأعلى" ${i === 0 ? 'disabled' : ''}>▲</button>
+          <button class="btn small down" title="تحريك للأسفل" ${i === pinned.length - 1 ? 'disabled' : ''}>▼</button>
+          <button class="btn small danger unpin">إلغاء التثبيت</button>
+        </div>`;
+      const move = (d: number) => {
+        [pinned[i], pinned[i + d]] = [pinned[i + d], pinned[i]];
+        renderPinned();
+      };
+      $('.up', li).addEventListener('click', () => move(-1));
+      $('.down', li).addEventListener('click', () => move(1));
+      $('.unpin', li).addEventListener('click', () => {
+        pinned.splice(i, 1);
+        renderPinned();
+      });
+      list.appendChild(li);
+    });
+
+    const cands = $('#pin-candidates');
+    cands.innerHTML = '';
+    for (const slug of Object.keys(pinTitles)) {
+      if (pinned.includes(slug)) continue;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <div class="name"><strong>${esc(pinTitles[slug])}</strong><small>${esc(slug)}</small></div>
+        <div class="actions"><button class="btn small pin-add" ${pinned.length >= PIN_MAX ? 'disabled' : ''}>📌 تثبيت</button></div>`;
+      $('.pin-add', li).addEventListener('click', () => {
+        if (pinned.length >= PIN_MAX) return toast(`الحد الأقصى ${PIN_MAX} تعريبات مثبتة`, true);
+        pinned.push(slug);
+        renderPinned();
+      });
+      cands.appendChild(li);
+    }
+  }
+
+  $('#save-pinned').addEventListener('click', async () => {
+    const btn = $<HTMLButtonElement>('#save-pinned');
+    btn.disabled = true;
+    try {
+      await api('pinned', { method: 'POST', body: JSON.stringify({ slugs: pinned }) });
+      toast('✅ تم الحفظ! ستظهر التعريبات المثبتة في الرئيسية خلال دقيقة أو دقيقتين.');
+    } catch (ex) {
+      toast((ex as Error).message, true);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
   async function loadList() {
     show('loading');
+    setPinMode(false);
     try {
       const items: { slug: string; title: string | null; date?: string | null }[] = await api('list?type=' + currentType);
       $('#list-title').textContent = currentType === 'translations' ? 'التعريبات' : 'المقالات والدروس';

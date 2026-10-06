@@ -64,6 +64,8 @@ async function handleApi(request, env, url) {
   if (route === 'entry' && method === 'DELETE') return json(await deleteEntry(gh, url));
   if (route === 'file' && method === 'GET') return readFile(gh, url);
   if (route === 'asset-size' && method === 'GET') return json(await assetSize(env, url));
+  if (route === 'pinned' && method === 'GET') return json(await readPinned(gh));
+  if (route === 'pinned' && method === 'POST') return json(await savePinned(gh, await request.json()));
   if (route === 'discord' && method === 'POST') return json(await announceToDiscord(gh, env, await request.json()));
 
   throw httpError(404, 'غير موجود');
@@ -332,6 +334,43 @@ async function readFile(gh, url) {
   return new Response(res.body, {
     headers: { 'Content-Type': types[ext], 'Cache-Control': 'private, max-age=300' },
   });
+}
+
+// ------------------------------------------------------------
+//  التعريبات المثبتة في الرئيسية: src/data/pinned.json = { "slugs": [...] } بالترتيب
+// ------------------------------------------------------------
+const PINNED_PATH = 'src/data/pinned.json';
+const PINNED_MAX = 8;
+
+async function readPinned(gh) {
+  const res = await gh.raw(PINNED_PATH);
+  if (!res) return { slugs: [] };
+  try {
+    const data = JSON.parse(await res.text());
+    return { slugs: Array.isArray(data.slugs) ? data.slugs : [] };
+  } catch {
+    return { slugs: [] };
+  }
+}
+
+async function savePinned(gh, payload) {
+  const slugs = Array.isArray(payload.slugs) ? payload.slugs : null;
+  if (!slugs) throw httpError(400, 'بيانات ناقصة');
+  if (slugs.length > PINNED_MAX) throw httpError(400, `الحد الأقصى ${PINNED_MAX} تعريبات مثبتة`);
+  if (new Set(slugs).size !== slugs.length) throw httpError(400, 'يوجد تعريب مكرر في القائمة');
+  slugs.forEach(checkSlug);
+  // كل تعريب مثبت يجب أن يكون موجوداً فعلاً، حتى لا يُكسر بناء الموقع
+  const tree = await gh.tree();
+  const existing = new Set(
+    tree
+      .filter((t) => t.type === 'blob' && t.path.startsWith(PATHS.translations + '/') && t.path.endsWith('/index.md'))
+      .map((t) => t.path.split('/').slice(-2)[0]),
+  );
+  const missing = slugs.find((s) => !existing.has(s));
+  if (missing) throw httpError(400, `التعريب "${missing}" غير موجود`);
+  const text = JSON.stringify({ slugs }, null, 2) + '\n';
+  const sha = await gh.commit('تحديث التعريبات المثبتة', [{ path: PINNED_PATH, text }]);
+  return { ok: true, sha };
 }
 
 // ------------------------------------------------------------
