@@ -18,7 +18,7 @@ export const SITE = {
 // روابط التواصل — احذف أي سطر لا تحتاجه
 export const SOCIAL: { label: string; url: string; icon: string }[] = [
   { label: 'ديسكورد', url: 'https://discord.gg/FtpStyNE8', icon: 'discord' },
-  { label: 'يوتيوب', url: 'https://www.youtube.com/@IBO-MO', icon: 'youtube' },
+  { label: 'يوتيوب', url: 'https://www.youtube.com/@ta3reebat', icon: 'youtube' },
   { label: 'إكس (تويتر)', url: 'https://x.com/ta3reebat', icon: 'x' },
   { label: 'ادعمنا على Ko-fi', url: 'https://ko-fi.com/ibrahimalobaidi', icon: 'heart' },
 ];
