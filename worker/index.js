@@ -64,6 +64,7 @@ async function handleApi(request, env, url) {
   if (route === 'entry' && method === 'DELETE') return json(await deleteEntry(gh, url));
   if (route === 'file' && method === 'GET') return readFile(gh, url);
   if (route === 'asset-size' && method === 'GET') return json(await assetSize(env, url));
+  if (route === 'discord' && method === 'POST') return json(await announceToDiscord(gh, env, await request.json()));
 
   throw httpError(404, 'غير موجود');
 }
@@ -203,6 +204,7 @@ function github(env) {
   }
 
   return {
+    env,
     branch,
     async tree() {
       const res = await call(`/git/trees/${branch}?recursive=1`);
@@ -293,12 +295,17 @@ async function listEntries(gh, env, url) {
 
   // العناوين من فهرس الموقع المنشور (قد لا يحتوي أحدث الإضافات قبل انتهاء البناء)
   let titles = {};
+  let dates = {};
   try {
     const res = await env.ASSETS.fetch(new URL('/admin-index.json', url.origin));
-    if (res.ok) titles = (await res.json())[type] || {};
+    if (res.ok) {
+      const index = await res.json();
+      titles = index[type] || {};
+      if (type === 'translations') dates = index.dates || {};
+    }
   } catch {}
 
-  return slugs.map((slug) => ({ slug, title: titles[slug] || null }));
+  return slugs.map((slug) => ({ slug, title: titles[slug] || null, date: dates[slug] || null }));
 }
 
 async function readEntry(gh, url) {
@@ -325,6 +332,69 @@ async function readFile(gh, url) {
   return new Response(res.body, {
     headers: { 'Content-Type': types[ext], 'Cache-Control': 'private, max-age=300' },
   });
+}
+
+// ------------------------------------------------------------
+//  ديسكورد: إعلان التعريبات عبر Webhook
+//  السر DISCORD_WEBHOOK_URL يُضاف في Cloudflare (Settings → Variables and Secrets)
+// ------------------------------------------------------------
+const SITE_URL = 'https://ta3reebat.com';
+
+/** يرسل تعريباً واحداً (من لوحة التحكم): { slug } */
+async function announceToDiscord(gh, env, payload) {
+  if (!env.DISCORD_WEBHOOK_URL) {
+    throw httpError(500, 'لم يتم ضبط DISCORD_WEBHOOK_URL في إعدادات Cloudflare');
+  }
+  const slug = checkSlug(payload.slug);
+  const res = await gh.raw(entryPath('translations', slug));
+  if (!res) throw httpError(404, 'التعريب غير موجود');
+  const m = (await res.text()).match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!m) throw httpError(500, 'صيغة الملف غير صحيحة');
+  await postDiscord(env, slug, parse(m[1]) || {});
+  return { ok: true };
+}
+
+/** رسالة ديسكورد: اسم اللعبة، الوصف، البانر، الحجم، ورابط صفحة التعريب */
+async function postDiscord(env, slug, d) {
+  const page = `${SITE_URL}/translations/${slug}/`;
+  const img = String(d.banner || d.cover || '').replace(/^\.\//, '');
+  const imageUrl = img
+    ? `https://raw.githubusercontent.com/${env.GITHUB_REPO}/${env.GITHUB_BRANCH || 'main'}/${PATHS.translations}/${slug}/${encodeURIComponent(img)}`
+    : undefined;
+  const dl = (d.downloads || [])[0];
+  const fields = [
+    { name: 'الإصدار', value: `v${d.version || '1.0'}`, inline: true },
+    { name: 'المنصة', value: (d.platforms || ['PC']).join(', '), inline: true },
+  ];
+  if (dl?.size) fields.push({ name: 'الحجم', value: dl.size, inline: true });
+
+  const summary = String(d.summary || '');
+  const body = {
+    username: 'تعريبات',
+    avatar_url: `${SITE_URL}/icon-512.png`,
+    content: `🎮 **تعريب جديد: ${d.titleAr || d.title}**`,
+    embeds: [
+      {
+        title: `${d.title}${d.titleAr ? ` | ${d.titleAr}` : ''}`,
+        url: page,
+        description: `${summary.length > 300 ? summary.slice(0, 300) + '…' : summary}\n\n**[⬇️ صفحة التعريب والتحميل](${page})**`,
+        color: 0x19c3d6,
+        fields,
+        image: imageUrl ? { url: imageUrl } : undefined,
+        footer: { text: 'ta3reebat.com' },
+      },
+    ],
+  };
+
+  const res = await fetch(env.DISCORD_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    console.log('Discord error', res.status, await res.text());
+    throw httpError(502, res.status === 429 ? 'ديسكورد طلب التمهل، حاول بعد قليل' : `خطأ من ديسكورد (${res.status})`);
+  }
 }
 
 /** حجم ملف من GitHub Releases انطلاقاً من رابط التحميل المباشر، مثل "7.06 MB" */
@@ -405,7 +475,19 @@ async function saveEntry(gh, payload) {
 
   const label = type === 'translations' ? 'تعريب' : 'مقال';
   const sha = await gh.commit(`${payload.isNew ? 'إضافة' : 'تعديل'} ${label}: ${data.title}`, files);
-  return { ok: true, sha };
+
+  // تعريب جديد غير مسودة: إعلان تلقائي في ديسكورد (فشل الإعلان لا يُفشل الحفظ)
+  let discord = null;
+  if (type === 'translations' && payload.isNew && !cleaned.draft && gh.env.DISCORD_WEBHOOK_URL) {
+    try {
+      await postDiscord(gh.env, slug, cleaned);
+      discord = 'sent';
+    } catch (err) {
+      console.log('Discord announce failed', err.message);
+      discord = 'failed';
+    }
+  }
+  return { ok: true, sha, discord };
 }
 
 async function deleteEntry(gh, url) {

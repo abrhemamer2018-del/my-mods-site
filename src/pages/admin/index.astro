@@ -52,6 +52,11 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
           <button id="add-new" class="btn btn-primary">+ إضافة جديد</button>
         </div>
         <p class="muted hint">ملاحظة: بعد أي حفظ يحتاج الموقع دقيقة إلى دقيقتين حتى تظهر التغييرات.</p>
+        <div id="discord-bar" class="discord-bar" hidden>
+          <label class="check"><input type="checkbox" id="select-all" /> تحديد الكل</label>
+          <span class="muted" id="selected-count">لم تحدد شيئاً</span>
+          <button type="button" id="send-discord" class="btn small btn-discord" disabled>إرسال المحدد إلى ديسكورد</button>
+        </div>
         <ul id="entries" class="entries"></ul>
       </section>
 
@@ -363,6 +368,43 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     margin: 16px 0 0;
     display: grid;
     gap: 10px;
+  }
+  .discord-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: rgb(88 101 242 / 0.1);
+    border: 1px solid rgb(88 101 242 / 0.4);
+    border-radius: 12px;
+  }
+  .discord-bar .check {
+    margin: 0;
+  }
+  .discord-bar .btn-discord {
+    margin-inline-start: auto;
+  }
+  .btn-discord {
+    background: #5865f2;
+    border-color: #5865f2;
+    color: #fff;
+  }
+  .btn-discord:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .entries .pick-discord {
+    flex-shrink: 0;
+  }
+  .entries li.sent {
+    border-color: rgb(88 101 242 / 0.6);
+  }
+  .entries li.sent .name strong::after {
+    content: ' ✓ أُرسل';
+    color: #8b95ff;
+    font-size: 0.85rem;
   }
   .entries li {
     display: flex;
@@ -705,20 +747,80 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     }),
   );
 
+  // ------------------------------------------------ تغريدة جاهزة على إكس (يراجعها المستخدم ثم يضغط Post)
+  function xShareUrl(it: { slug: string; title: string | null }) {
+    // العنوان في الفهرس بصيغة "الاسم العربي (English)"
+    const name = (it.title || it.slug).replace(/\s*\((.*)\)$/, ' | $1');
+    const text = `🎮 تعريب جديد: ${name}\nتعريب عربي كامل ومجاني مع أداة تثبيت سهلة 👇`;
+    const url = `https://ta3reebat.com/translations/${it.slug}/`;
+    return `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+  }
+
+  // ------------------------------------------------ إرسال التعريبات المحددة إلى ديسكورد
+  const picks = () => $$<HTMLInputElement>('.pick-discord');
+  function updateSelected() {
+    const n = picks().filter((c) => c.checked).length;
+    $('#selected-count').textContent = n ? `محدد: ${n}` : 'لم تحدد شيئاً';
+    $<HTMLButtonElement>('#send-discord').disabled = n === 0;
+  }
+  $('#entries').addEventListener('change', (e) => {
+    if ((e.target as HTMLElement).classList.contains('pick-discord')) updateSelected();
+  });
+  $('#select-all').addEventListener('change', (e) => {
+    const on = (e.target as HTMLInputElement).checked;
+    picks().forEach((c) => (c.checked = on));
+    updateSelected();
+  });
+  $('#send-discord').addEventListener('click', async () => {
+    // من الأقدم للأحدث، حتى يكون أحدث تعريب آخر رسالة في القناة
+    const chosen = picks()
+      .filter((c) => c.checked)
+      .sort((a, b) => (a.dataset.date || '9999').localeCompare(b.dataset.date || '9999'));
+    if (!chosen.length) return;
+    if (!confirm(`سيتم إرسال ${chosen.length} تعريب إلى قناة ديسكورد، كل واحد في رسالة. متابعة؟`)) return;
+    const btn = $<HTMLButtonElement>('#send-discord');
+    btn.disabled = true;
+    let sent = 0;
+    for (const c of chosen) {
+      btn.textContent = `جارٍ الإرسال... (${sent + 1} من ${chosen.length})`;
+      try {
+        await api('discord', { method: 'POST', body: JSON.stringify({ slug: c.dataset.slug }) });
+        sent++;
+        c.checked = false;
+        c.closest('li')?.classList.add('sent');
+      } catch (ex) {
+        toast(`توقف الإرسال عند "${c.dataset.slug}": ${(ex as Error).message}`, true);
+        break;
+      }
+      // مهلة قصيرة بين الرسائل حتى لا يرفض ديسكورد الإرسال السريع
+      await new Promise((r) => setTimeout(r, 1200));
+    }
+    btn.textContent = 'إرسال المحدد إلى ديسكورد';
+    updateSelected();
+    if (sent) toast(`✅ تم إرسال ${sent} تعريب إلى ديسكورد.`);
+  });
+
   async function loadList() {
     show('loading');
     try {
-      const items: { slug: string; title: string | null }[] = await api('list?type=' + currentType);
+      const items: { slug: string; title: string | null; date?: string | null }[] = await api('list?type=' + currentType);
       $('#list-title').textContent = currentType === 'translations' ? 'التعريبات' : 'المقالات والدروس';
+      const isT = currentType === 'translations';
+      // التعريبات: الأحدث أولاً، والتي لم تظهر بعد في فهرس الموقع في الأعلى
+      if (isT) items.sort((a, b) => (b.date || '9999').localeCompare(a.date || '9999'));
+      $('#discord-bar').hidden = !isT || !items.length;
+      $<HTMLInputElement>('#select-all').checked = false;
       const ul = $('#entries');
       ul.innerHTML = items.length ? '' : '<li class="muted">لا يوجد شيء بعد. اضغط "إضافة جديد".</li>';
-      const base = currentType === 'translations' ? '/translations/' : '/articles/';
+      const base = isT ? '/translations/' : '/articles/';
       for (const it of items) {
         const li = document.createElement('li');
         li.innerHTML = `
-          <div class="name"><strong>${esc(it.title || it.slug)}</strong><small>${esc(it.slug)}</small></div>
+          ${isT ? `<input type="checkbox" class="pick-discord" data-slug="${esc(it.slug)}" data-date="${esc(it.date || '')}" aria-label="تحديد للإرسال إلى ديسكورد" />` : ''}
+          <div class="name"><strong>${esc(it.title || it.slug)}</strong><small>${esc(it.slug)}${it.date ? ' · ' + esc(it.date) : ''}</small></div>
           <div class="actions">
             <a class="btn small" href="${base}${it.slug}/" target="_blank">عرض</a>
+            ${isT ? `<a class="btn small btn-x" target="_blank" rel="noopener" title="نشر على إكس" href="${xShareUrl(it)}">𝕏 نشر</a>` : ''}
             <button class="btn small edit">تعديل</button>
             <button class="btn small danger del">حذف</button>
           </div>`;
@@ -726,6 +828,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         $('.del', li).addEventListener('click', () => removeEntry(it.slug, it.title || it.slug));
         ul.appendChild(li);
       }
+      updateSelected();
       show('list');
     } catch (ex) {
       if (!$('#view-login').hidden) return;
