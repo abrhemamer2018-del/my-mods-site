@@ -10,7 +10,11 @@ releaseDate: 2026-10-06
 version: "1.0"
 cover: ./cover-muxbcrdr.webp
 banner: ./banner-muxbczqi.webp
-screenshots: []
+screenshots:
+  - ./shot-muxbrjbizzy.webp
+  - ./shot-muxbrjdggbx.webp
+  - ./shot-muxbrjewjnj.webp
+  - ./shot-muxbrjihqoy.webp
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_MafiaTOC_Installer.zip
