@@ -15,6 +15,7 @@ screenshots:
   - ./shot-muxxxvb5gye.webp
   - ./shot-muxxy6mpwaw.webp
   - ./shot-muxxye38y70.webp
+video: https://www.youtube.com/watch?v=DVwnaiiGSeM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_Aniimo_Installer.zip
