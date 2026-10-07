@@ -22,7 +22,13 @@ const shots = await Promise.all(
 // فيديو يوتيوب اختياري: لا يظهر القسم إذا لم يوضع رابط
 const videoId = youtubeId(d.video);
 // وصف نتائج Google: يبدأ بذكر التعريب ثم نبذة اللعبة
-const seoDescription = `تعريب عربي كامل ومجاني للعبة ${d.title} (${d.titleAr}) مع أداة تثبيت سهلة. ${d.summary}`;
+// محركات البحث تعرض نحو 160 حرفاً فقط، فنقصّ عند آخر كلمة كاملة قبل الحد
+const SEO_MAX = 158;
+const seoFull = `تعريب عربي كامل ومجاني للعبة ${d.title} (${d.titleAr}) مع أداة تثبيت سهلة. ${d.summary}`
+  .replace(/\s+/g, ' ')
+  .trim();
+const seoDescription =
+  seoFull.length <= SEO_MAX ? seoFull : seoFull.slice(0, seoFull.lastIndexOf(' ', SEO_MAX - 1)).replace(/[،,.:؛\s]+$/, '') + '…';
 
 // "تعريبات أخرى قد تعجبك": التعريبات الأربعة التالية لهذا التعريب بالترتيب (بشكل دائري)
 // حتى تعرض كل صفحة مجموعة مختلفة
