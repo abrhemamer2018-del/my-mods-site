@@ -11,7 +11,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-04
 version: "1.0"
-cover: ./cover-muufw7fi.webp
+cover: ./cover-muy3zlxp.webp
 banner: ./banner-muufx06v.webp
 screenshots:
   - ./shot-muufxspmblm.webp
