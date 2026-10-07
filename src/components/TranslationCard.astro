@@ -23,6 +23,9 @@ const size = d.downloads[0]?.size;
   data-platforms={d.platforms.join('|')}
   data-search={`${d.title} ${d.titleAr}`.toLowerCase()}
 >
+  {/* هالة ضوء بألوان الغلاف تظهر عند مرور الفأرة (نفس الصورة المحمّلة، فلا تحميل إضافي) */}
+  <Image class="glow" src={d.cover} alt="" width={480} height={270} aria-hidden="true" />
+  <div class="card-in">
   <div class="thumb">
     <Image src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={480} height={270} />
     <div class="badges">
@@ -46,22 +49,62 @@ const size = d.downloads[0]?.size;
       </span>
     </div>
   </div>
+  </div>
 </a>
 
 <style>
+  /* البطاقة طبقتان: الخارجية تحمل الهالة خلفها، والداخلية (card-in) هي البطاقة المرئية */
   .card {
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
-    background: var(--card);
-    border: 1px solid var(--border);
+    transition: transform 0.3s;
+  }
+  .card-in {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
     border-radius: var(--radius);
     padding: 12px;
-    transition: transform 0.25s, border-color 0.25s, background 0.25s;
+    background:
+      linear-gradient(var(--card), var(--card)) padding-box,
+      linear-gradient(var(--border), var(--border)) border-box;
   }
+  /* عند مرور الفأرة: إطار بتدرج الشعار + هالة بألوان الغلاف (مثل التعريبات المثبتة لكن عند التفاعل فقط) */
   .card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-    background: var(--card-hover);
+    z-index: 2; /* فوق البطاقات المجاورة حتى تظهر الهالة */
+    transform: translateY(-5px);
+  }
+  .card:hover .card-in {
+    background:
+      linear-gradient(var(--card-hover), var(--card-hover)) padding-box,
+      conic-gradient(from 210deg, var(--accent), #8b95ff, var(--accent-2), var(--accent)) border-box;
+  }
+  .card :global(.glow) {
+    position: absolute;
+    inset: 24% -5% -18%;
+    width: 110%;
+    height: 94%;
+    object-fit: cover;
+    border-radius: var(--radius);
+    filter: blur(32px) saturate(2) brightness(1.15);
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition:
+      opacity 0.35s,
+      transform 0.35s;
+  }
+  .card:hover :global(.glow) {
+    opacity: 1;
+    transform: translateY(10px) scale(1.04);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover {
+      transform: none;
+    }
   }
   .thumb {
     position: relative;
@@ -124,7 +167,7 @@ const size = d.downloads[0]?.size;
   }
   /* الجوال: بطاقتان في كل صف، فنصغّر المسافات والخطوط */
   @media (max-width: 560px) {
-    .card {
+    .card-in {
       padding: 8px;
       border-radius: 14px;
     }
