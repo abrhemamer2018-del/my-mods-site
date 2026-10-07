@@ -21,6 +21,8 @@ const shots = await Promise.all(
 );
 // فيديو يوتيوب اختياري: لا يظهر القسم إذا لم يوضع رابط
 const videoId = youtubeId(d.video);
+// وصف نتائج Google: يبدأ بذكر التعريب ثم نبذة اللعبة
+const seoDescription = `تعريب عربي كامل ومجاني للعبة ${d.title} (${d.titleAr}) مع أداة تثبيت سهلة. ${d.summary}`;
 
 // "تعريبات أخرى قد تعجبك": التعريبات الأربعة التالية لهذا التعريب بالترتيب (بشكل دائري)
 // حتى تعرض كل صفحة مجموعة مختلفة
@@ -30,11 +32,11 @@ const pos = all.findIndex((t) => t.id === item.id);
 const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, (_, k) => all[(pos + 1 + k) % all.length]);
 ---
 
-<BaseLayout title={`تعريب ${d.titleAr} (${d.title})`} description={d.summary} image={og.src}>
+<BaseLayout title={`تعريب ${d.titleAr} (${d.title})`} description={seoDescription} image={og.src}>
   <section class="banner" data-pagefind-body>
     <Image class="banner-bg" src={d.banner ?? d.cover} alt={`خلفية ${d.title}`} aria-hidden="true" width={1920} height={600} loading="eager" />
     <div class="container banner-content">
-      <Image class="cover" src={d.cover} alt={d.titleAr} width={420} height={236} loading="eager" />
+      <Image class="cover" src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={420} height={236} loading="eager" />
       <div>
         <div class="tags">
           <span class="badge">{CATEGORY_LABELS[d.category]}</span>
@@ -42,7 +44,10 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
             {STATUS_LABELS[d.status]}
           </span>
         </div>
-        <h1 dir="ltr">{d.title}</h1>
+        <h1>
+          <span class="kicker">تعريب لعبة</span>
+          <span class="game-title" dir="ltr">{d.title}</span>
+        </h1>
         <p class="ar">{d.titleAr}</p>
         <p class="summary">{d.summary}</p>
         {
@@ -279,9 +284,20 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
     gap: 8px;
   }
   h1 {
-    font-size: clamp(1.8rem, 4.5vw, 3rem);
     margin: 10px 0 0;
     text-align: right;
+  }
+  /* سطر صغير "تعريب لعبة" فوق اسم اللعبة: يكمل العنوان لمحركات البحث */
+  h1 .kicker {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  h1 .game-title {
+    display: block;
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
   }
   .ar {
     font-family: var(--font-display);

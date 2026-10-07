@@ -60,7 +60,7 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
               {/* إطار متدرج بألوان الشعار، والغلاف كاملاً بنسبته 16:9 بلا قص */}
               <span class="pin-frame">
                 <span class="pin-in">
-                  <Image class="pin-img" src={t.data.cover} alt={t.data.titleAr} width={760} />
+                  <Image class="pin-img" src={t.data.cover} alt={`تعريب لعبة ${t.data.titleAr} (${t.data.title})`} width={760} />
                   {/* لوحة زجاجية للاسم */}
                   <span class="pin-glass">
                     <span class="pin-flag" aria-label="مثبت">

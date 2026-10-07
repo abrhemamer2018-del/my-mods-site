@@ -24,7 +24,7 @@ const size = d.downloads[0]?.size;
   data-search={`${d.title} ${d.titleAr}`.toLowerCase()}
 >
   <div class="thumb">
-    <Image src={d.cover} alt={d.titleAr} width={480} height={270} />
+    <Image src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={480} height={270} />
     <div class="badges">
       {fresh && <span class="badge badge-new">جديد</span>}
       {d.status !== 'complete' && (
