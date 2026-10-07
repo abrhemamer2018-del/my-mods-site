@@ -268,7 +268,13 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
 
   /* تعريبات مثبتة: بطاقات مضيئة — إطار متدرج بألوان الشعار، ولوحة زجاجية، وهالة ضوء بألوان الغلاف */
   .pinned-sec {
-    padding-top: 40px;
+    padding-top: 32px;
+  }
+  /* على الكمبيوتر: البانر يتكيف مع ارتفاع الشاشة حتى تظهر التعريبات المثبتة كاملة في أول شاشة */
+  @media (min-width: 761px) {
+    :global(body:has(.pinned-sec) .hero) {
+      height: clamp(380px, calc(100vh - 430px), 640px);
+    }
   }
   .pin-grid {
     display: grid;
