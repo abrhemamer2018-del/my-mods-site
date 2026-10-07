@@ -289,6 +289,7 @@ h3 {
 /* "عرض المزيد": زر في منتصف خط فاصل يبهت عند طرفيه، فيربط الزر بنهاية القائمة */
 .more-wrap {
   position: relative;
+  z-index: 3; /* فوق هالة البطاقات عند مرور الفأرة */
   margin-top: 28px;
   display: grid;
   justify-items: center;
