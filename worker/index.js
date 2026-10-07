@@ -559,7 +559,37 @@ async function saveEntry(gh, payload) {
       discord = 'failed';
     }
   }
+
+  // إبلاغ Bing (IndexNow) بالصفحة الجديدة أو المعدّلة، والرئيسية لأنها تتغير معها
+  if (!cleaned.draft) {
+    const page = type === 'translations' ? `/translations/${slug}/` : `/articles/${slug}/`;
+    await indexNow([page, '/', type === 'translations' ? '/translations/' : '/articles/']);
+  }
   return { ok: true, sha, discord };
+}
+
+// ------------------------------------------------------------
+//  IndexNow: يُبلغ Bing (ومحركات بحث أخرى) فوراً بالصفحات الجديدة أو المعدّلة
+//  المفتاح منشور في public/<KEY>.txt لإثبات ملكية الموقع
+// ------------------------------------------------------------
+const INDEXNOW_KEY = 'f1246762d2966315fcb31ce6252e3253';
+
+async function indexNow(paths) {
+  try {
+    await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        host: 'ta3reebat.com',
+        key: INDEXNOW_KEY,
+        keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
+        urlList: paths.map((p) => SITE_URL + p),
+      }),
+    });
+  } catch (err) {
+    // الإبلاغ اختياري: فشله لا يؤثر على الحفظ
+    console.log('IndexNow failed', err.message);
+  }
 }
 
 async function deleteEntry(gh, url) {
