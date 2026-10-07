@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-06
 version: "1.0"
 cover: ./cover-muxbcrdr.webp
-banner: ./banner-muxbczqi.webp
+banner: ./banner-muy10x7d.webp
 screenshots:
   - ./shot-muxbrjbizzy.webp
   - ./shot-muxbrjdggbx.webp
