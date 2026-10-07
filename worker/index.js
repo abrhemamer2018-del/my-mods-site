@@ -64,8 +64,8 @@ async function handleApi(request, env, url) {
   if (route === 'entry' && method === 'DELETE') return json(await deleteEntry(gh, url));
   if (route === 'file' && method === 'GET') return readFile(gh, url);
   if (route === 'asset-size' && method === 'GET') return json(await assetSize(env, url));
-  if (route === 'pinned' && method === 'GET') return json(await readPinned(gh));
-  if (route === 'pinned' && method === 'POST') return json(await savePinned(gh, await request.json()));
+  if (HOME_LISTS[route] && method === 'GET') return json(await readHomeList(gh, HOME_LISTS[route]));
+  if (HOME_LISTS[route] && method === 'POST') return json(await saveHomeList(gh, HOME_LISTS[route], await request.json()));
   if (route === 'discord' && method === 'POST') return json(await announceToDiscord(gh, env, await request.json()));
 
   throw httpError(404, 'غير موجود');
@@ -337,13 +337,18 @@ async function readFile(gh, url) {
 }
 
 // ------------------------------------------------------------
-//  التعريبات المثبتة في الرئيسية: src/data/pinned.json = { "slugs": [...] } بالترتيب
+//  قوائم الصفحة الرئيسية التي تُختار من لوحة التحكم (بالترتيب):
+//   - التعريبات المثبتة: src/data/pinned.json
+//   - البانر الرئيسي:    src/data/hero.json
+//  كلاهما بصيغة { "slugs": [...] }
 // ------------------------------------------------------------
-const PINNED_PATH = 'src/data/pinned.json';
-const PINNED_MAX = 8;
+const HOME_LISTS = {
+  pinned: { path: 'src/data/pinned.json', max: 8, label: 'التعريبات المثبتة' },
+  hero: { path: 'src/data/hero.json', max: 8, label: 'البانر الرئيسي' },
+};
 
-async function readPinned(gh) {
-  const res = await gh.raw(PINNED_PATH);
+async function readHomeList(gh, cfg) {
+  const res = await gh.raw(cfg.path);
   if (!res) return { slugs: [] };
   try {
     const data = JSON.parse(await res.text());
@@ -353,13 +358,13 @@ async function readPinned(gh) {
   }
 }
 
-async function savePinned(gh, payload) {
+async function saveHomeList(gh, cfg, payload) {
   const slugs = Array.isArray(payload.slugs) ? payload.slugs : null;
   if (!slugs) throw httpError(400, 'بيانات ناقصة');
-  if (slugs.length > PINNED_MAX) throw httpError(400, `الحد الأقصى ${PINNED_MAX} تعريبات مثبتة`);
+  if (slugs.length > cfg.max) throw httpError(400, `الحد الأقصى ${cfg.max} تعريبات`);
   if (new Set(slugs).size !== slugs.length) throw httpError(400, 'يوجد تعريب مكرر في القائمة');
   slugs.forEach(checkSlug);
-  // كل تعريب مثبت يجب أن يكون موجوداً فعلاً، حتى لا يُكسر بناء الموقع
+  // كل تعريب في القائمة يجب أن يكون موجوداً فعلاً، حتى لا يُكسر بناء الموقع
   const tree = await gh.tree();
   const existing = new Set(
     tree
@@ -369,7 +374,7 @@ async function savePinned(gh, payload) {
   const missing = slugs.find((s) => !existing.has(s));
   if (missing) throw httpError(400, `التعريب "${missing}" غير موجود`);
   const text = JSON.stringify({ slugs }, null, 2) + '\n';
-  const sha = await gh.commit('تحديث التعريبات المثبتة', [{ path: PINNED_PATH, text }]);
+  const sha = await gh.commit(`تحديث ${cfg.label}`, [{ path: cfg.path, text }]);
   return { ok: true, sha };
 }
 

@@ -47,17 +47,15 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
           <button class="tab active" data-type="translations">التعريبات</button>
           <button class="tab" data-type="articles">المقالات والدروس</button>
           <button class="tab" data-type="pinned">📌 التعريبات المثبتة</button>
+          <button class="tab" data-type="hero">🎞️ البانر الرئيسي</button>
         </div>
         <div id="pinned-panel" hidden>
           <div class="list-head">
-            <h1>التعريبات المثبتة</h1>
+            <h1 id="home-list-title">التعريبات المثبتة</h1>
             <button id="save-pinned" class="btn btn-primary">💾 حفظ ونشر</button>
           </div>
-          <p class="muted hint">
-            اختر التعريبات التي تظهر في قسم "تعريبات مثبتة" في الصفحة الرئيسية (حتى 8)، ورتّبها بالأسهم ▲▼. إن لم تختر
-            شيئاً يختفي القسم من الرئيسية.
-          </p>
-          <h2 class="pin-sub">المثبتة حالياً <span class="muted" id="pinned-count"></span></h2>
+          <p class="muted hint" id="home-list-hint"></p>
+          <h2 class="pin-sub"><span id="home-list-sub">المثبتة حالياً</span> <span class="muted" id="pinned-count"></span></h2>
           <ul id="pinned-list" class="entries"></ul>
           <h2 class="pin-sub">كل التعريبات</h2>
           <ul id="pin-candidates" class="entries"></ul>
@@ -776,7 +774,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   $$('.tab').forEach((tab) =>
     tab.addEventListener('click', () => {
       $$('.tab').forEach((t) => t.classList.toggle('active', t === tab));
-      if (tab.dataset.type === 'pinned') return loadPinned();
+      if (tab.dataset.type === 'pinned' || tab.dataset.type === 'hero') return loadPinned(tab.dataset.type);
       currentType = tab.dataset.type as Type;
       loadList();
     }),
@@ -835,7 +833,30 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     if (sent) toast(`✅ تم إرسال ${sent} تعريب إلى ديسكورد.`);
   });
 
-  // ------------------------------------------------ التعريبات المثبتة في الرئيسية
+  // ------------------------------------------------ قوائم الرئيسية: التعريبات المثبتة والبانر الرئيسي
+  // نفس النافذة تخدم القائمتين، ويتغير فقط النص ومسار الحفظ
+  const HOME_LISTS = {
+    pinned: {
+      title: 'التعريبات المثبتة',
+      sub: 'المثبتة حالياً',
+      hint: 'اختر التعريبات التي تظهر في قسم "تعريبات مثبتة" في الصفحة الرئيسية (حتى 8)، ورتّبها بالأسهم ▲▼. إن لم تختر شيئاً يختفي القسم من الرئيسية.',
+      empty: 'لا يوجد تعريب مثبت. اختر من القائمة بالأسفل.',
+      add: '📌 تثبيت',
+      remove: 'إلغاء التثبيت',
+      saved: '✅ تم الحفظ! ستظهر التعريبات المثبتة في الرئيسية خلال دقيقة أو دقيقتين.',
+    },
+    hero: {
+      title: 'البانر الرئيسي',
+      sub: 'الألعاب في البانر',
+      hint: 'اختر الألعاب التي تظهر في البانر الكبير أعلى الصفحة الرئيسية (حتى 8)، ورتّبها بالأسهم ▲▼، فالأولى تظهر أولاً. إن لم تختر شيئاً يعرض البانر أحدث التعريبات تلقائياً.',
+      empty: 'لم تختر شيئاً، فالبانر يعرض أحدث التعريبات تلقائياً. اختر من القائمة بالأسفل.',
+      add: '🎞️ إضافة للبانر',
+      remove: 'إزالة',
+      saved: '✅ تم الحفظ! سيتغير البانر في الرئيسية خلال دقيقة أو دقيقتين.',
+    },
+  } as const;
+  type HomeList = keyof typeof HOME_LISTS;
+  let homeList: HomeList = 'pinned';
   const PIN_MAX = 8;
   let pinned: string[] = [];
   let pinTitles: Record<string, string> = {};
@@ -845,12 +866,17 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     $('#pinned-panel').hidden = !on;
   }
 
-  async function loadPinned() {
+  async function loadPinned(which: HomeList = 'pinned') {
+    homeList = which;
+    const t = HOME_LISTS[which];
+    $('#home-list-title').textContent = t.title;
+    $('#home-list-sub').textContent = t.sub;
+    $('#home-list-hint').textContent = t.hint;
     show('loading');
     try {
       const [items, current] = await Promise.all([
         api('list?type=translations') as Promise<{ slug: string; title: string | null; date?: string | null }[]>,
-        api('pinned') as Promise<{ slugs: string[] }>,
+        api(which) as Promise<{ slugs: string[] }>,
       ]);
       items.sort((a, b) => (b.date || '9999').localeCompare(a.date || '9999'));
       pinTitles = Object.fromEntries(items.map((it) => [it.slug, it.title || it.slug]));
@@ -869,7 +895,8 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   function renderPinned() {
     $('#pinned-count').textContent = `(${pinned.length} من ${PIN_MAX})`;
     const list = $('#pinned-list');
-    list.innerHTML = pinned.length ? '' : '<li class="muted">لا يوجد تعريب مثبت. اختر من القائمة بالأسفل.</li>';
+    const t = HOME_LISTS[homeList];
+    list.innerHTML = pinned.length ? '' : `<li class="muted">${t.empty}</li>`;
     pinned.forEach((slug, i) => {
       const li = document.createElement('li');
       li.innerHTML = `
@@ -878,7 +905,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         <div class="actions">
           <button class="btn small up" title="تحريك للأعلى" ${i === 0 ? 'disabled' : ''}>▲</button>
           <button class="btn small down" title="تحريك للأسفل" ${i === pinned.length - 1 ? 'disabled' : ''}>▼</button>
-          <button class="btn small danger unpin">إلغاء التثبيت</button>
+          <button class="btn small danger unpin">${t.remove}</button>
         </div>`;
       const move = (d: number) => {
         [pinned[i], pinned[i + d]] = [pinned[i + d], pinned[i]];
@@ -900,9 +927,9 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       const li = document.createElement('li');
       li.innerHTML = `
         <div class="name"><strong>${esc(pinTitles[slug])}</strong><small>${esc(slug)}</small></div>
-        <div class="actions"><button class="btn small pin-add" ${pinned.length >= PIN_MAX ? 'disabled' : ''}>📌 تثبيت</button></div>`;
+        <div class="actions"><button class="btn small pin-add" ${pinned.length >= PIN_MAX ? 'disabled' : ''}>${t.add}</button></div>`;
       $('.pin-add', li).addEventListener('click', () => {
-        if (pinned.length >= PIN_MAX) return toast(`الحد الأقصى ${PIN_MAX} تعريبات مثبتة`, true);
+        if (pinned.length >= PIN_MAX) return toast(`الحد الأقصى ${PIN_MAX} تعريبات`, true);
         pinned.push(slug);
         renderPinned();
       });
@@ -914,8 +941,8 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     const btn = $<HTMLButtonElement>('#save-pinned');
     btn.disabled = true;
     try {
-      await api('pinned', { method: 'POST', body: JSON.stringify({ slugs: pinned }) });
-      toast('✅ تم الحفظ! ستظهر التعريبات المثبتة في الرئيسية خلال دقيقة أو دقيقتين.');
+      await api(homeList, { method: 'POST', body: JSON.stringify({ slugs: pinned }) });
+      toast(HOME_LISTS[homeList].saved);
     } catch (ex) {
       toast((ex as Error).message, true);
     } finally {

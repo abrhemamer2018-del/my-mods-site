@@ -7,19 +7,26 @@ import { getArticles, getTranslations, formatDate } from '../lib/utils';
 import Icon from '../components/Icon.astro';
 import { SITE, SOCIAL } from '../config';
 import pinnedData from '../data/pinned.json';
+import heroData from '../data/hero.json';
 
 const translations = await getTranslations();
 // التعريبات المثبتة: تُختار وتُرتَّب من لوحة التحكم (نافذة "التعريبات المثبتة")، مستقلة عن البانر
 const pinned = pinnedData.slugs
   .map((slug) => translations.find((t) => t.id === slug))
   .filter((t) => t !== undefined);
+// البانر: الألعاب المختارة من لوحة التحكم (نافذة "البانر الرئيسي") بالترتيب.
+// إن كانت القائمة فارغة: التعريبات المميزة أولاً، ثم نكمل بالأحدث حتى 5 شرائح
+const chosenHero = heroData.slugs
+  .map((slug) => translations.find((t) => t.id === slug))
+  .filter((t) => t !== undefined);
 const featured = translations.filter((t) => t.data.featured);
-// البانر: التعريبات المميزة أولاً، ثم نكمل بالأحدث حتى 5 شرائح
 const HERO_MAX = 5;
-const heroItems = [
-  ...featured,
-  ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
-].slice(0, Math.max(HERO_MAX, featured.length));
+const heroItems = chosenHero.length
+  ? chosenHero
+  : [
+      ...featured,
+      ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
+    ].slice(0, Math.max(HERO_MAX, featured.length));
 // جديد التعريبات بعرض الصفحة: تظهر أول 15 (3 صفوف من 5)، و"عرض المزيد" يُظهر 15 أخرى عند كل ضغطة
 const PAGE_SIZE = 15;
 
