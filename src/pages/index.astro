@@ -41,7 +41,7 @@ const discord = SOCIAL.find((s) => s.icon === 'discord');
 
 <BaseLayout>
   {/* العنوان الرئيسي للصفحة لمحركات البحث وقارئات الشاشة (مخفي بصرياً) */}
-  <h1 class="sr-only">{SITE.name} — {SITE.tagline}</h1>
+  <h1 class="sr-only">موقع {SITE.name} — {SITE.tagline}</h1>
   {heroItems.length > 0 && <Hero items={heroItems} />}
 
   {/* تعريبات مثبتة: تُختار من لوحة التحكم ← "التعريبات المثبتة".
