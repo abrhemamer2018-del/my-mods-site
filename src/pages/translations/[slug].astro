@@ -5,7 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import TranslationCard from '../../components/TranslationCard.astro';
 import { getTranslations, formatDate, youtubeId, type Translation } from '../../lib/utils';
-import { CATEGORY_LABELS, STATUS_LABELS } from '../../config';
+import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
 export async function getStaticPaths() {
   const all = await getTranslations();
@@ -153,7 +153,8 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
           )
         }
         <p class="legal muted">
-          التعريب يتطلب نسخة أصلية من اللعبة. مشروع مجتمعي غير تابع لمالك اللعبة، وجميع الحقوق لأصحابها.
+          <strong>يتطلب التعريب نسخة أصلية من اللعبة.</strong>
+          {SITE.name} مشروع مجتمعي مستقل، وحقوق اللعبة محفوظة لأصحابها. ·
           <a href="/copyright/">حقوق النشر</a>
         </p>
       </div>
@@ -582,6 +583,11 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
     margin: 4px 0 0;
     font-size: 0.8rem;
     line-height: 1.7;
+  }
+  .legal strong {
+    display: block;
+    color: var(--text);
+    font-weight: 600;
   }
   .legal a {
     text-decoration: underline;
