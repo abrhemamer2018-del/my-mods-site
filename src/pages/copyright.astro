@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config';
+---
+
+<BaseLayout
+  title="حقوق النشر وطلبات الإزالة"
+  description="موقع تعريبات مشروع مجتمعي مجاني غير تابع لأي شركة ألعاب. هنا سياسة حقوق النشر وطريقة طلب إزالة أي محتوى."
+>
+  <div class="container section wrap">
+    <h1>حقوق النشر وطلبات الإزالة</h1>
+
+    <div class="panel">
+      <h2>عن المشروع</h2>
+      <p>
+        «{SITE.name}» مشروع مجتمعي <strong>مجاني وغير ربحي</strong>، هدفه إتاحة الألعاب للاعبين العرب بلغتهم. نحن
+        <strong>غير تابعين</strong> لأي شركة تطوير أو نشر ألعاب، ولا نحظى بدعمها أو موافقتها الرسمية.
+      </p>
+      <p>
+        أسماء الألعاب وشعاراتها وصورها وكل ما يتعلق بها ملك لأصحابها. نستخدم أسماء الألعاب وبعض صورها فقط للتعريف بالتعريب
+        الخاص بها.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h2>ما الذي نوفّره وما الذي لا نوفّره</h2>
+      <ul>
+        <li>نوفّر <strong>ملفات الترجمة العربية</strong> وأدوات تثبيتها فقط.</li>
+        <li><strong>لا نوفّر الألعاب</strong> ولا نسخاً منها، ولا ندعم القرصنة بأي شكل.</li>
+        <li>كل تعريب يتطلب أن يملك المستخدم <strong>نسخة أصلية</strong> من اللعبة، ويُطبَّق عليها من جهازه.</li>
+        <li>التعريبات مجانية بالكامل، ولا يُشترط أي دفع لتحميلها.</li>
+      </ul>
+    </div>
+
+    <div class="panel request">
+      <h2>طلب إزالة محتوى</h2>
+      <p>
+        إذا كنت مالك حقوق لعبة أو ممثلاً عنه، وترى أن أي محتوى في الموقع يتعارض مع حقوقك، راسلنا وسنتعامل مع طلبك بجدية
+        ونزيل المحتوى المعني <strong>خلال 72 ساعة</strong> من التحقق منه.
+      </p>
+      <p class="email">
+        <a href={`mailto:${SITE.copyrightEmail}`} dir="ltr">{SITE.copyrightEmail}</a>
+      </p>
+      <p>يُرجى أن يتضمن الطلب:</p>
+      <ol>
+        <li>اسمك والجهة التي تمثلها، ووسيلة للتواصل معك.</li>
+        <li>اسم اللعبة ورابط الصفحة المعنية في موقعنا.</li>
+        <li>ما يثبت أنك مالك الحقوق أو مخوّل بالتصرف نيابة عنه.</li>
+      </ol>
+    </div>
+
+    <div class="panel en" dir="ltr" lang="en">
+      <h2>Copyright &amp; Takedown Requests</h2>
+      <p>
+        {SITE.name} (ta3reebat.com) is a free, non-commercial, fan-made Arabic translation project. We are not affiliated
+        with, endorsed by, or sponsored by any game developer or publisher. All game names, logos and assets belong to their
+        respective owners.
+      </p>
+      <p>
+        We distribute Arabic translation files and installers only. We do not distribute games, and every translation
+        requires a legitimately owned copy of the game.
+      </p>
+      <p>
+        If you are a rights holder and would like any content removed, please email
+        <a href={`mailto:${SITE.copyrightEmail}`}>{SITE.copyrightEmail}</a> with the page URL and proof of ownership.
+        We will remove the content within 72 hours of verification.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: 860px;
+    display: grid;
+    gap: 20px;
+  }
+  .wrap h1 {
+    margin-bottom: 4px;
+  }
+  .panel h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+  }
+  .panel p:last-child,
+  .panel ul,
+  .panel ol {
+    margin-bottom: 0;
+  }
+  .request {
+    border-color: var(--accent);
+  }
+  .email {
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .email a,
+  .en a {
+    color: var(--accent);
+  }
+  .en {
+    text-align: left;
+  }
+</style>

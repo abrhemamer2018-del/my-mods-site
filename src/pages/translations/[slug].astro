@@ -152,6 +152,10 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
             <p class="muted">روابط التحميل ستتوفر قريباً.</p>
           )
         }
+        <p class="legal muted">
+          التعريب يتطلب نسخة أصلية من اللعبة. مشروع مجتمعي غير تابع لمالك اللعبة، وجميع الحقوق لأصحابها.
+          <a href="/copyright/">حقوق النشر</a>
+        </p>
       </div>
 
       <div class="panel">
@@ -573,6 +577,14 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
     white-space: nowrap;
     opacity: 0.75;
     font-weight: 500;
+  }
+  .legal {
+    margin: 4px 0 0;
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+  .legal a {
+    text-decoration: underline;
   }
   .info {
     display: grid;

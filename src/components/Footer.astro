@@ -36,8 +36,12 @@ const year = new Date().getFullYear();
           <a href={item.href}>{item.label}</a>
         </>
       ))}
+      {' '}
+      <a href="/copyright/">حقوق النشر</a>
     </nav>
-    <p class="copy muted">© {year} {SITE.name}. جميع الحقوق محفوظة. أسماء الألعاب وشعاراتها ملك لأصحابها.</p>
+    <p class="copy muted">
+      © {year} {SITE.name}. مشروع مجتمعي مجاني غير تابع لأي شركة ألعاب. أسماء الألعاب وشعاراتها ملك لأصحابها.
+    </p>
   </div>
 </footer>
 
