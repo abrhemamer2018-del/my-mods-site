@@ -153,7 +153,7 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
           )
         }
         <p class="legal muted">
-          نحثّك على دعم المطوّر وشراء اللعبة.
+          <span>نحثّك على دعم المطوّر وشراء اللعبة.</span>
           <a href="/copyright/">حقوق النشر</a>
         </p>
       </div>
@@ -578,15 +578,19 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
     opacity: 0.75;
     font-weight: 500;
   }
+  /* الجملة يميناً ورابط حقوق النشر يساراً في نفس السطر */
   .legal {
     margin: 4px 0 0;
     font-size: 0.8rem;
     line-height: 1.7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2px 12px;
   }
   .legal a {
-    display: block;
-    width: fit-content;
     text-decoration: underline;
+    white-space: nowrap;
   }
   .info {
     display: grid;
