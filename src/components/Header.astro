@@ -15,10 +15,14 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 
     <nav id="main-nav" class="nav" aria-label="القائمة الرئيسية">
       {
+        /* مسافة نصية بين الروابط حتى لا تقرأها محركات البحث كلمة واحدة ملتصقة */
         NAV.map((item) => (
-          <a href={item.href} class:list={{ active: isActive(item.href) }}>
-            {item.label}
-          </a>
+          <>
+            {' '}
+            <a href={item.href} class:list={{ active: isActive(item.href) }}>
+              {item.label}
+            </a>
+          </>
         ))
       }
     </nav>

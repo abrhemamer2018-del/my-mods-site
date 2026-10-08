@@ -8,7 +8,7 @@ const translations = await getTranslations();
 const platforms = [...new Set(translations.flatMap((t) => t.data.platforms))].sort();
 ---
 
-<BaseLayout title="التعريبات" description="كل تعريبات الألعاب والمودات العربية المتوفرة للتحميل.">
+<BaseLayout title="جميع الألعاب المعرّبة" description="تصفّح جميع تعريبات الألعاب العربية الكاملة والمجانية، مع البحث والتصنيفات وأداة تثبيت بضغطة واحدة.">
   <div class="container section">
     <h1 class="page-title">التعريبات</h1>
     <p class="muted">{translations.length} تعريب متوفر</p>

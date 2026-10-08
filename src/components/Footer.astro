@@ -29,7 +29,13 @@ const year = new Date().getFullYear();
 
   <div class="container bottom">
     <nav class="links" aria-label="روابط سريعة">
-      {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+      {/* مسافة نصية بين الروابط حتى لا تقرأها محركات البحث كلمة واحدة ملتصقة */}
+      {NAV.map((item) => (
+        <>
+          {' '}
+          <a href={item.href}>{item.label}</a>
+        </>
+      ))}
     </nav>
     <p class="copy muted">© {year} {SITE.name}. جميع الحقوق محفوظة. أسماء الألعاب وشعاراتها ملك لأصحابها.</p>
   </div>
