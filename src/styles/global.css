@@ -121,7 +121,8 @@ h3 {
   width: 100%;
   max-width: var(--container);
   margin-inline: auto;
-  padding-inline: 16px;
+  /* هامش جانبي يكبر مع الشاشة، حتى لا يلتصق المحتوى بحواف شاشات اللابتوب */
+  padding-inline: clamp(16px, 3vw, 40px);
 }
 
 /* ============ أزرار ============ */

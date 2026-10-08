@@ -138,8 +138,8 @@ const slides = multi ? [...items, items[0]] : items;
     grid-template-rows: minmax(0, 1fr);
     align-items: center;
     gap: 48px;
-    padding-top: 100px; /* تحت الهيدر */
-    padding-bottom: 64px; /* فوق النقاط */
+    padding-top: 92px; /* تحت الهيدر */
+    padding-bottom: 60px; /* فوق النقاط */
   }
   /* الصورة كاملة بكل تفاصيلها بدون قص ولا نص فوقها */
   .media {
@@ -212,7 +212,7 @@ const slides = multi ? [...items, items[0]] : items;
     color: #d6d9ee;
     text-shadow: 0 2px 12px rgb(0 0 0 / 0.85);
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -254,6 +254,23 @@ const slides = multi ? [...items, items[0]] : items;
   }
   .next {
     left: 24px;
+  }
+  /* الشاشات المتوسطة (مثل اللابتوب): الأسهم بجانب النقاط في الأسفل حتى لا تغطي النص */
+  @media (max-width: 1700px) {
+    .arrow {
+      top: auto;
+      bottom: 12px;
+      transform: none;
+      width: 40px;
+      height: 40px;
+      opacity: 1;
+    }
+    .prev {
+      right: calc(50% + 90px);
+    }
+    .next {
+      left: calc(50% + 90px);
+    }
   }
 
   .dots {
