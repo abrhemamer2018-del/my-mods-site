@@ -23,6 +23,8 @@
   ],
   "vars": {
     "GITHUB_REPO": "abrhemamer2018-del/my-mods-site",
+    // مستودع ملفات التعريب (GitHub Releases)، في حساب منفصل
+    "FILES_REPO": "abrhemamer2017-debug/files",
     "GITHUB_BRANCH": "main"
   },
   "observability": {

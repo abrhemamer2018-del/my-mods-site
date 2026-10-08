@@ -18,7 +18,7 @@ screenshots:
   - ./shot-mux9y9hk8zf.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_Dawnwalker_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Dawnwalker_Installer.zip
     size: 3.14 MB
 requirements: []
 team:

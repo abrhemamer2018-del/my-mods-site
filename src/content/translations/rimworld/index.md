@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mur28z92ufj.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_RimWorld_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RimWorld_Installer.zip
     size: 1.69 MB
 requirements: []
 team:

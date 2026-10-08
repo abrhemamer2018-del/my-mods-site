@@ -17,7 +17,7 @@ screenshots:
   - ./shot-muvkuotfuj8.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_007FirstLight_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_007FirstLight_Installer.zip
     size: 51.09 MB
 requirements: []
 team:

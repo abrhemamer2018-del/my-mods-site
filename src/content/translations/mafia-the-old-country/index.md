@@ -17,7 +17,7 @@ screenshots:
   - ./shot-muxbrjihqoy.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_MafiaTOC_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MafiaTOC_Installer.zip
     size: 2.40 MB
 requirements: []
 team:

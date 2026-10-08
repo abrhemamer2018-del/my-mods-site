@@ -17,7 +17,7 @@ screenshots:
   - ./shot-mus5keouldl.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_LostJudgment_Installer.exe
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LostJudgment_Installer.exe
     size: 57.38 MB
 requirements: []
 team:

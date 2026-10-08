@@ -17,7 +17,7 @@ screenshots:
   - ./shot-muxast8qnon.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_Townfall_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Townfall_Installer.zip
     size: 11.42 MB
 requirements: []
 team:

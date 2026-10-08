@@ -17,7 +17,7 @@ screenshots:
 video: https://www.youtube.com/watch?v=N3D6oWd1bc0
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_GK2_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GK2_Installer.zip
     size: 287 KB
 requirements: []
 team:

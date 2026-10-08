@@ -16,7 +16,7 @@ screenshots:
   - ./shot-muyhnleba0n.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_DMC5_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DMC5_Installer.zip
     size: 18.44 MB
 requirements: []
 team:

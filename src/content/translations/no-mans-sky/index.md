@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mus614kl0ux.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_NMS_Installer.exe
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_NMS_Installer.exe
     size: 7.13 MB
 requirements: []
 team:

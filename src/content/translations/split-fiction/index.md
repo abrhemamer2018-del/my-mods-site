@@ -15,7 +15,7 @@ screenshots:
   - ./shot-muyi9a6yhr7.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_SplitFiction_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SplitFiction_Installer.zip
     size: 1.18 MB
 requirements: []
 team:

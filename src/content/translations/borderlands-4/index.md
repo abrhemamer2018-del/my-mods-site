@@ -17,7 +17,7 @@ screenshots:
   - ./shot-muvn18lxa0s.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_BL4_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BL4_Installer.zip
     size: 14.38 MB
 requirements: []
 team:

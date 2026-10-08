@@ -17,7 +17,7 @@ screenshots:
   - ./shot-muprpwbh39s.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_StardewValley_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_StardewValley_Installer.zip
     size: 14.7 MB
 requirements: []
 team:

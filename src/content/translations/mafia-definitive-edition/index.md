@@ -16,7 +16,7 @@ screenshots:
   - ./shot-muyhsixwhrd.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_MafiaDE_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MafiaDE_Installer.zip
     size: 7.31 MB
 requirements: []
 team:

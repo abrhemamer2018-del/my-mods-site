@@ -15,7 +15,7 @@ screenshots:
   - ./shot-muo00b5gsg7.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_RuneFactory_Azuma_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RuneFactory_Azuma_Installer.zip
     size: 2.74 MB
 requirements: []
 team:

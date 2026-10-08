@@ -17,7 +17,7 @@ screenshots:
   - ./shot-muozdixql0h.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_StarWarsOutlaws_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_StarWarsOutlaws_Installer.zip
     size: 7.1 MB
 requirements: []
 team:

@@ -16,7 +16,7 @@ screenshots:
   - ./shot-muyhzprstp1.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_SonsOfTheForest_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SonsOfTheForest_Installer.zip
     size: 3.41 MB
 requirements: []
 team:

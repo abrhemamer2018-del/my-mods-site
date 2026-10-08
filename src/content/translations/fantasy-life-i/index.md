@@ -19,7 +19,7 @@ screenshots:
 video: https://www.youtube.com/watch?v=raApuFKC0ME
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_FantasyLifeI_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FantasyLifeI_Installer.zip
     size: 42 MB
 requirements: []
 team:

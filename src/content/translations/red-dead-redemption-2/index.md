@@ -20,7 +20,7 @@ screenshots:
   - ./shot-muufxszpoot.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_RDR2_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RDR2_Installer.zip
     size: 9.37 MB
 requirements: []
 team:

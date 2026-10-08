@@ -138,10 +138,13 @@ async function safeEqual(a, b) {
 }
 
 // ------------------------------------------------------------
-//  عدد التحميلات: مجموع تحميلات كل ملفات GitHub Releases
+//  عدد التحميلات: مجموع تحميلات كل ملفات GitHub Releases في مستودع الملفات
+//  (FILES_REPO، منفصل عن مستودع الموقع حتى لا تؤثر أي شكوى على ملف واحد على الموقع كله)
 //  يُحفظ مؤقتاً 15 دقيقة حتى لا نطلب GitHub مع كل زائر
 // ------------------------------------------------------------
 const DOWNLOADS_CACHE_SECONDS = 900;
+// تحميلات الملفات في المستودع القديم (my-mods-site) قبل نقلها، حتى لا يرجع العدّاد إلى الصفر
+const OLD_DOWNLOADS = 189;
 
 async function downloadsCount(env) {
   const cacheKey = new Request('https://cache.internal/downloads-count');
@@ -149,14 +152,15 @@ async function downloadsCount(env) {
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
-  const res = await fetch(`${env.GITHUB_API || 'https://api.github.com'}/repos/${env.GITHUB_REPO}/releases?per_page=100`, {
+  const repo = env.FILES_REPO || env.GITHUB_REPO;
+  const res = await fetch(`${env.GITHUB_API || 'https://api.github.com'}/repos/${repo}/releases?per_page=100`, {
     headers: githubReadHeaders(env),
   });
   if (!res.ok) throw httpError(502, 'تعذّر جلب عدد التحميلات');
   const releases = await res.json();
-  let total = 0;
+  let total = OLD_DOWNLOADS;
   for (const r of releases) {
-    for (const a of await releaseAssets(env, env.GITHUB_REPO, r.id)) total += a.download_count || 0;
+    for (const a of await releaseAssets(env, repo, r.id)) total += a.download_count || 0;
   }
 
   const out = new Response(JSON.stringify({ total }), {

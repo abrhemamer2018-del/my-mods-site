@@ -17,7 +17,7 @@ screenshots:
   - ./shot-muu8s92lonz.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_TLOU2_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TLOU2_Installer.zip
     size: 3.42 MB
 requirements: []
 team:

@@ -16,7 +16,7 @@ screenshots:
   - ./shot-muxbuh0a6tb.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Sekiro.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Sekiro.zip
     size: 7.99 MB
 requirements: []
 team:

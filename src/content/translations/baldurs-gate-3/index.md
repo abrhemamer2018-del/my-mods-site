@@ -18,7 +18,7 @@ screenshots:
   - ./shot-muvkeckaiic.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_BG3_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BG3_Installer.zip
     size: 31.82 MB
 requirements: []
 team:

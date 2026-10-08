@@ -18,7 +18,7 @@ screenshots:
   - ./shot-muzvhnd2zo1.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_DS3_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DS3_Installer.zip
     size: 23.67 MB
 requirements: []
 team:

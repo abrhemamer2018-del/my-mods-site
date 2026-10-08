@@ -15,7 +15,7 @@ screenshots:
   - ./shot-muyigotl63u.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_LAD_IW_Installer.rar
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LAD_IW_Installer.rar
     size: 187.19 MB
 requirements: []
 team:

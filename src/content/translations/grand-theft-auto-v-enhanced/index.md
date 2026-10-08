@@ -13,7 +13,7 @@ banner: ./banner-muxbjblm.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Grand.Theft.Auto.V.Enhanced.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Grand.Theft.Auto.V.Enhanced.zip
     size: 10.98 MB
 requirements: []
 team:

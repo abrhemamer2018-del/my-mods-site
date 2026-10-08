@@ -19,7 +19,7 @@ screenshots:
   - ./shot-muuglrt5n3s.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_HadesII_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HadesII_Installer.zip
     size: 5.42 MB
 requirements: []
 team:

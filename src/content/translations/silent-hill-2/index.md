@@ -16,7 +16,7 @@ screenshots:
   - ./shot-muzu7gfm2xv.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2018-del/my-mods-site/releases/download/downloads/Tarib_SilentHill2_Installer.zip
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SilentHill2_Installer.zip
     size: 4.70 MB
 requirements: []
 team:
