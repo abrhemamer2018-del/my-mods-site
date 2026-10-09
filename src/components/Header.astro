@@ -1,5 +1,7 @@
 ---
-import { NAV, SITE } from '../config';
+import { SITE } from '../config';
+import { getNav } from '../lib/utils';
+const NAV = await getNav();
 import Icon from './Icon.astro';
 
 const path = Astro.url.pathname;

@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { NEW_BADGE_DAYS, NEW_BADGE_MAX } from '../config';
+import { NAV, NEW_BADGE_DAYS, NEW_BADGE_MAX } from '../config';
 
 export type Translation = CollectionEntry<'translations'>;
 
@@ -42,4 +42,15 @@ export function timeAgo(d: Date) {
   const months = Math.round(days / 30);
   if (Math.abs(months) < 12) return rtf.format(months, 'month');
   return rtf.format(Math.round(days / 365), 'year');
+}
+
+/** التعريبات القادمة: حالتها "قيد العمل" أو "تجريبي" */
+export async function getUpcoming() {
+  return (await getTranslations()).filter((t) => t.data.status !== 'complete');
+}
+
+/** روابط القائمة: يظهر "تعريبات قادمة" فقط عند وجود تعريب قيد العمل */
+export async function getNav() {
+  const hasUpcoming = (await getUpcoming()).length > 0;
+  return NAV.filter((item) => item.href !== '/upcoming/' || hasUpcoming);
 }

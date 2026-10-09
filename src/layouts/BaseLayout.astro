@@ -9,13 +9,20 @@ interface Props {
   title?: string;
   description?: string;
   image?: string; // صورة المشاركة في تويتر وديسكورد
+  /** عنوان كامل بدون إضافة اسم الموقع في آخره (لصفحات التعريبات) */
+  fullTitle?: string;
+  /** بيانات منظمة (schema.org) تفهمها محركات البحث */
+  jsonLd?: object | object[];
 }
 
 // الصورة الافتراضية للمشاركة (public/og.png) للصفحات التي ليس لها صورة خاصة
-const { title, description = SITE.description, image = '/og.png' } = Astro.props;
-const fullTitle = title ? `${title} | ${SITE.name}` : `موقع ${SITE.name} — ${SITE.tagline}`;
+const { title, description = SITE.description, image = '/og.png', jsonLd } = Astro.props;
+const fullTitle =
+  Astro.props.fullTitle ?? (title ? `${title} | ${SITE.name}` : `موقع ${SITE.name} — ${SITE.tagline}`);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site).href;
+// يمنع إغلاق وسم <script> مبكراً إن احتوت البيانات المنظمة على "<" (يصبح < داخل JSON)
+const LT_ESCAPED = '\\' + 'u003c';
 ---
 
 <!doctype html>
@@ -40,6 +47,12 @@ const ogImage = new URL(image, Astro.site).href;
     <meta property="og:locale" content="ar_AR" />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+
+    {
+      jsonLd && (
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replaceAll('<', LT_ESCAPED)} />
+      )
+    }
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -35,10 +35,79 @@ const seoDescription =
 const RELATED_COUNT = 4;
 const all = await getTranslations();
 const pos = all.findIndex((t) => t.id === item.id);
+// عنوان الصفحة بالصيغ التي يبحث بها الناس: "تعريب لعبة X بالعربي ... تحميل مجاني"
+const hasArabicName = /[؀-ۿ]/.test(d.titleAr) && d.titleAr.trim() !== d.title.trim();
+const pageTitle = `تعريب لعبة ${d.title} بالعربي${hasArabicName ? ` (${d.titleAr})` : ''} — تحميل مجاني`;
+
+// أسئلة شائعة: تظهر في الصفحة، وتفهمها محركات البحث (FAQPage) فقد تعرضها تحت النتيجة
+const faq = [
+  {
+    q: `هل تعريب ${d.title} مجاني؟`,
+    a: `نعم، تعريب ${d.titleAr} مجاني بالكامل، ويمكنك تحميله مباشرة من هذه الصفحة دون تسجيل.`,
+  },
+  {
+    q: 'هل يعمل التعريب مع نسخة Steam و Epic و GOG؟',
+    a: 'نعم، التعريب يعمل على نسخة الكمبيوتر (PC) الأصلية من اللعبة، وأداة التثبيت تجد مجلد اللعبة تلقائياً في Steam أو Epic أو GOG.',
+  },
+  ...(d.gameVersion
+    ? [{ q: 'ما نسخة اللعبة المدعومة؟', a: `التعريب مُختبَر على نسخة اللعبة ${d.gameVersion}. إن كانت نسختك أقدم فحدّث اللعبة أولاً.` }]
+    : []),
+  {
+    q: `كيف أثبّت تعريب ${d.title}؟`,
+    a: 'حمّل الملف وفك ضغطه، ثم أغلق اللعبة وشغّل أداة التثبيت واضغط "تثبيت". بعدها شغّل اللعبة وستظهر بالعربية مباشرة.',
+  },
+  {
+    q: 'ظهرت رسالة "Windows protected your PC"، فهل الملف آمن؟',
+    a: 'هذه رسالة طبيعية تظهر مع البرامج الصغيرة غير الموقّعة. اضغط More info ثم Run anyway لتشغيل أداة التثبيت.',
+  },
+  {
+    q: 'كيف أحذف التعريب وأعيد اللعبة كما كانت؟',
+    a: 'من Steam: كلك يمين على اللعبة ← Properties ← Installed Files ← Verify integrity of game files، فتعود ملفات اللعبة الأصلية.',
+  },
+];
+
+// البيانات المنظمة (schema.org): التعريب كبرنامج مجاني للعبة، ومسار الصفحة، والأسئلة الشائعة
+const pageUrl = new URL(`/translations/${item.id}/`, Astro.site).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: `تعريب ${d.title} إلى العربية`,
+    alternateName: `${d.title} Arabic Translation`,
+    description: seoDescription,
+    url: pageUrl,
+    image: new URL(og.src, Astro.site).href,
+    applicationCategory: 'GameApplication',
+    operatingSystem: 'Windows',
+    inLanguage: 'ar',
+    softwareVersion: d.version,
+    datePublished: d.releaseDate.toISOString().slice(0, 10),
+    ...(d.updatedDate ? { dateModified: d.updatedDate.toISOString().slice(0, 10) } : {}),
+    ...(d.downloads[0]?.size ? { fileSize: d.downloads[0].size } : {}),
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+    ...(d.team[0] ? { author: { '@type': 'Person', name: d.team[0].name } } : {}),
+    about: { '@type': 'VideoGame', name: d.title, gamePlatform: d.platforms },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'التعريبات', item: new URL('/translations/', Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: `تعريب ${d.title}`, item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })),
+  },
+];
+
 const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, (_, k) => all[(pos + 1 + k) % all.length]);
 ---
 
-<BaseLayout title={`تعريب ${d.titleAr} (${d.title})`} description={seoDescription} image={og.src}>
+<BaseLayout fullTitle={pageTitle} description={seoDescription} image={og.src} jsonLd={jsonLd}>
   <section class="banner" data-pagefind-body>
     <Image class="banner-bg" src={d.banner ?? d.cover} alt={`خلفية ${d.title}`} aria-hidden="true" width={1920} height={600} loading="eager" />
     <div class="container banner-content">
@@ -56,6 +125,7 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
         </h1>
         <p class="ar">{d.titleAr}</p>
         <p class="summary">{d.summary}</p>
+        <p class="en-line" lang="en" dir="ltr">Arabic translation mod for {d.title} — free download for PC.</p>
         {
           d.status !== 'complete' && d.progress !== undefined && (
             <div class="progress" role="progressbar" aria-valuenow={d.progress} aria-valuemin="0" aria-valuemax="100">
@@ -135,6 +205,16 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
           </section>
         )
       }
+
+      <section class="block faq" id="faq">
+        <h2>أسئلة شائعة</h2>
+        {faq.map((x) => (
+          <details>
+            <summary>{x.q}</summary>
+            <p>{x.a}</p>
+          </details>
+        ))}
+      </section>
     </article>
 
     <aside class="sidebar">
@@ -514,6 +594,49 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
   }
   .shot:hover :global(img) {
     transform: scale(1.05);
+  }
+  .en-line {
+    margin: -8px 0 16px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: right;
+  }
+  .faq details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+  .faq details[open] {
+    border-color: rgb(25 195 214 / 0.5);
+  }
+  .faq summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 14px 18px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary::after {
+    content: '+';
+    color: var(--accent);
+    font-size: 1.3rem;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  .faq details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .faq details p {
+    margin: 0;
+    padding: 0 18px 16px;
+    color: var(--muted);
   }
   .changelog {
     list-style: none;

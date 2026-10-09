@@ -28,6 +28,7 @@ export const SOCIAL: { label: string; url: string; icon: string }[] = [
 export const NAV = [
   { label: 'الرئيسية', href: '/' },
   { label: 'التعريبات', href: '/translations/' },
+  { label: 'قادمة', href: '/upcoming/' },
   { label: 'المقالات', href: '/articles/' },
   { label: 'الدروس', href: '/lessons/' },
   { label: 'تواصل', href: '/contact/' },

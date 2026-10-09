@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TranslationCard from '../components/TranslationCard.astro';
+import Icon from '../components/Icon.astro';
+import { getUpcoming } from '../lib/utils';
+import { SOCIAL } from '../config';
+
+// التعريبات القادمة = كل تعريب حالته "قيد العمل" أو "تجريبي" (تُضبط من لوحة التحكم مع نسبة الإنجاز)
+const upcoming = await getUpcoming();
+const discord = SOCIAL.find((s) => s.icon === 'discord');
+---
+
+<BaseLayout
+  title="تعريبات قادمة"
+  description="الألعاب التي نعمل على تعريبها حالياً إلى العربية، مع نسبة الإنجاز. تابعها واطلب تعريب لعبتك المفضّلة."
+>
+  <div class="container section">
+    <h1 class="page-title">تعريبات قادمة</h1>
+    <p class="muted intro">
+      ألعاب نعمل على تعريبها الآن. تابع نسبة الإنجاز، وسيظهر كل تعريب في قائمة التعريبات عند اكتماله.
+    </p>
+
+    {
+      upcoming.length > 0 ? (
+        <div class="cards">
+          {upcoming.map((t) => (
+            <TranslationCard item={t} />
+          ))}
+        </div>
+      ) : (
+        <p class="empty muted">لا توجد تعريبات قيد العمل في هذه اللحظة. عندك لعبة تتمنى تعريبها؟ اطلبها بالأسفل.</p>
+      )
+    }
+
+    {
+      discord && (
+        <div class="request">
+          <Icon name="discord" size={30} />
+          <div>
+            <h2>اطلب تعريب لعبتك المفضّلة</h2>
+            <p class="muted">اكتب اسم اللعبة في ديسكورد، والألعاب الأكثر طلباً تُعرَّب أولاً.</p>
+          </div>
+          <a href={discord.url} class="btn btn-primary" target="_blank" rel="noopener">انضم إلى ديسكورد</a>
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0;
+  }
+  .intro {
+    max-width: 70ch;
+    margin: 8px 0 28px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .empty {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .request {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 40px;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    border: 1px solid rgb(88 101 242 / 0.45);
+    background:
+      radial-gradient(circle at 100% 50%, rgb(88 101 242 / 0.25), transparent 55%),
+      var(--card);
+  }
+  .request :global(svg) {
+    color: #8b95ff;
+    flex-shrink: 0;
+  }
+  .request div {
+    flex: 1;
+  }
+  .request h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+  }
+  .request p {
+    margin: 0;
+  }
+  @media (max-width: 700px) {
+    .request {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  @media (max-width: 560px) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+</style>

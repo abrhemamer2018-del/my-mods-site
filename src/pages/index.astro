@@ -37,9 +37,30 @@ const articles = allArticles.length >= ARTICLES_MIN ? allArticles.slice(0, 3) : 
 
 const lastAdded = translations[0]?.data.releaseDate;
 const discord = SOCIAL.find((s) => s.icon === 'discord');
+// البيانات المنظمة للموقع: الاسم والشعار وحسابات التواصل (Organization)، والموقع نفسه (WebSite)
+const siteUrl = new URL('/', Astro.site).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.name,
+    alternateName: 'Ta3reebat',
+    url: siteUrl,
+    inLanguage: 'ar',
+    description: SITE.description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE.name,
+    url: siteUrl,
+    logo: new URL('/icon-512.png', Astro.site).href,
+    sameAs: SOCIAL.filter((x) => x.icon !== 'heart').map((x) => x.url),
+  },
+];
 ---
 
-<BaseLayout>
+<BaseLayout jsonLd={jsonLd}>
   {/* العنوان الرئيسي للصفحة لمحركات البحث وقارئات الشاشة (مخفي بصرياً) */}
   <h1 class="sr-only">موقع {SITE.name} — {SITE.tagline}</h1>
   {heroItems.length > 0 && <Hero items={heroItems} />}

@@ -1,5 +1,7 @@
 ---
-import { NAV, SITE, SOCIAL } from '../config';
+import { SITE, SOCIAL } from '../config';
+import { getNav } from '../lib/utils';
+const NAV = await getNav();
 import Icon from './Icon.astro';
 const year = new Date().getFullYear();
 ---
