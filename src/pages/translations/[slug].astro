@@ -218,6 +218,8 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
     </article>
 
     <aside class="sidebar">
+      {/* التحميل والإبلاغ: مستطيلان بنفس الارتفاع دائماً */}
+      <div class="dl-pair">
       <div class="panel downloads" id="download">
         <h2><Icon name="download" /> التحميل</h2>
         {
@@ -241,8 +243,9 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
       {/* الإبلاغ عن مشكلة: مستطيل منفصل تحت التحميل */}
       <div class="panel report-panel">
         <h2>⚠️ مشكلة في التعريب؟</h2>
-        <p class="muted">إن لم يعمل التعريب معك، أخبرنا وسنساعدك في حلها.</p>
+        <p class="muted">لم يعمل التعريب معك؟ أخبرنا وسنساعدك.</p>
         <button type="button" class="report-open" id="report-open">الإبلاغ عن مشكلة</button>
+      </div>
       </div>
 
       <div class="panel">
@@ -655,7 +658,14 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
   .shot:hover :global(img) {
     transform: scale(1.05);
   }
+  .dl-pair {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 18px;
+  }
   .report-panel {
+    display: flex;
+    flex-direction: column;
     border-color: rgb(224 52 79 / 0.3);
     background:
       radial-gradient(circle at 100% 0%, rgb(224 52 79 / 0.1), transparent 60%),
@@ -666,6 +676,7 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
   }
   .report-panel p {
     margin: 0 0 14px;
+    flex: 1;
     font-size: 0.9rem;
   }
   .report-open {
