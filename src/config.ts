@@ -13,6 +13,8 @@ export const SITE = {
   // عدد التحميلات في الرئيسية يُحسب تلقائياً من GitHub Releases.
   // أضف هنا تحميلات سابقة من خارج GitHub (مثل Nexus و MediaFire) لتُجمع معه، أو اتركه 0
   downloadsOffset: 0,
+  // رابط قناة #الإبلاغ-عن-مشكلة في ديسكورد (يظهر في نموذج الإبلاغ)
+  reportDiscordUrl: 'https://discord.gg/DugSmwpDW',
   // بريد طلبات إزالة المحتوى (صفحة /copyright/). يُحوَّل إلى بريدك عبر Cloudflare Email Routing
   copyrightEmail: 'copyright@ta3reebat.com',
 };

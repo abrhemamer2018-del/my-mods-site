@@ -5,7 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import TranslationCard from '../../components/TranslationCard.astro';
 import { getTranslations, formatDate, youtubeId, type Translation } from '../../lib/utils';
-import { CATEGORY_LABELS, STATUS_LABELS } from '../../config';
+import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
 export async function getStaticPaths() {
   const all = await getTranslations();
@@ -236,6 +236,7 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
           <span>نحثّك على دعم المطوّر وشراء اللعبة.</span>
           <a href="/copyright/">حقوق النشر</a>
         </p>
+        <button type="button" class="report-open" id="report-open">⚠️ الإبلاغ عن مشكلة</button>
       </div>
 
       <div class="panel">
@@ -332,6 +333,59 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
       </dialog>
     )
   }
+  <dialog class="report-box" id="report-box" aria-labelledby="report-title">
+    <form id="report-form" class="report-form" novalidate>
+      <div class="rf-head">
+        <h2 id="report-title">الإبلاغ عن مشكلة</h2>
+        <button type="button" class="rf-close" id="report-close" aria-label="إغلاق">✕</button>
+      </div>
+      <p class="muted rf-sub">تعريب {d.titleAr} ({d.title}) · الإصدار v{d.version}</p>
+
+      <input type="hidden" name="slug" value={item.id} />
+      <input type="hidden" name="version" value={d.version} />
+      <!-- حقل مخفي للحماية من الروبوتات -->
+      <input type="text" name="website" class="rf-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <label>
+        نوع المشكلة *
+        <select name="type" required>
+          <option value="">اختر...</option>
+          <option value="not-showing">التعريب لا يظهر في اللعبة</option>
+          <option value="game-crash">اللعبة لا تعمل أو تتوقف</option>
+          <option value="installer">مشكلة في أداة التثبيت</option>
+          <option value="text">نص ناقص أو خطأ في الترجمة</option>
+          <option value="other">أخرى</option>
+        </select>
+      </label>
+      <label>
+        من أين اشتريت اللعبة؟
+        <select name="store">
+          <option>Steam</option>
+          <option>Epic</option>
+          <option>GOG</option>
+          <option>Xbox / Game Pass</option>
+          <option>أخرى</option>
+        </select>
+      </label>
+      <label>
+        وصف المشكلة *
+        <textarea name="text" rows="4" required minlength="10" maxlength="1500" placeholder="ماذا حدث بالضبط؟ مثلاً: ثبّتُّ التعريب لكن القوائم ما زالت بالإنجليزي."></textarea>
+      </label>
+      <label>
+        للتواصل معك (اختياري)
+        <input name="contact" maxlength="100" placeholder="اسمك في ديسكورد أو حسابك في إكس" />
+      </label>
+
+      <div class="rf-actions">
+        <button type="submit" class="btn btn-primary">إرسال البلاغ</button>
+        <span class="rf-status" id="report-status" role="status"></span>
+      </div>
+      <p class="muted rf-alt">
+        تفضّل المتابعة مباشرة؟{" "}
+        <a href={SITE.reportDiscordUrl} target="_blank" rel="noopener">اكتب في قناة #الإبلاغ-عن-مشكلة في ديسكورد</a>
+      </p>
+    </form>
+  </dialog>
 </BaseLayout>
 
 <style>
@@ -595,6 +649,114 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
   .shot:hover :global(img) {
     transform: scale(1.05);
   }
+  .report-open {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    font: inherit;
+    font-weight: 700;
+    color: #ff8a9c;
+    background: rgb(224 52 79 / 0.08);
+    border: 1px solid rgb(224 52 79 / 0.35);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+  .report-open:hover {
+    background: rgb(224 52 79 / 0.16);
+    border-color: var(--accent-2);
+  }
+  .report-box {
+    width: min(520px, calc(100vw - 32px));
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--text);
+  }
+  .report-box::backdrop {
+    background: rgb(5 6 12 / 0.8);
+    backdrop-filter: blur(4px);
+  }
+  .report-form {
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+  }
+  .rf-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .rf-head h2 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+  .rf-close {
+    background: none;
+    border: 0;
+    color: var(--muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .rf-sub {
+    margin: -8px 0 0;
+    font-size: 0.85rem;
+  }
+  .report-form label {
+    display: grid;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .report-form select,
+  .report-form textarea,
+  .report-form input {
+    font: inherit;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+  .report-form :is(select, textarea, input):focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .report-form textarea {
+    resize: vertical;
+  }
+  .rf-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .rf-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .rf-status {
+    font-size: 0.9rem;
+  }
+  .rf-status.ok {
+    color: var(--success);
+  }
+  .rf-status.err {
+    color: #ff6b81;
+  }
+  .rf-alt {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  .rf-alt a {
+    color: var(--accent);
+  }
   .en-line {
     margin: -8px 0 16px;
     font-size: 0.85rem;
@@ -825,6 +987,52 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
       const dx = e.changedTouches[0].clientX - x0;
       x0 = null;
       if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+    });
+  }
+</script>
+
+<script>
+  // نموذج الإبلاغ عن مشكلة: يرسل إلى /api/report فيصل البلاغ لقناة ديسكورد
+  const box = document.getElementById('report-box') as HTMLDialogElement | null;
+  const form = document.getElementById('report-form') as HTMLFormElement | null;
+  const status = document.getElementById('report-status');
+  if (box && form && status) {
+    document.getElementById('report-open')?.addEventListener('click', () => box.showModal());
+    document.getElementById('report-close')?.addEventListener('click', () => box.close());
+    box.addEventListener('click', (e) => {
+      if (e.target === box) box.close();
+    });
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      if (!data.type) return void (status.textContent = 'اختر نوع المشكلة'), status.classList.add('err');
+      if ((data.text || '').trim().length < 10) {
+        status.className = 'rf-status err';
+        status.textContent = 'اكتب وصفاً أوضح للمشكلة';
+        return;
+      }
+      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+      btn.disabled = true;
+      status.className = 'rf-status';
+      status.textContent = 'جارٍ الإرسال...';
+      try {
+        const res = await fetch('/api/report', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(out.error || 'تعذّر الإرسال');
+        status.className = 'rf-status ok';
+        status.textContent = '✅ وصل بلاغك، شكراً لك! سنراجعه قريباً.';
+        form.reset();
+        setTimeout(() => box.close(), 2500);
+      } catch (ex) {
+        status.className = 'rf-status err';
+        status.textContent = (ex as Error).message;
+      } finally {
+        btn.disabled = false;
+      }
     });
   }
 </script>

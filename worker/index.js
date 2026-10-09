@@ -49,6 +49,8 @@ async function handleApi(request, env, url) {
 
   // عدد التحميلات الحقيقي (عام، لا يحتاج تسجيل دخول)
   if (route === 'downloads' && method === 'GET') return downloadsCount(env);
+  // بلاغ مشكلة من زائر (عام، لا يحتاج تسجيل دخول)
+  if (route === 'report' && method === 'POST') return json(await reportProblem(request, env, url));
 
   // كل ما بعد هذا يحتاج تسجيل دخول
   const user = await currentUser(request, env);
@@ -375,6 +377,80 @@ async function saveHomeList(gh, cfg, payload) {
   const text = JSON.stringify({ slugs }, null, 2) + '\n';
   const sha = await gh.commit(`تحديث ${cfg.label}`, [{ path: cfg.path, text }]);
   return { ok: true, sha };
+}
+
+// ------------------------------------------------------------
+//  بلاغات المشاكل من الزوار ← قناة البلاغات في ديسكورد
+//  السر DISCORD_REPORTS_WEBHOOK_URL يُضاف في Cloudflare (Secret)
+// ------------------------------------------------------------
+const REPORT_TYPES = {
+  'not-showing': 'التعريب لا يظهر في اللعبة',
+  'game-crash': 'اللعبة لا تعمل أو تتوقف',
+  installer: 'مشكلة في أداة التثبيت',
+  text: 'نص ناقص أو خطأ في الترجمة',
+  other: 'أخرى',
+};
+const REPORT_STORES = ['Steam', 'Epic', 'GOG', 'Xbox / Game Pass', 'أخرى'];
+
+async function reportProblem(request, env, url) {
+  if (!env.DISCORD_REPORTS_WEBHOOK_URL) throw httpError(503, 'الإبلاغ غير متاح حالياً، استخدم ديسكورد');
+  if (env.REPORT_LIMITER) {
+    const { success } = await env.REPORT_LIMITER.limit({ key: request.headers.get('CF-Connecting-IP') || 'unknown' });
+    if (!success) throw httpError(429, 'أرسلت بلاغات كثيرة، انتظر دقيقة ثم حاول مرة أخرى');
+  }
+  const p = await request.json().catch(() => ({}));
+  // حقل مخفي يملؤه الروبوت فقط
+  if (p.website) return { ok: true };
+  const slug = checkSlug(p.slug);
+  const type = REPORT_TYPES[p.type] ? p.type : null;
+  if (!type) throw httpError(400, 'اختر نوع المشكلة');
+  const store = REPORT_STORES.includes(p.store) ? p.store : 'غير محدد';
+  const text = String(p.text || '').trim().slice(0, 1500);
+  if (text.length < 10) throw httpError(400, 'اكتب وصفاً للمشكلة (10 أحرف على الأقل)');
+  const contact = String(p.contact || '').trim().slice(0, 100);
+
+  // اسم التعريب من فهرس الموقع (يرفض أي رابط لتعريب غير موجود)
+  let title = null;
+  try {
+    const res = await env.ASSETS.fetch(new URL('/admin-index.json', url.origin));
+    if (res.ok) title = (await res.json()).translations?.[slug] || null;
+  } catch {}
+  if (!title) throw httpError(400, 'التعريب غير موجود');
+
+  const page = `${SITE_URL}/translations/${slug}/`;
+  const fields = [
+    { name: 'نوع المشكلة', value: REPORT_TYPES[type], inline: true },
+    { name: 'المتجر', value: store, inline: true },
+  ];
+  if (p.version) fields.push({ name: 'إصدار التعريب', value: String(p.version).slice(0, 20), inline: true });
+  fields.push({ name: 'الوصف', value: text });
+  if (contact) fields.push({ name: 'للتواصل', value: contact });
+
+  const body = {
+    username: 'بلاغات التعريب',
+    avatar_url: `${SITE_URL}/icon-512.png`,
+    // لا تنبيهات @everyone أو منشن من نص الزائر
+    allowed_mentions: { parse: [] },
+    embeds: [
+      { title: `⚠️ بلاغ: ${title}`.slice(0, 250), url: page, color: 0xe0344f, fields, timestamp: new Date().toISOString() },
+    ],
+  };
+  const send = (b) =>
+    fetch(env.DISCORD_REPORTS_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(b),
+    });
+  let res = await send(body);
+  // إن كانت القناة منتدى (Forum) فهي تحتاج عنواناً لكل منشور
+  if (res.status === 400 && /thread/i.test(await res.clone().text())) {
+    res = await send({ ...body, thread_name: `بلاغ: ${title}`.slice(0, 100) });
+  }
+  if (!res.ok) {
+    console.log('Report webhook error', res.status, await res.text());
+    throw httpError(502, 'تعذّر إرسال البلاغ، حاول لاحقاً أو استخدم ديسكورد');
+  }
+  return { ok: true };
 }
 
 // ------------------------------------------------------------
