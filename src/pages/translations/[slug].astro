@@ -236,7 +236,13 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
           <span>نحثّك على دعم المطوّر وشراء اللعبة.</span>
           <a href="/copyright/">حقوق النشر</a>
         </p>
-        <button type="button" class="report-open" id="report-open">⚠️ الإبلاغ عن مشكلة</button>
+      </div>
+
+      {/* الإبلاغ عن مشكلة: مستطيل منفصل تحت التحميل */}
+      <div class="panel report-panel">
+        <h2>⚠️ مشكلة في التعريب؟</h2>
+        <p class="muted">إن لم يعمل التعريب معك، أخبرنا وسنساعدك في حلها.</p>
+        <button type="button" class="report-open" id="report-open">الإبلاغ عن مشكلة</button>
       </div>
 
       <div class="panel">
@@ -649,9 +655,21 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
   .shot:hover :global(img) {
     transform: scale(1.05);
   }
+  .report-panel {
+    border-color: rgb(224 52 79 / 0.3);
+    background:
+      radial-gradient(circle at 100% 0%, rgb(224 52 79 / 0.1), transparent 60%),
+      var(--card);
+  }
+  .report-panel h2 {
+    margin-bottom: 4px;
+  }
+  .report-panel p {
+    margin: 0 0 14px;
+    font-size: 0.9rem;
+  }
   .report-open {
     width: 100%;
-    margin-top: 12px;
     padding: 10px;
     font: inherit;
     font-weight: 700;
