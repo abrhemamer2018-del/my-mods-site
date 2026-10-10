@@ -7,7 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-04
-version: "1.0"
+version: "2.0"
 cover: ./cover-muugo1g1.webp
 banner: ./banner-muugp5sz.webp
 screenshots:
@@ -19,17 +19,17 @@ screenshots:
   - ./shot-muuglrt5n3s.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HadesII_Installer.zip
-    size: 5.42 MB
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HadesII_Installer_V2.rar
+    size: 4.03 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "2.0"
     date: 2026-10-04
     notes:
-      - الإصدار الأول
+      - الإصدار الثاني
 ---
 
 ## طريقة التثبيت
