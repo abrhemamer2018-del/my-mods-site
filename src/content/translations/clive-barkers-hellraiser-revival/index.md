@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-10
 version: "1.0"
-cover: ./cover-mv2zlngv.webp
+cover: ./cover-mv30e4e4.webp
 screenshots:
   - ./shot-mv2zmmjbilw.webp
   - ./shot-mv2zms3sgh2.webp
