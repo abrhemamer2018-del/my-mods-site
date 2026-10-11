@@ -5,7 +5,7 @@ import Hero from '../components/Hero.astro';
 import TranslationCard from '../components/TranslationCard.astro';
 import { getArticles, getTranslations, formatDate } from '../lib/utils';
 import Icon from '../components/Icon.astro';
-import { SITE, SOCIAL } from '../config';
+import { LIVE, SITE, SOCIAL } from '../config';
 import pinnedData from '../data/pinned.json';
 import heroData from '../data/hero.json';
 
@@ -65,6 +65,38 @@ const jsonLd = [
   <h1 class="sr-only">موقع {SITE.name} — {SITE.tagline}</h1>
   {heroItems.length > 0 && <Hero items={heroItems} />}
 
+  {/* شريط الإحصائيات مدمج على الحافة السفلية للبانر */}
+  <div class="container stats-wrap">
+    <ul class="stats-strip">
+      <li>
+        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5" /><path d="M7 11v3M5.5 12.5h3M15.5 12h.01M18 13.5h.01" /></svg></span>
+        <strong>{translations.length}</strong>
+        <span>تعريب</span>
+      </li>
+      <li>
+        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg></span>
+        <strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset}>…</strong>
+        <span>تحميل</span>
+      </li>
+      {
+        lastAdded && (
+          <li>
+            <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
+            <span>آخر إضافة<span class="colon">:</span></span>
+            <time datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
+              {formatDate(lastAdded)}
+            </time>
+          </li>
+        )
+      }
+      <li>
+        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg></span>
+        <strong>100%</strong>
+        <span>مجانية</span>
+      </li>
+    </ul>
+  </div>
+
   {/* تعريبات مثبتة: تُختار من لوحة التحكم ← "التعريبات المثبتة".
       يختفي القسم تلقائياً إن لم يوجد أي تعريب مثبت */}
   {
@@ -101,37 +133,6 @@ const jsonLd = [
     )
   }
 
-  {/* شريط الإحصائيات: سطر واحد صغير تحت البانر */}
-  <div class="container">
-    <ul class="stats-strip">
-      <li>
-        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5" /><path d="M7 11v3M5.5 12.5h3M15.5 12h.01M18 13.5h.01" /></svg></span>
-        <strong>{translations.length}</strong>
-        <span>تعريب</span>
-      </li>
-      <li>
-        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg></span>
-        <strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset}>…</strong>
-        <span>تحميل</span>
-      </li>
-      {
-        lastAdded && (
-          <li>
-            <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
-            <span>آخر إضافة<span class="colon">:</span></span>
-            <time datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
-              {formatDate(lastAdded)}
-            </time>
-          </li>
-        )
-      }
-      <li>
-        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg></span>
-        <strong>100%</strong>
-        <span>مجانية</span>
-      </li>
-    </ul>
-  </div>
 
   {/* جديد التعريبات بعرض الصفحة كاملة */}
   <section class="container section latest">
@@ -154,6 +155,21 @@ const jsonLd = [
         </div>
       )
     }
+  </section>
+
+  {/* إعلان برنامج تعريبات لايف: للألعاب التي لا يوجد لها تعريب بعد */}
+  <section class="container">
+    <a href="/live/" class="live-band">
+      <span class="lb-shot">
+        <img src="/live/after.webp" alt="تعريبات لايف يترجم حوار لعبة إلى العربية أثناء اللعب" width="1280" height="673" loading="lazy" />
+      </span>
+      <span class="lb-text">
+        <span class="lb-kicker">جديد · برنامج مجاني</span>
+        <strong>لعبتك غير معرّبة؟ تعريبات لايف يعرّبها لك أثناء اللعب</strong>
+        <span class="muted">{LIVE.tagline}</span>
+      </span>
+      <span class="btn btn-primary lb-btn">اكتشف البرنامج ‹</span>
+    </a>
   </section>
 
   {/* شريط ديسكورد بعرض الصفحة */}
@@ -236,6 +252,30 @@ const jsonLd = [
 
 <style>
   /* شريط الإحصائيات تحت البانر */
+  /* الإحصائيات تطفو على الحافة السفلية للبانر بخلفية زجاجية */
+  .stats-wrap {
+    position: relative;
+    z-index: 4;
+    margin-top: -38px;
+  }
+  .stats-wrap .stats-strip {
+    margin: 0;
+    padding: 12px 28px;
+    background:
+      linear-gradient(90deg, rgb(224 52 79 / 0.1), transparent 35%, transparent 65%, rgb(25 195 214 / 0.12)),
+      rgb(21 25 49 / 0.82);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 14px 40px rgb(0 0 0 / 0.45);
+  }
+  /* نرفع نقاط وأسهم البانر حتى لا يغطيها الشريط */
+  :global(body:has(.stats-wrap) .hero .dots) {
+    bottom: 58px;
+  }
+  @media (max-width: 1700px) {
+    :global(body:has(.stats-wrap) .hero .arrow) {
+    bottom: 44px;
+    }
+  }
   .stats-strip {
     list-style: none;
     margin: 40px 0 0;
@@ -426,6 +466,65 @@ const jsonLd = [
   }
 
 
+  /* إعلان تعريبات لايف */
+  .live-band {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    padding: 14px 24px 14px 14px;
+    border-radius: var(--radius);
+    border: 1px solid rgb(25 195 214 / 0.4);
+    background:
+      radial-gradient(circle at 100% 50%, rgb(25 195 214 / 0.16), transparent 55%),
+      radial-gradient(circle at 0% 50%, rgb(224 52 79 / 0.14), transparent 50%),
+      var(--card);
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .live-band:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .lb-shot {
+    flex-shrink: 0;
+    width: 230px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .lb-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .lb-text {
+    flex: 1;
+    display: grid;
+    gap: 4px;
+  }
+  .lb-kicker {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+  .lb-text strong {
+    font-size: 1.25rem;
+  }
+  .lb-btn {
+    flex-shrink: 0;
+  }
+  @media (max-width: 760px) {
+    .live-band {
+      flex-direction: column;
+      text-align: center;
+      padding: 14px;
+    }
+    .lb-shot {
+      width: 100%;
+    }
+  }
+
   /* شريط ديسكورد بعرض الصفحة */
   .discord-band {
     display: flex;
@@ -590,6 +689,56 @@ const jsonLd = [
       flex-direction: column;
       text-align: center;
       padding: 24px 20px;
+    }
+  }
+  /* الجوال والشاشات الصغيرة: الإحصائيات صف واحد مضغوط من 4 خانات فوق حافة البانر */
+  @media (max-width: 760px) {
+    .stats-wrap {
+      margin-top: -30px;
+    }
+    .stats-wrap .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      padding: 10px 6px;
+      border-radius: var(--radius);
+    }
+    .stats-wrap .stats-strip li {
+      flex-direction: column;
+      gap: 4px;
+      text-align: center;
+      font-size: 0.72rem;
+      line-height: 1.2;
+    }
+    .stats-wrap .s-ico {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      box-shadow: none;
+    }
+    .stats-wrap .s-ico :global(svg) {
+      width: 15px;
+      height: 15px;
+    }
+    .stats-wrap .stats-strip strong,
+    .stats-wrap .stats-strip time {
+      font-size: 1rem;
+    }
+    .stats-wrap .stats-strip time {
+      order: 1;
+    }
+    .stats-wrap .stats-strip li > span:not(.s-ico) {
+      order: 2;
+    }
+    .stats-wrap .stats-strip .colon {
+      display: none;
+    }
+    .stats-wrap .stats-strip li + li::before {
+      inset-inline-start: 0;
+      height: 36px;
+    }
+    :global(body:has(.stats-wrap) .hero .dots) {
+      bottom: 44px;
     }
   }
   @media (max-width: 560px) {

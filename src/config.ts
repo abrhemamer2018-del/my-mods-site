@@ -27,10 +27,23 @@ export const SOCIAL: { label: string; url: string; icon: string }[] = [
   { label: 'ادعمنا على Ko-fi', url: 'https://ko-fi.com/ibrahimalobaidi', icon: 'heart' },
 ];
 
-export const NAV = [
+// برنامج تعريبات لايف (صفحة /live/). عند إصدار نسخة جديدة: حدّث الرقم والرابط والحجم فقط
+export const LIVE = {
+  name: 'تعريبات لايف',
+  tagline: 'عرّب أي لعبة فوراً وأنت تلعب… بضغطة زر',
+  version: '1.0.0',
+  label: 'تجريبي',
+  sizeMB: 305,
+  // ملف البرنامج في GitHub Releases (مستودع الملفات)
+  downloadUrl:
+    'https://github.com/abrhemamer2017-debug/files/releases/download/ta3reebat-live-v1.0.0/Ta3reebat-Live-v1.0.0-beta.zip',
+};
+
+export const NAV: { label: string; href: string; badge?: string }[] = [
   { label: 'الرئيسية', href: '/' },
   { label: 'التعريبات', href: '/translations/' },
   { label: 'قادمة', href: '/upcoming/' },
+  { label: 'تعريبات لايف', href: '/live/', badge: 'جديد' },
   { label: 'المقالات', href: '/articles/' },
   { label: 'الدروس', href: '/lessons/' },
   { label: 'تواصل', href: '/contact/' },

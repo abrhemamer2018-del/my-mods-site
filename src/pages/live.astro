@@ -1,0 +1,656 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { LIVE, SITE, SOCIAL } from '../config';
+
+// صفحة برنامج "تعريبات لايف": الترجمة الفورية للألعاب أثناء اللعب
+const discord = SOCIAL.find((s) => s.icon === 'discord');
+const siteUrl = new URL('/', Astro.site).href;
+const pageUrl = new URL('/live/', Astro.site).href;
+
+const features = [
+  { icon: '⚡', title: 'فوري', text: 'تظهر الترجمة خلال أقل من ربع ثانية من ظهور النص، وتختفي فور اختفائه.' },
+  { icon: '🎯', title: 'في مكان النص الأصلي', text: 'يمسح النص الإنجليزي ويكتب العربي في مكانه بالضبط، داخل نفس الإطار والزر.' },
+  { icon: '🤖', title: 'نموذجان للترجمة', text: 'أوفلاين سريع يعمل على أي جهاز، وNVIDIA Riva بالذكاء الاصطناعي لجودة أعلى.' },
+  { icon: '🎥', title: 'يظهر في التسجيل', text: 'سجّل لعبك بالعربي في OBS (التقاط الشاشة) وشاركه على يوتيوب.' },
+  { icon: '🖱️', title: 'تحكّم كما تحب', text: 'اختصارات تختارها بنفسك، وحتى أزرار الماوس الجانبية، وشريط صغير فوق اللعبة.' },
+  { icon: '🔒', title: 'خصوصيتك محفوظة', text: 'يعمل على جهازك بالكامل؛ لا يرسل صور شاشتك ولا نصوص ألعابك إلى أي خادم.' },
+];
+
+const steps = [
+  { title: 'حمّل وفك الضغط', text: 'فك ضغط الملف في أي مكان، ثم افتح Ta3reebatLive.exe' },
+  { title: 'شغّل لعبتك', text: 'بوضع Borderless أو Windowed (وليس Fullscreen الحصري).' },
+  { title: 'اضغط F9 داخل اللعبة', text: 'وتظهر الترجمة العربية فوراً. للإيقاف اضغط F10.' },
+];
+
+const keys = [
+  ['F9', 'تشغيل الترجمة'],
+  ['F10', 'إيقاف الترجمة'],
+  ['F4', 'إظهار النص الأصلي مؤقتاً'],
+  ['F8', 'إظهار/إخفاء الشريط المصغّر'],
+  ['🖱️', 'زر الماوس الجانبي (تختاره من الإعدادات)'],
+];
+
+const faq = [
+  {
+    q: 'هل تعريبات لايف مجاني؟',
+    a: 'نعم، مجاني بالكامل ومن غير إعلانات، وهو مشروع من فريق تعريبات.',
+  },
+  {
+    q: 'ما الفرق بينه وبين تعريبات الموقع؟',
+    a: 'التعريبات في الموقع ترجمة كاملة يدوية للعبة تُثبَّت داخل ملفاتها، وهي الأدق. أما تعريبات لايف فيترجم أي لعبة إنجليزية فوراً أثناء اللعب بالذكاء الاصطناعي، وهو مناسب للألعاب التي لا يوجد لها تعريب بعد.',
+  },
+  {
+    q: 'هل يحتاج إنترنت؟',
+    a: 'لا. الترجمة تعمل على جهازك. الإنترنت مطلوب فقط مرة واحدة إذا اخترت تنزيل نموذج NVIDIA Riva.',
+  },
+  {
+    q: 'هل يحتاج كرت شاشة NVIDIA؟',
+    a: 'لا. النموذج الأوفلاين يعمل على أي جهاز. أما نموذج NVIDIA Riva (جودة أعلى) فيحتاج كرت NVIDIA بذاكرة 6 جيجابايت أو أكثر، ويستخدم نحو 3 جيجابايت منها.',
+  },
+  {
+    q: 'ظهرت رسالة "Windows protected your PC"، ماذا أفعل؟',
+    a: 'اضغط More info ثم Run anyway. تظهر هذه الرسالة لأن البرنامج مجاني وغير موقّع رقمياً، وهذا طبيعي في البرامج المجانية الصغيرة.',
+  },
+  {
+    q: 'لماذا لا تظهر الترجمة في بعض الألعاب؟',
+    a: 'غيّر وضع العرض في إعدادات اللعبة إلى Borderless أو Windowed؛ وضع Fullscreen الحصري يمنع أي برنامج من الظهور فوق اللعبة.',
+  },
+  {
+    q: 'هل يمكن أن يسبب حظراً في الألعاب الأونلاين؟',
+    a: 'البرنامج لا يعدّل ملفات اللعبة ولا يقرأ ذاكرتها؛ هو يقرأ الشاشة فقط مثل برامج التسجيل. ومع ذلك ننصح دائماً بمراجعة قوانين كل لعبة أونلاين.',
+  },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: `${LIVE.name} (Ta3reebat Live)`,
+    description: `${LIVE.tagline}. برنامج مجاني لترجمة الألعاب إلى العربية فورياً أثناء اللعب.`,
+    applicationCategory: 'GameApplication',
+    operatingSystem: 'Windows 10, Windows 11',
+    softwareVersion: LIVE.version,
+    fileSize: `${LIVE.sizeMB}MB`,
+    downloadUrl: LIVE.downloadUrl,
+    url: pageUrl,
+    image: new URL('/live/og.png', Astro.site).href,
+    inLanguage: 'ar',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: SITE.name, url: siteUrl },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<BaseLayout
+  fullTitle={`تعريبات لايف — ترجمة فورية لأي لعبة إلى العربية بضغطة زر | ${SITE.name}`}
+  description="برنامج مجاني يعرّب أي لعبة إنجليزية فوراً وأنت تلعب: يقرأ النص من الشاشة ويكتب ترجمته العربية في مكانه خلال أقل من ربع ثانية، بدون إنترنت."
+  image="/live/og.png"
+  jsonLd={jsonLd}
+>
+  {/* ====== الواجهة ====== */}
+  <section class="live-hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="kicker">برنامج مجاني · نسخة {LIVE.label}</span>
+        <h1>
+          تعريبات <span class="grad">لايف</span>
+        </h1>
+        <p class="tagline">{LIVE.tagline}</p>
+        <p class="muted lead">
+          لعبتك غير معرّبة؟ تعريبات لايف يقرأ النص الإنجليزي من الشاشة ويكتب ترجمته العربية في مكانه مباشرة، أثناء اللعب.
+        </p>
+        <div class="cta">
+          <a href={LIVE.downloadUrl} class="btn btn-primary btn-lg" rel="nofollow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
+            تحميل مجاناً
+          </a>
+          <a href="#video" class="btn btn-lg">▶ شاهد الفيديو</a>
+        </div>
+        <p class="meta muted">
+          الإصدار <span dir="ltr">{LIVE.version}</span> · <span dir="ltr">{LIVE.sizeMB} MB</span> · Windows 10 / 11
+        </p>
+      </div>
+      <div class="hero-media" id="video">
+        <video controls preload="none" poster="/live/poster.webp" playsinline width="1280" height="720">
+          <source src="/live/demo.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  {/* ====== قبل / بعد ====== */}
+  <section class="container section">
+    <div class="section-head center">
+      <h2>شاهد الفرق</h2>
+    </div>
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab active" data-pair="dialog">حوار</button>
+      <button type="button" class="tab" data-pair="menu">قائمة</button>
+    </div>
+    <div class="compare" id="compare" style="--pos: 50%">
+      <img class="c-after" id="c-after" src="/live/after.webp" alt="بعد: النص مترجم إلى العربية داخل اللعبة" width="1280" height="673" loading="lazy" />
+      <img class="c-before" id="c-before" src="/live/before.webp" alt="قبل: النص الأصلي بالإنجليزية" width="1280" height="673" loading="lazy" />
+      <span class="c-label c-l-before">قبل</span>
+      <span class="c-label c-l-after">بعد</span>
+      <span class="c-line" aria-hidden="true"><span class="c-knob">⇆</span></span>
+      <input type="range" min="0" max="100" value="50" id="c-range" aria-label="اسحب للمقارنة بين قبل وبعد" />
+    </div>
+    <p class="muted center small">اسحب الخط للمقارنة · لقطات حقيقية من البرنامج على لعبة Stardew Valley</p>
+  </section>
+
+  {/* ====== المميزات ====== */}
+  <section class="container section">
+    <div class="section-head center">
+      <h2>لماذا تعريبات لايف؟</h2>
+    </div>
+    <div class="features">
+      {
+        features.map((f) => (
+          <div class="feature">
+            <span class="f-ico" aria-hidden="true">{f.icon}</span>
+            <h3>{f.title}</h3>
+            <p class="muted">{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* ====== طريقة الاستخدام ====== */}
+  <section class="container section">
+    <div class="section-head center">
+      <h2>ثلاث خطوات فقط</h2>
+    </div>
+    <ol class="steps">
+      {
+        steps.map((s, i) => (
+          <li>
+            <span class="num">{i + 1}</span>
+            <h3>{s.title}</h3>
+            <p class="muted">{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="two">
+      <div class="panel-box">
+        <h3>الاختصارات</h3>
+        <ul class="keys">
+          {
+            keys.map(([k, v]) => (
+              <li>
+                <kbd dir="ltr">{k}</kbd>
+                <span>{v}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="muted small">كل الاختصارات قابلة للتغيير من الإعدادات.</p>
+      </div>
+      <div class="panel-box">
+        <h3>المتطلبات</h3>
+        <ul class="req">
+          <li>Windows 10 (إصدار 2004 أو أحدث) أو Windows 11 — 64-bit</li>
+          <li>الترجمة الأوفلاين: تعمل على أي جهاز</li>
+          <li>NVIDIA Riva (اختياري): كرت NVIDIA بذاكرة 6 جيجابايت أو أكثر، وتنزيل 2.8 جيجابايت مرة واحدة</li>
+          <li>اللعبة بوضع Borderless أو Windowed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ====== تحميل ====== */}
+  <section class="container section">
+    <div class="download-band">
+      <img src="/logo.svg" alt="" width="64" height="64" />
+      <div class="d-text">
+        <h2>جرّب تعريبات لايف الآن</h2>
+        <p class="muted">
+          نسخة {LIVE.label}: ساعدنا بملاحظاتك في ديسكورد لنحسّنه في الإصدارات القادمة.
+        </p>
+      </div>
+      <div class="d-actions">
+        <a href={LIVE.downloadUrl} class="btn btn-primary btn-lg" rel="nofollow">تحميل مجاناً · <span dir="ltr">{LIVE.sizeMB} MB</span></a>
+        {discord && (
+          <a href={discord.url} class="btn" target="_blank" rel="noopener">
+            <Icon name="discord" size={18} /> ملاحظات ومشاكل
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {/* ====== أسئلة شائعة ====== */}
+  <section class="container section faq">
+    <div class="section-head center">
+      <h2>أسئلة شائعة</h2>
+    </div>
+    {
+      faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p class="muted">{f.a}</p>
+        </details>
+      ))
+    }
+    <p class="muted small center credits">
+      يعتمد البرنامج على مكوّنات مجانية مفتوحة المصدر، منها نموذج OPUS-MT من جامعة هلسنكي (CC-BY 4.0) ونموذج NVIDIA
+      Riva Translate؛ تفاصيل التراخيص كاملة داخل البرنامج في نافذة "حول البرنامج".
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  // مقارنة قبل/بعد بالسحب، وتبديل بين لقطة الحوار ولقطة القائمة
+  const box = document.getElementById('compare');
+  const range = document.getElementById('c-range') as HTMLInputElement | null;
+  const before = document.getElementById('c-before') as HTMLImageElement | null;
+  const after = document.getElementById('c-after') as HTMLImageElement | null;
+  range?.addEventListener('input', () => box?.style.setProperty('--pos', range.value + '%'));
+  const pairs: Record<string, [string, string]> = {
+    dialog: ['/live/before.webp', '/live/after.webp'],
+    menu: ['/live/menu-before.webp', '/live/menu-after.webp'],
+  };
+  document.querySelectorAll<HTMLButtonElement>('.tab').forEach((t) =>
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach((x) => x.classList.remove('active'));
+      t.classList.add('active');
+      const p = pairs[t.dataset.pair || 'dialog'];
+      if (before && after && p) {
+        before.src = p[0];
+        after.src = p[1];
+      }
+    }),
+  );
+</script>
+
+<style>
+  .live-hero {
+    overflow-x: clip;
+    padding-block: 56px 32px;
+    background:
+      radial-gradient(900px 420px at 85% 0%, rgb(25 195 214 / 0.16), transparent 60%),
+      radial-gradient(700px 380px at 0% 100%, rgb(224 52 79 / 0.12), transparent 60%);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 48px;
+    align-items: center;
+  }
+  .kicker {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgb(25 195 214 / 0.1);
+    border: 1px solid rgb(25 195 214 / 0.35);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    line-height: 1.15;
+    margin: 14px 0 6px;
+  }
+  .grad {
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .tagline {
+    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+    font-weight: 800;
+    margin: 0 0 12px;
+  }
+  .lead {
+    font-size: 1.05rem;
+    max-width: 52ch;
+    margin: 0 0 24px;
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn-lg {
+    padding: 0.8em 1.7em;
+    font-size: 1.05rem;
+  }
+  .meta {
+    margin: 14px 0 0;
+    font-size: 0.88rem;
+  }
+  .hero-media video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow:
+      0 24px 60px rgb(0 0 0 / 0.5),
+      0 0 0 1px rgb(25 195 214 / 0.15);
+    background: #000;
+  }
+
+  .center {
+    justify-content: center;
+    text-align: center;
+  }
+  .small {
+    font-size: 0.85rem;
+  }
+
+  /* قبل / بعد */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .tab {
+    font: inherit;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 18px;
+    cursor: pointer;
+  }
+  .tab.active {
+    color: #04141a;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .compare {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto 10px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    aspect-ratio: 1280 / 673;
+    user-select: none;
+  }
+  .compare img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* "قبل" يظهر على اليمين حتى موضع الخط */
+  .c-before {
+    clip-path: inset(0 0 0 var(--pos));
+  }
+  .c-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    width: 3px;
+    transform: translateX(-50%);
+    background: #fff;
+    box-shadow: 0 0 12px rgb(0 0 0 / 0.6);
+    pointer-events: none;
+  }
+  .c-knob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #04141a;
+    font-weight: 800;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.5);
+  }
+  .compare input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+    margin: 0;
+    direction: ltr;
+  }
+  .c-label {
+    position: absolute;
+    top: 14px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    background: rgb(11 13 23 / 0.8);
+    pointer-events: none;
+  }
+  .c-l-before {
+    right: 14px;
+  }
+  .c-l-after {
+    left: 14px;
+    color: var(--accent);
+  }
+
+  /* المميزات */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .feature {
+    padding: 22px;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .f-ico {
+    font-size: 1.8rem;
+  }
+  .feature h3,
+  .steps h3,
+  .panel-box h3,
+  .download-band h2 {
+    font-family: var(--font);
+    font-weight: 800;
+  }
+  .feature h3 {
+    margin: 8px 0 6px;
+    font-size: 1.15rem;
+  }
+  .feature p {
+    margin: 0;
+  }
+
+  /* الخطوات */
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .steps li {
+    position: relative;
+    padding: 22px;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .num {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: 800;
+    color: #04141a;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+  .steps h3 {
+    margin: 12px 0 4px;
+  }
+  .steps p {
+    margin: 0;
+  }
+  .two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .panel-box {
+    padding: 22px;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .panel-box h3 {
+    margin: 0 0 12px;
+  }
+  .keys,
+  .req {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+    display: grid;
+    gap: 10px;
+  }
+  .keys li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  kbd {
+    min-width: 54px;
+    text-align: center;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 800;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-bottom-width: 3px;
+  }
+  .req li {
+    padding-inline-start: 22px;
+    position: relative;
+  }
+  .req li::before {
+    content: '✓';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--success);
+    font-weight: 800;
+  }
+  .shots {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .shots img {
+    width: calc(50% - 6px);
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    align-self: flex-start;
+  }
+
+  /* شريط التحميل */
+  .download-band {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 30px;
+    border-radius: var(--radius);
+    border: 1px solid rgb(25 195 214 / 0.4);
+    background:
+      radial-gradient(circle at 100% 50%, rgb(25 195 214 / 0.18), transparent 55%),
+      radial-gradient(circle at 0% 50%, rgb(224 52 79 / 0.12), transparent 50%),
+      var(--card);
+  }
+  .download-band .d-text {
+    flex: 1;
+  }
+  .download-band h2 {
+    margin: 0 0 4px;
+    font-size: 1.4rem;
+  }
+  .download-band p {
+    margin: 0;
+  }
+  .d-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* أسئلة شائعة */
+  .faq details {
+    max-width: 860px;
+    margin: 0 auto 10px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .faq details p {
+    margin: 10px 0 0;
+  }
+  .credits {
+    max-width: 760px;
+    margin: 24px auto 0;
+  }
+
+  .hero-grid > *,
+  .two > *,
+  .features > *,
+  .steps > * {
+    min-width: 0;
+  }
+  @media (max-width: 900px) {
+    .hero-grid,
+    .two {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .cta .btn {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+    .d-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+    .d-actions .btn {
+      justify-content: center;
+    }
+    .features,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .download-band {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

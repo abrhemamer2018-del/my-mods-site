@@ -162,6 +162,8 @@ async function downloadsCount(env) {
   const releases = await res.json();
   let total = OLD_DOWNLOADS;
   for (const r of releases) {
+    // إصدارات برنامج "تعريبات لايف" ليست تعريبات، فلا تُحسب في عدد تحميلات التعريبات
+    if ((r.tag_name || '').startsWith('ta3reebat-live')) continue;
     for (const a of await releaseAssets(env, repo, r.id)) total += a.download_count || 0;
   }
 
