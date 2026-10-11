@@ -18,7 +18,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_CONTROL_Resonant_Installer.zip
-    size: 4.43 MB
+    size: 4.42 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
