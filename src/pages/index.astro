@@ -16,8 +16,9 @@ const pinned = pinnedData.slugs
   .filter((t) => t !== undefined);
 // البانر: الألعاب المختارة من لوحة التحكم (نافذة "البانر الرئيسي") بالترتيب.
 // إن كانت القائمة فارغة: التعريبات المميزة أولاً، ثم نكمل بالأحدث حتى 5 شرائح
+// "ta3reebat-live" في القائمة = شريحة برنامج تعريبات لايف بدل لعبة
 const chosenHero = heroData.slugs
-  .map((slug) => translations.find((t) => t.id === slug))
+  .map((slug) => (slug === LIVE.heroSlug ? 'live' : translations.find((t) => t.id === slug)))
   .filter((t) => t !== undefined);
 const featured = translations.filter((t) => t.data.featured);
 const HERO_MAX = 5;

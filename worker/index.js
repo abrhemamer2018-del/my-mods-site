@@ -374,6 +374,8 @@ async function saveHomeList(gh, cfg, payload) {
       .filter((t) => t.type === 'blob' && t.path.startsWith(PATHS.translations + '/') && t.path.endsWith('/index.md'))
       .map((t) => t.path.split('/').slice(-2)[0]),
   );
+  // شريحة برنامج تعريبات لايف مسموحة في البانر وحده
+  if (cfg.path.endsWith('hero.json')) existing.add('ta3reebat-live');
   const missing = slugs.find((s) => !existing.has(s));
   if (missing) throw httpError(400, `التعريب "${missing}" غير موجود`);
   const text = JSON.stringify({ slugs }, null, 2) + '\n';

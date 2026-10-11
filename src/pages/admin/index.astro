@@ -880,6 +880,8 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       ]);
       items.sort((a, b) => (b.date || '9999').localeCompare(a.date || '9999'));
       pinTitles = Object.fromEntries(items.map((it) => [it.slug, it.title || it.slug]));
+      // البانر فقط: شريحة برنامج تعريبات لايف تظهر كخيار أول
+      if (which === 'hero') pinTitles = { 'ta3reebat-live': '⭐ برنامج تعريبات لايف (شريحة إعلانية)', ...pinTitles };
       // نتجاهل أي تعريب مثبت حُذف لاحقاً
       pinned = current.slugs.filter((s) => s in pinTitles);
       renderPinned();

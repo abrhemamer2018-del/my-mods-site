@@ -1,9 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import type { Translation } from '../lib/utils';
+import { LIVE } from '../config';
+import liveImg from '../assets/live-hero.webp';
 
 interface Props {
-  items: Translation[];
+  // 'live' = شريحة برنامج تعريبات لايف
+  items: (Translation | 'live')[];
 }
 const { items } = Astro.props;
 const multi = items.length > 1;
@@ -14,7 +17,42 @@ const slides = multi ? [...items, items[0]] : items;
 <section class="hero" aria-roledescription="carousel" aria-label="تعريبات مميزة" data-count={items.length}>
   <div class="track">
     {
-      slides.map((item, i) => (
+      slides.map((item, i) =>
+        item === 'live' ? (
+        <div class="slide slide-live" aria-hidden={i !== 0 ? 'true' : undefined} data-clone={i === items.length ? '' : undefined}>
+          <Image class="bg" src={liveImg} alt="" aria-hidden="true" width={480} loading={i === 0 ? 'eager' : 'lazy'} />
+          <div class="inner container">
+            <div class="content">
+              <span class="live-kicker"><span class="live-dot" />جديد · برنامج مجاني</span>
+              <h2 class="title">
+                تعريبات <span class="live-grad">لايف</span>
+              </h2>
+              <p class="ar">{LIVE.tagline}</p>
+              <p class="summary">
+                لعبتك غير معرّبة؟ تعريبات لايف يقرأ النص الإنجليزي من الشاشة ويكتب ترجمته العربية في مكانه مباشرة، أثناء
+                اللعب وبدون إنترنت.
+              </p>
+              <div class="live-cta">
+                <a href="/live/" class="btn btn-primary" tabindex={i !== 0 ? -1 : undefined}>
+                  اكتشف البرنامج
+                </a>
+                <a href="/live/#video" class="btn" tabindex={i !== 0 ? -1 : undefined}>
+                  ▶ شاهد الفيديو
+                </a>
+              </div>
+            </div>
+            <a href="/live/" class="media" tabindex="-1" aria-hidden="true">
+              <Image
+                class="fg"
+                src={liveImg}
+                alt="تعريبات لايف: حوار لعبة بالإنجليزية ثم مترجماً إلى العربية بضغطة F9"
+                width={1600}
+                loading={i === 0 ? 'eager' : 'lazy'}
+              />
+            </a>
+          </div>
+        </div>
+        ) : (
         <div class="slide" aria-hidden={i !== 0 ? 'true' : undefined} data-clone={i === items.length ? '' : undefined}>
           {/* خلفية: نفس الصورة مكبّرة ومموّهة لتملأ الفراغات بألوانها */}
           <Image
@@ -46,7 +84,8 @@ const slides = multi ? [...items, items[0]] : items;
             </a>
           </div>
         </div>
-      ))
+        ),
+      )
     }
   </div>
 
@@ -72,6 +111,50 @@ const slides = multi ? [...items, items[0]] : items;
 </section>
 
 <style>
+  /* شريحة تعريبات لايف */
+  .live-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent);
+    background: rgb(25 195 214 / 0.12);
+    border: 1px solid rgb(25 195 214 / 0.35);
+  }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 10px var(--accent-2);
+  }
+  .live-grad {
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .live-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .slide-live .content .title {
+    font-family: var(--font-display);
+  }
+  .slide-live .content .ar {
+    font-family: var(--font);
+    font-weight: 800;
+  }
+  @media (max-width: 760px) {
+    .slide-live .inner {
+      padding-bottom: 84px;
+    }
+  }
   .hero {
     --duration: 5s;
     position: relative;

@@ -29,6 +29,8 @@ export const SOCIAL: { label: string; url: string; icon: string }[] = [
 
 // برنامج تعريبات لايف (صفحة /live/). عند إصدار نسخة جديدة: حدّث الرقم والرابط والحجم فقط
 export const LIVE = {
+  // اسم شريحة البرنامج في قائمة البانر (src/data/hero.json ولوحة التحكم)
+  heroSlug: 'ta3reebat-live',
   name: 'تعريبات لايف',
   tagline: 'عرّب أي لعبة فوراً وأنت تلعب… بضغطة زر',
   version: '1.0.0',
