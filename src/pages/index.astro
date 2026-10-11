@@ -134,6 +134,9 @@ const jsonLd = [
   }
 
 
+  {/* فاصل خفيف بتدرج ألوان الشعار */}
+  {pinned.length > 0 && <div class="container"><hr class="soft-divider" /></div>}
+
   {/* جديد التعريبات بعرض الصفحة كاملة */}
   <section class="container section latest">
     <div class="section-head">
@@ -252,6 +255,17 @@ const jsonLd = [
 
 <style>
   /* شريط الإحصائيات تحت البانر */
+  .soft-divider {
+    height: 1px;
+    margin: 44px 0 0;
+    border: 0;
+    background: linear-gradient(90deg, transparent, rgb(224 52 79 / 0.45) 25%, rgb(25 195 214 / 0.55) 75%, transparent);
+  }
+  @media (max-width: 760px) {
+    .soft-divider {
+      display: none; /* المثبتة مخفية على الجوال */
+    }
+  }
   /* الإحصائيات تطفو على الحافة السفلية للبانر بخلفية زجاجية */
   .stats-wrap {
     position: relative;
@@ -267,9 +281,14 @@ const jsonLd = [
     backdrop-filter: blur(14px);
     box-shadow: 0 14px 40px rgb(0 0 0 / 0.45);
   }
-  /* نرفع نقاط وأسهم البانر حتى لا يغطيها الشريط */
+  /* نرفع نقاط وأسهم البانر حتى لا يغطيها الشريط، ونُبعد الصورة والنص عنها بنفس المقدار */
   :global(body:has(.stats-wrap) .hero .dots) {
     bottom: 58px;
+  }
+  @media (min-width: 761px) {
+    :global(body:has(.stats-wrap) .hero .inner) {
+      padding-bottom: 96px;
+    }
   }
   @media (max-width: 1700px) {
     :global(body:has(.stats-wrap) .hero .arrow) {
