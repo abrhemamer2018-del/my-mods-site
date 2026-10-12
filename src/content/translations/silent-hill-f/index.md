@@ -7,7 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-08
-gameRelease: 2025-09-25
+gameRelease: 2025-09-24
 version: "1.0"
 cover: ./cover-muztx4h1.webp
 screenshots:

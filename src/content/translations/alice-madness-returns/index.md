@@ -7,7 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-11
-gameRelease: 2011-06-14
+gameRelease: 2011-06-17
 version: "1.0"
 cover: ./cover-mv3zvc1i.webp
 screenshots:
