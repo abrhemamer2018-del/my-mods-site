@@ -18,7 +18,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SonsOfTheForest_Installer.zip
-    size: 3.41 MB
+    size: 4.07 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
