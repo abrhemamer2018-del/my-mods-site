@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-12
+gameRelease: 2017-02-24
 version: "1.0"
 cover: ./cover-mv5psbdh.webp
 screenshots:

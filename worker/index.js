@@ -639,6 +639,13 @@ async function saveEntry(gh, payload) {
   const data = payload.data;
   if (!data || typeof data !== 'object') throw httpError(400, 'بيانات ناقصة');
   if (!data.title) throw httpError(400, 'العنوان مطلوب');
+  // تاريخ صدور اللعبة: إن تُرك فارغاً نجلبه من Steam تلقائياً (لترتيب "أحدث الألعاب المعرّبة")
+  if (type === 'translations' && !data.gameRelease) {
+    try {
+      const r = await steamRelease(new URL('https://x/?title=' + encodeURIComponent(data.title)));
+      if (r.date) data.gameRelease = r.date;
+    } catch {}
+  }
 
   const path = entryPath(type, slug);
   const exists = !!(await gh.raw(path));

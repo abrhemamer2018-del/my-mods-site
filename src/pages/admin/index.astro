@@ -958,7 +958,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
   // تاريخ صدور اللعبة من Steam (زر يدوي، وتلقائياً عند كتابة الاسم الإنجليزي إن كان الحقل فارغاً)
   async function fetchSteamDate(manual: boolean) {
-    const f = $<HTMLFormElement>('#entry-form');
+    const f = $<HTMLFormElement>('#t-form');
     const title = (f.elements.namedItem('title') as HTMLInputElement | null)?.value.trim();
     const field = f.elements.namedItem('gameRelease') as HTMLInputElement | null;
     if (!title || !field || (!manual && field.value)) return;
@@ -973,7 +973,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     }
   }
   document.getElementById('steam-date')?.addEventListener('click', () => fetchSteamDate(true));
-  document.querySelector('#entry-form [name=title]')?.addEventListener('change', () => fetchSteamDate(false));
+  document.querySelector('#t-form [name=title]')?.addEventListener('change', () => fetchSteamDate(false));
 
   async function loadList() {
     show('loading');
