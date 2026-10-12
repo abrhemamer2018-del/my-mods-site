@@ -19,6 +19,7 @@ const translations = defineCollection({
       status: z.enum(['complete', 'beta', 'in-progress']).default('complete'),
       progress: z.number().min(0).max(100).optional(),
       releaseDate: z.coerce.date(),
+      gameRelease: z.coerce.date().optional(), // تاريخ صدور اللعبة نفسها على PC (لترتيب "جديد التعريبات")
       updatedDate: z.coerce.date().optional(),
       version: z.string().default('1.0'),
       gameVersion: z.string().optional(), // نسخة اللعبة المدعومة

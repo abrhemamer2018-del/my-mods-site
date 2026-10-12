@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-07
+gameRelease: 2020-11-10
 version: "1.0"
 cover: ./cover-muxguhe8.webp
 banner: ./banner-muxiwlns.webp

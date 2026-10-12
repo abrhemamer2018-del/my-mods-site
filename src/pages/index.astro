@@ -10,6 +10,11 @@ import pinnedData from '../data/pinned.json';
 import heroData from '../data/hero.json';
 
 const translations = await getTranslations();
+// قسم "جديد التعريبات": الألعاب الأحدث صدوراً أولاً (تاريخ صدور اللعبة)، ومن لا تاريخ لها حسب تاريخ التعريب
+const byGame = [...translations].sort(
+  (a, b) =>
+    (b.data.gameRelease ?? b.data.releaseDate).getTime() - (a.data.gameRelease ?? a.data.releaseDate).getTime(),
+);
 // التعريبات المثبتة: تُختار وتُرتَّب من لوحة التحكم (نافذة "التعريبات المثبتة")، مستقلة عن البانر
 const pinned = pinnedData.slugs
   .map((slug) => translations.find((t) => t.id === slug))
@@ -145,7 +150,7 @@ const jsonLd = [
       <a href="/translations/">المزيد ‹</a>
     </div>
     <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
-      {translations.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
+      {byGame.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
     </div>
     {
       translations.length > PAGE_SIZE && (

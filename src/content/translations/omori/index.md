@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-08
+gameRelease: 2020-12-25
 version: "1.0"
 cover: ./cover-muztg6c5.webp
 screenshots:

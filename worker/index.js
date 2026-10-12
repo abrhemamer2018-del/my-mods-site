@@ -67,6 +67,7 @@ async function handleApi(request, env, url) {
   if (route === 'entry' && method === 'DELETE') return json(await deleteEntry(gh, url));
   if (route === 'file' && method === 'GET') return readFile(gh, url);
   if (route === 'asset-size' && method === 'GET') return json(await assetSize(env, url));
+  if (route === 'steam-release' && method === 'GET') return json(await steamRelease(url));
   if (HOME_LISTS[route] && method === 'GET') return json(await readHomeList(gh, HOME_LISTS[route]));
   if (HOME_LISTS[route] && method === 'POST') return json(await saveHomeList(gh, HOME_LISTS[route], await request.json()));
   if (route === 'discord' && method === 'POST') return json(await announceToDiscord(gh, env, await request.json()));
@@ -77,6 +78,26 @@ async function handleApi(request, env, url) {
 // ------------------------------------------------------------
 //  تسجيل الدخول والجلسات
 // ------------------------------------------------------------
+/** تاريخ صدور لعبة على Steam (PC) من اسمها الإنجليزي → { date: 'YYYY-MM-DD' | null, name } */
+async function steamRelease(url) {
+  const title = (url.searchParams.get('title') || '').trim().slice(0, 120);
+  if (!title) throw httpError(400, 'اكتب اسم اللعبة أولاً');
+  const norm = (s) => s.toLowerCase().replace(/[™®]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const search = await fetch(
+    `https://store.steampowered.com/api/storesearch/?cc=us&l=en&term=${encodeURIComponent(title)}`,
+  ).then((r) => (r.ok ? r.json() : { items: [] }));
+  const items = (search.items || []).filter((i) => !/demo|soundtrack|dlc|upgrade|season pass/i.test(i.name));
+  const t = norm(title);
+  const best = items.find((i) => norm(i.name) === t) || items.find((i) => norm(i.name).startsWith(t)) || items[0];
+  if (!best) return { date: null };
+  const det = await fetch(`https://store.steampowered.com/api/appdetails?cc=us&l=en&appids=${best.id}`).then((r) =>
+    r.ok ? r.json() : {},
+  );
+  const raw = det?.[best.id]?.data?.release_date?.date || '';
+  const d = new Date(raw + ' UTC');
+  return { date: isNaN(d) ? null : d.toISOString().slice(0, 10), name: best.name };
+}
+
 async function login(request, env) {
   if (!env.ADMIN_USER || !env.ADMIN_PASSWORD) {
     throw httpError(500, 'لم يتم ضبط ADMIN_USER و ADMIN_PASSWORD في إعدادات Cloudflare');
@@ -754,6 +775,7 @@ function validate(type, d, images) {
     if (!strList(d.platforms)) return 'المنصات غير صحيحة';
     if (!isDate(d.releaseDate)) return 'تاريخ الإصدار مطلوب';
     if (!optional(d.updatedDate, isDate)) return 'تاريخ آخر تحديث غير صحيح';
+    if (!optional(d.gameRelease, isDate)) return 'تاريخ صدور اللعبة غير صحيح';
     if (!optional(d.version, isStr) || !optional(d.gameVersion, isStr)) return 'رقم الإصدار غير صحيح';
     if (!optional(d.featured, isBool) || !optional(d.draft, isBool)) return 'بيانات غير صحيحة';
     if (!imageOk(d.cover)) return 'صورة الغلاف مطلوبة';

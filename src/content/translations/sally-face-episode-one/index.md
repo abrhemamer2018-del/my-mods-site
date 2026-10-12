@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-10
+gameRelease: 2016-12-14
 version: "1.0"
 cover: ./cover-mv1yrssi.webp
 screenshots:

@@ -116,6 +116,10 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
             <div class="grid3">
               <label>تاريخ الإصدار * <input name="releaseDate" type="date" required /></label>
               <label>تاريخ آخر تحديث <input name="updatedDate" type="date" /></label>
+              <label
+                >تاريخ صدور اللعبة <small class="muted">(يُجلب تلقائياً من Steam)</small>
+                <span class="inline-row" style="display:flex;gap:8px;align-items:center"><input name="gameRelease" style="flex:1" type="date" /><button type="button" class="btn small" id="steam-date">🔍 Steam</button></span>
+              </label>
               <div class="checks">
                 <label class="check"><input name="featured" type="checkbox" /> يظهر في البانر الرئيسي</label>
                 <label class="check"><input name="draft" type="checkbox" /> مسودة (مخفي عن الزوار)</label>
@@ -952,6 +956,25 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     }
   });
 
+  // تاريخ صدور اللعبة من Steam (زر يدوي، وتلقائياً عند كتابة الاسم الإنجليزي إن كان الحقل فارغاً)
+  async function fetchSteamDate(manual: boolean) {
+    const f = $<HTMLFormElement>('#entry-form');
+    const title = (f.elements.namedItem('title') as HTMLInputElement | null)?.value.trim();
+    const field = f.elements.namedItem('gameRelease') as HTMLInputElement | null;
+    if (!title || !field || (!manual && field.value)) return;
+    try {
+      const r = (await api('steam-release?title=' + encodeURIComponent(title))) as { date: string | null; name?: string };
+      if (r.date) {
+        field.value = r.date;
+        if (manual) toast(`✅ ${r.name}: ${r.date}`);
+      } else if (manual) toast('لم أجد اللعبة في Steam، اكتب التاريخ يدوياً', true);
+    } catch (ex) {
+      if (manual) toast((ex as Error).message, true);
+    }
+  }
+  document.getElementById('steam-date')?.addEventListener('click', () => fetchSteamDate(true));
+  document.querySelector('#entry-form [name=title]')?.addEventListener('change', () => fetchSteamDate(false));
+
   async function loadList() {
     show('loading');
     setPinMode(false);
@@ -1271,6 +1294,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       set('video', d.video);
       set('releaseDate', dateStr(d.releaseDate) || today());
       set('updatedDate', dateStr(d.updatedDate));
+      set('gameRelease', dateStr(d.gameRelease));
       set('featured', d.featured);
       set('draft', d.draft);
       set('requirements', (d.requirements || []).join('\n'));
@@ -1347,6 +1371,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         progress: progress === '' ? undefined : Math.max(0, Math.min(100, Number(progress))),
         releaseDate: v('releaseDate'),
         updatedDate: v('updatedDate'),
+        gameRelease: v('gameRelease'),
         version: v('version') || '1.0',
         gameVersion: v('gameVersion'),
         featured: checked('featured') || undefined,

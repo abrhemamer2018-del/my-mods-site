@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-09-30
+gameRelease: 2025-05-21
 version: "2.0"
 cover: ./cover-mv26wsjs.webp
 screenshots:

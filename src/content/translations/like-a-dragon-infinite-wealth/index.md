@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-07
+gameRelease: 2024-01-25
 version: "1.0"
 cover: ./cover-muyir71r.webp
 screenshots:
