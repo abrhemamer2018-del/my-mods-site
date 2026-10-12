@@ -7,26 +7,25 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-04
-version: "1.0"
-cover: ./cover-mutpz6u0.webp
-banner: ./banner-mutq0fn4.webp
+version: "2.0"
+cover: ./cover-mv4x4iya.webp
 screenshots:
-  - ./shot-mutqdlihtq3.webp
-  - ./shot-mutqdlkfmmc.webp
-  - ./shot-mutqdlo3cfq.webp
+  - ./shot-mv4x6vuhqng.webp
+  - ./shot-mv4x7cjs3pm.webp
+  - ./shot-mv4x8ax7e54.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TLOU1_Installer.zip
-    size: 1.50 MB
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TLOU1_Installer_V2.zip
+    size: 1.51 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "2.0"
     date: 2026-10-04
     notes:
-      - الإصدار الأول
+      - الإصدار الثاني
 ---
 
 ## طريقة التثبيت
