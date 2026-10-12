@@ -64,7 +64,7 @@ const jsonLd = [
 <BaseLayout jsonLd={jsonLd}>
   {/* العنوان الرئيسي للصفحة لمحركات البحث وقارئات الشاشة (مخفي بصرياً) */}
   <h1 class="sr-only">موقع {SITE.name} — {SITE.tagline}</h1>
-  {heroItems.length > 0 && <Hero items={heroItems} />}
+  {heroItems.length > 0 && <Hero items={heroItems} recent={!chosenHero.length} />}
 
   {/* شريط الإحصائيات مدمج على الحافة السفلية للبانر */}
   <div class="container stats-wrap">
