@@ -25,14 +25,9 @@ const pinned = pinnedData.slugs
 const chosenHero = heroData.slugs
   .map((slug) => (slug === LIVE.heroSlug ? 'live' : translations.find((t) => t.id === slug)))
   .filter((t) => t !== undefined);
-const featured = translations.filter((t) => t.data.featured);
 const HERO_MAX = 5;
-const heroItems = chosenHero.length
-  ? chosenHero
-  : [
-      ...featured,
-      ...translations.filter((t) => !t.data.featured).slice(0, Math.max(0, HERO_MAX - featured.length)),
-    ].slice(0, Math.max(HERO_MAX, featured.length));
+// إن كانت قائمة البانر فارغة في لوحة التحكم: آخر 5 تعريبات أُضيفت للموقع (حسب تاريخ الإصدار)
+const heroItems = chosenHero.length ? chosenHero : translations.slice(0, HERO_MAX);
 // جديد التعريبات بعرض الصفحة: تظهر أول 30 (6 صفوف من 5)، و"عرض المزيد" يُظهر 30 أخرى عند كل ضغطة
 const PAGE_SIZE = 30;
 
@@ -109,7 +104,8 @@ const jsonLd = [
     pinned.length > 0 && (
       <section class="container pinned-sec">
         <div class="section-head">
-          <h2>تعريبات مثبتة</h2>
+          <h2>تعريبات محدّثة</h2>
+          <span class="muted sec-sub">نسخ جديدة ومحسّنة من تعريبات سابقة</span>
         </div>
         <div class="pin-grid">
           {pinned.map((t) => (
@@ -120,10 +116,11 @@ const jsonLd = [
               <span class="pin-frame">
                 <span class="pin-in">
                   <Image class="pin-img" src={t.data.cover} alt={`تعريب لعبة ${t.data.titleAr} (${t.data.title})`} width={760} />
+                  <span class="pin-ver" dir="ltr">v{t.data.version} · <span dir="rtl">محدّث</span></span>
                   {/* لوحة زجاجية للاسم */}
                   <span class="pin-glass">
-                    <span class="pin-flag" aria-label="مثبت">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3a1 1 0 0 1 .7 1.7L15 6.4v4.2l2.6 2.6a1 1 0 0 1-.7 1.8H13v5.5a1 1 0 0 1-2 0V15H7.1a1 1 0 0 1-.7-1.8L9 10.6V6.4L7.3 4.7A1 1 0 0 1 8 3z" /></svg>
+                    <span class="pin-flag" aria-label="محدّث">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5" /></svg>
                     </span>
                     <span class="pin-names">
                       <strong dir="ltr">{t.data.title}</strong>
@@ -146,7 +143,7 @@ const jsonLd = [
   {/* جديد التعريبات بعرض الصفحة كاملة */}
   <section class="container section latest">
     <div class="section-head">
-      <h2>جديد التعريبات</h2>
+      <h2>أحدث الألعاب المعرّبة</h2>
       <a href="/translations/">المزيد ‹</a>
     </div>
     <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
@@ -426,6 +423,22 @@ const jsonLd = [
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgb(255 255 255 / 0.12);
   }
+  /* شارة الإصدار أعلى البطاقة */
+  .pin-ver {
+    position: absolute;
+    top: 12px;
+    inset-inline-end: 12px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #04141a;
+    background: linear-gradient(90deg, var(--accent), #6be3ef);
+    box-shadow: 0 6px 18px rgb(25 195 214 / 0.35);
+  }
+  .sec-sub {
+    font-size: 0.92rem;
+  }
   .pin-flag {
     flex-shrink: 0;
     width: 30px;
@@ -435,7 +448,6 @@ const jsonLd = [
     border-radius: 50%;
     color: #fff;
     background: linear-gradient(135deg, var(--accent-2), #ff6b81);
-    transform: rotate(35deg);
   }
   .pin-names {
     min-width: 0;
