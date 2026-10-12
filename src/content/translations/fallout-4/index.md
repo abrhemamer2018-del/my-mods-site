@@ -10,7 +10,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-10
-gameRelease: 2015-11-09
+gameRelease: 2015-11-10
 version: "1.0"
 cover: ./cover-mv1ppx1n.webp
 screenshots:

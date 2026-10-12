@@ -7,7 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-10
-gameRelease: 2020-02-14
+gameRelease: 2019-02-15
 version: "1.0"
 cover: ./cover-mv290bjj.webp
 screenshots:

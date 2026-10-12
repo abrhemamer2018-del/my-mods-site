@@ -7,7 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-06
-gameRelease: 2025-03-04
+gameRelease: 2013-09-17
 version: "1.0"
 cover: ./cover-muxbg81y.webp
 banner: ./banner-muxbjblm.webp

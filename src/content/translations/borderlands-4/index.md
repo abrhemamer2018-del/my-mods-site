@@ -7,7 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-05
-gameRelease: 2025-09-11
+gameRelease: 2025-09-12
 version: "1.0"
 cover: ./cover-muvmyt3a.webp
 banner: ./banner-muvmyrmc.webp
