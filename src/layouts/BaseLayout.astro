@@ -119,7 +119,12 @@ const LT_ESCAPED = '\\' + 'u003c';
       // تحويل التواريخ إلى صيغة "منذ يومين" في المتصفح حتى تبقى دقيقة دائماً
       const rtf = new Intl.RelativeTimeFormat('ar', { numeric: 'auto' });
       document.querySelectorAll<HTMLTimeElement>('time[data-ago]').forEach((el) => {
-        const days = Math.round((new Date(el.dateTime).getTime() - Date.now()) / 86400000);
+        // نقارن أيام التقويم بتوقيت الزائر (التاريخ المحفوظ يوم فقط، فلا نقارنه بالساعة)
+        const [y, m, d] = el.dateTime.slice(0, 10).split('-').map(Number);
+        const now = new Date();
+        const days = Math.round(
+          (Date.UTC(y, m - 1, d) - Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000,
+        );
         let text;
         if (Math.abs(days) < 30) text = rtf.format(days, 'day');
         else if (Math.abs(days) < 365) text = rtf.format(Math.round(days / 30), 'month');
