@@ -8,6 +8,7 @@
 //    ADMIN_PASSWORD  كلمة المرور
 //    GITHUB_TOKEN    توكن GitHub بصلاحية Contents: Read and write على المستودع
 // ============================================================
+import { isAbusive } from './moderation.js';
 import { parse, stringify } from 'yaml';
 
 const SESSION_DAYS = 7;
@@ -396,6 +397,22 @@ const REPORT_TYPES = {
 };
 const REPORT_STORES = ['Steam', 'Epic', 'GOG', 'Xbox / Game Pass', 'أخرى'];
 
+const REPORTS_PER_DAY = 5;
+
+/** يمنع أكثر من REPORTS_PER_DAY بلاغات يومياً من نفس الجهاز (العنوان يُخزَّن مشفّراً فقط) */
+async function checkDailyReports(request) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const day = new Date().toISOString().slice(0, 10);
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`ta3reebat-report|${day}|${ip}`));
+  const id = [...new Uint8Array(digest)].slice(0, 12).map((b) => b.toString(16).padStart(2, '0')).join('');
+  const key = new Request(`https://cache.internal/report-count/${id}`);
+  const cache = caches.default;
+  const hit = await cache.match(key);
+  const count = hit ? Number(await hit.text()) || 0 : 0;
+  if (count >= REPORTS_PER_DAY) throw httpError(429, 'وصلت للحد اليومي للبلاغات. حاول غداً، أو اكتب في ديسكورد');
+  await cache.put(key, new Response(String(count + 1), { headers: { 'Cache-Control': 'max-age=86400' } }));
+}
+
 async function reportProblem(request, env, url) {
   if (!env.DISCORD_REPORTS_WEBHOOK_URL) throw httpError(503, 'الإبلاغ غير متاح حالياً، استخدم ديسكورد');
   if (env.REPORT_LIMITER) {
@@ -412,6 +429,14 @@ async function reportProblem(request, env, url) {
   const text = String(p.text || '').trim().slice(0, 1500);
   if (text.length < 10) throw httpError(400, 'اكتب وصفاً للمشكلة (10 أحرف على الأقل)');
   const contact = String(p.contact || '').trim().slice(0, 100);
+
+  // حد يومي لكل جهاز (يُحسب قبل الفلتر حتى لا يُغرق العابث القناة)
+  await checkDailyReports(request);
+  // حجب صامت: البلاغ المسيء لا يصل لديسكورد، والمرسل يرى رسالة النجاح العادية فلا يحاول التحايل
+  if (isAbusive(text, contact)) {
+    console.log('Report blocked by filter', slug);
+    return { ok: true };
+  }
 
   // اسم التعريب من فهرس الموقع (يرفض أي رابط لتعريب غير موجود)
   let title = null;
