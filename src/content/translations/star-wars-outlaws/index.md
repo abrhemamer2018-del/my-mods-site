@@ -7,27 +7,26 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-01
-version: "1.0"
-cover: ./cover-muozd9m0.webp
-banner: ./banner-muozcass.webp
+version: "2.0"
+cover: ./cover-mv4pnsqh.webp
 screenshots:
-  - ./shot-muozdipi9wk.webp
-  - ./shot-muozdiskor1.webp
-  - ./shot-muozdiuysit.webp
-  - ./shot-muozdixql0h.webp
+  - ./shot-mv4pdqg4j06.webp
+  - ./shot-mv4pe3ccaja.webp
+  - ./shot-mv4penchj7h.webp
+  - ./shot-mv4pewe4wo2.webp
 downloads:
   - label: تحميل مباشر
-    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_StarWarsOutlaws_Installer.zip
-    size: 7.1 MB
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_StarWarsOutlaws_V2.zip
+    size: 7.16 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "2.0"
     date: 2026-10-01
     notes:
-      - الإصدار الأول
+      - الإصدار الثاني
 ---
 
 ## طريقة التثبيت
