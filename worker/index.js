@@ -83,10 +83,15 @@ async function steamRelease(url) {
   const title = (url.searchParams.get('title') || '').trim().slice(0, 120);
   if (!title) throw httpError(400, 'اكتب اسم اللعبة أولاً');
   const norm = (s) => s.toLowerCase().replace(/[™®]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
-  const search = await fetch(
-    `https://store.steampowered.com/api/storesearch/?cc=us&l=en&term=${encodeURIComponent(title)}`,
-  ).then((r) => (r.ok ? r.json() : { items: [] }));
-  const items = (search.items || []).filter((i) => !/demo|soundtrack|dlc|upgrade|season pass/i.test(i.name));
+  // بحث Steam قد لا يجد الاسم الكامل (مثل "Life is Strange - Episode 1")، فنعيد البحث بالجزء الأول من الاسم
+  const short = title.split(/\s[-–—:]\s|:\s/)[0].trim();
+  const items = [];
+  for (const term of [...new Set([title, short])]) {
+    const search = await fetch(
+      `https://store.steampowered.com/api/storesearch/?cc=us&l=en&term=${encodeURIComponent(term)}`,
+    ).then((r) => (r.ok ? r.json() : { items: [] }));
+    items.push(...(search.items || []).filter((i) => !/demo|soundtrack|dlc|upgrade|season pass/i.test(i.name)));
+  }
   const t = norm(title);
   const best = items.find((i) => norm(i.name) === t) || items.find((i) => norm(i.name).startsWith(t)) || items[0];
   if (!best) return { date: null };
