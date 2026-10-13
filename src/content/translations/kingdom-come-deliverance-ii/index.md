@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-02
+addedAt: 2026-10-02T22:30:34+03:00
 gameRelease: 2025-02-04
 version: "1.0"
 cover: ./cover-murcy2ga.webp

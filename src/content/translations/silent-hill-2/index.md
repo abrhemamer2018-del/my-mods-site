@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-08
+addedAt: 2026-10-08T20:56:15+03:00
 gameRelease: 2024-10-07
 version: "1.0"
 cover: ./cover-muzu6jag.webp

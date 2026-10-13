@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-13
+addedAt: 2026-10-13T07:44:49+03:00
 gameRelease: 2023-11-02
 version: "1.0"
 cover: ./cover-mv674qib.webp

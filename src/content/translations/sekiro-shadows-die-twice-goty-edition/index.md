@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-06
+addedAt: 2026-10-07T03:06:38+03:00
 gameRelease: 2019-03-21
 version: "1.0"
 cover: ./cover-muxcjpsl.webp

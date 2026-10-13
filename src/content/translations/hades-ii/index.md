@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-04
+addedAt: 2026-10-05T02:41:19+03:00
 gameRelease: 2025-09-25
 version: "2.0"
 cover: ./cover-muugo1g1.webp

@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-03
+addedAt: 2026-10-03T12:04:58+03:00
 gameRelease: 2016-08-12
 version: "1.0"
 cover: ./cover-mus5xwbu.webp

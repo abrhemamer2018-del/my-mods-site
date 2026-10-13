@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-09-30
+addedAt: 2026-09-30T14:26:28+03:00
 gameRelease: 2020-09-17
 version: "2.0"
 cover: ./cover-murhbbxe.webp

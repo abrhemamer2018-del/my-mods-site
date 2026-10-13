@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-13
+addedAt: 2026-10-13T06:55:38+03:00
 version: "1.0"
 cover: ./cover-mv65afw3.webp
 screenshots:

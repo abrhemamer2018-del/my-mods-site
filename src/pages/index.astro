@@ -27,8 +27,8 @@ const chosenHero = heroData.slugs
   .filter((slug) => !pinnedIds.has(slug))
   .map((slug) => (slug === LIVE.heroSlug ? 'live' : translations.find((t) => t.id === slug)))
   .filter((t) => t !== undefined);
-const HERO_MAX = 5;
-// إن كانت قائمة البانر فارغة في لوحة التحكم: آخر 5 تعريبات أُضيفت للموقع (حسب تاريخ الإصدار)
+const HERO_MAX = 10;
+// إن كانت قائمة البانر فارغة في لوحة التحكم: آخر 10 تعريبات أُضيفت للموقع (بوقت الإضافة الدقيق)
 const heroItems = chosenHero.length
   ? chosenHero
   : translations.filter((t) => !pinnedIds.has(t.id)).slice(0, HERO_MAX);

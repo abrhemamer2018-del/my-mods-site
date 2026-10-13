@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-06
+addedAt: 2026-10-07T01:53:30+03:00
 gameRelease: 2026-09-02
 version: "1.0"
 cover: ./cover-mux9oom4.webp

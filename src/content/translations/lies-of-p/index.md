@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-08
+addedAt: 2026-10-08T21:28:25+03:00
 gameRelease: 2023-09-18
 version: "1.0"
 cover: ./cover-muzvd9cp.webp

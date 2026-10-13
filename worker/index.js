@@ -648,7 +648,12 @@ async function saveEntry(gh, payload) {
   }
 
   const path = entryPath(type, slug);
-  const exists = !!(await gh.raw(path));
+  const existing = await gh.raw(path);
+  const exists = !!existing;
+  if (type === 'translations') {
+    const old = exists ? (await existing.text()).match(/^addedAt:\s*["']?([^"'\r\n]+)/m) : null;
+    data.addedAt = old ? old[1].trim() : new Date().toISOString();
+  }
   if (payload.isNew && exists) throw httpError(409, 'يوجد عنصر بنفس الرابط (slug) مسبقاً، اختر رابطاً آخر');
   if (!payload.isNew && !exists) throw httpError(404, 'العنصر غير موجود');
 

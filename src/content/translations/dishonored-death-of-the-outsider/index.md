@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-12
+addedAt: 2026-10-12T23:29:50+03:00
 gameRelease: 2017-09-14
 version: "1.0"
 cover: ./cover-mv5pegal.webp

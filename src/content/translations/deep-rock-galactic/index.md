@@ -9,6 +9,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-11
+addedAt: 2026-10-11T03:28:11+03:00
 gameRelease: 2020-05-13
 version: "1.0"
 cover: ./cover-mv330bao.webp

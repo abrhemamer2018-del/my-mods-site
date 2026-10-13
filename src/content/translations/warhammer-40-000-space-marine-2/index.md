@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-03
+addedAt: 2026-10-03T15:17:29+03:00
 gameRelease: 2024-09-09
 version: "1.0"
 cover: ./cover-muscx1bf.webp

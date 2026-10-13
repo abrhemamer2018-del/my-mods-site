@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-07
+addedAt: 2026-10-07T05:40:33+03:00
 gameRelease: 2020-11-10
 version: "1.0"
 cover: ./cover-muxguhe8.webp

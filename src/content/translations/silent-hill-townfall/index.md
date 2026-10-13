@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-06
+addedAt: 2026-10-07T02:16:58+03:00
 gameRelease: 2026-09-23
 version: "1.0"
 cover: ./cover-muxaqg5d.webp

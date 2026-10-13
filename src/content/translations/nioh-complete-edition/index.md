@@ -9,6 +9,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-10
+addedAt: 2026-10-10T13:51:28+03:00
 gameRelease: 2017-11-07
 version: "1.0"
 cover: ./cover-mv29tagk.webp

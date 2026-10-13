@@ -20,7 +20,8 @@ export async function isNew(t: Translation) {
 /** كل التعريبات المنشورة، الأحدث أولاً */
 export async function getTranslations() {
   const all = await getCollection('translations', (t) => !t.data.draft);
-  return all.sort((a, b) => b.data.releaseDate.getTime() - a.data.releaseDate.getTime());
+  const t = (x: (typeof all)[number]) => (x.data.addedAt ?? x.data.releaseDate).getTime();
+  return all.sort((a, b) => t(b) - t(a));
 }
 
 export async function getArticles(kind?: 'article' | 'lesson') {

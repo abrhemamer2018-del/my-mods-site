@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-05
+addedAt: 2026-10-05T21:42:44+03:00
 gameRelease: 2023-06-28
 version: "1.0"
 cover: ./cover-muvlhage.webp

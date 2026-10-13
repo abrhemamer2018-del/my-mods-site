@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-05
+addedAt: 2026-10-05T21:24:42+03:00
 gameRelease: 2026-05-26
 version: "1.0"
 cover: ./cover-muvkth4u.webp

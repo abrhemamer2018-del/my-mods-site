@@ -7,6 +7,7 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-13
+addedAt: 2026-10-13T08:30:56+03:00
 gameRelease: 2018-08-29
 version: "1.0"
 cover: ./cover-mv68rdug.webp
