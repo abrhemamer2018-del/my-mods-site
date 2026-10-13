@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-07
 gameRelease: 2024-02-22
-version: "1.0"
+version: "2.0"
 cover: ./cover-muyi0cld.webp
 banner: ./banner-muyi33dg.webp
 screenshots:
@@ -24,10 +24,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "2.0"
     date: 2026-10-07
     notes:
-      - الإصدار الأول
+      - الإصدار الثاني
 ---
 
 ## طريقة التثبيت
