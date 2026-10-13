@@ -7,11 +7,9 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-10-06
-addedAt: 2026-10-07T02:38:40+03:00
 gameRelease: 2025-03-04
 version: "1.0"
-cover: ./cover-muxbg81y.webp
-banner: ./banner-muxbjblm.webp
+cover: ./cover-mv6c2hvs.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
@@ -26,6 +24,7 @@ changelog:
     date: 2026-10-06
     notes:
       - الإصدار الأول
+addedAt: 2026-10-07T02:38:40+03:00
 ---
 
 ## طريقة التثبيت
