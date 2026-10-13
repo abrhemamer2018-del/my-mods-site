@@ -7,11 +7,9 @@ platforms:
   - PC
 status: complete
 releaseDate: 2026-09-30
-addedAt: 2026-09-30T16:28:46+03:00
 gameRelease: 2026-09-22
 version: "2.0"
-cover: ./cover-murh8j3l.webp
-banner: ./banner-muo52583.webp
+cover: ./cover-mv6bqltw.webp
 screenshots:
   - ./shot-muo50ui1wr1.webp
   - ./shot-muo50uknwx3.webp
@@ -30,6 +28,7 @@ changelog:
     date: 2026-09-30
     notes:
       - الإصدار  الثاني
+addedAt: 2026-09-30T16:28:46+03:00
 ---
 
 ## طريقة التثبيت
