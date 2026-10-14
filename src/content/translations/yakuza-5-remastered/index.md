@@ -19,7 +19,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza5_Remastered_Installer_Full.zip
-    size: 18.73 MB
+    size: 18.72 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
