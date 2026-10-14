@@ -19,7 +19,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza4_Remastered_Installer.zip
-    size: 33.92 MB
+    size: 33.91 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
