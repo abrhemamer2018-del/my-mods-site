@@ -17,7 +17,6 @@ screenshots:
   - ./shot-mv8n42tswpj.webp
   - ./shot-mv8n49coqft.webp
   - ./shot-mv8n4ewwxrk.webp
-  - ./shot-mv8n4lcnxhf.webp
   - ./shot-mv8n4scr6fn.webp
 downloads:
   - label: تحميل مباشر
