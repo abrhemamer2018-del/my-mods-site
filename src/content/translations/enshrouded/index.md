@@ -18,7 +18,10 @@ screenshots:
   - ./shot-mv8n49coqft.webp
   - ./shot-mv8n4ewwxrk.webp
   - ./shot-mv8n4scr6fn.webp
-downloads: []
+downloads:
+  - label: تحميل مباشر
+    url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Enshrouded_Installer.zip
+    size: 7.57 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
