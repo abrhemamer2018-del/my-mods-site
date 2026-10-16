@@ -11,7 +11,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-15
 gameRelease: 2024-01-24
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv8n3by1.webp
 screenshots:
   - ./shot-mv8n42tswpj.webp
@@ -27,10 +27,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "1.1"
     date: 2026-10-15
     notes:
-      - الإصدار الأول
+      - الإصدار 1.1
 addedAt: 2026-10-14T21:48:25.421Z
 ---
 
