@@ -764,7 +764,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         body: JSON.stringify({ username: f.username.value, password: f.password.value }),
       });
       f.password.value = '';
-      await loadList();
+      await afterLogin();
     } catch (ex) {
       err.textContent = (ex as Error).message;
     }
@@ -1435,12 +1435,85 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     }
   }
 
+  // ------------------------------------------------ تعبئة تلقائية من أداة النشر المحلية (Tarib Publisher)
+  // الأداة تعمل على جهازك (127.0.0.1) وتفتح هذه الصفحة بـ #prefill ثم ترسل البيانات عبر postMessage
+  const PUBLISHER_ORIGIN = /^http:\/\/(127\.0\.0\.1|localhost):\d+$/;
+  const fromPublisher = location.hash === '#prefill' && !!window.opener;
+  let prefill: any = null;
+  let prefillDownload: { url: string; size: string } | null = null;
+  let loggedIn = false;
+  let prefillApplied = false;
+
+  function setPrefillDownload() {
+    if (!prefillDownload) return;
+    const row = document.querySelector<HTMLElement>('#t-form [data-repeater=downloads] .row');
+    if (!row) return;
+    const urlEl = $<HTMLInputElement>('[data-key="url"]', row);
+    urlEl.value = prefillDownload.url;
+    $<HTMLInputElement>('[data-key="size"]', row).value = prefillDownload.size;
+    // ملف موجود مسبقاً على GitHub: نجلب حجمه بنفس آلية اللصق
+    if (!prefillDownload.size) urlEl.dispatchEvent(new Event('input'));
+    toast('✅ تم رفع ملف التعريب وإضافة رابط التحميل');
+  }
+
+  async function applyPrefill() {
+    const p = prefill;
+    prefill = null;
+    await openEditor('translations', null);
+    const form = $<HTMLFormElement>('#t-form');
+    for (const [k, v] of Object.entries(p.fields || {})) {
+      const el = form.elements.namedItem(k) as HTMLInputElement | null;
+      if (el && v != null && v !== '') el.value = String(v);
+    }
+    (form.elements.namedItem('slug') as HTMLInputElement).dataset.auto = '';
+    if (p.cover) {
+      try {
+        const blob = await (await fetch(p.cover)).blob();
+        const img = await processImage(new File([blob], 'cover.jpg', { type: blob.type }), 1280);
+        const name = `cover-${stamp()}.${img.ext}`;
+        uploads.push({ name, base64: img.base64 });
+        imgState.cover = { name, url: img.url, isNew: true };
+        setupImageFields(form);
+      } catch (ex) {
+        toast((ex as Error).message, true);
+      }
+    }
+    prefillApplied = true;
+    setPrefillDownload();
+    fetchSteamDate(false);
+    if (!prefillDownload) toast('⏳ جارٍ رفع ملف التعريب من الأداة... سيُضاف رابط التحميل تلقائياً');
+  }
+
+  async function afterLogin() {
+    loggedIn = true;
+    if (prefill) return applyPrefill();
+    if (!fromPublisher) return loadList();
+    show('loading');
+    // إن لم تصل بيانات الأداة خلال 10 ثوانٍ نعرض القائمة كالعادة
+    setTimeout(() => !prefillApplied && !prefill && loadList(), 10000);
+  }
+
+  if (fromPublisher) {
+    window.addEventListener('message', (e) => {
+      if (!PUBLISHER_ORIGIN.test(e.origin) || e.data?.type !== 'tarib-prefill') return;
+      if (e.data.download) {
+        prefillDownload = e.data.download;
+        if (prefillApplied) setPrefillDownload();
+      }
+      if (e.data.fields && !prefillApplied && !prefill) {
+        prefill = e.data;
+        if (loggedIn) applyPrefill();
+      }
+    });
+    window.opener.postMessage({ type: 'tarib-admin-ready' }, '*');
+  }
+
   // ------------------------------------------------ البداية
   (async () => {
     show('loading');
     try {
       const { user } = await api('me');
-      if (user) return loadList();
+      if (user) return afterLogin();
     } catch {}
     show('login');
   })();
