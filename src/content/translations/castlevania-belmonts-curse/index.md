@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-18
 gameRelease: 2026-10-14
 version: "1.0"
-cover: ./cover-mvcw3zcq.webp
+cover: ./cover-mvcx5yn0.webp
 screenshots:
   - ./shot-mvcw4rsmzpg.webp
   - ./shot-mvcw4zwb66z.webp
