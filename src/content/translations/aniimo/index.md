@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-07
 gameRelease: 2026-09-15
-version: "1.0"
+version: "1.1"
 cover: ./cover-muxy0jvu.webp
 banner: ./banner-muy0smcm.webp
 screenshots:
@@ -26,10 +26,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "1.1"
     date: 2026-10-07
     notes:
-      - الإصدار الأول
+      - الإصدار 1.1
 addedAt: 2026-10-07T13:17:37+03:00
 ---
 
