@@ -12,6 +12,9 @@ version: "1.0"
 cover: ./cover-mvb1o5up.webp
 screenshots:
   - ./shot-mvb1pfap4ir.webp
+  - ./shot-mvc1e0jc6nh.webp
+  - ./shot-mvc1e8s6w3w.webp
+  - ./shot-mvc1f495js0.webp
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_P5R_Installer.zip
