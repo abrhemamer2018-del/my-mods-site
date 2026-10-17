@@ -110,6 +110,12 @@ const jsonLd = [
         </a>
       </li>
     </ul>
+    {/* الجوال فقط: زر رفيع لتعريبات لايف تحت الإحصائيات */}
+    <a href="/live/" class="live-slim">
+      <span class="live-pill" aria-hidden="true"><span class="live-dot"></span>LIVE</span>
+      <span>{LIVE.name}: عرّب أي لعبة بضغطة زر</span>
+      <span class="live-slim-go" aria-hidden="true">‹</span>
+    </a>
   </div>
 
   {/* تعريبات مثبتة: تُختار من لوحة التحكم ← "التعريبات المثبتة".
@@ -129,6 +135,14 @@ const jsonLd = [
               <span class="pin-frame">
                 <span class="pin-in">
                   <Image class="pin-img" src={t.data.cover} alt={`تعريب لعبة ${t.data.titleAr} (${t.data.title})`} width={760} />
+                  {/* الجوال: شارة "مثبّت" والاسم على تدرج داكن أسفل الغلاف */}
+                  <span class="pin-m" aria-hidden="true">
+                    <span class="pin-tag">مثبّت</span>
+                    <span class="pin-m-names">
+                      <strong dir="ltr">{t.data.title}</strong>
+                      <span>{t.data.titleAr}</span>
+                    </span>
+                  </span>
                   {/* لوحة زجاجية للاسم */}
                   <span class="pin-glass">
                     <span class="pin-flag" aria-label="مثبت">
@@ -148,18 +162,6 @@ const jsonLd = [
     )
   }
 
-
-  {/* الجوال فقط: بطاقة إعلان لبرنامج تعريبات لايف (على الكمبيوتر يظهر في شريط الإحصائيات) */}
-  <div class="container live-m-wrap">
-    <a href="/live/" class="live-m">
-      <span class="live-m-logo" aria-hidden="true"><img src="/logo.svg" alt="" width="48" height="48" /><span class="live-dot"></span></span>
-      <span class="live-m-txt">
-        <b>{LIVE.name} <span class="live-pill" aria-hidden="true">LIVE</span></b>
-        <small>عرّب أي لعبة فوراً وأنت تلعب</small>
-      </span>
-      <span class="live-m-cta">حمّل مجاناً</span>
-    </a>
-  </div>
 
   {/* فاصل خفيف بتدرج ألوان الشعار */}
   {pinned.length > 0 && <div class="container"><hr class="soft-divider pin-divider" /></div>}
@@ -437,68 +439,8 @@ const jsonLd = [
     border: 2px solid var(--card);
     box-sizing: content-box;
   }
-  .live-m-wrap {
+  .live-slim {
     display: none;
-  }
-  .live-m {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px;
-    border-radius: 18px;
-    color: inherit;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    background:
-      radial-gradient(120% 140% at 100% 0%, rgb(224 52 79 / 0.35), transparent 60%),
-      radial-gradient(120% 140% at 0% 100%, rgb(25 195 214 / 0.25), transparent 60%),
-      var(--card);
-  }
-  .live-m-logo {
-    position: relative;
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-  }
-  .live-m-logo img {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .live-m-logo .live-dot {
-    position: absolute;
-    top: -3px;
-    inset-inline-end: -3px;
-    width: 10px;
-    height: 10px;
-    border: 2px solid var(--card);
-  }
-  .live-m-txt {
-    display: grid;
-    gap: 2px;
-    min-width: 0;
-  }
-  .live-m-txt b {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 1.02rem;
-    font-weight: 800;
-    color: var(--text);
-  }
-  .live-m-txt small {
-    color: #c9cde6;
-    font-size: 0.8rem;
-  }
-  .live-m-cta {
-    margin-inline-start: auto;
-    flex-shrink: 0;
-    padding: 7px 12px;
-    border-radius: 10px;
-    background: var(--accent);
-    color: #04121a;
-    font-size: 0.8rem;
-    font-weight: 800;
   }
   @keyframes live-blink {
     50% {
@@ -595,6 +537,9 @@ const jsonLd = [
   .sec-sub {
     font-size: 0.92rem;
   }
+  .pin-m {
+    display: none;
+  }
   .pin-flag {
     transform: rotate(35deg);
     flex-shrink: 0;
@@ -658,9 +603,58 @@ const jsonLd = [
     .pin-in {
       border-radius: 14px;
     }
-    /* البطاقات الصغيرة: اسم اللعبة مكتوب على الغلاف نفسه، فلا نكرره */
-    .pin-card:not(:first-child):not(:last-child:nth-child(even)) .pin-glass {
+    .pin-glass {
       display: none;
+    }
+    .pin-m {
+      display: block;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 40%, rgb(5 6 12 / 0.92));
+    }
+    .pin-tag {
+      position: absolute;
+      top: 10px;
+      inset-inline-start: 10px;
+      padding: 3px 10px 2px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .pin-m-names {
+      position: absolute;
+      bottom: 10px;
+      inset-inline: 12px;
+      display: grid;
+      line-height: 1.3;
+    }
+    .pin-m-names strong {
+      font-size: 1rem;
+      font-weight: 800;
+      text-align: right;
+    }
+    .pin-m-names span {
+      color: #c9cde6;
+      font-size: 0.8rem;
+    }
+    /* البطاقات الصغيرة: بلا شارة، واسم أصغر في سطر واحد */
+    .pin-card:not(:first-child):not(:last-child:nth-child(even)) .pin-tag {
+      display: none;
+    }
+    .pin-card:not(:first-child):not(:last-child:nth-child(even)) .pin-m-names {
+      bottom: 7px;
+      inset-inline: 9px;
+    }
+    .pin-card:not(:first-child):not(:last-child:nth-child(even)) .pin-m-names strong {
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pin-card:not(:first-child):not(:last-child:nth-child(even)) .pin-m-names span {
+      font-size: 0.7rem;
     }
   }
 
@@ -930,7 +924,7 @@ const jsonLd = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  /* الجوال والشاشات الصغيرة: الإحصائيات صف واحد من 4 خانات فوق حافة البانر (أيقونة بجانب الرقم والكلمة) */
+  /* الجوال والشاشات الصغيرة: الإحصائيات 4 أرقام بلا أيقونات فوق حافة البانر، وتحتها زر تعريبات لايف */
   @media (max-width: 760px) {
     .stats-wrap {
       margin-top: -30px;
@@ -943,47 +937,52 @@ const jsonLd = [
       border-radius: var(--radius);
     }
     .stats-wrap .stats-strip li {
-      display: grid;
-      grid-template-columns: auto auto;
-      grid-template-areas: 'ico val' 'ico lbl';
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      column-gap: 6px;
-      row-gap: 1px;
-      font-size: 0.7rem;
+      gap: 3px;
+      text-align: center;
+      font-size: 0.74rem;
       line-height: 1.2;
     }
-    .stats-wrap .s-ico {
-      grid-area: ico;
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
-      box-shadow: none;
-    }
-    .stats-wrap .s-ico :global(svg) {
-      width: 14px;
-      height: 14px;
-    }
-    .stats-wrap .stats-strip strong,
-    .stats-wrap .stats-strip time {
-      grid-area: val;
-      font-size: 0.98rem;
-    }
-    .stats-wrap .stats-strip li > span:not(.s-ico) {
-      grid-area: lbl;
-      white-space: nowrap;
-    }
+    .stats-wrap .s-ico,
     .stats-wrap .stats-strip .colon,
     .stats-wrap .stats-strip .s-live {
       display: none;
     }
+    .stats-wrap .stats-strip strong,
+    .stats-wrap .stats-strip time {
+      order: 1;
+      font-size: 1.1rem;
+    }
+    .stats-wrap .stats-strip li > span:not(.s-ico) {
+      order: 2;
+    }
     .stats-wrap .stats-strip li + li::before {
       inset-inline-start: 0;
-      height: 30px;
+      height: 32px;
     }
-    .live-m-wrap {
-      display: block;
-      margin-top: 22px;
+    .stats-wrap .stats-strip {
+      padding: 12px 6px;
+    }
+    .live-slim {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgb(224 52 79 / 0.35);
+      background: rgb(224 52 79 / 0.1);
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .live-slim-go {
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
     }
     :global(body:has(.stats-wrap) .hero .dots) {
       bottom: 44px;
