@@ -149,6 +149,18 @@ const jsonLd = [
   }
 
 
+  {/* الجوال فقط: بطاقة إعلان لبرنامج تعريبات لايف (على الكمبيوتر يظهر في شريط الإحصائيات) */}
+  <div class="container live-m-wrap">
+    <a href="/live/" class="live-m">
+      <span class="live-m-logo" aria-hidden="true"><img src="/logo.svg" alt="" width="48" height="48" /><span class="live-dot"></span></span>
+      <span class="live-m-txt">
+        <b>{LIVE.name} <span class="live-pill" aria-hidden="true">LIVE</span></b>
+        <small>عرّب أي لعبة فوراً وأنت تلعب</small>
+      </span>
+      <span class="live-m-cta">حمّل مجاناً</span>
+    </a>
+  </div>
+
   {/* فاصل خفيف بتدرج ألوان الشعار */}
   {pinned.length > 0 && <div class="container"><hr class="soft-divider pin-divider" /></div>}
 
@@ -425,6 +437,69 @@ const jsonLd = [
     border: 2px solid var(--card);
     box-sizing: content-box;
   }
+  .live-m-wrap {
+    display: none;
+  }
+  .live-m {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 18px;
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgb(224 52 79 / 0.35), transparent 60%),
+      radial-gradient(120% 140% at 0% 100%, rgb(25 195 214 / 0.25), transparent 60%),
+      var(--card);
+  }
+  .live-m-logo {
+    position: relative;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+  }
+  .live-m-logo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .live-m-logo .live-dot {
+    position: absolute;
+    top: -3px;
+    inset-inline-end: -3px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--card);
+  }
+  .live-m-txt {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+  .live-m-txt b {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .live-m-txt small {
+    color: #c9cde6;
+    font-size: 0.8rem;
+  }
+  .live-m-cta {
+    margin-inline-start: auto;
+    flex-shrink: 0;
+    padding: 7px 12px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #04121a;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
   @keyframes live-blink {
     50% {
       opacity: 0.25;
@@ -563,18 +638,29 @@ const jsonLd = [
     opacity: 0.9;
     transform: translateY(8px) scale(1.05);
   }
-  /* القسم للكمبيوتر فقط: يُخفى على الجوال والشاشات الصغيرة */
+  /* الجوال: الأول بطاقة كبيرة وتحته بطاقتان صغيرتان (تظهر كلها دون سحب).
+     الأخيرة في ترتيب زوجي تأخذ العرض كاملاً حتى لا تبقى وحدها في نصف صف */
   @media (max-width: 760px) {
     .pin-grid {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
-    .pin-card {
-      flex: 0 0 82%;
-      scroll-snap-align: start;
+    .pin-card:first-child,
+    .pin-card:last-child:nth-child(even) {
+      grid-column: 1 / -1;
+    }
+    .pin-card .pin-glow {
+      opacity: 0.3;
+    }
+    .pin-frame {
+      border-radius: 16px;
+    }
+    .pin-in {
+      border-radius: 14px;
+    }
+    /* البطاقات الصغيرة: اسم اللعبة مكتوب على الغلاف نفسه، فلا نكرره */
+    .pin-card:not(:first-child):not(:last-child:nth-child(even)) .pin-glass {
+      display: none;
     }
   }
 
@@ -844,69 +930,60 @@ const jsonLd = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  /* الجوال والشاشات الصغيرة: الإحصائيات صف واحد مضغوط من 5 خانات فوق حافة البانر */
+  /* الجوال والشاشات الصغيرة: الإحصائيات صف واحد من 4 خانات فوق حافة البانر (أيقونة بجانب الرقم والكلمة) */
   @media (max-width: 760px) {
     .stats-wrap {
       margin-top: -30px;
     }
     .stats-wrap .stats-strip {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0;
       padding: 10px 6px;
       border-radius: var(--radius);
     }
     .stats-wrap .stats-strip li {
-      flex-direction: column;
-      gap: 4px;
-      text-align: center;
-      font-size: 0.72rem;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-areas: 'ico val' 'ico lbl';
+      justify-content: center;
+      align-items: center;
+      column-gap: 6px;
+      row-gap: 1px;
+      font-size: 0.7rem;
       line-height: 1.2;
     }
     .stats-wrap .s-ico {
-      width: 28px;
-      height: 28px;
-      border-radius: 9px;
+      grid-area: ico;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
       box-shadow: none;
     }
     .stats-wrap .s-ico :global(svg) {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
     }
     .stats-wrap .stats-strip strong,
     .stats-wrap .stats-strip time {
-      font-size: 1rem;
-    }
-    .stats-wrap .stats-strip time {
-      order: 1;
+      grid-area: val;
+      font-size: 0.98rem;
     }
     .stats-wrap .stats-strip li > span:not(.s-ico) {
-      order: 2;
+      grid-area: lbl;
+      white-space: nowrap;
     }
-    .stats-wrap .stats-strip .colon {
+    .stats-wrap .stats-strip .colon,
+    .stats-wrap .stats-strip .s-live {
       display: none;
-    }
-    .stats-wrap .s-live a {
-      flex-direction: column;
-      gap: 4px;
-      margin: 0;
-      padding: 0;
-    }
-    .stats-wrap .live-txt b {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--muted);
-    }
-    .stats-wrap .live-txt small,
-    .stats-wrap .live-pill {
-      display: none;
-    }
-    .stats-wrap .ico-dot {
-      display: block;
     }
     .stats-wrap .stats-strip li + li::before {
       inset-inline-start: 0;
-      height: 36px;
+      height: 30px;
+    }
+    .live-m-wrap {
+      display: block;
+      margin-top: 22px;
     }
     :global(body:has(.stats-wrap) .hero .dots) {
       bottom: 44px;
@@ -918,10 +995,10 @@ const jsonLd = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
-    /* شريط الإحصائيات على الجوال: صف واحد مضغوط من 5 أعمدة (أيقونة، رقم، كلمة) */
+    /* شريط الإحصائيات على الجوال: صف واحد مضغوط من 4 أعمدة (أيقونة، رقم، كلمة) */
     .stats-strip {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0;
       margin-top: 20px;
       padding: 12px 6px;
