@@ -99,6 +99,16 @@ const jsonLd = [
         <strong>100%</strong>
         <span>مجانية</span>
       </li>
+      {/* برنامج تعريبات لايف: رابط بنفس شكل الإحصائيات مع شارة LIVE حمراء وامضة */}
+      <li class="s-live">
+        <a href="/live/" title={LIVE.tagline}>
+          <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg><span class="live-dot ico-dot"></span></span>
+          <span class="live-txt">
+            <b>{LIVE.name} <span class="live-pill" aria-hidden="true"><span class="live-dot"></span>LIVE</span></b>
+            <small>عرّب بضغطة زر واحدة</small>
+          </span>
+        </a>
+      </li>
     </ul>
   </div>
 
@@ -342,6 +352,88 @@ const jsonLd = [
   }
   .stats-strip li + li {
     position: relative;
+  }
+  /* عنصر تعريبات لايف: رابط مع شارة LIVE */
+  .s-live a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: inherit;
+    text-decoration: none;
+    padding: 4px 8px;
+    margin: -4px -8px;
+    border-radius: 14px;
+    transition: background 0.2s;
+  }
+  .s-live a:hover {
+    background: rgb(255 255 255 / 0.05);
+  }
+  .s-live a:hover .s-ico {
+    transform: translateY(-1px) scale(1.05);
+  }
+  .s-live .s-ico {
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .live-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.15;
+  }
+  .live-txt b {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text);
+    font-weight: 800;
+    font-size: 1.05rem;
+  }
+  .live-txt small {
+    font-size: 0.85rem;
+  }
+  .live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 7px 1px;
+    border: 1px solid rgb(224 52 79 / 0.45);
+    border-radius: 999px;
+    background: rgb(224 52 79 / 0.15);
+    color: #ff8a9c;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff2d4a;
+    box-shadow: 0 0 8px #ff2d4a;
+    animation: live-blink 1.2s ease-in-out infinite;
+  }
+  /* نقطة على زاوية الأيقونة: للجوال فقط (تختفي الشارة هناك لضيق المساحة) */
+  .ico-dot {
+    display: none;
+    position: absolute;
+    top: -3px;
+    inset-inline-end: -3px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--card);
+    box-sizing: content-box;
+  }
+  @keyframes live-blink {
+    50% {
+      opacity: 0.25;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot {
+      animation: none;
+    }
   }
   .stats-strip li + li::before {
     content: '';
@@ -752,14 +844,14 @@ const jsonLd = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  /* الجوال والشاشات الصغيرة: الإحصائيات صف واحد مضغوط من 4 خانات فوق حافة البانر */
+  /* الجوال والشاشات الصغيرة: الإحصائيات صف واحد مضغوط من 5 خانات فوق حافة البانر */
   @media (max-width: 760px) {
     .stats-wrap {
       margin-top: -30px;
     }
     .stats-wrap .stats-strip {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 0;
       padding: 10px 6px;
       border-radius: var(--radius);
@@ -794,6 +886,24 @@ const jsonLd = [
     .stats-wrap .stats-strip .colon {
       display: none;
     }
+    .stats-wrap .s-live a {
+      flex-direction: column;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+    }
+    .stats-wrap .live-txt b {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .stats-wrap .live-txt small,
+    .stats-wrap .live-pill {
+      display: none;
+    }
+    .stats-wrap .ico-dot {
+      display: block;
+    }
     .stats-wrap .stats-strip li + li::before {
       inset-inline-start: 0;
       height: 36px;
@@ -808,10 +918,10 @@ const jsonLd = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
-    /* شريط الإحصائيات على الجوال: صف واحد مضغوط من 4 أعمدة (أيقونة، رقم، كلمة) */
+    /* شريط الإحصائيات على الجوال: صف واحد مضغوط من 5 أعمدة (أيقونة، رقم، كلمة) */
     .stats-strip {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 0;
       margin-top: 20px;
       padding: 12px 6px;
