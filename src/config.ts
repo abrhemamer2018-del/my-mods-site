@@ -33,12 +33,12 @@ export const LIVE = {
   heroSlug: 'ta3reebat-live',
   name: 'تعريبات لايف',
   tagline: 'عرّب أي لعبة فوراً وأنت تلعب… بضغطة زر',
-  version: '1.1.0',
+  version: '1.1.1',
   label: 'تجريبي',
   sizeMB: 305,
   // ملف البرنامج في GitHub Releases (مستودع الملفات)
   downloadUrl:
-    'https://github.com/abrhemamer2017-debug/files/releases/download/ta3reebat-live-v1.1.0/Ta3reebat-Live-v1.1.0-beta.zip',
+    'https://github.com/abrhemamer2017-debug/files/releases/download/ta3reebat-live-v1.1.1/Ta3reebat-Live-v1.1.1-beta.zip',
 };
 
 export const NAV: { label: string; href: string; badge?: string }[] = [
