@@ -89,6 +89,22 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     font-weight: 700;
     transition: color 0.2s;
     position: relative;
+    white-space: nowrap;
+  }
+  /* الشاشات المتوسطة: نقرّب الروابط ونصغّر البحث حتى تبقى القائمة في سطر واحد */
+  @media (max-width: 1360px) and (min-width: 1181px) {
+    .bar {
+      gap: 18px;
+    }
+    .nav {
+      gap: 16px;
+      font-size: 0.95rem;
+    }
+    .search {
+      width: auto;
+      flex: 0 1 200px;
+      min-width: 120px;
+    }
   }
   .nav a:hover,
   .nav a.active {
@@ -142,7 +158,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     margin-inline-start: auto;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1180px) {
     .bar {
       gap: 12px;
     }

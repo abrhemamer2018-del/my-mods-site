@@ -17,11 +17,21 @@ export async function isNew(t: Translation) {
   return newest.includes(t.id) && Date.now() - t.data.releaseDate.getTime() < NEW_BADGE_DAYS * 86400000;
 }
 
-/** كل التعريبات المنشورة، الأحدث أولاً */
-export async function getTranslations() {
+/** كل التعريبات المنشورة (تعريبات الموقع + الجمهور)، الأحدث أولاً */
+export async function getAllTranslations() {
   const all = await getCollection('translations', (t) => !t.data.draft);
   const t = (x: (typeof all)[number]) => (x.data.addedAt ?? x.data.releaseDate).getTime();
   return all.sort((a, b) => t(b) - t(a));
+}
+
+/** تعريبات الموقع فقط (بدون تعريبات الجمهور)، الأحدث أولاً */
+export async function getTranslations() {
+  return (await getAllTranslations()).filter((t) => !t.data.community);
+}
+
+/** تعريبات الجمهور فقط (صفحة /community/)، الأحدث أولاً */
+export async function getCommunity() {
+  return (await getAllTranslations()).filter((t) => t.data.community);
 }
 
 export async function getArticles(kind?: 'article' | 'lesson') {

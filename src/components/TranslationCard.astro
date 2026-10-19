@@ -30,6 +30,7 @@ const size = d.downloads[0]?.size;
     <Image src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={480} height={270} />
     <div class="badges">
       {fresh && <span class="badge badge-new">جديد</span>}
+      {d.community && <span class="badge badge-community">👥 من الجمهور</span>}
       {d.status !== 'complete' && (
         <span class="badge badge-warn">
           {STATUS_LABELS[d.status]}
@@ -128,6 +129,12 @@ const size = d.downloads[0]?.size;
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+  }
+  .badge-community {
+    color: #fff;
+    background: rgb(11 13 23 / 0.78);
+    border: 1px solid rgb(139 149 255 / 0.55);
+    backdrop-filter: blur(6px);
   }
   .body {
     padding: 14px 6px 4px;

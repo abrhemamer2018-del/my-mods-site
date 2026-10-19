@@ -3,13 +3,15 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import TranslationCard from '../components/TranslationCard.astro';
-import { getArticles, getTranslations, formatDate } from '../lib/utils';
+import { getArticles, getCommunity, getTranslations, formatDate } from '../lib/utils';
 import Icon from '../components/Icon.astro';
 import { LIVE, SITE, SOCIAL } from '../config';
 import pinnedData from '../data/pinned.json';
 import heroData from '../data/hero.json';
 
 const translations = await getTranslations();
+// تعريبات الجمهور: قسم صغير بآخر 4، يظهر فقط عند وجود تعريبات منها
+const community = (await getCommunity()).slice(0, 4);
 // قسم "جديد التعريبات": الألعاب الأحدث صدوراً أولاً (تاريخ صدور اللعبة)، ومن لا تاريخ لها حسب تاريخ التعريب
 const pinnedIds = new Set(pinnedData.slugs);
 const byGame = [...translations].filter((t) => !pinnedIds.has(t.id)).sort(
@@ -188,6 +190,20 @@ const jsonLd = [
       )
     }
   </section>
+
+  {
+    community.length > 0 && (
+      <section class="container section community-sec">
+        <div class="section-head">
+          <h2>تعريبات الجمهور</h2>
+          <a href="/community/">المزيد ‹</a>
+        </div>
+        <div class="cards">
+          {community.map((t) => <TranslationCard item={t} />)}
+        </div>
+      </section>
+    )
+  }
 
   {/* منطقة "ما وجدت لعبتك؟": بطاقتان هادئتان متجاورتان — تعريبات لايف وديسكورد */}
   <div class="container"><hr class="soft-divider duo-divider" /></div>

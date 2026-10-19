@@ -128,6 +128,16 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
           </fieldset>
 
           <fieldset class="panel">
+            <legend>👥 تعريبات الجمهور</legend>
+            <label class="check"><input name="community" type="checkbox" /> تعريب من الجمهور (يظهر في صفحة "تعريبات الجمهور" وليس مع تعريباتك)</label>
+            <div class="grid2" id="community-fields">
+              <label>اسم المعرّب * <input name="author" /></label>
+              <label>رابط حسابه <small class="muted">(اختياري)</small> <input name="authorUrl" type="url" dir="ltr" placeholder="https://..." /></label>
+            </div>
+            <small class="muted">قبل النشر: جرّب التعريب بنفسك، وافحص الملف على virustotal.com.</small>
+          </fieldset>
+
+          <fieldset class="panel">
             <legend>الصور</legend>
             <div class="grid2">
               <div class="img-field" data-img="cover" data-max="1280">
@@ -749,6 +759,14 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
   // العضو الافتراضي في "فريق العمل" لكل تعريب
   const DEFAULT_MEMBER = { name: 'IBRAHIM ALOBAIDI', role: 'معرب العاب' };
+
+  // حقول اسم المعرّب ورابطه تظهر فقط عند تفعيل "تعريب من الجمهور"
+  function toggleCommunity() {
+    const f = document.querySelector<HTMLFormElement>('#t-form')!;
+    const on = (f.elements.namedItem('community') as HTMLInputElement).checked;
+    document.getElementById('community-fields')!.hidden = !on;
+  }
+  document.querySelector('#t-form input[name=community]')!.addEventListener('change', toggleCommunity);
   // رابط فيديو يوتيوب: watch / youtu.be / shorts / embed / live
   const YOUTUBE_RE = /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)[\w-]{11}/;
 
@@ -1298,6 +1316,10 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       set('gameRelease', dateStr(d.gameRelease));
       set('featured', d.featured);
       set('draft', d.draft);
+      set('community', d.community);
+      set('author', d.author);
+      set('authorUrl', d.authorUrl);
+      toggleCommunity();
       set('requirements', (d.requirements || []).join('\n'));
       imgState = { cover: toImg(d.cover), banner: toImg(d.banner) };
       shots = (d.screenshots || []).map((p: string) => toImg(p)!);
@@ -1377,6 +1399,9 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         gameVersion: v('gameVersion'),
         featured: checked('featured') || undefined,
         draft: checked('draft') || undefined,
+        community: checked('community') || undefined,
+        author: checked('community') ? v('author') : undefined,
+        authorUrl: checked('community') ? v('authorUrl') : undefined,
         cover: pre + imgState.cover!.name,
         banner: imgState.banner ? pre + imgState.banner.name : undefined,
         screenshots: shots.map((s) => pre + s.name),
@@ -1386,6 +1411,15 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
         team: readRepeater($('[data-repeater=team]', form), 'team'),
         changelog: readRepeater($('[data-repeater=changelog]', form), 'changelog'),
       };
+      if (data.community) {
+        if (!data.author) return toast('اكتب اسم المعرّب لتعريب الجمهور', true);
+        if (data.authorUrl && !/^https?:\/\//i.test(data.authorUrl)) return toast('رابط حساب المعرّب يجب أن يبدأ بـ https://', true);
+        // فريق العمل الافتراضي (اسمك) لا يناسب تعريب الجمهور: نضع اسم المعرّب بدلاً منه
+        const onlyDefault =
+          data.team.length === 0 ||
+          (data.team.length === 1 && data.team[0].name === DEFAULT_MEMBER.name);
+        if (onlyDefault) data.team = [{ name: data.author, role: 'المعرّب' }];
+      }
       if (data.changelog.some((c: any) => !c.version || !c.date)) {
         return toast('كل إصدار في سجل التحديثات يحتاج رقم إصدار وتاريخ', true);
       }

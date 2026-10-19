@@ -541,12 +541,16 @@ async function postDiscord(env, slug, d) {
     { name: 'المنصة', value: (d.platforms || ['PC']).join(', '), inline: true },
   ];
   if (dl?.size) fields.push({ name: 'الحجم', value: dl.size, inline: true });
+  if (d.community && d.author) fields.unshift({ name: 'المعرّب', value: String(d.author).slice(0, 100), inline: true });
 
   const summary = String(d.summary || '');
   const body = {
     username: 'تعريبات',
     avatar_url: `${SITE_URL}/icon-512.png`,
-    content: `🎮 **تعريب جديد: ${d.titleAr || d.title}**`,
+    allowed_mentions: { parse: [] },
+    content: d.community
+      ? `👥 **تعريب جديد من الجمهور: ${d.titleAr || d.title}**${d.author ? ` — بواسطة ${d.author}` : ''}`
+      : `🎮 **تعريب جديد: ${d.titleAr || d.title}**`,
     embeds: [
       {
         title: `${d.title}${d.titleAr ? ` | ${d.titleAr}` : ''}`,
@@ -795,6 +799,10 @@ function validate(type, d, images) {
     if (!optional(d.gameRelease, isDate)) return 'تاريخ صدور اللعبة غير صحيح';
     if (!optional(d.version, isStr) || !optional(d.gameVersion, isStr)) return 'رقم الإصدار غير صحيح';
     if (!optional(d.featured, isBool) || !optional(d.draft, isBool)) return 'بيانات غير صحيحة';
+    if (!optional(d.community, isBool)) return 'بيانات غير صحيحة';
+    if (d.community && !isStr(d.author)) return 'اسم المعرّب مطلوب لتعريب الجمهور';
+    if (!optional(d.author, isStr)) return 'اسم المعرّب غير صحيح';
+    if (!optional(d.authorUrl, (v) => isStr(v) && /^https?:\/\/\S+$/i.test(v))) return 'رابط حساب المعرّب يجب أن يبدأ بـ https://';
     if (!imageOk(d.cover)) return 'صورة الغلاف مطلوبة';
     if (!optional(d.banner, imageOk)) return 'صورة البانر غير موجودة، أعد اختيارها';
     if (!(d.screenshots === undefined || (Array.isArray(d.screenshots) && d.screenshots.every(imageOk)))) {

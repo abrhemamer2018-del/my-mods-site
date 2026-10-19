@@ -4,16 +4,19 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import TranslationCard from '../../components/TranslationCard.astro';
-import { getTranslations, formatDate, youtubeId, type Translation } from '../../lib/utils';
+import { getAllTranslations, getCommunity, getTranslations, formatDate, youtubeId, type Translation } from '../../lib/utils';
 import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
 export async function getStaticPaths() {
-  const all = await getTranslations();
+  const all = await getAllTranslations();
   return all.map((t) => ({ params: { slug: t.id }, props: { item: t } }));
 }
 
 const { item } = Astro.props as { item: Translation };
 const d = item.data;
+// تعريب من الجمهور: أرسله أحد أعضاء المجتمع (اسمه في author)
+const community = d.community;
+const author = d.author ?? d.team[0]?.name;
 const { Content } = await render(item);
 const og = await getImage({ src: d.banner ?? d.cover, width: 1200, format: 'jpg' });
 const shots = await Promise.all(
@@ -24,23 +27,45 @@ const videoId = youtubeId(d.video);
 // وصف نتائج Google: يبدأ بذكر التعريب ثم نبذة اللعبة
 // محركات البحث تعرض نحو 160 حرفاً فقط، فنقصّ عند آخر كلمة كاملة قبل الحد
 const SEO_MAX = 158;
-const seoFull = `تعريب عربي كامل ومجاني للعبة ${d.title} (${d.titleAr}) مع أداة تثبيت سهلة. ${d.summary}`
+const seoFull = (
+  community
+    ? `تعريب عربي مجاني للعبة ${d.title} (${d.titleAr})${author ? ` من إعداد ${author}` : ''}. ${d.summary}`
+    : `تعريب عربي كامل ومجاني للعبة ${d.title} (${d.titleAr}) مع أداة تثبيت سهلة. ${d.summary}`
+)
   .replace(/\s+/g, ' ')
   .trim();
 const seoDescription =
   seoFull.length <= SEO_MAX ? seoFull : seoFull.slice(0, seoFull.lastIndexOf(' ', SEO_MAX - 1)).replace(/[،,.:؛\s]+$/, '') + '…';
 
 // "تعريبات أخرى قد تعجبك": التعريبات الأربعة التالية لهذا التعريب بالترتيب (بشكل دائري)
-// حتى تعرض كل صفحة مجموعة مختلفة
+// حتى تعرض كل صفحة مجموعة مختلفة. تعريبات الجمهور تقترح تعريبات جمهور أخرى
 const RELATED_COUNT = 4;
-const all = await getTranslations();
+const all = community ? await getCommunity() : await getTranslations();
 const pos = all.findIndex((t) => t.id === item.id);
 // عنوان الصفحة بالصيغ التي يبحث بها الناس: "تعريب لعبة X بالعربي ... تحميل مجاني"
 const hasArabicName = /[؀-ۿ]/.test(d.titleAr) && d.titleAr.trim() !== d.title.trim();
 const pageTitle = `تعريب لعبة ${d.title} بالعربي${hasArabicName ? ` (${d.titleAr})` : ''} — تحميل مجاني`;
 
 // أسئلة شائعة: تظهر في الصفحة، وتفهمها محركات البحث (FAQPage) فقد تعرضها تحت النتيجة
-const faq = [
+const communityFaq = [
+  {
+    q: `هل تعريب ${d.title} مجاني؟`,
+    a: `نعم، تعريب ${d.titleAr} مجاني بالكامل، ويمكنك تحميله مباشرة من هذه الصفحة دون تسجيل.`,
+  },
+  {
+    q: 'من صنع هذا التعريب؟',
+    a: `هذا التعريب من تعريبات الجمهور${author ? `، أعدّه ${author}` : ''} وشاركه مع زوار الموقع بعد مراجعته وفحص ملفاته.`,
+  },
+  {
+    q: 'كيف أشارك تعريبي في الموقع؟',
+    a: 'أرسل تعريبك مع صور منه واسم اللعبة والنسخة المدعومة عبر ديسكورد، وبعد تجربته ينشر في قسم تعريبات الجمهور باسمك.',
+  },
+  {
+    q: 'كيف أحذف التعريب وأعيد اللعبة كما كانت؟',
+    a: 'من Steam: كلك يمين على اللعبة ← Properties ← Installed Files ← Verify integrity of game files، فتعود ملفات اللعبة الأصلية.',
+  },
+];
+const faq = community ? communityFaq : [
   {
     q: `هل تعريب ${d.title} مجاني؟`,
     a: `نعم، تعريب ${d.titleAr} مجاني بالكامل، ويمكنك تحميله مباشرة من هذه الصفحة دون تسجيل.`,
@@ -85,7 +110,7 @@ const jsonLd = [
     ...(d.updatedDate ? { dateModified: d.updatedDate.toISOString().slice(0, 10) } : {}),
     ...(d.downloads[0]?.size ? { fileSize: d.downloads[0].size } : {}),
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
-    ...(d.team[0] ? { author: { '@type': 'Person', name: d.team[0].name } } : {}),
+    ...(author ? { author: { '@type': 'Person', name: author } } : {}),
     about: { '@type': 'VideoGame', name: d.title, gamePlatform: d.platforms },
   },
   {
@@ -93,7 +118,9 @@ const jsonLd = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: new URL('/', Astro.site).href },
-      { '@type': 'ListItem', position: 2, name: 'التعريبات', item: new URL('/translations/', Astro.site).href },
+      community
+        ? { '@type': 'ListItem', position: 2, name: 'تعريبات الجمهور', item: new URL('/community/', Astro.site).href }
+        : { '@type': 'ListItem', position: 2, name: 'التعريبات', item: new URL('/translations/', Astro.site).href },
       { '@type': 'ListItem', position: 3, name: `تعريب ${d.title}`, item: pageUrl },
     ],
   },
@@ -114,6 +141,7 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
       <Image class="cover" src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={420} height={236} loading="eager" />
       <div>
         <div class="tags">
+          {community && <a href="/community/" class="badge badge-community">👥 من تعريبات الجمهور</a>}
           <span class="badge">{CATEGORY_LABELS[d.category]}</span>
           <span class:list={['badge', d.status === 'complete' ? 'badge-green' : 'badge-warn']}>
             {STATUS_LABELS[d.status]}
@@ -124,6 +152,18 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
           <span class="game-title" dir="ltr">{d.title}</span>
         </h1>
         <p class="ar">{d.titleAr}</p>
+        {
+          community && author && (
+            <p class="by">
+              تعريب:{' '}
+              {d.authorUrl ? (
+                <a href={d.authorUrl} target="_blank" rel="noopener nofollow">{author}</a>
+              ) : (
+                <strong>{author}</strong>
+              )}
+            </p>
+          )
+        }
         <p class="summary">{d.summary}</p>
         <p class="en-line" lang="en" dir="ltr">Arabic translation mod for {d.title} — free download for PC.</p>
         {
@@ -234,6 +274,13 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
             <p class="muted">روابط التحميل ستتوفر قريباً.</p>
           )
         }
+        {
+          community && (
+            <p class="community-note">
+              👥 هذا التعريب من أحد أعضاء المجتمع{author && <> ({author})</>}، فحصنا ملفاته قبل نشره، وتبقى مسؤولية محتواه على صاحبه.
+            </p>
+          )
+        }
         <p class="legal muted">
           <span>نحثّك على دعم المطوّر وشراء اللعبة</span>
           <span class="sep" aria-hidden="true">·</span>
@@ -312,8 +359,8 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
     related.length > 0 && (
       <section class="container related" data-pagefind-ignore>
         <div class="section-head">
-          <h2>تعريبات أخرى قد تعجبك</h2>
-          <a href="/translations/">كل التعريبات ‹</a>
+          <h2>{community ? 'تعريبات أخرى من الجمهور' : 'تعريبات أخرى قد تعجبك'}</h2>
+          <a href={community ? '/community/' : '/translations/'}>{community ? 'كل تعريبات الجمهور ‹' : 'كل التعريبات ‹'}</a>
         </div>
         <div class="related-cards">
           {related.map((t) => <TranslationCard item={t} />)}
@@ -458,6 +505,34 @@ const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, 
     color: var(--accent);
     font-size: 1.3rem;
     margin: 0;
+  }
+  /* تعريبات الجمهور: اسم المعرّب تحت اسم اللعبة، وشارة القسم، وملاحظة المسؤولية */
+  .by {
+    margin: 6px 0 0;
+    color: var(--muted);
+  }
+  .by a,
+  .by strong {
+    color: var(--text);
+    font-weight: 800;
+  }
+  .by a:hover {
+    color: var(--accent);
+  }
+  .badge-community {
+    color: #fff;
+    border: 1px solid rgb(139 149 255 / 0.55);
+    background: rgb(88 101 242 / 0.22);
+  }
+  .community-note {
+    margin: 10px 0 0;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgb(139 149 255 / 0.35);
+    background: rgb(88 101 242 / 0.1);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--muted);
   }
   .summary {
     color: #d6d9ee;

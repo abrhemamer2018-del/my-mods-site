@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TranslationCard from '../components/TranslationCard.astro';
+import Icon from '../components/Icon.astro';
+import { getCommunity } from '../lib/utils';
+import { SOCIAL } from '../config';
+
+// تعريبات الجمهور = كل تعريب مفعّل فيه "تعريب من الجمهور" في لوحة التحكم
+const items = await getCommunity();
+const discord = SOCIAL.find((s) => s.icon === 'discord');
+---
+
+<BaseLayout
+  title="تعريبات الجمهور"
+  description="تعريبات عربية لألعاب ومودات من صنع أعضاء مجتمع تعريبات، تُراجع ملفاتها قبل نشرها. شارك تعريبك باسمك."
+>
+  <div class="container section">
+    <h1 class="page-title">تعريبات الجمهور</h1>
+    <p class="muted intro">
+      تعريبات من صنع أعضاء المجتمع، تُنشر هنا باسم أصحابها بعد تجربتها وفحص ملفاتها. الدعم والتحديثات على صاحب كل تعريب.
+    </p>
+
+    {
+      items.length > 0 ? (
+        <div class="cards">
+          {items.map((t) => (
+            <TranslationCard item={t} />
+          ))}
+        </div>
+      ) : (
+        <p class="empty muted">لا توجد تعريبات من الجمهور حتى الآن… كن أول من يشارك تعريبه!</p>
+      )
+    }
+
+    {
+      discord && (
+        <div class="share">
+          <Icon name="discord" size={30} />
+          <div>
+            <h2>عندك تعريب؟ شاركه مع الجميع</h2>
+            <p class="muted">
+              أرسل لنا في ديسكورد: ملف التعريب، وصوراً منه، واسم اللعبة والنسخة التي يعمل عليها. بعد تجربته يُنشر هنا باسمك.
+            </p>
+          </div>
+          <a href={discord.url} class="btn btn-primary" target="_blank" rel="noopener">أرسل تعريبك</a>
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0;
+  }
+  .intro {
+    max-width: 70ch;
+    margin: 8px 0 28px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .empty {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .share {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 40px;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    border: 1px solid rgb(88 101 242 / 0.45);
+    background:
+      radial-gradient(circle at 100% 50%, rgb(88 101 242 / 0.25), transparent 55%),
+      var(--card);
+  }
+  .share :global(svg) {
+    color: #8b95ff;
+    flex-shrink: 0;
+  }
+  .share div {
+    flex: 1;
+  }
+  .share h2 {
+    font-size: 1.2rem;
+    margin: 0 0 4px;
+  }
+  .share p {
+    margin: 0;
+  }
+  @media (max-width: 700px) {
+    .share {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  @media (max-width: 560px) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+</style>
