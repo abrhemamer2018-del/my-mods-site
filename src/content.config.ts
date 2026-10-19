@@ -44,10 +44,6 @@ const translations = defineCollection({
         )
         .default([]),
       draft: z.boolean().default(false),
-      // تعريبات الجمهور: تعريب أرسله أحد أعضاء المجتمع، يظهر في صفحة /community/ منفصلاً عن تعريبات الموقع
-      community: z.boolean().default(false),
-      author: z.string().optional(), // اسم المعرّب (لتعريبات الجمهور)
-      authorUrl: z.string().url().optional(), // رابط حسابه (اختياري)
     }),
 });
 

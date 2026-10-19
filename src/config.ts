@@ -45,7 +45,6 @@ export const NAV: { label: string; href: string; badge?: string }[] = [
   { label: 'الرئيسية', href: '/' },
   { label: 'التعريبات', href: '/translations/' },
   { label: 'قادمة', href: '/upcoming/' },
-  { label: 'تعريبات الجمهور', href: '/community/' },
   { label: 'تعريبات لايف', href: '/live/', badge: 'جديد' },
   { label: 'المقالات', href: '/articles/' },
   { label: 'الدروس', href: '/lessons/' },
