@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-02
     notes:
       - الإصدار الأول
+tags:
+  - "Colony Sim"
+  - "Base Building"
+  - "Survival"
+  - "Strategy"
+  - "Sandbox"
+  - "Management"
+  - "Singleplayer"
+  - "Moddable"
+  - "Simulation"
+  - "Sci-fi"
+  - "Story Rich"
+  - "Replay Value"
 ---
 
 ## طريقة التثبيت

@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-11
     notes:
       - الإصدار الأول
+tags:
+  - "Difficult"
+  - "Co-op"
+  - "Cartoon"
+  - "Platformer"
+  - "Local Co-Op"
+  - "Great Soundtrack"
+  - "2D"
+  - "Multiplayer"
+  - "Indie"
+  - "Hand-drawn"
+  - "Bullet Hell"
+  - "Cartoony"
 ---
 
 ## طريقة التثبيت

@@ -4,7 +4,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import TranslationCard from '../../components/TranslationCard.astro';
-import { getTranslations, formatDate, youtubeId, type Translation } from '../../lib/utils';
+import { getTranslations, formatDate, relatedTranslations, youtubeId, type Translation } from '../../lib/utils';
 import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
 export async function getStaticPaths() {
@@ -30,11 +30,9 @@ const seoFull = `تعريب عربي كامل ومجاني للعبة ${d.title}
 const seoDescription =
   seoFull.length <= SEO_MAX ? seoFull : seoFull.slice(0, seoFull.lastIndexOf(' ', SEO_MAX - 1)).replace(/[،,.:؛\s]+$/, '') + '…';
 
-// "تعريبات أخرى قد تعجبك": التعريبات الأربعة التالية لهذا التعريب بالترتيب (بشكل دائري)
-// حتى تعرض كل صفحة مجموعة مختلفة
+// "تعريبات أخرى قد تعجبك": نفس السلسلة أولاً ثم الألعاب المشابهة في وسوم Steam (relatedTranslations في utils)
 const RELATED_COUNT = 4;
 const all = await getTranslations();
-const pos = all.findIndex((t) => t.id === item.id);
 // عنوان الصفحة بالصيغ التي يبحث بها الناس: "تعريب لعبة X بالعربي ... تحميل مجاني"
 const hasArabicName = /[؀-ۿ]/.test(d.titleAr) && d.titleAr.trim() !== d.title.trim();
 const pageTitle = `تعريب لعبة ${d.title} بالعربي${hasArabicName ? ` (${d.titleAr})` : ''} — تحميل مجاني`;
@@ -104,7 +102,7 @@ const jsonLd = [
   },
 ];
 
-const related = Array.from({ length: Math.min(RELATED_COUNT, all.length - 1) }, (_, k) => all[(pos + 1 + k) % all.length]);
+const related = relatedTranslations(item, all, RELATED_COUNT);
 ---
 
 <BaseLayout fullTitle={pageTitle} description={seoDescription} image={og.src} jsonLd={jsonLd}>

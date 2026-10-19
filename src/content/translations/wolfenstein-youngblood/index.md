@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-14T22:58:02.884Z
+tags:
+  - "Action"
+  - "Co-op"
+  - "FPS"
+  - "Singleplayer"
+  - "Female Protagonist"
+  - "Violent"
+  - "Gore"
+  - "Alternate History"
+  - "Online Co-Op"
+  - "Shooter"
+  - "First-Person"
+  - "Sci-fi"
 ---
 
 ## طريقة التثبيت

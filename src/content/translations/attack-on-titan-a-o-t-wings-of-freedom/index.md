@@ -30,6 +30,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-19T13:36:05.645Z
+tags:
+  - "Anime"
+  - "Action"
+  - "Gore"
+  - "Multiplayer"
+  - "Singleplayer"
+  - "Adventure"
+  - "Story Rich"
+  - "Hack and Slash"
+  - "Online Co-Op"
+  - "Third Person"
+  - "Open World"
+  - "Dark"
 ---
 
 ## طريقة التثبيت

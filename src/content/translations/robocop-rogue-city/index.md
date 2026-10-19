@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "FPS"
+  - "Action"
+  - "Singleplayer"
+  - "First-Person"
+  - "Cyberpunk"
+  - "Story Rich"
+  - "Shooter"
+  - "Gore"
+  - "Sci-fi"
+  - "Atmospheric"
+  - "Adventure"
+  - "Violent"
 ---
 
 ## طريقة التثبيت

@@ -30,6 +30,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-14T15:39:23.813Z
+tags:
+  - "Simulation"
+  - "Strategy"
+  - "Casual"
+  - "Sandbox"
+  - "City Builder"
+  - "Zoo"
+  - "Animals"
+  - "Building"
+  - "Management"
+  - "Cute"
+  - "Realistic"
+  - "Economy"
 ---
 
 ## طريقة التثبيت

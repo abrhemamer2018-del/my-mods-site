@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-04
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "Western"
+  - "Story Rich"
+  - "Singleplayer"
+  - "Action"
+  - "Zombies"
+  - "Action-Adventure"
+  - "Third-Person Shooter"
+  - "Atmospheric"
+  - "Adventure"
+  - "Great Soundtrack"
+  - "Gore"
 ---
 
 ## طريقة التثبيت

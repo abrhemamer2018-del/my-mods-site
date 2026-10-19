@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-10
     notes:
       - الإصدار الأول
+tags:
+  - "Stealth"
+  - "Assassins"
+  - "Singleplayer"
+  - "VR"
+  - "Action"
+  - "Sandbox"
+  - "Multiplayer"
+  - "Violent"
+  - "Third Person"
+  - "Shooter"
+  - "Third-Person Shooter"
+  - "Open World"
 ---
 
 ## طريقة التثبيت

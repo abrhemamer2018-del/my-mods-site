@@ -30,6 +30,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-14T13:03:36.755Z
+tags:
+  - "Action"
+  - "Adventure"
+  - "Beat 'em up"
+  - "Open World"
+  - "Crime"
+  - "RPG"
+  - "Story Rich"
+  - "Third Person"
+  - "Action RPG"
+  - "Comedy"
+  - "Singleplayer"
+  - "Funny"
 ---
 
 ## طريقة التثبيت

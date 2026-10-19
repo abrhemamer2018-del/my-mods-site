@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Action"
+  - "Martial Arts"
+  - "Beat 'em up"
+  - "Difficult"
+  - "Third Person"
+  - "Singleplayer"
+  - "Souls-like"
+  - "Crime"
+  - "Indie"
+  - "Gore"
+  - "Fighting"
+  - "Swordplay"
 ---
 
 ## طريقة التثبيت

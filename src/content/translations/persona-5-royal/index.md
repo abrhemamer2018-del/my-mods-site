@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-16T15:17:45.532Z
+tags:
+  - "JRPG"
+  - "Story Rich"
+  - "Anime"
+  - "Turn-Based Combat"
+  - "Singleplayer"
+  - "RPG"
+  - "Multiple Endings"
+  - "Great Soundtrack"
+  - "Party-Based RPG"
+  - "Emotional"
+  - "Colorful"
+  - "Turn-Based Strategy"
 ---
 
 ## طريقة التثبيت

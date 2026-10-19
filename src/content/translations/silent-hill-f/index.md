@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-08
     notes:
       - الإصدار الأول
+tags:
+  - "Psychological Horror"
+  - "Horror"
+  - "Female Protagonist"
+  - "Survival Horror"
+  - "Story Rich"
+  - "Souls-like"
+  - "Action"
+  - "Psychological"
+  - "Adventure"
+  - "Atmospheric"
+  - "Action-Adventure"
+  - "Exploration"
 ---
 
 ## طريقة التثبيت

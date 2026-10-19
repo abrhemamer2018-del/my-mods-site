@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-09
     notes:
       - الإصدار الأول
+tags:
+  - "Choices Matter"
+  - "Story Rich"
+  - "Adventure"
+  - "Female Protagonist"
+  - "Cinematic"
+  - "Singleplayer"
+  - "Co-op"
+  - "Emotional"
+  - "Horror"
+  - "Quick-Time Events"
+  - "Sci-fi"
+  - "Dynamic Narration"
 ---
 
 ## طريقة التثبيت

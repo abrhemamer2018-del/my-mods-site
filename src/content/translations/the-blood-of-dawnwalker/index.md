@@ -31,6 +31,19 @@ changelog:
     date: 2026-10-06
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "RPG"
+  - "Dark Fantasy"
+  - "Vampires"
+  - "Action RPG"
+  - "Adventure"
+  - "Singleplayer"
+  - "Third Person"
+  - "Fantasy"
+  - "Action"
+  - "Story Rich"
+  - "Atmospheric"
 ---
 
 ## طريقة التثبيت

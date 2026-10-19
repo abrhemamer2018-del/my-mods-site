@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-10
     notes:
       - الإصدار الأول
+tags:
+  - "Gore"
+  - "Sexual Content"
+  - "Action"
+  - "Horror"
+  - "Nudity"
+  - "Atmospheric"
+  - "First-Person"
+  - "Dark"
+  - "Violent"
+  - "Adventure"
+  - "Psychological Horror"
+  - "Demons"
 ---
 
 ## طريقة التثبيت

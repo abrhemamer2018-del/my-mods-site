@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Metroidvania"
+  - "Difficult"
+  - "Indie"
+  - "Great Soundtrack"
+  - "Souls-like"
+  - "2D"
+  - "Singleplayer"
+  - "Platformer"
+  - "Exploration"
+  - "Female Protagonist"
+  - "Adventure"
+  - "Beautiful"
 ---
 
 ## طريقة التثبيت

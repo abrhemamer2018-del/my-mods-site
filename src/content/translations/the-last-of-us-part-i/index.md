@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-04
     notes:
       - الإصدار الثاني
+tags:
+  - "Story Rich"
+  - "Post-apocalyptic"
+  - "Horror"
+  - "Zombies"
+  - "Action-Adventure"
+  - "Singleplayer"
+  - "Shooter"
+  - "Third-Person Shooter"
+  - "Survival"
+  - "Third Person"
+  - "Survival Horror"
+  - "Cinematic"
 ---
 
 ## طريقة التثبيت

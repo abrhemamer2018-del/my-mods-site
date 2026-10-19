@@ -31,6 +31,19 @@ changelog:
     notes:
       - الإصدار 1.1
 addedAt: 2026-10-07T13:17:37+03:00
+tags:
+  - "Open World"
+  - "Creature Collector"
+  - "Multiplayer"
+  - "Exploration"
+  - "Adventure"
+  - "Artificial Intelligence"
+  - "RPG"
+  - "Online Co-Op"
+  - "Collectathon"
+  - "Cute"
+  - "Co-op"
+  - "PvP"
 ---
 
 ## طريقة التثبيت

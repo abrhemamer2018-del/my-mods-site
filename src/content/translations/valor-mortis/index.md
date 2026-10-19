@@ -30,6 +30,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-17T21:27:22.290Z
+tags:
+  - "Souls-like"
+  - "First-Person"
+  - "RPG"
+  - "Difficult"
+  - "Action"
+  - "War"
+  - "Dark Fantasy"
+  - "Action RPG"
+  - "Action-Adventure"
+  - "Story Rich"
+  - "Singleplayer"
+  - "FPS"
 ---
 
 ## طريقة التثبيت

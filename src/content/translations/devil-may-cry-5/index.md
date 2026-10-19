@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-07
     notes:
       - الإصدار الأول
+tags:
+  - "Action"
+  - "Hack and Slash"
+  - "Great Soundtrack"
+  - "Character Action Game"
+  - "Demons"
+  - "Spectacle fighter"
+  - "Third Person"
+  - "Sexual Content"
+  - "Singleplayer"
+  - "Nudity"
+  - "Violent"
+  - "Story Rich"
 ---
 
 ## طريقة التثبيت

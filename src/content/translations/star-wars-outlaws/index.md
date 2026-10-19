@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-01
     notes:
       - الإصدار الثاني
+tags:
+  - "Singleplayer"
+  - "Open World"
+  - "Action"
+  - "Third Person"
+  - "Adventure"
+  - "Action-Adventure"
+  - "Female Protagonist"
+  - "Sci-fi"
+  - "Shooter"
+  - "Space"
+  - "Third-Person Shooter"
+  - "Story Rich"
 ---
 
 ## طريقة التثبيت

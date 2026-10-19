@@ -30,6 +30,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-14T21:20:19.550Z
+tags:
+  - "FPS"
+  - "Action"
+  - "Singleplayer"
+  - "Story Rich"
+  - "Atmospheric"
+  - "Horror"
+  - "First-Person"
+  - "Shooter"
+  - "Dystopian "
+  - "Sci-fi"
+  - "RPG"
+  - "Steampunk"
 ---
 
 ## طريقة التثبيت

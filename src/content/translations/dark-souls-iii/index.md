@@ -31,6 +31,19 @@ changelog:
     date: 2026-10-08
     notes:
       - الإصدار الأول
+tags:
+  - "Souls-like"
+  - "Dark Fantasy"
+  - "Difficult"
+  - "RPG"
+  - "Atmospheric"
+  - "Lore-Rich"
+  - "Third Person"
+  - "Exploration"
+  - "Story Rich"
+  - "Action RPG"
+  - "Co-op"
+  - "Great Soundtrack"
 ---
 
 ## طريقة التثبيت

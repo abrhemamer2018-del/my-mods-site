@@ -33,6 +33,19 @@ changelog:
     date: 2026-10-04
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "Story Rich"
+  - "Western"
+  - "Multiplayer"
+  - "Adventure"
+  - "Action"
+  - "Realistic"
+  - "Singleplayer"
+  - "Shooter"
+  - "Horses"
+  - "Beautiful"
+  - "Atmospheric"
 ---
 
 ## طريقة التثبيت

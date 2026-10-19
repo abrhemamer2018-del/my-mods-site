@@ -32,6 +32,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-14T22:50:36.444Z
+tags:
+  - "FPS"
+  - "Action"
+  - "World War II"
+  - "Gore"
+  - "Alternate History"
+  - "Shooter"
+  - "Singleplayer"
+  - "Stealth"
+  - "Zombies"
+  - "First-Person"
+  - "Atmospheric"
+  - "Story Rich"
 ---
 
 ## طريقة التثبيت

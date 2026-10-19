@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-12
     notes:
       - الإصدار الأول
+tags:
+  - "City Builder"
+  - "Survival"
+  - "Resource Management"
+  - "Strategy"
+  - "Post-apocalyptic"
+  - "Colony Sim"
+  - "Steampunk"
+  - "Building"
+  - "Base Building"
+  - "Singleplayer"
+  - "Management"
+  - "Simulation"
 ---
 
 ## طريقة التثبيت

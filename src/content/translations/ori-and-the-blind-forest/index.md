@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Great Soundtrack"
+  - "Atmospheric"
+  - "Platformer"
+  - "Metroidvania"
+  - "Adventure"
+  - "Story Rich"
+  - "Fantasy"
+  - "2D"
+  - "Cute"
+  - "Singleplayer"
+  - "Difficult"
+  - "Action"
 ---
 
 ## طريقة التثبيت

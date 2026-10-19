@@ -25,6 +25,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-17T14:12:32.953Z
+tags:
+  - "Action"
+  - "Adventure"
+  - "Pirates"
+  - "RPG"
+  - "Naval Combat"
+  - "Hack and Slash"
+  - "Action RPG"
+  - "Funny"
+  - "Third Person"
+  - "JRPG"
+  - "Character Customization"
+  - "Action-Adventure"
 ---
 
 ## طريقة التثبيت

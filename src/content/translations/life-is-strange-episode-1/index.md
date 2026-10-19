@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Story Rich"
+  - "Choices Matter"
+  - "Great Soundtrack"
+  - "Female Protagonist"
+  - "Time Travel"
+  - "Atmospheric"
+  - "Episodic"
+  - "Singleplayer"
+  - "Adventure"
+  - "Time Manipulation"
+  - "Multiple Endings"
+  - "Mystery"
 ---
 
 ## طريقة التثبيت

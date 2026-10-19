@@ -27,6 +27,19 @@ changelog:
     date: 2026-09-30
     notes:
       - الإصدار الأول
+tags:
+  - "JRPG"
+  - "Life Sim"
+  - "Dating Sim"
+  - "Farming Sim"
+  - "Singleplayer"
+  - "Action RPG"
+  - "Dragons"
+  - "Romance"
+  - "Cozy"
+  - "Lore-Rich"
+  - "Story Rich"
+  - "Anime"
 ---
 
 ## طريقة التثبيت

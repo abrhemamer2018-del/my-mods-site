@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-03
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "Space"
+  - "Open World Survival Craft"
+  - "Exploration"
+  - "Sci-fi"
+  - "Survival"
+  - "Multiplayer"
+  - "Procedural Generation"
+  - "Adventure"
+  - "Sandbox"
+  - "First-Person"
+  - "Singleplayer"
 ---
 
 ## طريقة التثبيت

@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-11
     notes:
       - الإصدار الأول
+tags:
+  - "Stealth"
+  - "First-Person"
+  - "Assassins"
+  - "Action"
+  - "Steampunk"
+  - "Singleplayer"
+  - "Atmospheric"
+  - "Story Rich"
+  - "Multiple Endings"
+  - "Adventure"
+  - "Dark"
+  - "Magic"
 ---
 
 ## طريقة التثبيت

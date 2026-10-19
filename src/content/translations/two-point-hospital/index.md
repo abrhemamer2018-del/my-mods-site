@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Simulation"
+  - "Management"
+  - "Medical Sim"
+  - "Building"
+  - "Funny"
+  - "Singleplayer"
+  - "Strategy"
+  - "Sandbox"
+  - "Indie"
+  - "Comedy"
+  - "Casual"
+  - "City Builder"
 ---
 
 ## طريقة التثبيت

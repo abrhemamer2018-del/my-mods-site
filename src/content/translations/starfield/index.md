@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-01
     notes:
       - الإصدار الأول
+tags:
+  - "Space"
+  - "Open World"
+  - "Singleplayer"
+  - "RPG"
+  - "Sci-fi"
+  - "Exploration"
+  - "Character Customization"
+  - "First-Person"
+  - "Story Rich"
+  - "Action-Adventure"
+  - "Third Person"
+  - "Adventure"
 ---
 
 ## طريقة التثبيت

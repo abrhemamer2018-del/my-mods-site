@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-19T13:35:42.195Z
+tags:
+  - "Anime"
+  - "Action"
+  - "Character Customization"
+  - "Multiplayer"
+  - "Gore"
+  - "Open World"
+  - "RPG"
+  - "Singleplayer"
+  - "Co-op"
+  - "Online Co-Op"
+  - "Nudity"
+  - "Third Person"
 ---
 
 ## طريقة التثبيت

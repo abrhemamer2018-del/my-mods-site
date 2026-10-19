@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Cats"
+  - "Adventure"
+  - "Atmospheric"
+  - "Singleplayer"
+  - "Cyberpunk"
+  - "Exploration"
+  - "Cute"
+  - "Robots"
+  - "Puzzle"
+  - "Beautiful"
+  - "Third Person"
+  - "Horror"
 ---
 
 ## طريقة التثبيت

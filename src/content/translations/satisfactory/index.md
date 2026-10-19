@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Base Building"
+  - "Automation"
+  - "Open World"
+  - "Crafting"
+  - "Multiplayer"
+  - "Co-op"
+  - "Building"
+  - "Resource Management"
+  - "Sandbox"
+  - "Exploration"
+  - "Open World Survival Craft"
+  - "Adventure"
 ---
 
 ## طريقة التثبيت

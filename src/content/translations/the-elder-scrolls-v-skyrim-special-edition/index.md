@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-04
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "RPG"
+  - "Fantasy"
+  - "Adventure"
+  - "Singleplayer"
+  - "Character Customization"
+  - "Moddable"
+  - "Dragons"
+  - "Story Rich"
+  - "Magic"
+  - "First-Person"
+  - "Action"
 ---
 
 ## طريقة التثبيت

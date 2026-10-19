@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-01
     notes:
       - الإصدار الأول
+tags:
+  - "Farming Sim"
+  - "Pixel Graphics"
+  - "Multiplayer"
+  - "Life Sim"
+  - "RPG"
+  - "Relaxing"
+  - "Simulation"
+  - "Agriculture"
+  - "Crafting"
+  - "Sandbox"
+  - "Indie"
+  - "Building"
 ---
 
 ## طريقة التثبيت

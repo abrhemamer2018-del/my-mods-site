@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Great Soundtrack"
+  - "Story Rich"
+  - "Action"
+  - "RPG"
+  - "JRPG"
+  - "Adventure"
+  - "Hack and Slash"
+  - "Singleplayer"
+  - "Post-apocalyptic"
+  - "Atmospheric"
+  - "Anime"
+  - "Dark Fantasy"
 ---
 
 ## طريقة التثبيت

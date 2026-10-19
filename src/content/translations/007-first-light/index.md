@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-05
     notes:
       - الإصدار الأول
+tags:
+  - "Cinematic"
+  - "Story Rich"
+  - "Singleplayer"
+  - "Espionage"
+  - "Action-Adventure"
+  - "Stealth"
+  - "Combat"
+  - "Third-Person Shooter"
+  - "Shooter"
+  - "Exploration"
+  - "Lore-Rich"
+  - "Atmospheric"
 ---
 
 ## طريقة التثبيت

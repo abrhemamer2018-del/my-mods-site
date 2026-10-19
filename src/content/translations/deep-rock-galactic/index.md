@@ -32,6 +32,19 @@ changelog:
     date: 2026-10-11
     notes:
       - الإصدار الأول
+tags:
+  - "Dwarves"
+  - "Co-op"
+  - "PvE"
+  - "FPS"
+  - "Procedural Generation"
+  - "Class-Based"
+  - "Shooter"
+  - "Exploration"
+  - "First-Person"
+  - "Loot"
+  - "Sci-fi"
+  - "Action"
 ---
 
 ## طريقة التثبيت

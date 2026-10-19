@@ -31,6 +31,19 @@ changelog:
     date: 2026-09-30
     notes:
       - الإصدار الثاني
+tags:
+  - "RPG"
+  - "Casual"
+  - "JRPG"
+  - "City Builder"
+  - "Action"
+  - "Action-Adventure"
+  - "Exploration"
+  - "Cute"
+  - "Party-Based RPG"
+  - "3D"
+  - "Character Customization"
+  - "Fantasy"
 ---
 
 ## طريقة التثبيت

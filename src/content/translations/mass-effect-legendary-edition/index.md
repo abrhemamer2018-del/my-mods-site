@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-10
     notes:
       - الإصدار الأول
+tags:
+  - "Story Rich"
+  - "RPG"
+  - "Choices Matter"
+  - "Sci-fi"
+  - "Singleplayer"
+  - "Space"
+  - "Character Customization"
+  - "Third-Person Shooter"
+  - "Action"
+  - "Action RPG"
+  - "Sexual Content"
+  - "Romance"
 ---
 
 ## طريقة التثبيت

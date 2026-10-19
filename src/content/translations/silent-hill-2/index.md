@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-08
     notes:
       - الإصدار الأول
+tags:
+  - "Psychological Horror"
+  - "Horror"
+  - "Story Rich"
+  - "Survival Horror"
+  - "Atmospheric"
+  - "Psychological"
+  - "Great Soundtrack"
+  - "Remake"
+  - "Singleplayer"
+  - "Third Person"
+  - "Multiple Endings"
+  - "Adventure"
 ---
 
 ## طريقة التثبيت

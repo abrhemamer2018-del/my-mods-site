@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-09
     notes:
       - الإصدار الأول
+tags:
+  - "Survival"
+  - "Zombies"
+  - "Multiplayer"
+  - "Open World"
+  - "Open World Survival Craft"
+  - "Base Building"
+  - "Post-apocalyptic"
+  - "Online Co-Op"
+  - "Voxel"
+  - "Building"
+  - "Exploration"
+  - "Sandbox"
 ---
 
 ## طريقة التثبيت

@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-08
     notes:
       - الإصدار الأول
+tags:
+  - "Souls-like"
+  - "Dark Fantasy"
+  - "Action"
+  - "Singleplayer"
+  - "Story Rich"
+  - "Action RPG"
+  - "Steampunk"
+  - "Third Person"
+  - "Exploration"
+  - "Dark"
+  - "Adventure"
+  - "Atmospheric"
 ---
 
 ## طريقة التثبيت

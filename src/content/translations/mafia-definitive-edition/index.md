@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-07
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "Crime"
+  - "Story Rich"
+  - "Action"
+  - "Singleplayer"
+  - "Adventure"
+  - "Sexual Content"
+  - "Multiplayer"
+  - "Third-Person Shooter"
+  - "Remake"
+  - "Violent"
+  - "Third Person"
 ---
 
 ## طريقة التثبيت

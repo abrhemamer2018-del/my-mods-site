@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-03
     notes:
       - الإصدار الأول
+tags:
+  - "Action"
+  - "Adventure"
+  - "Beat 'em up"
+  - "Action-Adventure"
+  - "3D Fighter"
+  - "Cinematic"
+  - "Realistic"
+  - "Third Person"
+  - "Hack and Slash"
+  - "Crime"
+  - "Conspiracy"
+  - "Detective"
 ---
 
 ## طريقة التثبيت

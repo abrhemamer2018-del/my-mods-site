@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-05
     notes:
       - الإصدار الأول
+tags:
+  - "Co-op"
+  - "Multiplayer"
+  - "Split Screen"
+  - "Local Co-Op"
+  - "Online Co-Op"
+  - "Puzzle"
+  - "Adventure"
+  - "Story Rich"
+  - "Co-op Campaign"
+  - "Local Multiplayer"
+  - "Puzzle Platformer"
+  - "Action-Adventure"
 ---
 
 ## طريقة التثبيت

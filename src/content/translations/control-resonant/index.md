@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-06
     notes:
       - الإصدار الأول
+tags:
+  - "Hack and Slash"
+  - "Action RPG"
+  - "Story Rich"
+  - "Lore-Rich"
+  - "Supernatural"
+  - "Cinematic"
+  - "Atmospheric"
+  - "Third Person"
+  - "Surreal"
+  - "Sci-fi"
+  - "Action"
+  - "Post-apocalyptic"
 ---
 
 ## طريقة التثبيت

@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-05
     notes:
       - الإصدار الأول
+tags:
+  - "FPS"
+  - "Looter Shooter"
+  - "Open World"
+  - "PvE"
+  - "Loot"
+  - "Co-op"
+  - "Action RPG"
+  - "First-Person"
+  - "Action-Adventure"
+  - "RPG"
+  - "Multiplayer"
+  - "Action"
 ---
 
 ## طريقة التثبيت

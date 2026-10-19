@@ -25,6 +25,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-07T02:38:40+03:00
+tags:
+  - "Open World"
+  - "Sexual Content"
+  - "Action"
+  - "Multiplayer"
+  - "Crime"
+  - "Shooter"
+  - "Third Person"
+  - "Adventure"
+  - "First-Person"
+  - "Racing"
+  - "Automobile Sim"
+  - "Sandbox"
 ---
 
 ## طريقة التثبيت

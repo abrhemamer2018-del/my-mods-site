@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-09
     notes:
       - الإصدار الأول
+tags:
+  - "Online Co-Op"
+  - "Co-op"
+  - "Split Screen"
+  - "Story Rich"
+  - "Local Co-Op"
+  - "Multiplayer"
+  - "Action-Adventure"
+  - "Action"
+  - "Adventure"
+  - "Crime"
+  - "Third Person"
+  - "Emotional"
 ---
 
 ## طريقة التثبيت

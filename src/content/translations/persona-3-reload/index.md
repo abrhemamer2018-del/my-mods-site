@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-16T15:17:31.513Z
+tags:
+  - "JRPG"
+  - "Anime"
+  - "RPG"
+  - "Party-Based RPG"
+  - "Story Rich"
+  - "Turn-Based Strategy"
+  - "Great Soundtrack"
+  - "Turn-Based Combat"
+  - "Emotional"
+  - "Adventure"
+  - "Dating Sim"
+  - "Dark"
 ---
 
 ## طريقة التثبيت

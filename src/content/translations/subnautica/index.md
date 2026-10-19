@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Open World Survival Craft"
+  - "Survival"
+  - "Horror"
+  - "Underwater"
+  - "Open World"
+  - "Exploration"
+  - "Crafting"
+  - "Singleplayer"
+  - "Base Building"
+  - "Adventure"
+  - "First-Person"
+  - "Multiplayer"
 ---
 
 ## طريقة التثبيت

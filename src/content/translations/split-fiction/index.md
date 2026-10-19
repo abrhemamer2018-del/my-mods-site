@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-07
     notes:
       - الإصدار الأول
+tags:
+  - "Co-op"
+  - "Split Screen"
+  - "Local Co-Op"
+  - "Female Protagonist"
+  - "Online Co-Op"
+  - "Action-Adventure"
+  - "3D Platformer"
+  - "Fantasy"
+  - "Sci-fi"
+  - "Story Rich"
+  - "Co-op Campaign"
+  - "Third Person"
 ---
 
 ## طريقة التثبيت

@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-10
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "Multiplayer"
+  - "Post-apocalyptic"
+  - "RPG"
+  - "Dark Comedy"
+  - "Capitalism"
+  - "Survival"
+  - "Base Building"
+  - "Co-op"
+  - "Shooter"
+  - "MMORPG"
+  - "Horror"
 ---
 
 ## طريقة التثبيت

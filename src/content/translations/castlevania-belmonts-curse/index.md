@@ -30,6 +30,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-17T21:11:47.203Z
+tags:
+  - "Metroidvania"
+  - "Action"
+  - "Female Protagonist"
+  - "Action RPG"
+  - "2D Platformer"
+  - "RPG"
+  - "Platformer"
+  - "Action-Adventure"
+  - "2D"
+  - "Dark Fantasy"
+  - "Vampires"
+  - "Exploration"
 ---
 
 ## طريقة التثبيت

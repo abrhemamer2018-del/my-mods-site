@@ -25,6 +25,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-17T14:16:06.067Z
+tags:
+  - "Action"
+  - "Adventure"
+  - "RPG"
+  - "Action-Adventure"
+  - "Beat 'em up"
+  - "Open World"
+  - "Action RPG"
+  - "Crime"
+  - "Combat"
+  - "Story Rich"
+  - "1990's"
+  - "Martial Arts"
 ---
 
 ## طريقة التثبيت

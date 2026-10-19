@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-06
     notes:
       - الإصدار الأول
+tags:
+  - "Story Rich"
+  - "Atmospheric"
+  - "Stealth"
+  - "Action"
+  - "Third-Person Shooter"
+  - "Crime"
+  - "Immersive"
+  - "Cinematic"
+  - "Third Person"
+  - "Shooter"
+  - "Emotional"
+  - "Linear"
 ---
 
 ## طريقة التثبيت

@@ -32,6 +32,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-16T15:16:54.413Z
+tags:
+  - "RPG"
+  - "Action"
+  - "Adventure"
+  - "JRPG"
+  - "Open World"
+  - "Singleplayer"
+  - "Action RPG"
+  - "Party-Based RPG"
+  - "Story Rich"
+  - "Action-Adventure"
+  - "Spectacle fighter"
+  - "Third Person"
 ---
 
 ## طريقة التثبيت

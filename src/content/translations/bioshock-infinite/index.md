@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-14T21:30:13.415Z
+tags:
+  - "Action"
+  - "Shooter"
+  - "First-Person"
+  - "FPS"
+  - "Singleplayer"
+  - "Story Rich"
+  - "RPG"
+  - "Adventure"
+  - "Fantasy"
+  - "Atmospheric"
+  - "Sci-fi"
+  - "Gore"
 ---
 
 ## طريقة التثبيت

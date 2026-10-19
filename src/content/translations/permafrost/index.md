@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Early Access"
+  - "Open World Survival Craft"
+  - "Survival"
+  - "Online Co-Op"
+  - "Crafting"
+  - "Exploration"
+  - "Multiplayer"
+  - "Building"
+  - "Co-op"
+  - "Post-apocalyptic"
+  - "Open World"
+  - "Action"
 ---
 
 ## طريقة التثبيت

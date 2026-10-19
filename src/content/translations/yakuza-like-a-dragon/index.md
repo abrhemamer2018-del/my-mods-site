@@ -31,6 +31,19 @@ changelog:
     date: 2026-10-07
     notes:
       - الإصدار الأول
+tags:
+  - "RPG"
+  - "Adventure"
+  - "Action"
+  - "Turn-Based Combat"
+  - "JRPG"
+  - "Story Rich"
+  - "Turn-Based"
+  - "Open World"
+  - "Singleplayer"
+  - "Funny"
+  - "Crime"
+  - "Comedy"
 ---
 
 ## طريقة التثبيت

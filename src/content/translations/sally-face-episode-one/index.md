@@ -31,6 +31,19 @@ changelog:
     date: 2026-10-10
     notes:
       - الإصدار الأول
+tags:
+  - "Story Rich"
+  - "Psychological Horror"
+  - "Indie"
+  - "Horror"
+  - "Dark"
+  - "Puzzle"
+  - "Adventure"
+  - "Mystery"
+  - "Atmospheric"
+  - "Point & Click"
+  - "Singleplayer"
+  - "Hand-drawn"
 ---
 
 ## طريقة التثبيت

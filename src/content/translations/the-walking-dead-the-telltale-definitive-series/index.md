@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Choices Matter"
+  - "Story Rich"
+  - "Interactive Fiction"
+  - "Multiple Endings"
+  - "Horror"
+  - "Zombies"
+  - "Comic Book"
+  - "Choose Your Own Adventure"
+  - "Adventure"
+  - "Post-apocalyptic"
+  - "Visual Novel"
+  - "Point & Click"
 ---
 
 ## طريقة التثبيت

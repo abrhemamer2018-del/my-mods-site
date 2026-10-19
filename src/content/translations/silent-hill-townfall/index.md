@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-06
     notes:
       - الإصدار الأول
+tags:
+  - "Horror"
+  - "Adventure"
+  - "Action"
+  - "Psychological Horror"
+  - "First-Person"
+  - "Survival Horror"
+  - "Exploration"
+  - "Action-Adventure"
+  - "3D"
+  - "Atmospheric"
+  - "Psychological"
+  - "Singleplayer"
 ---
 
 ## طريقة التثبيت

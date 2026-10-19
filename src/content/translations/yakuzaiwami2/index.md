@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-07
     notes:
       - الإصدار الأول
+tags:
+  - "Action"
+  - "Adventure"
+  - "RPG"
+  - "Action-Adventure"
+  - "Beat 'em up"
+  - "Open World"
+  - "Action RPG"
+  - "Crime"
+  - "Combat"
+  - "Story Rich"
+  - "Martial Arts"
+  - "Funny"
 ---
 
 ## طريقة التثبيت

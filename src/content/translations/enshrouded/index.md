@@ -32,6 +32,19 @@ changelog:
     notes:
       - الإصدار 1.1
 addedAt: 2026-10-14T21:48:25.421Z
+tags:
+  - "Open World"
+  - "Survival"
+  - "Base Building"
+  - "Multiplayer"
+  - "Online Co-Op"
+  - "Crafting"
+  - "RPG"
+  - "Adventure"
+  - "Exploration"
+  - "Building"
+  - "Action RPG"
+  - "Fantasy"
 ---
 
 ## طريقة التثبيت

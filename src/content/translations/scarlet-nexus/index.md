@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-16T08:46:14.286Z
+tags:
+  - "Anime"
+  - "Action"
+  - "RPG"
+  - "JRPG"
+  - "Action RPG"
+  - "Adventure"
+  - "Sci-fi"
+  - "Action-Adventure"
+  - "Combat"
+  - "Character Action Game"
+  - "Open World"
+  - "Fighting"
 ---
 
 ## طريقة التثبيت

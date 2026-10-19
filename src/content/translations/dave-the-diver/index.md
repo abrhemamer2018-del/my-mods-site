@@ -32,6 +32,19 @@ changelog:
     date: 2026-10-05
     notes:
       - الإصدار الأول
+tags:
+  - "Pixel Graphics"
+  - "Management"
+  - "Casual"
+  - "Adventure"
+  - "Relaxing"
+  - "Exploration"
+  - "Singleplayer"
+  - "Fishing"
+  - "Underwater"
+  - "RPG"
+  - "Simulation"
+  - "Farming Sim"
 ---
 
 ## طريقة التثبيت

@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-11
     notes:
       - الإصدار الأول
+tags:
+  - "Dark Fantasy"
+  - "Horror"
+  - "Female Protagonist"
+  - "3D Platformer"
+  - "Hack and Slash"
+  - "Gothic"
+  - "Action-Adventure"
+  - "Singleplayer"
+  - "Story Rich"
+  - "Psychological"
+  - "Platformer"
+  - "Surreal"
 ---
 
 ## طريقة التثبيت

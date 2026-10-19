@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-14T22:08:22.127Z
+tags:
+  - "FPS"
+  - "Action"
+  - "Gore"
+  - "Singleplayer"
+  - "Alternate History"
+  - "Violent"
+  - "First-Person"
+  - "World War II"
+  - "Shooter"
+  - "Story Rich"
+  - "Nudity"
+  - "Stealth"
 ---
 
 ## طريقة التثبيت

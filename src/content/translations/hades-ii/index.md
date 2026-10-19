@@ -31,6 +31,19 @@ changelog:
     notes:
       - الإصدار الثاني
 addedAt: 2026-10-05T02:41:19+03:00
+tags:
+  - "Action"
+  - "Roguelike"
+  - "Roguelite"
+  - "Hack and Slash"
+  - "Mythology"
+  - "Action Roguelike"
+  - "Female Protagonist"
+  - "RPG"
+  - "Dungeon Crawler"
+  - "Action RPG"
+  - "Story Rich"
+  - "Isometric"
 ---
 
 ## طريقة التثبيت

@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-07
     notes:
       - الإصدار الأول
+tags:
+  - "Mechs"
+  - "Character Customization"
+  - "Action"
+  - "Robots"
+  - "Third Person"
+  - "Combat"
+  - "Fast-Paced"
+  - "Souls-like"
+  - "Sci-fi"
+  - "3D"
+  - "Multiplayer"
+  - "Futuristic"
 ---
 
 ## طريقة التثبيت

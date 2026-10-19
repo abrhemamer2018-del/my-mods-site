@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-03
     notes:
       - الإصدار الأول
+tags:
+  - "Co-op"
+  - "Action"
+  - "Multiplayer"
+  - "Third-Person Shooter"
+  - "PvE"
+  - "Adventure"
+  - "Third Person"
+  - "Action-Adventure"
+  - "Sci-fi"
+  - "Singleplayer"
+  - "Wargame"
+  - "War"
 ---
 
 ## طريقة التثبيت

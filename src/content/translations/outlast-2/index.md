@@ -28,6 +28,19 @@ changelog:
     notes:
       - الإصدار الأول
 addedAt: 2026-10-18T18:46:35.373Z
+tags:
+  - "Horror"
+  - "Psychological Horror"
+  - "Survival Horror"
+  - "First-Person"
+  - "Gore"
+  - "Singleplayer"
+  - "Dark"
+  - "Atmospheric"
+  - "Violent"
+  - "Multiplayer"
+  - "Survival"
+  - "Nudity"
 ---
 
 ## طريقة التثبيت

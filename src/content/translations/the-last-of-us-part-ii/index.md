@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-04
     notes:
       - الإصدار الأول
+tags:
+  - "Story Rich"
+  - "Post-apocalyptic"
+  - "Third-Person Shooter"
+  - "Action-Adventure"
+  - "LGBTQ+"
+  - "Horror"
+  - "Third Person"
+  - "Action"
+  - "Stealth"
+  - "Emotional"
+  - "Realistic"
+  - "Singleplayer"
 ---
 
 ## طريقة التثبيت

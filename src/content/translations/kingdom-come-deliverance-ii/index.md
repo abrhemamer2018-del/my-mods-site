@@ -33,6 +33,19 @@ changelog:
     date: 2026-10-02
     notes:
       - الإصدار الأول
+tags:
+  - "RPG"
+  - "Medieval"
+  - "Open World"
+  - "Singleplayer"
+  - "Story Rich"
+  - "First-Person"
+  - "Realistic"
+  - "Adventure"
+  - "Action"
+  - "Historical"
+  - "Swordplay"
+  - "Combat"
 ---
 
 ## طريقة التثبيت

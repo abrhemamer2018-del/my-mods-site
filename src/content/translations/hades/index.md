@@ -28,6 +28,19 @@ changelog:
     date: 2026-09-30
     notes:
       - الإصدار الثاني
+tags:
+  - "Action Roguelike"
+  - "Roguelite"
+  - "Hack and Slash"
+  - "Indie"
+  - "Mythology"
+  - "Action"
+  - "Roguelike"
+  - "Singleplayer"
+  - "Great Soundtrack"
+  - "Story Rich"
+  - "Dungeon Crawler"
+  - "RPG"
 ---
 
 ## طريقة التثبيت

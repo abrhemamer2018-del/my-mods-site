@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-02
     notes:
       - الإصدار الثاني
+tags:
+  - "RPG"
+  - "Character Customization"
+  - "Choices Matter"
+  - "Turn-Based Combat"
+  - "Story Rich"
+  - "Sexual Content"
+  - "CRPG"
+  - "Fantasy"
+  - "Adventure"
+  - "Romance"
+  - "Online Co-Op"
+  - "Multiplayer"
 ---
 
 ## طريقة التثبيت

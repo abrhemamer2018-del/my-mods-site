@@ -29,6 +29,19 @@ changelog:
     notes:
       - الإصدار  الثاني
 addedAt: 2026-09-30T16:28:46+03:00
+tags:
+  - "Sandbox"
+  - "Building"
+  - "Capitalism"
+  - "Medieval"
+  - "Crafting"
+  - "Artificial Intelligence"
+  - "Automation"
+  - "Agriculture"
+  - "Pixel Graphics"
+  - "Casual"
+  - "2.5D"
+  - "Dark Humor"
 ---
 
 ## طريقة التثبيت

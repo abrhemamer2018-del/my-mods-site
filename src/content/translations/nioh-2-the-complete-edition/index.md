@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-08
     notes:
       - الإصدار الأول
+tags:
+  - "Action"
+  - "RPG"
+  - "Character Customization"
+  - "Souls-like"
+  - "Difficult"
+  - "Co-op"
+  - "Multiplayer"
+  - "JRPG"
+  - "Dark Fantasy"
+  - "Fantasy"
+  - "Hack and Slash"
+  - "Historical"
 ---
 
 ## طريقة التثبيت

@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-10
     notes:
       - الإصدار الأول
+tags:
+  - "Life Sim"
+  - "Character Customization"
+  - "Simulation"
+  - "Realistic"
+  - "Singleplayer"
+  - "Building"
+  - "Family Friendly"
+  - "Romance"
+  - "Sandbox"
+  - "Sexual Content"
+  - "Dating Sim"
+  - "Immersive Sim"
 ---
 
 ## طريقة التثبيت

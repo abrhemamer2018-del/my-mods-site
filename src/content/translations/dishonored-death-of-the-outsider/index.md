@@ -28,6 +28,19 @@ changelog:
     date: 2026-10-12
     notes:
       - الإصدار الأول
+tags:
+  - "Stealth"
+  - "Action"
+  - "First-Person"
+  - "Assassins"
+  - "Female Protagonist"
+  - "Singleplayer"
+  - "Steampunk"
+  - "Atmospheric"
+  - "Story Rich"
+  - "Violent"
+  - "Magic"
+  - "Immersive Sim"
 ---
 
 ## طريقة التثبيت

@@ -22,6 +22,7 @@ const translations = defineCollection({
       addedAt: z.coerce.date().optional(), // وقت الإضافة الدقيق (يُضبط تلقائياً) لترتيب آخر الإضافات
       gameRelease: z.coerce.date().optional(), // تاريخ صدور اللعبة نفسها على PC (لترتيب "جديد التعريبات")
       updatedDate: z.coerce.date().optional(),
+      tags: z.array(z.string()).default([]), // وسوم Steam (تُجلب تلقائياً عند الحفظ) لاقتراح تعريبات مشابهة
       version: z.string().default('1.0'),
       gameVersion: z.string().optional(), // نسخة اللعبة المدعومة
       featured: z.boolean().default(false), // يظهر في البانر الكبير بالرئيسية

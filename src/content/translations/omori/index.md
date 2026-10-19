@@ -31,6 +31,19 @@ changelog:
     date: 2026-10-08
     notes:
       - الإصدار الأول
+tags:
+  - "Psychological Horror"
+  - "Story Rich"
+  - "Indie"
+  - "Pixel Graphics"
+  - "Great Soundtrack"
+  - "RPG"
+  - "Multiple Endings"
+  - "Hand-drawn"
+  - "Horror"
+  - "2D"
+  - "Colorful"
+  - "Turn-Based"
 ---
 
 ## طريقة التثبيت

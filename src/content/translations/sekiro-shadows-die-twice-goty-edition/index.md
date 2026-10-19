@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-06
     notes:
       - الإصدار الأول
+tags:
+  - "Souls-like"
+  - "Difficult"
+  - "Action"
+  - "Singleplayer"
+  - "Ninja"
+  - "Stealth"
+  - "Adventure"
+  - "Third Person"
+  - "Open World"
+  - "Story Rich"
+  - "Violent"
+  - "Assassins"
 ---
 
 ## طريقة التثبيت

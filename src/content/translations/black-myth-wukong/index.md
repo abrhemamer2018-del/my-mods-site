@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-05
     notes:
       - الإصدار الأول
+tags:
+  - "Mythology"
+  - "Action RPG"
+  - "Action"
+  - "Souls-like"
+  - "RPG"
+  - "Combat"
+  - "Story Rich"
+  - "Singleplayer"
+  - "Action-Adventure"
+  - "Dark Fantasy"
+  - "Atmospheric"
+  - "Adventure"
 ---
 
 ## طريقة التثبيت

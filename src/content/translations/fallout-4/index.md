@@ -31,6 +31,19 @@ changelog:
     date: 2026-10-10
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "Post-apocalyptic"
+  - "Singleplayer"
+  - "Exploration"
+  - "RPG"
+  - "Adventure"
+  - "Atmospheric"
+  - "Shooter"
+  - "First-Person"
+  - "Story Rich"
+  - "Action"
+  - "FPS"
 ---
 
 ## طريقة التثبيت

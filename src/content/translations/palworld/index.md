@@ -30,6 +30,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Open World"
+  - "Survival"
+  - "Creature Collector"
+  - "Multiplayer"
+  - "Open World Survival Craft"
+  - "Online Co-Op"
+  - "Crafting"
+  - "Indie"
+  - "Co-op"
+  - "Adventure"
+  - "Base Building"
+  - "Sandbox"
 ---
 
 ## طريقة التثبيت

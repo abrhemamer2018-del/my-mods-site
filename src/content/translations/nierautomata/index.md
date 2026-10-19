@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-13
     notes:
       - الإصدار الأول
+tags:
+  - "Hack and Slash"
+  - "RPG"
+  - "Great Soundtrack"
+  - "Story Rich"
+  - "Female Protagonist"
+  - "Action"
+  - "Spectacle fighter"
+  - "Open World"
+  - "JRPG"
+  - "Anime"
+  - "Post-apocalyptic"
+  - "Singleplayer"
 ---
 
 ## طريقة التثبيت

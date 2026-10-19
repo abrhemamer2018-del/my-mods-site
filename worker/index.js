@@ -82,6 +82,36 @@ async function handleApi(request, env, url) {
 async function steamRelease(url) {
   const title = (url.searchParams.get('title') || '').trim().slice(0, 120);
   if (!title) throw httpError(400, 'اكتب اسم اللعبة أولاً');
+  const best = await steamFind(title);
+  if (!best) return { date: null };
+  const det = await fetch(`https://store.steampowered.com/api/appdetails?cc=us&l=en&appids=${best.id}`).then((r) =>
+    r.ok ? r.json() : {},
+  );
+  const raw = det?.[best.id]?.data?.release_date?.date || '';
+  const d = new Date(raw + ' UTC');
+  return { date: isNaN(d) ? null : d.toISOString().slice(0, 10), name: best.name };
+}
+
+/**
+ * وسوم اللاعبين للعبة على Steam (مثل Horror و Souls-like) مرتبة من الأكثر تصويتاً، من صفحة اللعبة في المتجر.
+ * تُستخدم لاقتراح "تعريبات أخرى قد تعجبك" المشابهة في صفحة التعريب
+ */
+async function steamTags(title) {
+  const best = await steamFind(title);
+  if (!best) return [];
+  // الكوكيز تتخطى صفحة تأكيد العمر في ألعاب +18
+  const html = await fetch(`https://store.steampowered.com/app/${best.id}/?l=english&cc=us`, {
+    headers: { Cookie: 'birthtime=0; wants_mature_content=1; lastagecheckage=1-0-1990' },
+  }).then((r) => (r.ok ? r.text() : ''));
+  const tags = [...html.matchAll(/\{"tagid":\d+,"name":"(?:[^"\\]|\\.)*","count":\d+[^}]*\}/g)].map((m) => JSON.parse(m[0]));
+  return tags
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 12)
+    .map((t) => t.name);
+}
+
+/** يبحث في Steam عن اللعبة بالاسم الإنجليزي ويختار أقرب نتيجة → { id, name } أو undefined */
+async function steamFind(title) {
   const norm = (s) => s.toLowerCase().replace(/[™®]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
   // بحث Steam قد لا يجد الاسم الكامل (مثل "Life is Strange - Episode 1")، فنعيد البحث بالجزء الأول من الاسم
   const short = title.split(/\s[-–—:]\s|:\s/)[0].trim();
@@ -93,14 +123,7 @@ async function steamRelease(url) {
     items.push(...(search.items || []).filter((i) => !/demo|soundtrack|dlc|upgrade|season pass/i.test(i.name)));
   }
   const t = norm(title);
-  const best = items.find((i) => norm(i.name) === t) || items.find((i) => norm(i.name).startsWith(t)) || items[0];
-  if (!best) return { date: null };
-  const det = await fetch(`https://store.steampowered.com/api/appdetails?cc=us&l=en&appids=${best.id}`).then((r) =>
-    r.ok ? r.json() : {},
-  );
-  const raw = det?.[best.id]?.data?.release_date?.date || '';
-  const d = new Date(raw + ' UTC');
-  return { date: isNaN(d) ? null : d.toISOString().slice(0, 10), name: best.name };
+  return items.find((i) => norm(i.name) === t) || items.find((i) => norm(i.name).startsWith(t)) || items[0];
 }
 
 async function login(request, env) {
@@ -656,8 +679,22 @@ async function saveEntry(gh, payload) {
   const existing = await gh.raw(path);
   const exists = !!existing;
   if (type === 'translations') {
-    const old = exists ? (await existing.text()).match(/^addedAt:\s*["']?([^"'\r\n]+)/m) : null;
+    const oldText = exists ? await existing.text() : '';
+    const old = oldText.match(/^addedAt:\s*["']?([^"'\r\n]+)/m);
     data.addedAt = old ? old[1].trim() : new Date().toISOString();
+    // وسوم Steam ليست في نموذج اللوحة: نحتفظ بالموجودة، وإن لم توجد نجلبها (فشل الجلب لا يمنع الحفظ)
+    if (!Array.isArray(data.tags) || !data.tags.length) {
+      let oldTags;
+      try {
+        oldTags = parse(oldText.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] || '')?.tags;
+      } catch {}
+      if (Array.isArray(oldTags) && oldTags.length) data.tags = oldTags;
+      else {
+        try {
+          data.tags = await steamTags(data.title);
+        } catch {}
+      }
+    }
   }
   if (payload.isNew && exists) throw httpError(409, 'يوجد عنصر بنفس الرابط (slug) مسبقاً، اختر رابطاً آخر');
   if (!payload.isNew && !exists) throw httpError(404, 'العنصر غير موجود');
@@ -793,6 +830,7 @@ function validate(type, d, images) {
     if (!isDate(d.releaseDate)) return 'تاريخ الإصدار مطلوب';
     if (!optional(d.updatedDate, isDate)) return 'تاريخ آخر تحديث غير صحيح';
     if (!optional(d.gameRelease, isDate)) return 'تاريخ صدور اللعبة غير صحيح';
+    if (!strList(d.tags)) return 'الوسوم غير صحيحة';
     if (!optional(d.version, isStr) || !optional(d.gameVersion, isStr)) return 'رقم الإصدار غير صحيح';
     if (!optional(d.featured, isBool) || !optional(d.draft, isBool)) return 'بيانات غير صحيحة';
     if (!imageOk(d.cover)) return 'صورة الغلاف مطلوبة';

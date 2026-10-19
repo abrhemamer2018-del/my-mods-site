@@ -29,6 +29,19 @@ changelog:
     date: 2026-10-07
     notes:
       - الإصدار الثاني
+tags:
+  - "Survival"
+  - "Open World"
+  - "Multiplayer"
+  - "Co-op"
+  - "Survival Horror"
+  - "Base Building"
+  - "Horror"
+  - "Crafting"
+  - "Building"
+  - "First-Person"
+  - "Exploration"
+  - "Adventure"
 ---
 
 ## طريقة التثبيت
