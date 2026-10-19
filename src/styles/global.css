@@ -1,4 +1,36 @@
 /* ============ ألوان وخطوط الموقع — غيّرها من هنا ============ */
+/* خط بديل يظهر لحظة تحميل Tajawal: خط Arial مكبّراً/مصغّراً ليأخذ النص نفس العرض تماماً،
+   فلا تتغير أسطر الفقرات ولا تهتز الصفحة عند وصول الخط (CLS).
+   النسب مقاسة من ملفات الخطين: العربي في Tajawal أعرض من Arial، والإنجليزي أضيق قليلاً */
+@font-face {
+  font-family: 'Tajawal Fallback';
+  src: local('Arial');
+  font-weight: 100 600;
+  size-adjust: 121%;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+@font-face {
+  font-family: 'Tajawal Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  font-weight: 601 900;
+  size-adjust: 131%;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+@font-face {
+  font-family: 'Tajawal Fallback';
+  src: local('Arial');
+  font-weight: 100 600;
+  size-adjust: 95%;
+  unicode-range: U+0000-05FF;
+}
+@font-face {
+  font-family: 'Tajawal Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  font-weight: 601 900;
+  size-adjust: 92%;
+  unicode-range: U+0000-05FF;
+}
+
 :root {
   --bg: #0b0d17;
   --bg-2: #11142a;
@@ -14,8 +46,8 @@
   --radius: 18px;
   --radius-sm: 10px;
   --container: 1540px;
-  --font: 'Tajawal', system-ui, sans-serif;
-  --font-display: 'Reem Kufi', 'Tajawal', sans-serif;
+  --font: var(--font-tajawal);
+  --font-display: var(--font-reem-kufi), var(--font-tajawal);
   --shadow: 0 10px 30px rgb(0 0 0 / 0.35);
 }
 

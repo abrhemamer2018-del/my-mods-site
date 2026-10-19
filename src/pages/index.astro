@@ -175,6 +175,16 @@ const jsonLd = [
     <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
       {byGame.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
     </div>
+    <script is:inline>
+      // إكمال الصف الأخير فوراً قبل أن يُرسم ما تحته، حتى لا تنزل الصفحة بعد ظهورها (CLS)
+      (() => {
+        const g = document.getElementById('latest-cards');
+        const cols = getComputedStyle(g).gridTemplateColumns.split(' ').length;
+        const hidden = g.querySelectorAll(':scope > [hidden]');
+        const missing = (cols - ((g.children.length - hidden.length) % cols)) % cols;
+        for (let i = 0; i < missing && i < hidden.length; i++) hidden[i].hidden = false;
+      })();
+    </script>
     {
       byGame.length > PAGE_SIZE && (
         <div class="more-wrap" id="more-wrap">
