@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2025-12-08
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvjl6k30.webp
 screenshots:
   - ./shot-mvjl7g1svhn.webp
@@ -24,6 +24,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-22
+    notes:
+      - إصلاح تجمّد المحادثة عند قوائم الاختيار (محادثات المضيفات وغيرها)
+      - تصحيح ترجمة «زر التحديد»
   - version: "1.0"
     date: 2026-10-22
     notes:

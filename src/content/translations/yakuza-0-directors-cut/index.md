@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-08
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvch8826.webp
 screenshots: []
 downloads:
@@ -20,6 +20,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-22
+    notes:
+      - إصلاح تجمّد المحادثة عند قوائم الاختيار (محادثات المضيفات وغيرها)
   - version: "1.0"
     date: 2026-10-17
     notes:
