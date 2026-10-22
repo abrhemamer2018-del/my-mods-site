@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2021-01-28
-version: "1.0"
+version: "2.0"
 cover: ./cover-mv83x8zy.webp
 screenshots:
   - ./shot-mv83ye14542.webp
@@ -25,24 +25,24 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
-  - version: "1.0"
+  - version: "2.0"
     date: 2026-10-14
     notes:
-      - الإصدار الأول
+      - الإصدار الثاني
 addedAt: 2026-10-14T13:03:36.755Z
 tags:
-  - "Action"
-  - "Adventure"
-  - "Beat 'em up"
-  - "Open World"
-  - "Crime"
-  - "RPG"
-  - "Story Rich"
-  - "Third Person"
-  - "Action RPG"
-  - "Comedy"
-  - "Singleplayer"
-  - "Funny"
+  - Action
+  - Adventure
+  - Beat 'em up
+  - Open World
+  - Crime
+  - RPG
+  - Story Rich
+  - Third Person
+  - Action RPG
+  - Comedy
+  - Singleplayer
+  - Funny
 ---
 
 ## طريقة التثبيت
