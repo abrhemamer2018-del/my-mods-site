@@ -8,18 +8,22 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-11
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvchbsql.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Kiwami_Installer.zip
-    size: 7.05 MB
+    size: 6.94 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-22
+    notes:
+      - إصلاح تجمّد المحادثة عند قوائم الاختيار (محادثات المضيفات وغيرها)
   - version: "1.0"
     date: 2026-10-17
     notes:
