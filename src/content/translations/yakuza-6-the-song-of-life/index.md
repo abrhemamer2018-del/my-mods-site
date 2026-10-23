@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2021-03-25
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv83pun9.webp
 screenshots:
   - ./shot-mv83qvyhfhi.webp
@@ -19,7 +19,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza6_Installer.zip
-    size: 60.63 MB
+    size: 60.67 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -29,6 +29,12 @@ changelog:
     date: 2026-10-14
     notes:
       - الإصدار الأول
+  - version: "1.1"
+    date: 2026-10-23
+    notes:
+      - "الدردشة المباشرة: كلام الفتاة يظهر الآن مترجماً أسفل الفيديو كما في النسخة الإنجليزية"
+      - "الدردشة المباشرة: الرد الذي يكتبه كيريو صار بحروف عربية وبترتيب الكتابة الصحيح"
+      - "الدردشة المباشرة: اسم المتكلم على يمين السطر، واختصار الرسائل الطويلة لتظهر كاملة"
 addedAt: 2026-10-14T13:03:58.774Z
 tags:
   - "Action"
