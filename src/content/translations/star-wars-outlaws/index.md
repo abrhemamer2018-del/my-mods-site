@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-01
 addedAt: 2026-10-01T06:39:08+03:00
 gameRelease: 2024-11-21
-version: "2.0"
+version: "2.1"
 cover: ./cover-mv4pnsqh.webp
 screenshots:
   - ./shot-mv4pdqg4j06.webp
@@ -25,6 +25,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "2.1"
+    date: 2026-10-23
+    notes:
+      - إصلاح تجمّد اللعبة عند تصفح شجرة المهارات وعند ظهور بعض نصوص المهام والعقود على الشاشة
+      - تصحيح التنسيق في عدد من أوصاف المهارات
   - version: "2.0"
     date: 2026-10-01
     notes:

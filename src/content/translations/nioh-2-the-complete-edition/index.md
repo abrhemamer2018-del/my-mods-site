@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-08
 addedAt: 2026-10-08T21:01:46+03:00
 gameRelease: 2021-02-05
-version: "1.0"
+version: "1.1"
 cover: ./cover-muzucj2w.webp
 screenshots:
   - ./shot-muzud3fnxm7.webp
@@ -20,12 +20,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Nioh2_Installer.zip
-    size: 30.40 MB
+    size: 30.41 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-23
+    notes:
+      - إصلاح انهيار اللعبة عند تحميل التخزينة أو الجلوس عند الضريح (رسالة تعبئة المخزون من المستودع)
+      - إصلاح علامات النسبة المئوية في أوصاف المهارات
   - version: "1.0"
     date: 2026-10-08
     notes:
