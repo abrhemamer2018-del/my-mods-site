@@ -11,11 +11,11 @@ gameRelease: 2026-10-22
 version: "1.0"
 cover: ./cover-mvkt8xvp.webp
 screenshots:
-  - ./shot-mvktc8elwx2.webp
-  - ./shot-mvktcmdofwp.webp
-  - ./shot-mvktcyf61um.webp
-  - ./shot-mvktda06fy0.webp
-  - ./shot-mvktdnlnudp.webp
+  - ./shot-mvktyv5o2rd.webp
+  - ./shot-mvktyxb16do.webp
+  - ./shot-mvktz3rd9cb.webp
+  - ./shot-mvktzcjw21i.webp
+  - ./shot-mvktzqvnhr3.webp
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FFRS_Installer.zip
