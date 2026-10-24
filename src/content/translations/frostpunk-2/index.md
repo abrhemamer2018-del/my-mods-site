@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2024-09-20
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvjjx3fs.webp
 screenshots:
   - ./shot-mvjjxtpqh1e.webp
@@ -29,6 +29,11 @@ changelog:
     date: 2026-10-22
     notes:
       - الإصدار الأول
+  - version: "1.1"
+    date: 2026-10-24
+    notes:
+      - "الأداة تعمل الآن مع كل إصدارات اللعبة (لم تعد تظهر رسالة: نسخة اللعبة تغيّرت منذ بناء هذا التعريب)"
+      - "إن حدّث Steam اللعبة لاحقاً، افتح الأداة واضغط «تثبيت» مرة أخرى"
 addedAt: 2026-10-22T13:52:40.024Z
 tags:
   - City Builder
