@@ -8,13 +8,13 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2020-05-19
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvjla4pe.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Mafia3DE_Installer.zip
-    size: 15.44 MB
+    size: 3.50 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -24,6 +24,13 @@ changelog:
     date: 2026-10-22
     notes:
       - الإصدار الأول
+  - version: "1.1"
+    date: 2026-10-24
+    notes:
+      - "الأداة تعمل الآن مع كل إصدارات اللعبة، ومنها آخر تحديث من Steam (لم تعد تظهر رسالة: نسخة اللعبة تغيّرت)"
+      - "التعريب يُطبَّق على ملفات اللعبة الموجودة عندك بدل استبدالها، فلا يلغي تحديثات اللعبة"
+      - "إن حدّث Steam اللعبة لاحقاً، افتح الأداة واضغط «تثبيت» مرة أخرى"
+      - "حجم التحميل صار 3.5 ميغابايت بدل 15"
 addedAt: 2026-10-22T13:53:40.238Z
 tags:
   - Crime
