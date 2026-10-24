@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-16
 gameRelease: 2022-10-20
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvb1o5up.webp
 screenshots:
   - ./shot-mvb1pfap4ir.webp
@@ -18,7 +18,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_P5R_Installer.zip
-    size: 50.02 MB
+    size: 49.10 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -28,6 +28,12 @@ changelog:
     date: 2026-10-16
     notes:
       - الإصدار الأول
+  - version: "1.1"
+    date: 2026-10-24
+    notes:
+      - "الأداة تعمل الآن مع كل نسخ اللعبة، ومنها النسخ غير Steam والإصدارات الأقدم مثل 1.03B (لم تعد تظهر رسالة: نسخة اللعبة لا تطابق هذا التعريب)"
+      - "التعريب يُطبَّق على ملف EN.CPK الموجود عندك بدل نسخة محددة منه، ونتيجته في نسخة Steam مطابقة للإصدار 1.0 تماماً"
+      - "إن لم تجد الأداة مجلد اللعبة تلقائياً، اضغط «اختيار يدوي» وحدد المجلد الذي فيه P5R.exe"
 addedAt: 2026-10-16T15:17:45.532Z
 tags:
   - "JRPG"
