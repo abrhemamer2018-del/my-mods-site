@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2025-12-08
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvjl6k30.webp
 screenshots:
   - ./shot-mvjl7g1svhn.webp
@@ -18,12 +18,19 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_Installer.zip
-    size: 68.83 MB
+    size: 64.90 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-24
+    notes:
+      - تعريب أكثر من 1,200 جملة صوتية في الشارع كانت بالإنجليزية (مثل كلام المارة عند دفعهم وكلام المتحرشين والمبتزين)
+      - تعريب جمل مشاهد الحركات الخاصة (Heat Action) والقتال التي كانت بالإنجليزية، مثل كلام نيشيتاني في الفصل 11
+      - تعريب مشاهد الذكريات المرسومة (الاسم فوق الشريط والكلام تحته)
+      - إصلاح تداخل السطور في مشهد الذكريات في الفصل 16
   - version: "1.1"
     date: 2026-10-22
     notes:
