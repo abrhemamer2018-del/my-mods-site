@@ -18,7 +18,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_Installer.zip
-    size: 50.95 MB
+    size: 68.83 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
