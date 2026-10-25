@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2025-12-08
-version: "1.2"
+version: "1.3"
 cover: ./cover-mvjl6k30.webp
 screenshots:
   - ./shot-mvjl7g1svhn.webp
@@ -18,12 +18,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_Installer.zip
-    size: 64.90 MB
+    size: 72.60 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-10-25
+    notes:
+      - تعريب بطاقات النهاية بعد شارة الختام (مصير شخصيات القصة) التي كانت بالإنجليزية
+      - "أداة التثبيت: «اختيار يدوي» صار يفتح نافذة لاختيار ملف تشغيل اللعبة بدل نافذة المجلدات، والبحث التلقائي عن اللعبة صار أوسع"
   - version: "1.2"
     date: 2026-10-24
     notes:
