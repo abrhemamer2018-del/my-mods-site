@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-10
 addedAt: 2026-10-10T06:02:24+03:00
 gameRelease: 2020-04-14
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv1t689q.webp
 screenshots:
   - ./shot-mv1t3ledgf4.webp
@@ -18,12 +18,18 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Fallout76_Installer.zip
-    size: 8.96 MB
+    size: 9.79 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-25
+    notes:
+      - إصلاح رسالة "نسخة اللعبة لا تطابق هذا التعريب" عند التثبيت
+      - التعريب يعمل الآن على كل إصدارات اللعبة، وبعد كل تحديث للعبة شغّل أداة التثبيت مرة أخرى
+      - الجمل الجديدة التي تضيفها تحديثات اللعبة تبقى بالإنجليزية
   - version: "1.0"
     date: 2026-10-10
     notes:
