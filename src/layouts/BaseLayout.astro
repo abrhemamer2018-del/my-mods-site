@@ -151,6 +151,8 @@ const LT_ESCAPED = '\\' + 'u003c';
     place-items: center;
     cursor: pointer;
     box-shadow: var(--shadow);
+    /* بحجمه الأصلي رغم تصغير الموقع على الشاشات الكبيرة، مثل زر "ادعمنا" */
+    zoom: calc(1 / var(--zoom));
     transition:
       background 0.2s,
       border-color 0.2s,

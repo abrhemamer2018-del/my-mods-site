@@ -560,8 +560,8 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
 
   /* عارض الصور داخل الموقع */
   .lightbox {
-    width: 100vw;
-    height: 100dvh;
+    width: calc(100vw / var(--zoom));
+    height: calc(100dvh / var(--zoom));
     max-width: none;
     max-height: none;
     margin: 0;
@@ -579,8 +579,8 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
     backdrop-filter: blur(6px);
   }
   .lb-img {
-    max-width: calc(100vw - 160px);
-    max-height: calc(100dvh - 120px);
+    max-width: calc(100vw / var(--zoom) - 160px);
+    max-height: calc(100dvh / var(--zoom) - 120px);
     border-radius: 12px;
     box-shadow: 0 30px 80px rgb(0 0 0 / 0.6);
     user-select: none;

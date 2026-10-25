@@ -28,6 +28,8 @@ import Icon from './Icon.astro';
     font-weight: 800;
     box-shadow: 0 8px 24px rgb(25 195 214 / 0.35);
     transition: transform 0.2s;
+    /* يلغي تصغير الموقع على الشاشات الكبيرة (--zoom في global.css) فيبقى الزر بحجمه الأصلي */
+    zoom: calc(1 / var(--zoom));
   }
   .donate:hover {
     transform: translateY(-2px) scale(1.03);

@@ -49,6 +49,19 @@
   --font: var(--font-tajawal);
   --font-display: var(--font-reem-kufi), var(--font-tajawal);
   --shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+  --zoom: 1; /* تصغير الموقع (انظر أدناه) */
+}
+
+/* الشاشات الكبيرة: الموقع كله يظهر مصغّراً 90% (كأن المتصفح على تكبير 90%)،
+   فيتسع في أول شاشة محتوى أكثر. وحدات vh/vw تصغر أيضاً مع التصغير،
+   فما يجب أن يملأ الشاشة يُقسم على var(--zoom) */
+@media (min-width: 1400px) {
+  :root {
+    --zoom: 0.9;
+  }
+  html {
+    zoom: 0.9;
+  }
 }
 
 *,
@@ -121,7 +134,7 @@ body {
   font-size: 17px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  min-height: calc(100vh / var(--zoom));
   display: flex;
   flex-direction: column;
 }
