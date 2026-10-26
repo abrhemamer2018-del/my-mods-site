@@ -1,6 +1,10 @@
 ---
 title: Devil May Cry 5
 titleAr: ديفل ماي كراي 5
+aliases:
+  - DMC 5
+  - ديفل ماي كراي
+  - ديفيل ماي كراي 5
 summary: يعود "صائد الشياطين" الأبرز بأسلوبٍ مميز، في اللعبة التي طالما ترقبها عشاق ألعاب الحركة.
 category: modern
 platforms:

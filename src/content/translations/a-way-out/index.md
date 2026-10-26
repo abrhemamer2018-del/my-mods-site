@@ -1,6 +1,9 @@
 ---
 title: A Way Out
 titleAr: طريق للخروج
+aliases:
+  - اي واي اوت
+  - Away Out
 summary: لعبة "A Way Out" هي مغامرة تعاونية بالكامل، حيث تلعب فيها دور أحد سجينين ينفذان عملية هروب جريئة من السجن.
 category: modern
 platforms:

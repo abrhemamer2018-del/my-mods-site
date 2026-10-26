@@ -71,7 +71,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: `تعريب ${d.title} إلى العربية`,
-    alternateName: `${d.title} Arabic Translation`,
+    alternateName: [`${d.title} Arabic Translation`, ...d.aliases.map((a) => `تعريب ${a}`)],
     description: seoDescription,
     url: pageUrl,
     image: new URL(og.src, Astro.site).href,
@@ -84,7 +84,12 @@ const jsonLd = [
     ...(d.downloads[0]?.size ? { fileSize: d.downloads[0].size } : {}),
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
     ...(d.team[0] ? { author: { '@type': 'Person', name: d.team[0].name } } : {}),
-    about: { '@type': 'VideoGame', name: d.title, gamePlatform: d.platforms },
+    about: {
+      '@type': 'VideoGame',
+      name: d.title,
+      alternateName: [...(hasArabicName ? [d.titleAr] : []), ...d.aliases],
+      gamePlatform: d.platforms,
+    },
   },
   {
     '@context': 'https://schema.org',
@@ -122,6 +127,7 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
           <span class="game-title" dir="ltr">{d.title}</span>
         </h1>
         <p class="ar">{d.titleAr}</p>
+        {d.aliases.length > 0 && <p class="aliases">يُعرف أيضاً باسم: {d.aliases.join('، ')}</p>}
         <p class="summary">{d.summary}</p>
         <p class="en-line" lang="en" dir="ltr">Arabic translation mod for {d.title} — free download for PC.</p>
         {
@@ -456,6 +462,11 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
     color: var(--accent);
     font-size: 1.3rem;
     margin: 0;
+  }
+  .aliases {
+    color: #aeb3cf;
+    font-size: 0.9rem;
+    margin: 2px 0 0;
   }
   .summary {
     color: #d6d9ee;

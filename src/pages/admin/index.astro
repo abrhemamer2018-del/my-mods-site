@@ -87,6 +87,10 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
               <label>اسم اللعبة الأصلي (إنجليزي) * <input name="title" dir="ltr" required /></label>
               <label>اسم اللعبة بالعربية * <input name="titleAr" required /></label>
             </div>
+            <label
+              >أسماء أخرى يبحث بها الناس (افصل بفاصلة) <small class="muted">(اختياري، مثل: رزدنت ايفل 4، RE4)</small>
+              <input name="aliases" />
+            </label>
             <label>
               رابط الصفحة (slug) *
               <input name="slug" dir="ltr" required pattern="[a-z0-9]+(-[a-z0-9]+)*" />
@@ -1285,6 +1289,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     if (type === 'translations') {
       set('title', d.title);
       set('titleAr', d.titleAr);
+      set('aliases', (d.aliases || []).join('، '));
       set('summary', d.summary);
       set('category', d.category || 'modern');
       set('status', d.status || 'complete');
@@ -1365,6 +1370,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
       data = {
         title: v('title'),
         titleAr: v('titleAr'),
+        aliases: list(v('aliases')).length ? list(v('aliases')) : undefined,
         summary: v('summary'),
         category: v('category'),
         platforms: list(v('platforms')).length ? list(v('platforms')) : ['PC'],

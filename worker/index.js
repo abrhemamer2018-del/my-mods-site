@@ -822,6 +822,7 @@ function validate(type, d, images) {
   if (type === 'translations') {
     if (!isStr(d.title)) return 'اسم اللعبة الأصلي مطلوب';
     if (!isStr(d.titleAr)) return 'اسم اللعبة بالعربية مطلوب';
+    if (!strList(d.aliases)) return 'الأسماء الأخرى غير صحيحة';
     if (!isStr(d.summary)) return 'الوصف القصير مطلوب';
     if (!['modern', 'retro', 'vn', 'mod'].includes(d.category)) return 'التصنيف غير صحيح';
     if (!optional(d.status, (v) => ['complete', 'beta', 'in-progress'].includes(v))) return 'الحالة غير صحيحة';

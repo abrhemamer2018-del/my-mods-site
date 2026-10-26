@@ -1,6 +1,8 @@
 ---
 title: Split Fiction
 titleAr: الخيال المنقسم
+aliases:
+  - سبليت فكشن
 summary: استمتع بلحظات مذهلة بينما تنجذب إلى أعماق العوالم المتعددة للعبة "Split Fiction"، وهي مغامرة تعاونية تتجاوز المألوف وتكسر القواعد التقليدية.
 category: modern
 platforms:

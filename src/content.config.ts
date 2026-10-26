@@ -13,6 +13,7 @@ const translations = defineCollection({
     z.object({
       title: z.string(), // الاسم الأصلي (إنجليزي)
       titleAr: z.string(), // الاسم بالعربية
+      aliases: z.array(z.string()).default([]), // صيغ أخرى للاسم يبحث بها الناس (مثل: رزدنت ايفل 4، RE4)
       summary: z.string(), // وصف قصير يظهر في البطاقات والبانر
       category: z.enum(['modern', 'retro', 'vn', 'mod']),
       platforms: z.array(z.string()).default(['PC']),

@@ -1,6 +1,9 @@
 ---
 title: Hades
 titleAr: هادس
+aliases:
+  - Hades 1
+  - هيدز
 summary: مشروع تعريب لعبة Hades
 category: modern
 platforms:

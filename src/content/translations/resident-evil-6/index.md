@@ -1,6 +1,10 @@
 ---
 title: Resident Evil 6
 titleAr: الشر المقيم 6
+aliases:
+  - رزدنت ايفل 6
+  - ريزدنت ايفل 6
+  - RE6
 summary: تمزج لعبة Resident Evil 6 بين الحركة ورعب البقاء، وتعد بتجربة الرعب الدرامية لعام 2013.
 category: modern
 platforms:

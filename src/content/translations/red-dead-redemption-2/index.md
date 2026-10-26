@@ -1,6 +1,9 @@
 ---
 title: Red Dead Redemption 2
 titleAr: ريد ديد ريدمبشن 2
+aliases:
+  - RDR2
+  - ريد ديد 2
 summary: |-
   إليك ترجمة احترافية وسينمائية تتناسب مع طبيعة النص (وهو ملخص قصة لعبة Red Dead Redemption 2):
 

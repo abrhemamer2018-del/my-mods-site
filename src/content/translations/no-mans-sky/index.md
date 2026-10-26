@@ -1,6 +1,8 @@
 ---
 title: No Man's Sky
 titleAr: نو مانز سكاي
+aliases:
+  - No Mans Sky
 summary: "\"نو مانز سكاي\" (No Man's Sky) هي لعبة تتمحور حول الاستكشاف والبقاء في كون لا نهائي."
 category: modern
 platforms:

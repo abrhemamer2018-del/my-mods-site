@@ -1,6 +1,9 @@
 ---
 title: Life is Strange - Episode 1
 titleAr: لايف إز سترينج - الحلقة الأولى
+aliases:
+  - Life is Strange 1
+  - لايف از سترينج 1
 summary: الحلقة الأولى متاحة الآن مجاناً! Life is Strange هي لعبة مغامرات حلقات حائزة على جوائز وإشادة واسعة من النقاد، تتيح للاعب إعادة لفّ الوقت والتأثير على الماضي والحاضر والمستقبل.
 category: modern
 platforms:

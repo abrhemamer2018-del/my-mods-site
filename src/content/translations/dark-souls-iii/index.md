@@ -1,6 +1,9 @@
 ---
 title: DARK SOULS™ III
 titleAr: دارك سولز 3
+aliases:
+  - Dark Souls 3
+  - دارك سولز
 summary: تواصل لعبة Dark Souls تجاوز الحدود من خلال أحدث إصداراتها الطموحة ضمن سلسلتها التي نالت إشادة النقاد وأرست معايير هذا النوع من الألعاب. جهّز نفسك وعانق الظلام!
 category: modern
 platforms:

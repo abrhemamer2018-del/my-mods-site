@@ -1,6 +1,10 @@
 ---
 title: The Last of Us™ Part I
 titleAr: ذا لاست أوف أس™ الجزء الأول
+aliases:
+  - The Last of Us Part 1
+  - The Last of Us
+  - ذا لاست اوف اس 1
 summary: اكتشف اللعبة الحائزة على الجوائز، والتي ألهمت المسلسل التلفزيوني الذي نال إشادة النقاد. قُد "جول" و"إيلي" عبر أمريكا في عالم ما بعد الكارثة، وصادف حلفاء وأعداء لا يُنسون في ™The Last of Us.
 category: modern
 platforms:
