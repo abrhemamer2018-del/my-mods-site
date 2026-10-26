@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-13
 addedAt: 2026-10-13T08:12:17+03:00
 gameRelease: 2020-10-29
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv6824mz.webp
 screenshots:
   - ./shot-mv683ipvmap.webp
@@ -20,12 +20,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TWD_Definitive_Installer.zip
-    size: 5.54 MB
+    size: 5.59 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-26
+    notes:
+      - "إصلاح ترتيب الأسطر في خيارات الحوار (خصوصاً الموسم الأول): كانت نهاية الجملة تظهر قبل بدايتها"
+      - "تحديث أداة التثبيت إلى أحدث نسخة"
   - version: "1.1"
     date: 2026-10-23
     notes:
