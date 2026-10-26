@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-26
 gameRelease: 2026-10-23
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-mvp1iycn.webp
 screenshots:
   - ./shot-mvp1kmevtpp.webp
@@ -25,6 +25,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-10-26
+    notes:
+      - إصلاح تحذير مضاد الفيروسات (Windows Defender) عند تحميل أداة التثبيت
   - version: "1.0"
     date: 2026-10-26
     notes:
