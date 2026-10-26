@@ -48,6 +48,35 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
           <button class="tab" data-type="articles">المقالات والدروس</button>
           <button class="tab" data-type="pinned">📌 التعريبات المثبتة</button>
           <button class="tab" data-type="hero">🎞️ البانر الرئيسي</button>
+          <button class="tab" data-type="soon">⏳ قريباً</button>
+        </div>
+        <div id="soon-panel" hidden>
+          <div class="list-head">
+            <h1>الألعاب القادمة (قريباً)</h1>
+            <button id="save-soon" class="btn btn-primary">💾 حفظ ونشر</button>
+          </div>
+          <p class="muted hint">
+            ألعاب ستصدر وستعرّبها فور صدورها. تظهر في نافذة "قريباً" بالرئيسية مع عدّاد تنازلي، الأقرب صدوراً أولاً،
+            وتختفي وحدها بعد 14 يوماً من صدورها. لا تنسَ الضغط على "حفظ ونشر" بعد الإضافة أو الحذف.
+          </p>
+          <fieldset class="panel soon-add">
+            <legend>إضافة لعبة</legend>
+            <div class="soon-search">
+              <input id="soon-q" dir="ltr" placeholder="اسم اللعبة بالإنجليزي أو رابطها في Steam" />
+              <button type="button" id="soon-find" class="btn">🔍 بحث في Steam</button>
+            </div>
+            <div id="soon-found" class="soon-found" hidden>
+              <img id="soon-img" alt="" />
+              <div class="soon-fields">
+                <label>الاسم الإنجليزي <input id="soon-title" dir="ltr" /></label>
+                <label>الاسم بالعربية <small class="muted">(اختياري)</small> <input id="soon-title-ar" /></label>
+                <label>تاريخ الصدور <input id="soon-date" type="date" /></label>
+                <button type="button" id="soon-add" class="btn btn-primary">+ إضافة للقائمة</button>
+              </div>
+            </div>
+          </fieldset>
+          <h2 class="pin-sub">في القائمة الآن <span class="muted" id="soon-count"></span></h2>
+          <ul id="soon-list" class="entries"></ul>
         </div>
         <div id="pinned-panel" hidden>
           <div class="list-head">
@@ -393,6 +422,53 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   /* نافذة التعريبات المثبتة: تخفي محتوى قائمة التعريبات العادية */
   #view-list.pin-mode > :not(.tabs):not(#pinned-panel) {
     display: none !important;
+  }
+  #view-list.soon-mode > :not(.tabs):not(#soon-panel) {
+    display: none !important;
+  }
+  .soon-add {
+    margin-top: 18px;
+  }
+  .soon-search {
+    display: flex;
+    gap: 10px;
+  }
+  .soon-search input {
+    flex: 1;
+  }
+  .soon-found {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 18px;
+    margin-top: 16px;
+  }
+  .soon-found img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .soon-thumb {
+    width: 120px;
+    height: 56px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .soon-when {
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgb(245 158 11 / 0.15);
+    color: #fbbf24;
+    font-size: 0.8rem;
+  }
+  .soon-when.out {
+    background: rgb(255 255 255 / 0.06);
+    color: var(--muted);
+  }
+  @media (max-width: 700px) {
+    .soon-found {
+      grid-template-columns: 1fr;
+    }
   }
   .pin-sub {
     font-size: 1.15rem;
@@ -784,6 +860,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     tab.addEventListener('click', () => {
       $$('.tab').forEach((t) => t.classList.toggle('active', t === tab));
       if (tab.dataset.type === 'pinned' || tab.dataset.type === 'hero') return loadPinned(tab.dataset.type);
+      if (tab.dataset.type === 'soon') return loadSoon();
       currentType = tab.dataset.type as Type;
       loadList();
     }),
@@ -873,6 +950,8 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
   function setPinMode(on: boolean) {
     $('#view-list').classList.toggle('pin-mode', on);
     $('#pinned-panel').hidden = !on;
+    $('#view-list').classList.remove('soon-mode');
+    $('#soon-panel').hidden = true;
   }
 
   async function loadPinned(which: HomeList = 'pinned') {
@@ -954,6 +1033,106 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     try {
       await api(homeList, { method: 'POST', body: JSON.stringify({ slugs: pinned }) });
       toast(HOME_LISTS[homeList].saved);
+    } catch (ex) {
+      toast((ex as Error).message, true);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // ------------------------------------------------ قريباً: ألعاب ستصدر (src/data/soon.json)
+  type SoonGame = { title: string; titleAr: string; date: string; image: string; url: string };
+  const SOON_MAX = 12;
+  let soon: SoonGame[] = [];
+  // بيانات آخر لعبة وُجدت في Steam (الصورة والرابط لا يُكتبان يدوياً)
+  let soonFound: { image: string; url: string } | null = null;
+
+  async function loadSoon() {
+    show('loading');
+    try {
+      soon = ((await api('soon')) as { games: SoonGame[] }).games;
+      renderSoon();
+      setPinMode(false);
+      $('#view-list').classList.add('soon-mode');
+      $('#soon-panel').hidden = false;
+      show('list');
+    } catch (ex) {
+      if (!$('#view-login').hidden) return;
+      show('list');
+      toast((ex as Error).message, true);
+    }
+  }
+
+  function renderSoon() {
+    soon.sort((a, b) => a.date.localeCompare(b.date));
+    $('#soon-count').textContent = `(${soon.length} من ${SOON_MAX})`;
+    const list = $('#soon-list');
+    list.innerHTML = soon.length ? '' : '<li class="muted">لا توجد ألعاب قادمة. ابحث عن لعبة بالأعلى وأضفها.</li>';
+    const today = new Date().toISOString().slice(0, 10);
+    soon.forEach((g, i) => {
+      const days = Math.round((new Date(g.date).getTime() - new Date(today).getTime()) / 86400000);
+      const when = days > 0 ? `تصدر بعد ${days} يوم` : days === 0 ? 'تصدر اليوم' : `صدرت قبل ${-days} يوم`;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <img class="soon-thumb" src="${esc(g.image)}" alt="" />
+        <div class="name"><strong dir="ltr">${esc(g.title)}</strong><small>${esc(g.titleAr || '—')} · ${esc(g.date)}</small></div>
+        <span class="soon-when ${days < 0 ? 'out' : ''}">${when}</span>
+        <div class="actions"><button class="btn small danger">حذف</button></div>`;
+      $('.danger', li).addEventListener('click', () => {
+        soon.splice(i, 1);
+        renderSoon();
+      });
+      list.appendChild(li);
+    });
+  }
+
+  async function findSoon() {
+    const q = $<HTMLInputElement>('#soon-q').value.trim();
+    if (!q) return toast('اكتب اسم اللعبة أو رابطها في Steam', true);
+    const btn = $<HTMLButtonElement>('#soon-find');
+    btn.disabled = true;
+    try {
+      const g = (await api('steam-game?q=' + encodeURIComponent(q))) as { title: string; date: string | null; image: string; url: string };
+      soonFound = { image: g.image, url: g.url };
+      $<HTMLImageElement>('#soon-img').src = g.image;
+      $<HTMLInputElement>('#soon-title').value = g.title;
+      $<HTMLInputElement>('#soon-title-ar').value = '';
+      $<HTMLInputElement>('#soon-date').value = g.date || '';
+      $('#soon-found').hidden = false;
+      if (!g.date) toast('Steam لا يذكر تاريخاً محدداً للصدور، اكتبه يدوياً', true);
+    } catch (ex) {
+      toast((ex as Error).message, true);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+  $('#soon-find').addEventListener('click', findSoon);
+  $('#soon-q').addEventListener('keydown', (e) => {
+    if ((e as KeyboardEvent).key === 'Enter') findSoon();
+  });
+
+  $('#soon-add').addEventListener('click', () => {
+    if (!soonFound) return;
+    const title = $<HTMLInputElement>('#soon-title').value.trim();
+    const date = $<HTMLInputElement>('#soon-date').value;
+    if (!title) return toast('اكتب اسم اللعبة', true);
+    if (!date) return toast('اختر تاريخ الصدور', true);
+    if (soon.length >= SOON_MAX) return toast(`الحد الأقصى ${SOON_MAX} لعبة`, true);
+    if (soon.some((g) => g.url === soonFound!.url)) return toast('هذه اللعبة موجودة في القائمة', true);
+    soon.push({ title, titleAr: $<HTMLInputElement>('#soon-title-ar').value.trim(), date, ...soonFound });
+    soonFound = null;
+    $('#soon-found').hidden = true;
+    $<HTMLInputElement>('#soon-q').value = '';
+    renderSoon();
+    toast('أُضيفت للقائمة. اضغط "حفظ ونشر" حتى تظهر في الموقع.');
+  });
+
+  $('#save-soon').addEventListener('click', async () => {
+    const btn = $<HTMLButtonElement>('#save-soon');
+    btn.disabled = true;
+    try {
+      await api('soon', { method: 'POST', body: JSON.stringify({ games: soon }) });
+      toast('✅ تم الحفظ! ستتغير نافذة "قريباً" في الرئيسية خلال دقيقة أو دقيقتين.');
     } catch (ex) {
       toast((ex as Error).message, true);
     } finally {

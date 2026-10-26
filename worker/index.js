@@ -70,6 +70,9 @@ async function handleApi(request, env, url) {
   if (route === 'steam-release' && method === 'GET') return json(await steamRelease(url));
   if (HOME_LISTS[route] && method === 'GET') return json(await readHomeList(gh, HOME_LISTS[route]));
   if (HOME_LISTS[route] && method === 'POST') return json(await saveHomeList(gh, HOME_LISTS[route], await request.json()));
+  if (route === 'soon' && method === 'GET') return json(await readSoon(gh));
+  if (route === 'soon' && method === 'POST') return json(await saveSoon(gh, await request.json()));
+  if (route === 'steam-game' && method === 'GET') return json(await steamGame(url));
   if (route === 'discord' && method === 'POST') return json(await announceToDiscord(gh, env, await request.json()));
 
   throw httpError(404, 'غير موجود');
@@ -431,6 +434,67 @@ async function saveHomeList(gh, cfg, payload) {
   const text = JSON.stringify({ slugs }, null, 2) + '\n';
   const sha = await gh.commit(`تحديث ${cfg.label}`, [{ path: cfg.path, text }]);
   return { ok: true, sha };
+}
+
+// ------------------------------------------------------------
+//  قريباً: ألعاب ستصدر ونعرّبها فور صدورها (نافذة "قريباً" في الرئيسية)
+//  src/data/soon.json بصيغة { "games": [{ title, titleAr, date, image, url }] }
+// ------------------------------------------------------------
+const SOON_PATH = 'src/data/soon.json';
+const SOON_MAX = 12;
+
+async function readSoon(gh) {
+  const res = await gh.raw(SOON_PATH);
+  if (!res) return { games: [] };
+  try {
+    const data = JSON.parse(await res.text());
+    return { games: Array.isArray(data.games) ? data.games : [] };
+  } catch {
+    return { games: [] };
+  }
+}
+
+async function saveSoon(gh, payload) {
+  const games = Array.isArray(payload.games) ? payload.games : null;
+  if (!games) throw httpError(400, 'بيانات ناقصة');
+  if (games.length > SOON_MAX) throw httpError(400, `الحد الأقصى ${SOON_MAX} لعبة`);
+  const clean = games.map((g) => {
+    const title = String(g.title || '').trim().slice(0, 120);
+    const titleAr = String(g.titleAr || '').trim().slice(0, 120);
+    const date = String(g.date || '');
+    const image = String(g.image || '');
+    const url = String(g.url || '');
+    if (!title) throw httpError(400, 'لعبة بدون اسم');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || isNaN(new Date(date))) throw httpError(400, `تاريخ صدور غير صحيح: ${title}`);
+    // الصورة والرابط من Steam فقط، حتى لا يُعرض في الرئيسية شيء من موقع آخر
+    if (!/^https:\/\/[a-z0-9.-]+\.(steamstatic|steampowered)\.com\//.test(image)) throw httpError(400, `صورة غير صحيحة: ${title}`);
+    if (!/^https:\/\/store\.steampowered\.com\/app\/\d+/.test(url)) throw httpError(400, `رابط Steam غير صحيح: ${title}`);
+    return { title, titleAr, date, image, url };
+  });
+  clean.sort((a, b) => a.date.localeCompare(b.date));
+  const text = JSON.stringify({ games: clean }, null, 2) + '\n';
+  const sha = await gh.commit('تحديث قائمة الألعاب القادمة (قريباً)', [{ path: SOON_PATH, text }]);
+  return { ok: true, sha };
+}
+
+/** بيانات لعبة من Steam بالاسم الإنجليزي أو برابطها في المتجر → { title, date, image, url } */
+async function steamGame(url) {
+  const q = (url.searchParams.get('q') || '').trim().slice(0, 200);
+  if (!q) throw httpError(400, 'اكتب اسم اللعبة أو رابطها في Steam');
+  const id = q.match(/store\.steampowered\.com\/app\/(\d+)/)?.[1] || (/^\d+$/.test(q) ? q : (await steamFind(q))?.id);
+  if (!id) throw httpError(404, 'لم أجد اللعبة في Steam');
+  const det = await fetch(`https://store.steampowered.com/api/appdetails?cc=us&l=en&appids=${id}`).then((r) =>
+    r.ok ? r.json() : {},
+  );
+  const d = det?.[id]?.data;
+  if (!d) throw httpError(404, 'لم أجد اللعبة في Steam');
+  const when = new Date((d.release_date?.date || '') + ' UTC');
+  return {
+    title: d.name,
+    date: isNaN(when) ? null : when.toISOString().slice(0, 10),
+    image: d.header_image,
+    url: `https://store.steampowered.com/app/${id}/`,
+  };
 }
 
 // ------------------------------------------------------------
