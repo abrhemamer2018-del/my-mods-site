@@ -564,10 +564,12 @@ const jsonLd = [
   @media (min-width: 761px) {
     :global(.hx .hx-media) {
       justify-self: end;
+      /* الحافة اليسرى للصورة على خط سهم الصور المصغّرة (بعد العدّاد "01 / 10")، بنفس مقاسها */
+      margin-inline-end: 74px;
     }
     /* الوصف أعرض بنفس مقدار العرض الجديد، فتبقى المسافة بين النص والصورة كما كانت */
     :global(.hx .hx-sum) {
-      max-width: 68ch;
+      max-width: 60ch;
     }
     /* الصور المصغّرة تتمدد قليلاً لتملأ العرض الجديد */
     :global(.hx .hx-thumbs) {
