@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-20
 gameRelease: 2013-05-20
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvgj1wcp.webp
 screenshots:
   - ./shot-mvgj3amxglx.webp
@@ -25,6 +25,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-26
+    notes:
+      - "أداة التثبيت تعمل الآن مع النسخ غير نسخة Steam: صارت تفحص ملفات نصوص اللعبة نفسها بدل ملف التشغيل rerev.exe، فلم تعد تقول إن النسخة قديمة إذا كانت ملفات اللعبة مطابقة"
+      - "رسالة أوضح إذا كانت ملفات اللعبة فعلاً من إصدار مختلف، مع إمكانية إعادة التثبيت فوق تعريب مثبّت"
   - version: "1.0"
     date: 2026-10-20
     notes:

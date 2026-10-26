@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-07
 gameRelease: 2026-09-15
-version: "1.1"
+version: "1.2"
 cover: ./cover-muxy0jvu.webp
 banner: ./banner-muy0smcm.webp
 screenshots:
@@ -20,12 +20,17 @@ video: https://www.youtube.com/watch?v=DVwnaiiGSeM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Aniimo_Installer.zip
-    size: 99.14 MB
+    size: 99.16 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-26
+    notes:
+      - "متوافق مع آخر تحديث للعبة على Steam: الإصدار السابق كان يُرجع بعض بيانات اللعبة إلى ما قبل التحديث"
+      - "أداة التثبيت ترفض التثبيت على نسخة أحدث من اللعبة لم يُبنَ لها التعريب بعد، حتى لا تتعطل اللعبة"
   - version: "1.1"
     date: 2026-10-07
     notes:
