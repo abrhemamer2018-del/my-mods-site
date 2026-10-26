@@ -214,7 +214,7 @@ async function downloadsCount(env) {
   for (const r of releases) {
     // إصدارات برنامج "تعريبات لايف" ليست تعريبات، فلا تُحسب في عدد تحميلات التعريبات
     if ((r.tag_name || '').startsWith('ta3reebat-live')) continue;
-    for (const a of await releaseAssets(env, repo, r.id)) total += a.download_count || 0;
+    for (const a of await releaseAssets(env, repo, r.id)) total += assetDownloads(a);
   }
 
   const out = new Response(JSON.stringify({ total }), {
@@ -614,6 +614,11 @@ function githubReadHeaders(env) {
     'X-GitHub-Api-Version': '2022-11-28',
     ...(env.GITHUB_TOKEN ? { Authorization: `Bearer ${env.GITHUB_TOKEN}` } : {}),
   };
+}
+
+/** تحميلات ملف: عدّاد GitHub + تحميلات النسخ التي استُبدلت ("prev:123" في وصف الملف، يكتبه Tarib Publisher) */
+function assetDownloads(a) {
+  return (a.download_count || 0) + Number((a.label || '').match(/prev:(\d+)/)?.[1] || 0);
 }
 
 /** كل ملفات Release واحد، صفحة بعد صفحة (100 في كل صفحة) حتى لا نتوقف عند أول 100 ملف */
