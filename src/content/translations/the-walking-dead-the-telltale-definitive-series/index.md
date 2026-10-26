@@ -20,7 +20,7 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TWD_Definitive_Installer.zip
-    size: 5.59 MB
+    size: 5.61 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -29,6 +29,8 @@ changelog:
   - version: "1.2"
     date: 2026-10-26
     notes:
+      - "الترجمة تظهر كاملة دفعة واحدة بدل كتابتها حرفاً حرفاً من نهاية الجملة"
+      - "محاذاة الترجمة لليمين في كل المواسم، وإصلاح خروج أول الجملة عن الشاشة في الموسمين الأول والثاني وميشون"
       - "إصلاح ترتيب الأسطر في خيارات الحوار (خصوصاً الموسم الأول): كانت نهاية الجملة تظهر قبل بدايتها"
       - "تحديث أداة التثبيت إلى أحدث نسخة"
   - version: "1.1"
