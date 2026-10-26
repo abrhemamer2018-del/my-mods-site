@@ -62,6 +62,23 @@ const soonHot = soon.some((g) => {
 });
 const longDate = new Intl.DateTimeFormat('ar', { day: 'numeric', month: 'long', year: 'numeric' });
 const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
+// أزرار تصفية "أحدث الألعاب المعرّبة" بالنوع، من وسوم Steam المحفوظة لكل تعريب
+const CATS = [
+  { id: 'action', label: 'أكشن', tags: ['Action', 'Hack and Slash', 'Shooter', 'FPS', "Beat 'em up"] },
+  { id: 'adventure', label: 'مغامرة', tags: ['Adventure', 'Action-Adventure', 'Exploration'] },
+  { id: 'rpg', label: 'تقمّص أدوار', tags: ['RPG', 'Action RPG', 'JRPG', 'Souls-like', 'CRPG'] },
+  { id: 'horror', label: 'رعب', tags: ['Horror', 'Psychological Horror', 'Survival Horror'] },
+  { id: 'open', label: 'عالم مفتوح', tags: ['Open World', 'Sandbox'] },
+  { id: 'story', label: 'قصصية', tags: ['Story Rich', 'Choices Matter', 'Visual Novel'] },
+  { id: 'survival', label: 'بقاء', tags: ['Survival', 'Crafting', 'Base Building'] },
+  { id: 'coop', label: 'لعب جماعي', tags: ['Co-op', 'Online Co-Op', 'Multiplayer'] },
+  { id: 'sim', label: 'محاكاة وإستراتيجية', tags: ['Simulation', 'Strategy', 'Management', 'City Builder', 'Automation'] },
+];
+const catsOf = (t: (typeof translations)[number]) =>
+  CATS.filter((c) => c.tags.some((tag) => t.data.tags.includes(tag))).map((c) => c.id);
+// يظهر الزر فقط إن كان في النوع 5 ألعاب على الأقل
+const shownCats = CATS.map((c) => ({ ...c, n: byGame.filter((t) => catsOf(t).includes(c.id)).length })).filter((c) => c.n >= 5);
+const dlOf = new Map(await Promise.all(byGame.map(async (t) => [t.id, await downloadsOf(t)] as const)));
 // جديد التعريبات بعرض الصفحة: تظهر أول 30 (6 صفوف من 5)، و"عرض المزيد" يُظهر 30 أخرى عند كل ضغطة
 const PAGE_SIZE = 30;
 
@@ -379,10 +396,24 @@ const jsonLd = [
   <section class="container section latest">
     <div class="section-head">
       <h2>أحدث الألعاب المعرّبة</h2>
-      <a href="/translations/">المزيد ‹</a>
+      <a href="/translations/" class="more-pill">كل التعريبات ‹</a>
     </div>
+    {
+      shownCats.length > 0 && (
+        <div class="cat-chips" role="group" aria-label="تصفية حسب النوع">
+          <button type="button" class="cat on" data-cat="">الكل <span>{byGame.length}</span></button>
+          {shownCats.map((c) => (
+            <button type="button" class="cat" data-cat={c.id}>
+              {c.label} <span>{c.n}</span>
+            </button>
+          ))}
+        </div>
+      )
+    }
     <div class="cards" id="latest-cards" data-page-size={PAGE_SIZE}>
-      {byGame.map((t, i) => <TranslationCard item={t} hidden={i >= PAGE_SIZE} />)}
+      {byGame.map((t, i) => (
+        <TranslationCard item={t} hidden={i >= PAGE_SIZE} downloads={dlOf.get(t.id)} cats={catsOf(t).join('|')} />
+      ))}
     </div>
     <script is:inline>
       // إكمال الصف الأخير فوراً قبل أن يُرسم ما تحته، حتى لا تنزل الصفحة بعد ظهورها (CLS)
@@ -524,6 +555,27 @@ const jsonLd = [
       rgb(21 25 49 / 0.82);
     backdrop-filter: blur(14px);
     box-shadow: 0 14px 40px rgb(0 0 0 / 0.45);
+  }
+  /* الصفحة كلها أعرض بحوالي 1 سم من كل جانب (1540 ← 1624)، فتبقى كل الحواف على خط واحد */
+  :global(:root) {
+    --container: 1624px;
+  }
+  /* صورة البانر بنفس مقاسها القديم، ملتصقة بالحافة اليسرى كما كانت */
+  @media (min-width: 761px) {
+    :global(.hx .hx-media) {
+      justify-self: end;
+    }
+    /* الوصف أعرض بنفس مقدار العرض الجديد، فتبقى المسافة بين النص والصورة كما كانت */
+    :global(.hx .hx-sum) {
+      max-width: 68ch;
+    }
+    /* الصور المصغّرة تتمدد قليلاً لتملأ العرض الجديد */
+    :global(.hx .hx-thumbs) {
+      flex: 1 1 auto;
+    }
+    :global(.hx .hx-thumb) {
+      flex: 1 1 118px;
+    }
   }
   /* نرفع نقاط وأسهم البانر حتى لا يغطيها الشريط، ونُبعد الصورة والنص عنها بنفس المقدار */
   :global(body:has(.stats-wrap) .hero .dots) {
@@ -884,6 +936,12 @@ const jsonLd = [
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 20px;
+  }
+  /* الشاشات الكبيرة: 5 بطاقات في الصف دائماً، حتى لا تصغر البطاقات وتنقطع الأسماء */
+  @media (min-width: 1200px) {
+    .cards {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
   }
 
 
@@ -1258,6 +1316,79 @@ const jsonLd = [
     }
     .articles {
       grid-template-columns: 1fr;
+    }
+  }
+
+  /* "كل التعريبات" بجانب العنوان: زر واضح بدل رابط باهت */
+  .section-head .more-pill {
+    margin-inline-start: auto;
+    padding: 7px 16px;
+    border: 1px solid rgb(25 195 214 / 0.4);
+    border-radius: 999px;
+    background: rgb(25 195 214 / 0.08);
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .section-head .more-pill:hover {
+    background: rgb(25 195 214 / 0.16);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  /* أزرار التصفية بالنوع فوق "أحدث الألعاب المعرّبة" */
+  .cat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: -8px 0 22px;
+  }
+  .cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 15px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .cat span {
+    padding: 0 7px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.06);
+    font-size: 0.75rem;
+  }
+  .cat:hover {
+    color: var(--text);
+    border-color: rgb(255 255 255 / 0.2);
+  }
+  .cat.on {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--accent), #7de3ee);
+    color: #0b0d17;
+  }
+  .cat.on span {
+    background: rgb(0 0 0 / 0.15);
+  }
+  /* الجوال: الأزرار صف واحد يُسحب أفقياً */
+  @media (max-width: 760px) {
+    .cat-chips {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-inline: -16px;
+      padding-inline: 16px;
+    }
+    .cat {
+      flex-shrink: 0;
+      font-size: 0.82rem;
     }
   }
 
@@ -2238,7 +2369,7 @@ const jsonLd = [
       hiddenCards()
         .slice(0, missing)
         .forEach((c) => (c.hidden = false));
-      if (!hiddenCards().length) document.getElementById('more-wrap')?.remove();
+      document.getElementById('more-wrap')!.hidden = !hiddenCards().length;
       updateCount();
     };
     moreBtn.addEventListener('click', () => {
@@ -2248,6 +2379,23 @@ const jsonLd = [
       fillRow();
     });
     fillRow();
+
+    // التصفية بالنوع: تُظهر كل ألعاب النوع دفعة واحدة، و"الكل" يرجع للعرض بالصفحات
+    const chips = [...document.querySelectorAll<HTMLButtonElement>('.cat-chips .cat')];
+    const cards = [...grid.children] as HTMLElement[];
+    chips.forEach((chip) =>
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.toggle('on', c === chip));
+        const cat = chip.dataset.cat;
+        if (cat) {
+          cards.forEach((c) => (c.hidden = !(c.dataset.cats || '').split('|').includes(cat)));
+          document.getElementById('more-wrap')!.hidden = true;
+        } else {
+          cards.forEach((c, i) => (c.hidden = i >= size));
+          fillRow();
+        }
+      }),
+    );
   }
 
 

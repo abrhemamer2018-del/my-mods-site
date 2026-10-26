@@ -6,18 +6,27 @@ import { formatMonth, isNew, type Translation } from '../lib/utils';
 interface Props {
   item: Translation;
   hidden?: boolean;
+  /** عدد التحميلات (من GitHub وقت البناء) */
+  downloads?: number;
+  /** تصنيفات القسم مفصولة بـ | لأزرار التصفية في الرئيسية */
+  cats?: string;
 }
-const { item, hidden } = Astro.props;
+const { item, hidden, downloads = 0, cats = '' } = Astro.props;
 const d = item.data;
 const fresh = await isNew(item);
 // المنصة وحجم ملف التعريب، مثل "PC · 15.09 MB"
 const size = d.downloads[0]?.size;
+// "محدّث": آخر نسخة غير الأولى وصدرت خلال 30 يوماً
+const last = [...d.changelog].sort((a, b) => b.date.getTime() - a.date.getTime())[0];
+const updated = !!last && d.changelog.length > 1 && Date.now() - last.date.getTime() < 30 * 86400000;
+const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
 ---
 
 <a
   href={`/translations/${item.id}/`}
   class="card"
   hidden={hidden}
+  data-cats={cats}
   data-category={d.category}
   data-status={d.status}
   data-platforms={d.platforms.join('|')}
@@ -30,6 +39,7 @@ const size = d.downloads[0]?.size;
     <Image src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={480} height={270} />
     <div class="badges">
       {fresh && <span class="badge badge-new">جديد</span>}
+      {!fresh && updated && <span class="badge badge-upd" dir="ltr">محدّث · v{d.version}</span>}
       {d.status !== 'complete' && (
         <span class="badge badge-warn">
           {STATUS_LABELS[d.status]}
@@ -42,7 +52,14 @@ const size = d.downloads[0]?.size;
     <h3 class="title-en" dir="ltr">{d.title}</h3>
     <p class="title-ar">{d.titleAr}</p>
     <div class="meta">
-      <span>{formatMonth(d.releaseDate)}</span>
+      {downloads > 0 ? (
+        <span class="dls">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
+          <b dir="ltr">{compact.format(downloads)}</b> تحميل
+        </span>
+      ) : (
+        <span>{formatMonth(d.releaseDate)}</span>
+      )}
       <span dir="ltr" class="spec">
         {d.platforms.join(', ')}
         {size && <> · {size}</>}
@@ -53,6 +70,21 @@ const size = d.downloads[0]?.size;
 </a>
 
 <style>
+  .dls {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .dls svg {
+    color: var(--accent);
+  }
+  .dls b {
+    color: var(--text);
+  }
+  .badge-upd {
+    background: rgb(25 195 214 / 0.9);
+    color: #0b0d17;
+  }
   /* البطاقة طبقتان: الخارجية تحمل الهالة خلفها، والداخلية (card-in) هي البطاقة المرئية */
   .card {
     position: relative;
