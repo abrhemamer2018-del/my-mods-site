@@ -27,6 +27,7 @@ const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFracti
   class="card"
   hidden={hidden}
   data-cats={cats}
+  data-files={d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop() ?? '')).join('|')}
   data-category={d.category}
   data-status={d.status}
   data-platforms={d.platforms.join('|')}
@@ -52,14 +53,12 @@ const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFracti
     <h3 class="title-en" dir="ltr">{d.title}</h3>
     <p class="title-ar">{d.titleAr}</p>
     <div class="meta">
-      {downloads > 0 ? (
-        <span class="dls">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
-          <b dir="ltr">{compact.format(downloads)}</b> تحميل
-        </span>
-      ) : (
-        <span>{formatMonth(d.releaseDate)}</span>
-      )}
+      {/* العدد يُحسب وقت البناء، والرئيسية تحدّثه في المتصفح من ‎/api/downloads؛ إن كان صفراً يظهر الشهر */}
+      <span class="dls" hidden={downloads <= 0}>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
+        <b dir="ltr" class="dl-n">{compact.format(downloads)}</b> تحميل
+      </span>
+      <span class="when" hidden={downloads > 0}>{formatMonth(d.releaseDate)}</span>
       <span dir="ltr" class="spec">
         {d.platforms.join(', ')}
         {size && <> · {size}</>}

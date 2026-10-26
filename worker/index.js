@@ -195,6 +195,7 @@ async function safeEqual(a, b) {
 // ------------------------------------------------------------
 //  عدد التحميلات: مجموع تحميلات كل ملفات GitHub Releases في مستودع الملفات
 //  (FILES_REPO، منفصل عن مستودع الموقع حتى لا تؤثر أي شكوى على ملف واحد على الموقع كله)
+//  ومعه عدد تحميلات كل ملف (files) لتحديث أرقام البطاقات في الرئيسية مباشرة
 //  يُحفظ مؤقتاً 15 دقيقة حتى لا نطلب GitHub مع كل زائر
 // ------------------------------------------------------------
 const DOWNLOADS_CACHE_SECONDS = 900;
@@ -202,7 +203,7 @@ const DOWNLOADS_CACHE_SECONDS = 900;
 const OLD_DOWNLOADS = 189;
 
 async function downloadsCount(env) {
-  const cacheKey = new Request('https://cache.internal/downloads-count');
+  const cacheKey = new Request('https://cache.internal/downloads-count-v2');
   const cache = caches.default;
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
@@ -214,13 +215,18 @@ async function downloadsCount(env) {
   if (!res.ok) throw httpError(502, 'تعذّر جلب عدد التحميلات');
   const releases = await res.json();
   let total = OLD_DOWNLOADS;
+  const files = {};
   for (const r of releases) {
     // إصدارات برنامج "تعريبات لايف" ليست تعريبات، فلا تُحسب في عدد تحميلات التعريبات
     if ((r.tag_name || '').startsWith('ta3reebat-live')) continue;
-    for (const a of await releaseAssets(env, repo, r.id)) total += assetDownloads(a);
+    for (const a of await releaseAssets(env, repo, r.id)) {
+      const n = assetDownloads(a);
+      total += n;
+      files[a.name] = (files[a.name] || 0) + n;
+    }
   }
 
-  const out = new Response(JSON.stringify({ total }), {
+  const out = new Response(JSON.stringify({ total, files }), {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': `public, max-age=${DOWNLOADS_CACHE_SECONDS}`,
