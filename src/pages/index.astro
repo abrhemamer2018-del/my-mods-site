@@ -1,9 +1,11 @@
 ---
 import { Image } from 'astro:assets';
+import { downloadCounts, topDownloaded, downloadsOf } from '../lib/downloads';
+import soonData from '../data/soon.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import TranslationCard from '../components/TranslationCard.astro';
-import { getArticles, getTranslations, formatDate } from '../lib/utils';
+import { getArticles, getTranslations, getUpcoming, formatDate } from '../lib/utils';
 import Icon from '../components/Icon.astro';
 import { LIVE, SITE, SOCIAL } from '../config';
 import pinnedData from '../data/pinned.json';
@@ -32,6 +34,34 @@ const HERO_MAX = 10;
 const heroItems = chosenHero.length
   ? chosenHero
   : translations.filter((t) => !pinnedIds.has(t.id)).slice(0, HERO_MAX);
+// نافذة الأكثر تحميلاً: أول 10 بعدد تحميلات ملفات GitHub وقت البناء
+const top = await Promise.all(
+  (await topDownloaded(translations, 10)).map(async (t) => ({ t, n: await downloadsOf(t) })),
+);
+const topMax = top[0]?.n ?? 1;
+// احتياط إن تعذّر ‎/api/downloads (ومحلياً على الجهاز): مجموع التحميلات من GitHub وقت البناء
+const dlTotal = [...(await downloadCounts()).values()].reduce((a, b) => a + b, 0);
+// نافذة آخر التحديثات: كل نسخة في سجل التغييرات، الأحدث أولاً ("جديد" = أول نسخة، وغيرها "تحديث")
+const updates = translations
+  .flatMap((t) => {
+    const log = [...t.data.changelog].sort((a, b) => b.date.getTime() - a.date.getTime());
+    return log.map((c, i) => ({ t, c, prev: log[i + 1]?.version, isNew: i === log.length - 1 }));
+  })
+  .sort((a, b) => b.c.date.getTime() - a.c.date.getTime() || Number(a.isNew) - Number(b.isNew))
+  .slice(0, 14);
+// نافذة قريباً: ألعاب ستصدر (src/data/soon.json) تبقى 14 يوماً بعد صدورها، وتعريبات قيد العمل
+const soon = soonData.games
+  .filter((g) => Date.now() - new Date(g.date).getTime() < 14 * 86400000)
+  .sort((a, b) => a.date.localeCompare(b.date));
+const inProgress = await getUpcoming();
+const soonCount = soon.length + inProgress.length;
+// نقطة تنبيه حمراء على خانة "قريباً" إن كانت لعبة ستصدر خلال 7 أيام
+const soonHot = soon.some((g) => {
+  const d = new Date(g.date).getTime() - Date.now();
+  return d > -86400000 && d < 7 * 86400000;
+});
+const longDate = new Intl.DateTimeFormat('ar', { day: 'numeric', month: 'long', year: 'numeric' });
+const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
 // جديد التعريبات بعرض الصفحة: تظهر أول 30 (6 صفوف من 5)، و"عرض المزيد" يُظهر 30 أخرى عند كل ضغطة
 const PAGE_SIZE = 30;
 
@@ -74,30 +104,51 @@ const jsonLd = [
   <div class="container stats-wrap">
     <ul class="stats-strip">
       <li>
-        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5" /><path d="M7 11v3M5.5 12.5h3M15.5 12h.01M18 13.5h.01" /></svg></span>
-        <strong>{translations.length}</strong>
-        <span>تعريب</span>
+        <a href="/translations/" class="s-btn">
+          <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5" /><path d="M7 11v3M5.5 12.5h3M15.5 12h.01M18 13.5h.01" /></svg></span>
+          <span class="s-txt">
+            <span class="s-main"><strong>{translations.length}</strong><span>تعريب</span></span>
+            <small>كل التعريبات <i aria-hidden="true">‹</i></small>
+          </span>
+        </a>
       </li>
+      {/* الخانات الثلاث التالية تفتح نافذة الاستكشاف على القسم المناسب */}
       <li>
-        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg></span>
-        <strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset}>…</strong>
-        <span>تحميل</span>
+        <button type="button" class="s-btn" data-open="popular" aria-haspopup="dialog">
+          <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg></span>
+          <span class="s-txt">
+            <span class="s-main"><strong dir="ltr" id="downloads-count" data-offset={SITE.downloadsOffset} data-fallback={dlTotal}>…</strong><span>تحميل</span></span>
+            <small>الأكثر تحميلاً <i aria-hidden="true">‹</i></small>
+          </span>
+        </button>
       </li>
       {
         lastAdded && (
           <li>
-            <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
-            <span>آخر إضافة<span class="colon">:</span></span>
-            <time datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>
-              {formatDate(lastAdded)}
-            </time>
+            <button type="button" class="s-btn" data-open="updates" aria-haspopup="dialog">
+              <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
+              <span class="s-txt">
+                <span class="s-main">
+                  <span>آخر إضافة<span class="colon">:</span></span>
+                  <time datetime={lastAdded.toISOString()} data-ago="" title={formatDate(lastAdded)}>{formatDate(lastAdded)}</time>
+                </span>
+                <small>آخر التحديثات <i aria-hidden="true">‹</i></small>
+              </span>
+            </button>
           </li>
         )
       }
       <li>
-        <span class="s-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg></span>
-        <strong>100%</strong>
-        <span>مجانية</span>
+        <button type="button" class="s-btn" data-open="soon" aria-haspopup="dialog">
+          <span class="s-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M7 2v4l5 6 5-6V2M7 22v-4l5-6 5 6v4" /></svg>
+            {soonHot && <span class="live-dot ico-hot" />}
+          </span>
+          <span class="s-txt">
+            <span class="s-main"><strong>{soonCount}</strong><span>قريباً</span></span>
+            <small>ألعاب قادمة <i aria-hidden="true">‹</i></small>
+          </span>
+        </button>
       </li>
       {/* برنامج تعريبات لايف: رابط بنفس شكل الإحصائيات مع شارة LIVE حمراء وامضة */}
       <li class="s-live">
@@ -117,6 +168,164 @@ const jsonLd = [
       <span class="live-slim-go" aria-hidden="true">‹</span>
     </a>
   </div>
+
+  {/* نافذة الاستكشاف: ثلاثة أقسام بتبويبات، تُفتح من شريط الإحصائيات أو برابط مثل ‎/#popular */}
+  <dialog id="hub" class="hub" aria-labelledby="hub-title">
+    <div class="hub-in">
+      <header class="hub-head">
+        <h2 id="hub-title" class="sr-only">استكشف التعريبات</h2>
+        <div class="hub-tabs" role="tablist">
+          <button type="button" role="tab" class="hub-tab" data-tab="popular">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
+            <span>الأكثر تحميلاً</span>
+          </button>
+          <button type="button" role="tab" class="hub-tab" data-tab="updates">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5" /></svg>
+            <span>آخر التحديثات</span>
+          </button>
+          <button type="button" role="tab" class="hub-tab" data-tab="soon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2v4l5 6 5-6V2M7 22v-4l5-6 5 6v4" /></svg>
+            <span>قريباً</span>
+            {soonCount > 0 && <span class="hub-count">{soonCount}</span>}
+          </button>
+          <span class="hub-ink" aria-hidden="true" />
+        </div>
+        <button type="button" class="hub-x" data-close aria-label="إغلاق">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+
+      <div class="hub-body" tabindex="-1" autofocus>
+        {/* الأكثر تحميلاً: منصة للثلاثة الأوائل ثم قائمة مرتبة */}
+        <section class="hub-panel" data-panel="popular" role="tabpanel">
+          <p class="hub-sub">ترتيب التعريبات حسب عدد التحميلات الفعلي، ويتحدّث مع كل نشر في الموقع.</p>
+          {top.length === 0 ? (
+            <p class="hub-empty">تعذّر جلب أرقام التحميل الآن، حاول لاحقاً.</p>
+          ) : (
+            <Fragment>
+              <div class="podium">
+                {top.slice(0, 3).map(({ t, n }, i) => (
+                  <a href={`/translations/${t.id}/`} class:list={['pod', `pod-${i + 1}`]}>
+                    <span class="pod-img">
+                      <Image src={t.data.cover} alt={`تعريب لعبة ${t.data.titleAr}`} width={520} />
+                      <span class="medal" aria-label={`المركز ${i + 1}`}>{i + 1}</span>
+                    </span>
+                    <span class="pod-info">
+                      <strong dir="ltr">{t.data.title}</strong>
+                      <span>{t.data.titleAr}</span>
+                      <em><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg><b dir="ltr">{compact.format(n)}</b> تحميل</em>
+                    </span>
+                  </a>
+                ))}
+              </div>
+              <ol class="rank">
+                {top.slice(3).map(({ t, n }, i) => (
+                  <li>
+                    <a href={`/translations/${t.id}/`} class="rank-row">
+                      <span class="rank-n">{i + 4}</span>
+                      <Image class="rank-img" src={t.data.cover} alt="" width={200} />
+                      <span class="rank-names">
+                        <strong dir="ltr">{t.data.title}</strong>
+                        <span>{t.data.titleAr}</span>
+                      </span>
+                      <span class="rank-bar" aria-hidden="true"><span style={`width:${Math.max(6, (n / topMax) * 100)}%`} /></span>
+                      <span class="rank-c"><b dir="ltr">{compact.format(n)}</b><small>تحميل</small></span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </Fragment>
+          )}
+        </section>
+
+        {/* آخر التحديثات: خط زمني مع تصفية (الكل / تحديثات / جديد) */}
+        <section class="hub-panel" data-panel="updates" role="tabpanel">
+          <div class="chips" role="group" aria-label="تصفية">
+            <button type="button" class="chip on" data-filter="all">الكل</button>
+            <button type="button" class="chip" data-filter="upd">تحديثات</button>
+            <button type="button" class="chip" data-filter="new">إضافات جديدة</button>
+          </div>
+          <ul class="tl">
+            {updates.map(({ t, c, prev, isNew }) => (
+              <li data-kind={isNew ? 'new' : 'upd'}>
+                <a href={`/translations/${t.id}/`} class="tl-row">
+                  <span class="tl-dot" aria-hidden="true" />
+                  <Image class="tl-img" src={t.data.cover} alt="" width={240} />
+                  <span class="tl-main">
+                    <span class="tl-top">
+                      <strong dir="ltr">{t.data.title}</strong>
+                      {isNew ? (
+                        <span class="tag tag-new">جديد</span>
+                      ) : (
+                        <span class="tag tag-upd" dir="ltr">{prev && <s>{prev}</s>}<span aria-hidden="true">→</span>{c.version}</span>
+                      )}
+                    </span>
+                    <span class="tl-note">{c.notes[0] ?? `تعريب ${t.data.titleAr} متاح الآن`}</span>
+                  </span>
+                  <time class="tl-time" datetime={c.date.toISOString()} data-ago="" title={formatDate(c.date)}>{formatDate(c.date)}</time>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href="/translations/" class="hub-more">كل التعريبات ‹</a>
+        </section>
+
+        {/* قريباً: ألعاب ستصدر بعدّاد تنازلي، وتعريبات قيد العمل */}
+        <section class="hub-panel" data-panel="soon" role="tabpanel">
+          <p class="hub-sub">ألعاب ننوي تعريبها فور صدورها. تابع الديسكورد ليصلك تنبيه لحظة نزول التعريب.</p>
+          {soon.length === 0 && inProgress.length === 0 && <p class="hub-empty">لا توجد ألعاب قادمة حالياً.</p>}
+          <div class="soon-list">
+            {soon.map((g) => (
+              <article class="soon-card">
+                <img class="soon-bg" src={g.image} alt="" aria-hidden="true" loading="lazy" />
+                <img class="soon-img" src={g.image} alt={g.title} loading="lazy" />
+                <div class="soon-info">
+                  <span class="soon-state" data-state>بانتظار الصدور</span>
+                  <h3 dir="ltr">{g.title}</h3>
+                  <p class="soon-ar">{g.titleAr}</p>
+                  <p class="soon-date">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
+                    تصدر {longDate.format(new Date(g.date))}
+                  </p>
+                  <div class="cd" data-countdown={g.date}>
+                    <span><b data-u="d">0</b><small>يوم</small></span>
+                    <span><b data-u="h">0</b><small>ساعة</small></span>
+                    <span><b data-u="m">0</b><small>دقيقة</small></span>
+                    <span><b data-u="s">0</b><small>ثانية</small></span>
+                  </div>
+                  <div class="soon-cta">
+                    {discord && (
+                      <a href={discord.url} class="btn btn-primary" target="_blank" rel="noopener">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0" /></svg>
+                        نبّهني في الديسكورد
+                      </a>
+                    )}
+                    <a href={g.url} class="btn soon-ghost" target="_blank" rel="noopener">صفحة Steam</a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          {inProgress.length > 0 && (
+            <Fragment>
+              <h3 class="hub-h3">قيد التعريب الآن</h3>
+              <ul class="prog">
+                {inProgress.map((t) => (
+                  <li>
+                    <a href={`/translations/${t.id}/`}>
+                      <Image src={t.data.cover} alt="" width={200} />
+                      <span><strong dir="ltr">{t.data.title}</strong><span class="prog-bar"><span style={`width:${t.data.progress ?? 0}%`} /></span></span>
+                      <b>{t.data.progress ?? 0}%</b>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Fragment>
+          )}
+        </section>
+      </div>
+    </div>
+  </dialog>
 
   {/* تعريبات مثبتة: تُختار من لوحة التحكم ← "التعريبات المثبتة".
       يختفي القسم تلقائياً إن لم يوجد أي تعريب مثبت */}
@@ -539,9 +748,8 @@ const jsonLd = [
     gap: 10px;
     padding: 8px 14px 8px 10px;
     border-radius: 14px;
+    /* بلا تمويه عمداً: تظهر صورة اللعبة من خلف اللوحة */
     background: rgb(11 13 23 / 0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgb(255 255 255 / 0.12);
   }
   .sec-sub {
@@ -1052,6 +1260,949 @@ const jsonLd = [
       grid-template-columns: 1fr;
     }
   }
+
+  /* ═════ خانات الشريط القابلة للضغط (تفتح نافذة الاستكشاف) ═════ */
+  .s-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 12px;
+    margin: -7px -12px;
+    border: 0;
+    border-radius: 16px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+  .s-btn:hover,
+  .s-btn:focus-visible {
+    background: rgb(255 255 255 / 0.055);
+  }
+  .s-btn .s-ico {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+  .s-btn:hover .s-ico {
+    transform: translateY(-2px) rotate(-6deg) scale(1.07);
+  }
+  /* سطر واحد بنفس سماكة الشريط القديم: "4.9K تحميل · الأكثر تحميلاً ‹" */
+  .s-txt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .s-txt small::before {
+    content: '';
+    width: 1px;
+    height: 14px;
+    margin-inline-end: 5px;
+    background: var(--border);
+  }
+  @media (max-width: 1300px) {
+    /* الشاشات الأصغر: يبقى السهم فقط */
+    .s-txt small {
+      font-size: 0;
+      gap: 0;
+    }
+    .s-txt small i {
+      font-size: 1rem;
+    }
+  }
+  .s-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .s-txt small {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    opacity: 0.8;
+    transition: color 0.25s, opacity 0.25s;
+  }
+  .s-txt small i {
+    font-style: normal;
+    color: var(--accent);
+    transition: transform 0.25s;
+  }
+  .s-btn:hover small {
+    color: var(--accent);
+    opacity: 1;
+  }
+  .s-btn:hover small i {
+    transform: translateX(-4px);
+  }
+  .ico-hot {
+    position: absolute;
+    top: -3px;
+    inset-inline-end: -3px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--card);
+    box-sizing: content-box;
+  }
+
+  /* ═════ نافذة الاستكشاف ═════ */
+  :global(html:has(.hub[open])) {
+    overflow: hidden;
+  }
+  .hub {
+    width: min(900px, calc(100% - 32px));
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    overflow: visible;
+  }
+  .hub::backdrop {
+    background: rgb(4 5 12 / 0.72);
+    backdrop-filter: blur(8px);
+  }
+  .hub[open] {
+    animation: hub-pop 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.15);
+  }
+  .hub[open]::backdrop {
+    animation: hub-fade 0.3s ease;
+  }
+  @keyframes hub-pop {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.97);
+    }
+  }
+  @keyframes hub-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  .hub-in {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(86vh / var(--zoom));
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 26px;
+    background:
+      radial-gradient(120% 60% at 100% 0%, rgb(25 195 214 / 0.1), transparent 60%),
+      radial-gradient(90% 50% at 0% 0%, rgb(224 52 79 / 0.1), transparent 60%),
+      #11142a;
+    box-shadow: 0 40px 100px rgb(0 0 0 / 0.65);
+    overflow: hidden;
+  }
+  /* خيط متدرج بألوان الشعار أعلى النافذة */
+  .hub-in::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-2) 30%, var(--accent) 70%, transparent);
+  }
+  .hub-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px 6px;
+  }
+  .hub-tabs {
+    position: relative;
+    display: flex;
+    flex: 1;
+    gap: 4px;
+    padding: 5px;
+    border: 1px solid rgb(255 255 255 / 0.06);
+    border-radius: 16px;
+    background: rgb(0 0 0 / 0.25);
+  }
+  .hub-tab {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 10px;
+    border: 0;
+    border-radius: 12px;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.98rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .hub-tab:hover {
+    color: var(--text);
+  }
+  .hub-tab[aria-selected='true'] {
+    color: #0b0d17;
+  }
+  .hub-count {
+    min-width: 20px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--accent-2);
+    color: #fff;
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+  /* خلفية التبويب النشط تنزلق بين التبويبات */
+  .hub-ink {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: var(--x, 5px);
+    width: var(--w, 0);
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), #7de3ee);
+    box-shadow: 0 6px 22px rgb(25 195 214 / 0.35);
+    transition:
+      left 0.4s cubic-bezier(0.3, 1.3, 0.5, 1),
+      width 0.4s cubic-bezier(0.3, 1.3, 0.5, 1);
+  }
+  .hub-x {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 14px;
+    background: rgb(255 255 255 / 0.04);
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.3s;
+  }
+  .hub-x:hover {
+    background: rgb(224 52 79 / 0.18);
+    color: #fff;
+    transform: rotate(90deg);
+  }
+  .hub-body {
+    overflow-y: auto;
+    padding: 12px 22px 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .hub-body:focus {
+    outline: none;
+  }
+  .hub-panel {
+    display: none;
+  }
+  .hub-panel.on {
+    display: block;
+    animation: panel-in 0.35s ease;
+  }
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+  .hub-sub {
+    margin: 4px 0 18px;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .hub-empty {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--muted);
+  }
+  .hub-h3 {
+    margin: 26px 0 12px;
+    font-size: 1.05rem;
+  }
+  .hub-more {
+    display: block;
+    width: fit-content;
+    margin: 18px auto 0;
+    padding: 9px 22px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .hub-more:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* الأكثر تحميلاً: منصة التتويج (الأول في الوسط) */
+  .podium {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .pod {
+    --mc: #c9d1e6;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(255 255 255 / 0.07);
+    border-radius: 20px;
+    background: var(--card);
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .pod:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(in srgb, var(--mc) 60%, transparent);
+    box-shadow: 0 18px 40px rgb(0 0 0 / 0.45), 0 0 0 1px color-mix(in srgb, var(--mc) 30%, transparent);
+  }
+  .pod-1 {
+    --mc: #ffcf5a;
+    order: 2;
+    border-color: rgb(255 207 90 / 0.45);
+    box-shadow: 0 0 0 1px rgb(255 207 90 / 0.15), 0 20px 50px rgb(255 180 40 / 0.14);
+  }
+  .pod-2 {
+    order: 1;
+  }
+  .pod-3 {
+    --mc: #e59a62;
+    order: 3;
+  }
+  .pod-img {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+  }
+  .pod-1 .pod-img {
+    aspect-ratio: 16 / 10;
+  }
+  .pod-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+  .pod:hover .pod-img img {
+    transform: scale(1.06);
+  }
+  .pod-img::after {
+    content: '';
+    position: absolute;
+    inset: 40% 0 0;
+    background: linear-gradient(to top, var(--card), transparent);
+  }
+  .medal {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    inset-inline-start: 10px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #fff, var(--mc) 45%, color-mix(in srgb, var(--mc) 60%, #000));
+    color: #1a1407;
+    font-weight: 900;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.5), inset 0 -2px 0 rgb(0 0 0 / 0.2);
+  }
+  .pod-1 .medal {
+    top: 20px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+  .pod-1 .medal::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    width: 22px;
+    height: 14px;
+    background: #ffcf5a;
+    clip-path: polygon(0 100%, 0 20%, 25% 60%, 50% 0, 75% 60%, 100% 20%, 100% 100%);
+  }
+  .pod-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 4px 14px 14px;
+    margin-top: -18px;
+  }
+  .pod-info strong {
+    font-size: 1.02rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+  }
+  .pod-info > span {
+    color: var(--muted);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pod-info em {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .pod-info em svg {
+    color: var(--mc);
+  }
+  .pod-info em b {
+    color: var(--text);
+    font-size: 1.15rem;
+  }
+
+  .rank {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+  }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 30px 92px minmax(0, 1.3fr) minmax(90px, 1fr) 70px;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 10px;
+    border-radius: 14px;
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .rank-row:hover {
+    background: rgb(255 255 255 / 0.045);
+  }
+  .rank-n {
+    color: var(--muted);
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .rank-img {
+    width: 92px;
+    height: 52px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .rank-names {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .rank-names strong,
+  .rank-names span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rank-names strong {
+    text-align: right;
+  }
+  .rank-names span {
+    color: var(--muted);
+    font-size: 0.84rem;
+  }
+  .rank-bar {
+    height: 6px;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.06);
+    overflow: hidden;
+  }
+  .rank-bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(270deg, var(--accent), #7de3ee);
+  }
+  .rank-c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+  }
+  .rank-c small {
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  /* آخر التحديثات: تصفية + خط زمني */
+  .chips {
+    display: flex;
+    gap: 8px;
+    margin: 4px 0 16px;
+  }
+  .chip {
+    padding: 7px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .chip:hover {
+    color: var(--text);
+  }
+  .chip.on {
+    border-color: rgb(25 195 214 / 0.5);
+    background: rgb(25 195 214 / 0.12);
+    color: var(--accent);
+  }
+  .tl {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tl::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 17px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), rgb(224 52 79 / 0.6), transparent);
+    opacity: 0.35;
+  }
+  .tl li[hidden] {
+    display: none;
+  }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 16px 104px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 10px;
+    border-radius: 14px;
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .tl-row:hover {
+    background: rgb(255 255 255 / 0.045);
+  }
+  .tl-dot {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    margin-inline-start: 2px;
+    border-radius: 50%;
+    background: #11142a;
+    border: 2px solid var(--accent);
+  }
+  [data-kind='new'] .tl-dot {
+    border-color: var(--success);
+  }
+  .tl-img {
+    width: 104px;
+    height: 58px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .tl-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .tl-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .tl-top strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tl-note {
+    color: var(--muted);
+    font-size: 0.86rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tag {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 800;
+  }
+  .tag-new {
+    background: rgb(34 197 94 / 0.14);
+    color: #5ee28d;
+  }
+  .tag-upd {
+    background: rgb(25 195 214 / 0.13);
+    color: var(--accent);
+  }
+  .tag-upd s {
+    color: var(--muted);
+  }
+  .tl-time {
+    color: var(--muted);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* قريباً: بطاقة كبيرة بخلفية من صورة اللعبة وعدّاد تنازلي */
+  .soon-list {
+    display: grid;
+    gap: 16px;
+  }
+  .soon-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 22px;
+    align-items: center;
+    padding: 18px;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 22px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .soon-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(40px) saturate(1.5) brightness(0.45);
+    transform: scale(1.3);
+  }
+  .soon-img {
+    width: 100%;
+    aspect-ratio: 460 / 215;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgb(0 0 0 / 0.5);
+  }
+  .soon-info h3 {
+    margin: 10px 0 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    text-align: right;
+  }
+  .soon-ar {
+    margin: 2px 0 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .soon-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .soon-state {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 11px;
+    border: 1px solid rgb(245 158 11 / 0.4);
+    border-radius: 999px;
+    background: rgb(245 158 11 / 0.12);
+    color: #fbbf24;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+  .soon-state::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: live-blink 1.4s ease-in-out infinite;
+  }
+  .soon-state.out {
+    border-color: rgb(224 52 79 / 0.5);
+    background: rgb(224 52 79 / 0.15);
+    color: #ff8a9c;
+  }
+  .cd {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .cd span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 9px 4px 7px;
+    border: 1px solid rgb(255 255 255 / 0.09);
+    border-radius: 14px;
+    background: rgb(0 0 0 / 0.3);
+    backdrop-filter: blur(6px);
+  }
+  .cd b {
+    font-size: 1.55rem;
+    font-weight: 900;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd small {
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+  .cd[hidden] {
+    display: none;
+  }
+  .soon-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .soon-cta .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+  .soon-ghost {
+    border: 1px solid rgb(255 255 255 / 0.18);
+    background: rgb(255 255 255 / 0.05);
+    color: var(--text);
+  }
+  .soon-ghost:hover {
+    border-color: rgb(255 255 255 / 0.35);
+  }
+
+  .prog {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .prog a {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    color: inherit;
+    text-decoration: none;
+  }
+  .prog img {
+    width: 80px;
+    height: 45px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  .prog-bar {
+    display: block;
+    height: 6px;
+    margin-top: 6px;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.07);
+    overflow: hidden;
+  }
+  .prog-bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(270deg, var(--accent-2), #ff8a9c);
+  }
+
+  /* الجوال: النافذة لوحة تصعد من أسفل الشاشة */
+  @media (max-width: 760px) {
+    .s-btn {
+      flex-direction: column;
+      gap: 3px;
+      margin: -6px -2px;
+      padding: 6px 2px;
+      width: calc(100% + 4px);
+      text-align: center;
+    }
+    .s-txt,
+    .s-main {
+      align-items: center;
+    }
+    .s-main {
+      flex-direction: column;
+      gap: 3px;
+    }
+    .s-main strong,
+    .s-main time {
+      order: -1;
+    }
+    .s-txt small {
+      display: none;
+    }
+    /* خط صغير بلون الشعار يدل أن الخانة قابلة للضغط */
+    .s-btn[data-open]::after {
+      content: '';
+      width: 16px;
+      height: 3px;
+      margin-top: 2px;
+      border-radius: 9px;
+      background: var(--accent);
+      opacity: 0.6;
+    }
+    .hub {
+      width: 100%;
+      margin: auto 0 0;
+    }
+    .hub[open] {
+      animation: hub-up 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+    @keyframes hub-up {
+      from {
+        transform: translateY(100%);
+      }
+    }
+    .hub-in {
+      max-height: 90vh;
+      border-radius: 24px 24px 0 0;
+      border-bottom: 0;
+    }
+    /* مقبض السحب أعلى اللوحة */
+    .hub-in::after {
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 40px;
+      height: 4px;
+      margin-left: -20px;
+      border-radius: 9px;
+      background: rgb(255 255 255 / 0.2);
+    }
+    .hub-head {
+      padding: 20px 12px 4px;
+      gap: 8px;
+    }
+    .hub-tab {
+      padding: 10px 4px;
+      gap: 5px;
+      font-size: 0.82rem;
+    }
+    .hub-tab svg {
+      display: none;
+    }
+    .hub-x {
+      width: 40px;
+      height: 40px;
+    }
+    .hub-body {
+      padding: 10px 12px 28px;
+    }
+    .podium {
+      gap: 8px;
+    }
+    .pod-info {
+      padding: 2px 8px 10px;
+    }
+    .pod-info strong {
+      font-size: 0.82rem;
+    }
+    .pod-info > span {
+      display: none;
+    }
+    .pod-info em {
+      margin-top: 4px;
+      font-size: 0.72rem;
+    }
+    .pod-info em b {
+      font-size: 0.95rem;
+    }
+    .medal {
+      width: 28px;
+      height: 28px;
+      font-size: 0.9rem;
+      top: 6px;
+      inset-inline-start: 6px;
+    }
+    .pod-1 .medal {
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+    }
+    .rank-row {
+      grid-template-columns: 22px 72px minmax(0, 1fr) auto;
+      gap: 10px;
+      padding: 7px 4px;
+    }
+    .rank-img {
+      width: 72px;
+      height: 41px;
+    }
+    .rank-bar {
+      display: none;
+    }
+    .tl-row {
+      grid-template-columns: 14px 80px minmax(0, 1fr);
+      gap: 10px;
+      padding: 8px 2px;
+    }
+    .tl::before {
+      inset-inline-start: 7px;
+    }
+    .tl-img {
+      width: 80px;
+      height: 45px;
+    }
+    .tl-time {
+      grid-column: 3;
+      margin-top: -6px;
+      font-size: 0.74rem;
+    }
+    .soon-card {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 14px;
+    }
+    .soon-info h3 {
+      font-size: 1.25rem;
+    }
+    .cd b {
+      font-size: 1.3rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hub[open],
+    .hub-panel.on,
+    .soon-state::before {
+      animation: none;
+    }
+  }
 </style>
 
 <script>
@@ -1063,7 +2214,7 @@ const jsonLd = [
     fetch('/api/downloads')
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(({ total }) => (dlEl.textContent = fmt.format(total + offset)))
-      .catch(() => (dlEl.textContent = offset ? fmt.format(offset) : '—'));
+      .catch(() => (dlEl.textContent = fmt.format(Number(dlEl.dataset.fallback) + offset)));
   }
 
   // زر "عرض المزيد": يُظهر دفعة جديدة من التعريبات عند كل ضغطة
@@ -1099,4 +2250,78 @@ const jsonLd = [
     fillRow();
   }
 
+
+  // نافذة الاستكشاف: تُفتح من خانات الشريط أو برابط ‎#popular / #updates / #soon
+  const hub = document.getElementById('hub') as HTMLDialogElement | null;
+  if (hub) {
+    const tabs = [...hub.querySelectorAll<HTMLButtonElement>('.hub-tab')];
+    const panels = [...hub.querySelectorAll<HTMLElement>('.hub-panel')];
+    const ink = hub.querySelector<HTMLElement>('.hub-ink')!;
+    const names = tabs.map((t) => t.dataset.tab!);
+    const moveInk = () => {
+      const cur = tabs.find((t) => t.getAttribute('aria-selected') === 'true');
+      if (!cur) return;
+      ink.style.setProperty('--x', `${cur.offsetLeft}px`);
+      ink.style.setProperty('--w', `${cur.offsetWidth}px`);
+    };
+    const show = (name: string) => {
+      tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === name)));
+      panels.forEach((p) => p.classList.toggle('on', p.dataset.panel === name));
+      hub.querySelector('.hub-body')!.scrollTop = 0;
+      history.replaceState(null, '', `#${name}`);
+      moveInk();
+    };
+    const open = (name: string) => {
+      if (!hub.open) hub.showModal();
+      show(name);
+    };
+    const close = () => {
+      hub.close();
+    };
+    hub.addEventListener('close', () => history.replaceState(null, '', location.pathname + location.search));
+
+    document.querySelectorAll<HTMLElement>('[data-open]').forEach((b) => b.addEventListener('click', () => open(b.dataset.open!)));
+    tabs.forEach((t) => t.addEventListener('click', () => show(t.dataset.tab!)));
+    hub.querySelector('[data-close]')!.addEventListener('click', close);
+    // الضغط خارج النافذة يغلقها
+    hub.addEventListener('click', (e) => {
+      if (e.target === hub) close();
+    });
+    window.addEventListener('resize', moveInk);
+    const fromHash = location.hash.slice(1);
+    if (names.includes(fromHash)) open(fromHash);
+
+    // تصفية آخر التحديثات
+    const chips = [...hub.querySelectorAll<HTMLButtonElement>('.chip')];
+    chips.forEach((c) =>
+      c.addEventListener('click', () => {
+        chips.forEach((x) => x.classList.toggle('on', x === c));
+        const f = c.dataset.filter;
+        hub.querySelectorAll<HTMLElement>('.tl li').forEach((li) => (li.hidden = f !== 'all' && li.dataset.kind !== f));
+      }),
+    );
+
+    // العدّ التنازلي لصدور الألعاب، وبعد الصدور تتغير الشارة إلى "صدرت · التعريب قيد العمل"
+    const timers = [...hub.querySelectorAll<HTMLElement>('[data-countdown]')];
+    const tick = () => {
+      timers.forEach((el) => {
+        const left = new Date(`${el.dataset.countdown}T00:00:00`).getTime() - Date.now();
+        if (left <= 0) {
+          el.hidden = true;
+          const state = el.closest('.soon-card')?.querySelector('[data-state]');
+          if (state) {
+            state.textContent = 'صدرت · التعريب قيد العمل';
+            state.classList.add('out');
+          }
+          return;
+        }
+        const u = { d: Math.floor(left / 864e5), h: Math.floor(left / 36e5) % 24, m: Math.floor(left / 6e4) % 60, s: Math.floor(left / 1e3) % 60 };
+        for (const [k, v] of Object.entries(u)) el.querySelector(`[data-u="${k}"]`)!.textContent = String(v).padStart(2, '0');
+      });
+    };
+    if (timers.length) {
+      tick();
+      setInterval(tick, 1000);
+    }
+  }
 </script>
