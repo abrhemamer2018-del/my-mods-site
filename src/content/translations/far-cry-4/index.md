@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2014-11-17
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvj4o5r0.webp
 screenshots:
   - ./shot-mvj4p2iar02.webp
@@ -18,12 +18,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FarCry4_Installer.zip
-    size: 5.40 MB
+    size: 2.67 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-26
+    notes:
+      - "أداة التثبيت تعمل الآن مع كل نسخ اللعبة (Steam وUbisoft وGold Edition وغيرها): صارت تدمج التعريب في ملفات لعبتك نفسها وقت التثبيت، فلم تعد تظهر رسالة «نسخة اللعبة لا تطابق هذا التعريب: patch_chn.dat»"
+      - "إذا كان في نسختك نص مختلف عن نسخة Steam يبقى بالإنجليزية بدل ترجمة خاطئة، وإزالة التعريب ترجع ملفات اللعبة كما كانت"
   - version: "1.0"
     date: 2026-10-22
     notes:
