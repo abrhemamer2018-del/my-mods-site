@@ -4,6 +4,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import TranslationCard from '../../components/TranslationCard.astro';
+import { downloadsOf } from '../../lib/downloads';
 import { getTranslations, formatDate, relatedTranslations, youtubeId, type Translation } from '../../lib/utils';
 import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
 
@@ -19,6 +20,8 @@ const og = await getImage({ src: d.banner ?? d.cover, width: 1200, format: 'jpg'
 const shots = await Promise.all(
   d.screenshots.map(async (s) => ({ thumb: s, full: (await getImage({ src: s, width: 1600 })).src })),
 );
+// عارض الصور أعلى الصفحة: الغلاف ثم لقطات التعريب
+const media = [{ thumb: d.cover, full: (await getImage({ src: d.cover, width: 1600 })).src }, ...shots];
 // فيديو يوتيوب اختياري: لا يظهر القسم إذا لم يوضع رابط
 const videoId = youtubeId(d.video);
 // وصف نتائج Google: يبدأ بذكر التعريب ثم نبذة اللعبة
@@ -100,51 +103,145 @@ const jsonLd = [
       { '@type': 'ListItem', position: 3, name: `تعريب ${d.title}`, item: pageUrl },
     ],
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })),
-  },
 ];
 
 const related = relatedTranslations(item, all, RELATED_COUNT);
+const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
 ---
 
 <BaseLayout fullTitle={pageTitle} description={seoDescription} image={og.src} jsonLd={jsonLd}>
-  <section class="banner" data-pagefind-body>
-    <Image class="banner-bg" src={d.banner ?? d.cover} alt={`خلفية ${d.title}`} aria-hidden="true" width={1920} height={600} loading="eager" />
-    <div class="container banner-content">
-      <Image class="cover" src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={420} height={236} loading="eager" />
-      <div>
-        <div class="tags">
-          <span class="badge">{CATEGORY_LABELS[d.category]}</span>
-          <span class:list={['badge', d.status === 'complete' ? 'badge-green' : 'badge-warn']}>
-            {STATUS_LABELS[d.status]}
-          </span>
-        </div>
+  {/* أعلى الصفحة بأسلوب صفحة متجر: العنوان، ثم عارض صور كبير، وبجانبه صندوق التحميل والمعلومات */}
+  <section class="sp" data-pagefind-body>
+    <Image class="sp-bg" src={d.banner ?? d.cover} alt="" aria-hidden="true" width={1920} height={600} loading="eager" />
+    <div class="container sp-in">
+      <nav class="crumbs" aria-label="مسار الصفحة">
+        <a href="/">الرئيسية</a>
+        <span aria-hidden="true">‹</span>
+        <a href="/translations/">التعريبات</a>
+        <span aria-hidden="true">‹</span>
+        <span dir="ltr">{d.title}</span>
+      </nav>
+      <div class="sp-head">
         <h1>
           <span class="kicker">تعريب لعبة</span>
           <span class="game-title" dir="ltr">{d.title}</span>
         </h1>
         <p class="ar">{d.titleAr}</p>
         {d.aliases.length > 0 && <p class="aliases">يُعرف أيضاً باسم: {d.aliases.join('، ')}</p>}
-        <p class="summary">{d.summary}</p>
-        <p class="en-line" lang="en" dir="ltr">Arabic translation mod for {d.title} — free download for PC.</p>
-        {
-          d.status !== 'complete' && d.progress !== undefined && (
-            <div class="progress" role="progressbar" aria-valuenow={d.progress} aria-valuemin="0" aria-valuemax="100">
-              <div style={`width:${d.progress}%`} />
-              <span>نسبة الإنجاز {d.progress}%</span>
-            </div>
-          )
-        }
       </div>
+
+      <div class="sp-grid">
+        {/* عارض الصور: الغلاف ثم لقطات التعريب */}
+        <div class="viewer">
+          <a href={media[0].full} class="vw-main" aria-label="تكبير الصورة">
+            <Image src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={1200} height={675} loading="eager" />
+          </a>
+          {
+            media.length > 1 && (
+              <div class="vw-thumbs">
+                {media.map((m, i) => (
+                  <a href={m.full} class:list={['shot', { on: i === 0 }]} data-index={i}>
+                    <Image src={m.thumb} alt={i === 0 ? `غلاف تعريب ${d.titleAr}` : `لقطة ${i} من تعريب ${d.titleAr}`} width={240} />
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        {/* صندوق التحميل: كل ما يحتاجه الزائر قبل التحميل في مكان واحد */}
+        <aside class="buy" id="download">
+          <div class="tags">
+            <span class="badge">{CATEGORY_LABELS[d.category]}</span>
+            <span class:list={['badge', d.status === 'complete' ? 'badge-green' : 'badge-warn']}>{STATUS_LABELS[d.status]}</span>
+          </div>
+          <p class="summary">{d.summary}</p>
+          {
+            d.status !== 'complete' && d.progress !== undefined && (
+              <div class="progress" role="progressbar" aria-valuenow={d.progress} aria-valuemin="0" aria-valuemax="100">
+                <div style={`width:${d.progress}%`} />
+                <span>نسبة الإنجاز {d.progress}%</span>
+              </div>
+            )
+          }
+          {/* المعلومات بطاقات صغيرة (العنوان فوق والقيمة تحت)، وبطاقة الإصدار تفتح سجل التحديثات */}
+          <div class="tiles">
+            {
+              d.changelog.length > 1 ? (
+                <button type="button" class="tile tile-ver" id="cl-open" aria-haspopup="dialog">
+                  <span class="t-label">إصدار التعريب</span>
+                  <span class="t-row">
+                    <span class="t-val" dir="ltr">v{d.version}</span>
+                    <span class="t-more">سجل التحديثات ‹</span>
+                  </span>
+                </button>
+              ) : (
+                <div class="tile">
+                  <span class="t-label">إصدار التعريب</span>
+                  <span class="t-val" dir="ltr">v{d.version}</span>
+                </div>
+              )
+            }
+            <div class="tile">
+              <span class="t-label">المنصة</span>
+              <span class="t-val" dir="ltr">{d.platforms.join(', ')}</span>
+            </div>
+            {
+              d.gameVersion && (
+                <div class="tile">
+                  <span class="t-label">نسخة اللعبة</span>
+                  <span class="t-val" dir="ltr">{d.gameVersion}</span>
+                </div>
+              )
+            }
+            <div class="tile">
+              <span class="t-label">{d.updatedDate ? 'آخر تحديث' : 'تاريخ الإصدار'}</span>
+              <span class="t-val">{formatDate(d.updatedDate ?? d.releaseDate)}</span>
+            </div>
+            {d.team.map((m) => (
+              <div class="tile">
+                <span class="t-label">{m.role}</span>
+                <span class="t-val">{m.name}</span>
+              </div>
+            ))}
+          </div>
+          <div class="buy-cta">
+            {
+              d.downloads.length ? (
+                d.downloads.map((dl) => (
+                  <a href={dl.url} class="btn btn-primary buy-dl" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
+                    <span>تحميل مجاني</span>
+                    {dl.size && <small dir="ltr">{dl.size}</small>}
+                  </a>
+                ))
+              ) : (
+                <p class="muted">روابط التحميل ستتوفر قريباً.</p>
+              )
+            }
+            <p class="legal muted">
+              <span>نحثّك على دعم المطوّر وشراء اللعبة</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="/copyright/">حقوق النشر</a>
+            </p>
+          </div>
+          <button type="button" class="buy-report" id="report-open">
+            <span aria-hidden="true">⚠️</span> لم يعمل التعريب معك؟ <b>أبلغنا</b>
+          </button>
+        </aside>
+      </div>
+      <p class="en-line" lang="en" dir="ltr">Arabic translation mod for {d.title} — free download for PC.</p>
     </div>
   </section>
 
   <div class="container layout">
     <article class="main" data-pagefind-body>
-      <div class="prose">
+      <div class="prose" id="install">
+        {/* رابط هادئ في سطر عنوان "طريقة التثبيت" يفتح طريقة حذف التعريب */}
+        <button type="button" class="un-open" id="un-open" aria-haspopup="dialog">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" /></svg>
+          طريقة حذف التعريب
+        </button>
         <Content />
       </div>
 
@@ -171,145 +268,20 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
       }
 
       {
-        shots.length > 0 && (
-          <section class="block" data-pagefind-ignore>
-            <h2>صور من التعريب</h2>
-            <div class="gallery">
-              {shots.map((s, i) => (
-                <a href={s.full} class="shot" data-index={i}>
-                  <Image src={s.thumb} alt={`لقطة ${i + 1} من تعريب ${d.titleAr}`} width={600} />
-                </a>
-              ))}
-            </div>
-          </section>
-        )
-      }
-
-      {
-        d.changelog.length > 0 && (
-          <section class="block" id="changelog">
-            <h2>سجل التحديثات</h2>
-            <ol class="changelog">
-              {d.changelog.map((c) => (
-                <li>
-                  <div class="cl-head" data-pagefind-ignore>
-                    <strong dir="ltr">v{c.version}</strong>
-                    <time class="muted" datetime={c.date.toISOString()}>
-                      {formatDate(c.date)}
-                    </time>
-                  </div>
-                  <ul>
-                    {c.notes.map((n) => (
-                      <li>{n}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ol>
-          </section>
-        )
-      }
-
-      <section class="block faq" id="faq">
-        <h2>أسئلة شائعة</h2>
-        {faq.map((x) => (
-          <details>
-            <summary>{x.q}</summary>
-            <p>{x.a}</p>
-          </details>
-        ))}
-      </section>
-    </article>
-
-    <aside class="sidebar">
-      {/* التحميل والإبلاغ: مستطيلان بنفس الارتفاع دائماً */}
-      <div class="dl-pair">
-      <div class="panel downloads" id="download">
-        <h2><Icon name="download" /> التحميل</h2>
-        {
-          d.downloads.length ? (
-            d.downloads.map((dl) => (
-              <a href={dl.url} class="btn btn-primary dl" target="_blank" rel="noopener">
-                <span>{dl.label}</span>
-                {dl.size && <small dir="ltr">{dl.size}</small>}
-              </a>
-            ))
-          ) : (
-            <p class="muted">روابط التحميل ستتوفر قريباً.</p>
-          )
-        }
-        <p class="legal muted">
-          <span>نحثّك على دعم المطوّر وشراء اللعبة</span>
-          <span class="sep" aria-hidden="true">·</span>
-          <a href="/copyright/">حقوق النشر</a>
-        </p>
-      </div>
-
-      {/* الإبلاغ عن مشكلة: مستطيل منفصل تحت التحميل */}
-      <div class="panel report-panel">
-        <h2>⚠️ مشكلة في التعريب؟</h2>
-        <p class="muted">لم يعمل التعريب معك؟ أخبرنا وسنساعدك.</p>
-        <button type="button" class="report-open" id="report-open">الإبلاغ عن مشكلة</button>
-      </div>
-      </div>
-
-      <div class="panel">
-        <h2><Icon name="info" /> معلومات</h2>
-        <dl class="info">
-          <dt>إصدار التعريب</dt>
-          <dd dir="ltr">v{d.version}</dd>
-          {
-            d.gameVersion && (
-              <>
-                <dt>نسخة اللعبة</dt>
-                <dd dir="ltr">{d.gameVersion}</dd>
-              </>
-            )
-          }
-          <dt>المنصة</dt>
-          <dd dir="ltr">{d.platforms.join(', ')}</dd>
-          <dt>تاريخ الإصدار</dt>
-          <dd>{formatDate(d.releaseDate)}</dd>
-          {
-            d.updatedDate && (
-              <>
-                <dt>آخر تحديث</dt>
-                <dd>{formatDate(d.updatedDate)}</dd>
-              </>
-            )
-          }
-        </dl>
-      </div>
-
-      {
         d.requirements.length > 0 && (
-          <div class="panel">
-            <h2><Icon name="list" /> المتطلبات</h2>
+          <section class="block">
+            <h2>المتطلبات</h2>
             <ul class="plain">
-              {d.requirements.map((r) => (
-                <li>{r}</li>
+              {d.requirements.map((x) => (
+                <li>{x}</li>
               ))}
             </ul>
-          </div>
+          </section>
         )
       }
 
-      {
-        d.team.length > 0 && (
-          <div class="panel">
-            <h2><Icon name="users" /> فريق العمل</h2>
-            <dl class="info">
-              {d.team.map((m) => (
-                <>
-                  <dt>{m.role}</dt>
-                  <dd>{m.name}</dd>
-                </>
-              ))}
-            </dl>
-          </div>
-        )
-      }
-    </aside>
+    </article>
+
   </div>
 
   {
@@ -317,23 +289,23 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
       <section class="container related" data-pagefind-ignore>
         <div class="section-head">
           <h2>تعريبات أخرى قد تعجبك</h2>
-          <a href="/translations/">كل التعريبات ‹</a>
+          <a href="/translations/" class="more-pill">كل التعريبات ‹</a>
         </div>
         <div class="related-cards">
-          {related.map((t) => <TranslationCard item={t} />)}
+          {related.map((t, i) => <TranslationCard item={t} downloads={relatedDl[i]} />)}
         </div>
       </section>
     )
   }
 
   {
-    shots.length > 0 && (
+    media.length > 0 && (
       <dialog class="lightbox" aria-label={`صور تعريب ${d.titleAr}`}>
         <img class="lb-img" alt="صورة مكبّرة من التعريب" />
         <button class="lb-btn lb-close" aria-label="إغلاق">
           <Icon name="close" size={24} />
         </button>
-        {shots.length > 1 && (
+        {media.length > 1 && (
           <>
             <button class="lb-btn lb-prev" aria-label="الصورة السابقة">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
@@ -347,6 +319,51 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
       </dialog>
     )
   }
+  {
+    d.changelog.length > 1 && (
+      <dialog class="cl-box" id="cl-box" aria-labelledby="cl-title">
+        <div class="cl-in" tabindex="-1" autofocus>
+          <div class="cl-top">
+            <h2 id="cl-title">سجل التحديثات</h2>
+            <button type="button" class="cl-x" id="cl-close" aria-label="إغلاق">✕</button>
+          </div>
+          <p class="muted cl-sub">تعريب {d.titleAr} · النسخة الحالية <span dir="ltr">v{d.version}</span></p>
+          <ol class="changelog">
+            {[...d.changelog]
+              .sort((x, y) => y.date.getTime() - x.date.getTime())
+              .map((c, i) => (
+                <li class:list={{ now: i === 0 }}>
+                  <div class="cl-head">
+                    <strong dir="ltr">v{c.version}</strong>
+                    {i === 0 && <span class="cl-now">الحالية</span>}
+                    <time class="muted" datetime={c.date.toISOString()}>{formatDate(c.date)}</time>
+                  </div>
+                  <ul>
+                    {c.notes.map((n) => (
+                      <li>{n}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+          </ol>
+        </div>
+      </dialog>
+    )
+  }
+  <dialog class="cl-box un-box" id="un-box" aria-labelledby="un-title">
+    <div class="cl-in" tabindex="-1" autofocus>
+      <div class="cl-top">
+        <h2 id="un-title">حذف التعريب</h2>
+        <button type="button" class="cl-x" id="un-close" aria-label="إغلاق">✕</button>
+      </div>
+      <p class="muted cl-sub">لإرجاع اللعبة كما كانت قبل التعريب:</p>
+      <ol class="un-steps">
+        <li>في <bdi>Steam</bdi> كلك يمين على اللعبة واختر <bdi>Properties</bdi>.</li>
+        <li>افتح <bdi>Installed Files</bdi>.</li>
+        <li>اضغط <bdi>Verify integrity of game files</bdi>، فتعود ملفات اللعبة الأصلية.</li>
+      </ol>
+    </div>
+  </dialog>
   <dialog class="report-box" id="report-box" aria-labelledby="report-title">
     <form id="report-form" class="report-form" novalidate>
       <div class="rf-head">
@@ -944,6 +961,573 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
     padding-inline-start: 20px;
   }
 
+  /* ═════ أعلى الصفحة: صفحة متجر ═════ */
+  .sp {
+    position: relative;
+    margin-top: -76px;
+    padding: 108px 0 8px;
+    overflow: hidden;
+  }
+  .sp :global(.sp-bg) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(40px) saturate(1.3) brightness(0.35);
+    transform: scale(1.2);
+  }
+  .sp::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg) 8%, rgb(11 13 23 / 0.55) 60%, rgb(11 13 23 / 0.75));
+  }
+  .sp-in {
+    position: relative;
+    z-index: 1;
+  }
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .crumbs a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--accent);
+  }
+  .sp-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 18px;
+    margin: 14px 0 22px;
+  }
+  .sp-head h1 {
+    margin: 0;
+  }
+  .sp-head h1 .kicker {
+    display: none;
+  }
+  .sp-head .game-title {
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+    line-height: 1.15;
+  }
+  .sp-head .ar {
+    font-size: 1.4rem;
+  }
+  .sp-head .aliases {
+    flex-basis: 100%;
+  }
+  .sp-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr);
+    gap: 26px;
+    align-items: stretch;
+  }
+  /* عارض الصور */
+  .viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+  }
+  .viewer:not(:has(.vw-thumbs)) {
+    align-self: center;
+  }
+  .vw-main {
+    display: block;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    box-shadow: 0 24px 60px rgb(0 0 0 / 0.5);
+    cursor: zoom-in;
+  }
+  .vw-main :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .vw-thumbs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    padding-bottom: 4px;
+  }
+  .vw-thumbs .shot {
+    flex: 0 0 calc((100% - 50px) / 6);
+    min-width: 110px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    transition: opacity 0.2s, border-color 0.2s;
+  }
+  .vw-thumbs .shot:hover {
+    opacity: 1;
+  }
+  .vw-thumbs .shot.on {
+    opacity: 1;
+    border-color: var(--accent);
+  }
+  .vw-thumbs .shot :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  /* صندوق التحميل */
+  .buy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 18px;
+    background: rgb(21 25 49 / 0.72);
+    backdrop-filter: blur(12px);
+  }
+  .buy .summary {
+    margin: 0;
+    max-width: none;
+    line-height: 1.8;
+  }
+  .buy-info {
+    padding: 14px 0;
+    border-block: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+  .buy-cta {
+    margin-top: auto;
+  }
+  .buy-dl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px 18px;
+    font-size: 1.12rem;
+    box-shadow: 0 12px 32px rgb(25 195 214 / 0.28);
+  }
+  .buy-dl small {
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.15);
+    font-size: 0.8rem;
+  }
+  .buy .legal {
+    margin-top: 10px;
+  }
+  .buy-report {
+    padding: 10px;
+    border: 1px solid rgb(224 52 79 / 0.3);
+    border-radius: 12px;
+    background: rgb(224 52 79 / 0.07);
+    color: #ff9aaa;
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .buy-report:hover {
+    background: rgb(224 52 79 / 0.15);
+    border-color: var(--accent-2);
+  }
+  .sp .en-line {
+    margin: 12px 0 0;
+  }
+  /* بطاقات المعلومات في صندوق التحميل */
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid rgb(255 255 255 / 0.07);
+    border-radius: 12px;
+    background: rgb(255 255 255 / 0.03);
+    color: inherit;
+    font: inherit;
+    text-align: start;
+  }
+  .t-label {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .t-val {
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+  }
+  .t-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .t-more {
+    white-space: nowrap;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .tile-ver {
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .tile-ver:hover,
+  .tile-ver:focus-visible {
+    border-color: rgb(25 195 214 / 0.45);
+    background: rgb(25 195 214 / 0.07);
+  }
+  /* نافذة سجل التحديثات */
+  .cl-box {
+    width: min(600px, calc(100vw - 32px));
+    max-height: calc(80vh / var(--zoom));
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--card);
+    color: var(--text);
+  }
+  .cl-box::backdrop {
+    background: rgb(5 6 12 / 0.75);
+    backdrop-filter: blur(4px);
+  }
+  .cl-box[open] {
+    animation: cl-pop 0.25s ease;
+  }
+  @keyframes cl-pop {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+  .cl-in {
+    padding: 22px 24px 24px;
+  }
+  .cl-in:focus {
+    outline: none;
+  }
+  .cl-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cl-top h2 {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+  .cl-x {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .cl-sub {
+    margin: 4px 0 18px;
+    font-size: 0.9rem;
+  }
+  .cl-box .changelog > li.now {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgb(25 195 214 / 0.06);
+    border: 1px solid rgb(25 195 214 / 0.2);
+  }
+  .cl-now {
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0b0d17;
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  #install {
+    position: relative;
+  }
+  .un-open {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.9rem;
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .un-open:hover,
+  .un-open:focus-visible {
+    color: var(--accent);
+  }
+  .un-steps {
+    margin: 0;
+    padding-inline-start: 22px;
+    line-height: 2;
+  }
+  .section-head .more-pill {
+    margin-inline-start: auto;
+    padding: 7px 16px;
+    border: 1px solid rgb(25 195 214 / 0.4);
+    border-radius: 999px;
+    background: rgb(25 195 214 / 0.08);
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .section-head .more-pill:hover {
+    background: rgb(25 195 214 / 0.16);
+  }
+  .related {
+    padding-top: 56px;
+  }
+
+  /* المحتوى تحت: عمود واحد بعرض الصفحة */
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 30px;
+  }
+  /* ═════ طريقة التثبيت: مسار من 4 محطات متصلة، وتحته النصيحة والملاحظة متجاورتان ═════ */
+  .prose {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'h h'
+      'ol ol'
+      'tip nh'
+      'tip np'
+      'tip nu';
+    column-gap: 18px;
+  }
+  .prose > :global(h2:first-of-type) {
+    grid-area: h;
+    margin: 0 0 16px;
+  }
+  .prose > :global(ol) {
+    grid-area: ol;
+  }
+  .prose > :global(ol + p) {
+    grid-area: tip;
+  }
+  .prose > :global(h2:nth-of-type(2)) {
+    grid-area: nh;
+  }
+  .prose > :global(h2:nth-of-type(2) ~ p) {
+    grid-area: np;
+  }
+  .prose > :global(h2:nth-of-type(2) ~ ul) {
+    grid-area: nu;
+  }
+  .prose :global(h2:first-of-type + ol) {
+    counter-reset: step;
+    list-style: none;
+    position: relative;
+    margin: 0 0 18px;
+    padding: 30px 20px 28px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background:
+      radial-gradient(60% 120% at 100% 0%, rgb(25 195 214 / 0.09), transparent 60%),
+      radial-gradient(60% 120% at 0% 100%, rgb(224 52 79 / 0.08), transparent 60%),
+      var(--card);
+  }
+  /* الخط الذي يمر بالمحطات الأربع */
+  .prose :global(h2:first-of-type + ol)::before {
+    content: '';
+    position: absolute;
+    top: 53px;
+    right: 12.5%;
+    left: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    opacity: 0.55;
+  }
+  .prose :global(h2:first-of-type + ol > li) {
+    counter-increment: step;
+    position: relative;
+    margin: 0;
+    padding: 64px 6px 0;
+    text-align: center;
+    line-height: 1.7;
+  }
+  .prose :global(h2:first-of-type + ol > li)::before {
+    content: counter(step);
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    margin-left: -24px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #0b0d17;
+    font-size: 1.2rem;
+    font-weight: 900;
+    box-shadow: 0 0 0 6px var(--card), 0 10px 26px rgb(25 195 214 / 0.3);
+  }
+  /* النصيحة: مجلد اللعبة */
+  .prose :global(ol + p) {
+    position: relative;
+    margin: 0;
+    padding: 18px 20px 18px 20px;
+    padding-inline-start: 58px;
+    border-radius: 16px;
+    background: rgb(25 195 214 / 0.06);
+    border: 1px solid rgb(25 195 214 / 0.2);
+    color: #c9cde6;
+    line-height: 1.9;
+  }
+  .prose :global(ol + p)::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    inset-inline-start: 18px;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background:
+      no-repeat center / 16px
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b0d17' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3C/svg%3E"),
+      var(--accent);
+  }
+
+  /* ═════ المقترح: "ملاحظة" صندوق تنبيه ═════ */
+  .prose :global(h2:nth-of-type(2)),
+  .prose :global(h2:nth-of-type(2) ~ p),
+  .prose :global(h2:nth-of-type(2) ~ ul) {
+    margin: 0;
+    padding-inline: 20px;
+    background: rgb(245 158 11 / 0.07);
+    border: 1px solid rgb(245 158 11 / 0.28);
+    border-block: 0;
+  }
+  .prose :global(h2:nth-of-type(2)) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0;
+    padding-top: 18px;
+    border-top: 1px solid rgb(245 158 11 / 0.28);
+    border-radius: 16px 16px 0 0;
+    color: #fbbf24;
+    font-size: 1.25rem;
+  }
+  .prose :global(h2:nth-of-type(2))::before {
+    content: '!';
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #f59e0b;
+    color: #1a1407;
+    font-size: 0.95rem;
+    font-weight: 900;
+  }
+  .prose :global(h2:nth-of-type(2) ~ p) {
+    padding-top: 10px;
+    padding-bottom: 6px;
+  }
+  .prose :global(h2:nth-of-type(2) ~ ul) {
+    margin-top: 0 !important;
+    padding-top: 4px;
+  }
+  .prose :global(h2:nth-of-type(2) ~ ul) {
+    padding-inline-start: 40px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgb(245 158 11 / 0.28);
+    border-radius: 0 0 16px 16px;
+  }
+
+  @media (max-width: 1100px) {
+    .sp-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .prose {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'h' 'ol' 'tip' 'nh' 'np' 'nu';
+    }
+    .prose :global(ol + p) {
+      margin-bottom: 18px;
+    }
+    .prose :global(h2:first-of-type + ol)::before {
+      display: none;
+    }
+    .prose :global(h2:first-of-type + ol) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .prose :global(h2:first-of-type + ol > li:nth-child(2))::after {
+      display: none;
+    }
+  }
+  @media (max-width: 560px) {
+    /* الخطوات 2×2 بدل 4 تحت بعض */
+    .prose :global(h2:first-of-type + ol) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 10px;
+      padding: 22px 12px;
+    }
+    .prose :global(h2:first-of-type + ol > li) {
+      padding-top: 54px;
+      font-size: 0.92rem;
+    }
+    /* البطاقات: القيمة تلتف بدل أن تُقص، ورابط السجل تحت الرقم */
+    .t-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+    .t-val {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      font-size: 0.92rem;
+    }
+    .prose :global(h2:first-of-type + ol > li)::after {
+      display: none;
+    }
+    .vw-thumbs .shot {
+      flex-basis: 30%;
+      min-width: 0;
+    }
+    .buy {
+      padding: 16px;
+    }
+  }
+
   @media (max-width: 900px) {
     .banner-content {
       flex-direction: column;
@@ -991,7 +1575,9 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
 <script>
   // عارض الصور: يفتح الصورة كبيرة داخل الموقع بدل فتحها في نافذة جديدة
   const box = document.querySelector<HTMLDialogElement>('.lightbox');
-  const links = [...document.querySelectorAll<HTMLAnchorElement>('.gallery .shot')];
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.vw-thumbs .shot, .vw-main')].filter(
+    (a, i, all) => !(a.classList.contains('vw-main') && all.length > 1),
+  );
   if (box && links.length) {
     const img = box.querySelector<HTMLImageElement>('.lb-img')!;
     const count = box.querySelector<HTMLElement>('.lb-count')!;
@@ -1009,12 +1595,25 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
       document.documentElement.style.overflow = 'hidden';
     };
 
+    // الصور المصغّرة تغيّر الصورة الكبيرة، والضغط على الكبيرة يفتحها في العارض
+    const main = document.querySelector<HTMLAnchorElement>('.vw-main')!;
+    const mainImg = main.querySelector('img')!;
+    let picked = 0;
     links.forEach((a, i) =>
       a.addEventListener('click', (e) => {
         e.preventDefault();
-        open(i);
+        if (a === main) return open(0);
+        picked = i;
+        mainImg.src = a.dataset.big || a.href;
+        mainImg.removeAttribute('srcset');
+        links.forEach((x) => x.classList.toggle('on', x === a));
       }),
     );
+    if (links.length > 1)
+      main.addEventListener('click', (e) => {
+        e.preventDefault();
+        open(picked);
+      });
     box.addEventListener('close', () => (document.documentElement.style.overflow = ''));
     box.querySelector('.lb-close')?.addEventListener('click', () => box.close());
     box.querySelector('.lb-next')?.addEventListener('click', () => show(current + 1));
@@ -1036,6 +1635,27 @@ const related = relatedTranslations(item, all, RELATED_COUNT);
       const dx = e.changedTouches[0].clientX - x0;
       x0 = null;
       if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+    });
+  }
+</script>
+
+<script>
+  // نافذة طريقة حذف التعريب
+  const un = document.getElementById('un-box') as HTMLDialogElement | null;
+  if (un) {
+    document.getElementById('un-open')?.addEventListener('click', () => un.showModal());
+    document.getElementById('un-close')?.addEventListener('click', () => un.close());
+    un.addEventListener('click', (e) => {
+      if (e.target === un) un.close();
+    });
+  }
+  // نافذة سجل التحديثات
+  const cl = document.getElementById('cl-box') as HTMLDialogElement | null;
+  if (cl) {
+    document.getElementById('cl-open')?.addEventListener('click', () => cl.showModal());
+    document.getElementById('cl-close')?.addEventListener('click', () => cl.close());
+    cl.addEventListener('click', (e) => {
+      if (e.target === cl) cl.close();
     });
   }
 </script>

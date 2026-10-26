@@ -58,6 +58,40 @@ const LT_ESCAPED = '\\' + 'u003c';
     {/* نحمّل مسبقاً الوزنين الأكثر استخداماً للنص العربي فقط، والباقي يُحمَّل عند الحاجة */}
     <Font cssVariable="--font-tajawal" preload={[{ subset: 'arabic', weight: 400 }, { subset: 'arabic', weight: 700 }]} />
     <Font cssVariable="--font-reem-kufi" />
+    {/* تكبير نسبي حسب الشاشة: FHD (1920×1080) هي المقياس بتصغير 81%، والشاشات الأكبر (2K و4K) تكبر بنفس النسبة
+        فتبقى الصفحة بنفس الشكل. يُحسب من الشاشة لا النافذة، فيبقى تكبير المتصفح يعمل. الأصغر من 1800 تبقى على 90% */}
+    <script is:inline>
+    (() => {
+      const BASE = 0.81;
+      const fit = () => {
+        const w = screen.width, h = screen.height;
+        const root = document.documentElement;
+        if (w < 1800) {
+          root.style.removeProperty('zoom');
+          root.style.removeProperty('--zoom');
+          root.style.removeProperty('--zr');
+          root.style.removeProperty('--ui');
+          root.classList.remove('zfit');
+          root.classList.remove('zscale');
+          return;
+        }
+        // الطول أيضاً، حتى لا تصير الصفحة أطول من الشاشات العريضة جداً (Ultrawide)
+        const z = Math.min(2.4, BASE * Math.min(w / 1920, h / 1080));
+        root.style.zoom = String(z);
+        root.style.setProperty('--zoom', String(z));
+        root.style.setProperty('--zr', String(z));
+        root.classList.add('zscale');
+        // زرّا "ادعمنا" و"للأعلى": بحجمهما الأصلي على FHD، ويكبران مع الشاشات الأكبر
+        root.style.setProperty('--ui', String(z / BASE));
+        // النصوص الصغيرة تكبر قليلاً مع هذا التصغير (حتى لا تقل عن 12px تقريباً على الشاشة)
+        root.classList.add('zfit');
+      };
+      fit();
+      // عند نقل النافذة إلى شاشة أخرى أو تغيير إعدادات الشاشة
+      matchMedia('(resolution: ' + devicePixelRatio + 'dppx)').addEventListener('change', fit);
+      addEventListener('resize', fit);
+    })();
+  </script>
   </head>
   <body>
     <Header />
@@ -152,7 +186,7 @@ const LT_ESCAPED = '\\' + 'u003c';
     cursor: pointer;
     box-shadow: var(--shadow);
     /* بحجمه الأصلي رغم تصغير الموقع على الشاشات الكبيرة، مثل زر "ادعمنا" */
-    zoom: calc(1 / var(--zoom));
+    zoom: calc(var(--ui, 1) / var(--zoom));
     transition:
       background 0.2s,
       border-color 0.2s,

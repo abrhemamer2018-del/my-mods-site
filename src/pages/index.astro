@@ -556,6 +556,45 @@ const jsonLd = [
     backdrop-filter: blur(14px);
     box-shadow: 0 14px 40px rgb(0 0 0 / 0.45);
   }
+  /* مع التكبير النسبي (تصغير 81%): النصوص الصغيرة أكبر قليلاً حتى تبقى مقروءة (حوالي 12px على الشاشة) */
+  /* (فوق 1300px فقط: تحتها يبقى السهم وحده في الشريط) */
+  @media (min-width: 1301px) {
+    :global(.zfit) .s-txt small {
+      font-size: 0.93rem;
+    }
+  }
+  :global(.zfit) .live-txt small {
+    font-size: 0.93rem;
+  }
+  :global(.zfit) .live-pill {
+    font-size: 0.78rem;
+  }
+  :global(.zfit) .pin-names span {
+    font-size: 0.92rem;
+  }
+  :global(.zfit) .cat {
+    font-size: 0.98rem;
+  }
+  :global(.zfit) .cat span {
+    font-size: 0.86rem;
+  }
+  :global(.zfit) .duo-text,
+  :global(.zfit) .duo-btn {
+    font-size: 0.95rem;
+  }
+  :global(.zfit) .duo-kicker {
+    font-size: 0.85rem;
+  }
+  :global(.zfit .card .meta) {
+    font-size: 0.93rem;
+  }
+  :global(.zfit .card .badge) {
+    font-size: 0.85rem;
+  }
+  :global(.zfit .hx-meta li),
+  :global(.zfit .hx-tag) {
+    font-size: 0.93rem;
+  }
   /* الصفحة كلها أعرض بحوالي 1 سم من كل جانب (1540 ← 1624)، فتبقى كل الحواف على خط واحد */
   :global(:root) {
     --container: 1624px;
