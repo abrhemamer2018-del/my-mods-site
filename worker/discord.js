@@ -29,6 +29,9 @@ const API = 'https://discord.com/api/v10';
 const SITE_URL = 'https://ta3reebat.com';
 const VOTES_FIELD = 'الأصوات';
 const EPHEMERAL = 64;
+const LIVE_TIP =
+  `💡 تقدر تلعبها بالعربي الحين مع برنامج **تعريبات لايف**: يترجم نصوص أي لعبة للعربي مباشرة على الشاشة وأنت تلعب.\n` +
+  `${SITE_URL}/live/`;
 
 /** نقطة الدخول: يتحقق من توقيع ديسكورد ثم يوزّع التفاعل */
 export async function discordInteraction(request, env, ctx, helpers) {
@@ -105,14 +108,21 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
     return `**${game.name}** ما نزلت للحين على Steam، اطلبها بعد ما تنزل ونقيس عدد لاعبيها.`;
   }
 
+  if (game.antiCheat) {
+    return (
+      `شكراً على طلبك 🌹\n` +
+      `**${game.name}** فيها نظام مضاد للغش (Anti-Cheat)، وتعديل ملفاتها ممكن يسبب حظر حسابك، عشان كذا ما نعرّب الألعاب اللي فيها هالنظام.\n\n` +
+      LIVE_TIP
+    );
+  }
+
   const peak = await peakPlayers(game.id);
   if (peak < MIN_PEAK) {
     return (
       `شكراً على طلبك 🌹\n` +
       `**${game.name}** أعلى عدد لاعبين فيها خلال آخر 30 يوم كان **${peak}** لاعب، ` +
       `وحالياً نستقبل طلبات الألعاب اللي يوصل لاعبينها **${MIN_PEAK}** لاعب أو أكثر، عشان نقدر نركز على الألعاب اللي يستفيد منها أكثر عدد.\n\n` +
-      `💡 تقدر تلعبها بالعربي الحين مع برنامج **تعريبات لايف**: يترجم نصوص أي لعبة للعربي مباشرة على الشاشة وأنت تلعب.\n` +
-      `${SITE_URL}/live/`
+      LIVE_TIP
     );
   }
 
@@ -235,7 +245,24 @@ async function steamApp(id) {
   const res = await fetch(`https://store.steampowered.com/api/appdetails?appids=${id}&cc=us&l=en`);
   const d = res.ok ? (await res.json())?.[id]?.data : null;
   if (!d || !['game', 'dlc'].includes(d.type)) return null;
-  return { id: String(d.steam_appid), name: d.name, image: d.header_image, comingSoon: !!d.release_date?.coming_soon };
+  return {
+    id: String(d.steam_appid),
+    name: d.name,
+    image: d.header_image,
+    comingSoon: !!d.release_date?.coming_soon,
+    // VAC (8) أو MMO (20) من تصنيفات Steam
+    antiCheat: (d.categories || []).some((c) => c.id === 8 || c.id === 20) || (await antiCheatNotice(id)),
+  };
+}
+
+/** صفحة اللعبة في المتجر تذكر نظام مكافحة الغش (إفصاح Steam عن Kernel، أو اسم النظام) */
+async function antiCheatNotice(id) {
+  const html = await fetch(`https://store.steampowered.com/app/${id}/?l=english&cc=us`, {
+    headers: { Cookie: 'birthtime=0; wants_mature_content=1; lastagecheckage=1-0-1990' },
+  })
+    .then((r) => (r.ok ? r.text() : ''))
+    .catch(() => '');
+  return /Kernel Level Anti-Cheat|Easy Anti-Cheat|BattlEye/i.test(html);
 }
 
 /** أعلى عدد لاعبين في نفس الوقت خلال 30 يوماً: SteamCharts، ثم SteamSpy (ذروة أمس)، ثم العدد الحالي */
