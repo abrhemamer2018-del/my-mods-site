@@ -105,6 +105,15 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
     return `**${game.name}** ما نزلت للحين على Steam، اطلبها بعد ما تنزل ونقيس عدد لاعبيها.`;
   }
 
+  const peak = await peakPlayers(game.id);
+  if (peak < MIN_PEAK) {
+    return (
+      `شكراً على طلبك 🌹\n` +
+      `**${game.name}** أعلى عدد لاعبين فيها خلال آخر 30 يوم كان **${peak}** لاعب، ` +
+      `وحالياً نستقبل طلبات الألعاب اللي يوصل لاعبينها **${MIN_PEAK}** لاعب أو أكثر، عشان نقدر نركز على الألعاب اللي يستفيد منها أكثر عدد.`
+    );
+  }
+
   // طلب مكرر: نضيف صوته على المنشور القديم
   const old = await findRequest(env, it.guild_id, game.name);
   if (old) {
@@ -112,15 +121,6 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
     return (
       `هذي اللعبة مطلوبة من قبل 👍 ${v.already ? 'وصوتك محسوب من قبل.' : 'أضفنا صوتك على الطلب.'}\n` +
       `https://discord.com/channels/${it.guild_id}/${old.id}`
-    );
-  }
-
-  const peak = await peakPlayers(game.id);
-  if (peak < MIN_PEAK) {
-    return (
-      `شكراً على طلبك 🌹\n` +
-      `**${game.name}** أعلى عدد لاعبين فيها خلال آخر 30 يوم كان **${peak}** لاعب، ` +
-      `وحالياً نستقبل طلبات الألعاب اللي يوصل لاعبينها **${MIN_PEAK}** لاعب أو أكثر، عشان نقدر نركز على الألعاب اللي يستفيد منها أكثر عدد.`
     );
   }
 
