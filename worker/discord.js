@@ -149,6 +149,10 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
     },
   });
   await dc(env, 'PUT', `/channels/${thread.id}/thread-members/${userId}`);
+  if (hot) {
+    await notifyOwner(env, `🔥 **طلب جديد دخل قائمة المراجعة:** ${game.name} (${peak.toLocaleString('en-US')} لاعب)\n` +
+      `https://discord.com/channels/${it.guild_id}/${thread.id}`);
+  }
 
   return (
     `تم نشر طلبك ✅\nhttps://discord.com/channels/${it.guild_id}/${thread.id}\n` +
@@ -232,6 +236,8 @@ async function addVote(env, thread, userId) {
     await dc(env, 'POST', `/channels/${thread.id}/messages`, {
       content: `✅ وصل الطلب **${VOTES_NEEDED} أصوات** ودخل قائمة المراجعة. شكراً لكل اللي صوّتوا!`,
     });
+    await notifyOwner(env, `✅ **طلب وصل ${VOTES_NEEDED} أصوات ودخل قائمة المراجعة:** ${fresh.name}\n` +
+      `https://discord.com/channels/${fresh.guild_id}/${thread.id}`);
     ready = true;
   }
   return { votes, ready };
@@ -354,6 +360,17 @@ async function background(env, it, work) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ content, allowed_mentions: { parse: [] } }),
   });
+}
+
+/** رسالة خاصة لصاحب السيرفر (DISCORD_OWNER_ID). فشلها لا يوقف الطلب */
+async function notifyOwner(env, content) {
+  if (!env.DISCORD_OWNER_ID) return;
+  try {
+    const dm = await dc(env, 'POST', '/users/@me/channels', { recipient_id: env.DISCORD_OWNER_ID });
+    await dc(env, 'POST', `/channels/${dm.id}/messages`, { content });
+  } catch (err) {
+    console.log('notifyOwner failed', err.message);
+  }
 }
 
 /** طلب إلى ديسكورد بتوكن البوت. optional: يرجع null عند 404 بدل الخطأ */
