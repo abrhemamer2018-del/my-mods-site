@@ -295,14 +295,21 @@ const norm = (s) =>
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
 
+// اسم اللعبة بلا لاحقة النسخة، فـ BioShock تطابق تعريب BioShock Remastered
+const base = (s) =>
+  norm(s)
+    .replace(/\b(remastered|remaster|definitive|enhanced|complete|ultimate|deluxe|goty|game of the year|directors cut|director s cut|edition|hd)\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
 /** رابط صفحة التعريب إن كانت اللعبة معرّبة في الموقع (العنوان في الفهرس: "عربي (English)") */
 async function alreadyTranslated(env, origin, name) {
   try {
     const index = await env.ASSETS.fetch(new URL('/admin-index.json', origin)).then((r) => r.json());
-    const want = norm(name);
+    const want = base(name);
     for (const [slug, title] of Object.entries(index.translations || {})) {
       const en = title.match(/\(([^()]*)\)\s*$/)?.[1] || title;
-      if (norm(en) === want) return `${SITE_URL}/translations/${slug}/`;
+      if (base(en) === want) return `${SITE_URL}/translations/${slug}/`;
     }
   } catch {}
   return null;
