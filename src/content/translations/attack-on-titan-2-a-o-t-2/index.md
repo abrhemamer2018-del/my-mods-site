@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2023-04-26
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvfan8p0.webp
 screenshots:
   - ./shot-mvfaoefdwcp.webp
@@ -18,12 +18,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AOT2_Installer.zip
-    size: 2.38 MB
+    size: 2.52 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-27
+    notes:
+      - "أداة التثبيت تعمل الآن مع كل نسخ اللعبة، لا نسخة Steam وحدها: صارت تدمج التعريب في ملفات لعبتك نفسها وقت التثبيت، فلا تظهر رسالة «نسخة اللعبة لا تطابق هذا التعريب»"
+      - "تحديثات اللعبة لم تعد توقف التعريب: أي نص جديد أو متغيّر يبقى بالإنجليزية، والباقي بالعربي"
   - version: "1.0"
     date: 2026-10-19
     notes:
