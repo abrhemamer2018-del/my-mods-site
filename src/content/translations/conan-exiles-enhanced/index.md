@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2018-05-08
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvfiv9jb.webp
 screenshots:
   - ./shot-mvfj3qnesl6.webp
@@ -17,12 +17,16 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ConanExiles_Installer.zip
-    size: 5.56 MB
+    size: 5.82 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-28
+    notes:
+      - "إصلاح رفض أداة التثبيت بعد تحديث اللعبة: الأداة صارت تدمج التعريب في ملفات لعبتك نفسها، فتعمل مع كل التحديثات والنسخ"
   - version: "1.0"
     date: 2026-10-19
     notes:
