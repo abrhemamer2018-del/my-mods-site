@@ -9,6 +9,7 @@
 //    GITHUB_TOKEN    توكن GitHub بصلاحية Contents: Read and write على المستودع
 // ============================================================
 import { isAbusive } from './moderation.js';
+import { discordInteraction } from './discord.js';
 import { parse, stringify } from 'yaml';
 
 const SESSION_DAYS = 7;
@@ -20,9 +21,13 @@ const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FILE_RE = /^[a-z0-9][a-z0-9._-]*\.(webp|jpg|jpeg|png|gif)$/i;
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
+    // بوت ديسكورد: طلبات التعريب (worker/discord.js)
+    if (url.pathname === '/api/discord/interactions' && request.method === 'POST') {
+      return discordInteraction(request, env, ctx, { steamFind, origin: url.origin });
+    }
 
     try {
       return await handleApi(request, env, url);

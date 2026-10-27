@@ -31,7 +31,11 @@
     "GITHUB_REPO": "abrhemamer2018-del/my-mods-site",
     // مستودع ملفات التعريب (GitHub Releases)، في حساب منفصل
     "FILES_REPO": "abrhemamer2017-debug/files",
-    "GITHUB_BRANCH": "main"
+    "GITHUB_BRANCH": "main",
+    // بوت ديسكورد "تعريبات" (المفتاح العام ليس سراً؛ التوكن DISCORD_BOT_TOKEN سر في Cloudflare)
+    "DISCORD_APP_ID": "1564569249974845490",
+    "DISCORD_PUBLIC_KEY": "c5863627343a38ca8b2a2d2399377153e04b4ed8f8a254bbb1a708ad9827c217",
+    "DISCORD_REQUESTS_FORUM": "1556915194775601212"
   },
   "observability": {
     "logs": {
