@@ -206,14 +206,13 @@ async function addVote(env, thread, userId) {
   }
   await dc(env, 'PUT', `/channels/${thread.id}/thread-members/${userId}`);
 
-  // البوت صاحب المنشور عضو فيه، فلا يُحسب صوتاً. ديسكورد يتوقف عن العد عند 50
+  // البوت عضو في منشوراته وفي الطلبات القديمة التي رد عليها، فلا يُحسب صوتاً. ديسكورد يتوقف عن العد عند 50
   const fresh = await dc(env, 'GET', `/channels/${thread.id}`);
   const ours = fresh.owner_id === env.DISCORD_APP_ID;
-  const votes = Math.max(1, (fresh.member_count || 1) - (ours ? 1 : 0));
-  if (!ours) return { votes };
+  const votes = Math.max(1, (fresh.member_count || 2) - 1);
 
   const label = fresh.member_count >= 50 ? '+50' : String(votes);
-  const msg = await dc(env, 'GET', `/channels/${thread.id}/messages/${thread.id}`, undefined, true);
+  const msg = ours && (await dc(env, 'GET', `/channels/${thread.id}/messages/${thread.id}`, undefined, true));
   if (msg?.embeds?.[0]) {
     const embed = msg.embeds[0];
     embed.fields = (embed.fields || []).map((f) => (f.name === VOTES_FIELD ? { ...f, value: label } : f));
