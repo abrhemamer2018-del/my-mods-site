@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-02
 addedAt: 2026-10-02T21:15:26+03:00
 gameRelease: 2023-08-03
-version: "2.1"
+version: "2.2"
 cover: ./cover-mv4kxul3.webp
 screenshots:
   - ./shot-muvkec8tptm.webp
@@ -20,12 +20,18 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BG3_Installer.zip
-    size: 33.03 MB
+    size: 34.72 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "2.2"
+    date: 2026-10-27
+    notes:
+      - "اسم المتكلم على اليمين في سجل الحوارات والإشعارات والكلام أسفل الشاشة"
+      - "إصلاح ترتيب الأسطر المائلة الطويلة"
+      - "تصحيح ترجمة Miss إلى «إخفاق» واسم «زائر الحلم» وتلميح الاختباء ونافذة النرد"
   - version: "2.1"
     date: 2026-10-27
     notes:
