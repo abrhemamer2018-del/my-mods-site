@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-07
 gameRelease: 2026-09-15
-version: "1.4"
+version: "1.5"
 cover: ./cover-muxy0jvu.webp
 banner: ./banner-muy0smcm.webp
 screenshots:
@@ -20,12 +20,17 @@ video: https://www.youtube.com/watch?v=DVwnaiiGSeM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Aniimo_Installer.zip
-    size: 29.39 MB
+    size: 29.40 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.5"
+    date: 2026-10-27
+    notes:
+      - "نسخة Epic تعمل بالعربية: اللعبة تحمّل عند التشغيل نصوصاً وخطاً أحدث من سيرفرها وتقرأها بدل ملفات التثبيت، فصارت الأداة تعرّب الملفات المحمّلة نفسها"
+      - "شغّل اللعبة مرة وانتظر حتى يكتمل تحميل تحديثها، ثم أغلقها وثبّت التعريب"
   - version: "1.4"
     date: 2026-10-27
     notes:
