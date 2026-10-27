@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-24
 gameRelease: 2020-08-14
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvmhjrca.webp
 screenshots:
   - ./shot-mvmhm548smo.webp
@@ -18,12 +18,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Factorio_Installer.zip
-    size: 0.73 MB
+    size: 0.80 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-28
+    notes:
+      - "إصلاح نسخة GOG: العربية لم تكن تظهر في قائمة اللغات لأن نسخة GOG ليس فيها مجلد اللغة العربية أصلاً، والأداة صارت تنشئه بنفسها"
+      - "الأداة تجد نسخة GOG تلقائياً"
   - version: "1.0"
     date: 2026-10-24
     notes:
