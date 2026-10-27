@@ -362,12 +362,15 @@ async function background(env, it, work) {
   });
 }
 
-/** رسالة خاصة لصاحب السيرفر (DISCORD_OWNER_ID). فشلها لا يوقف الطلب */
+/** تنبيه لصاحب السيرفر في قناة التنبيهات الخاصة مع منشن. فشله لا يوقف الطلب */
 async function notifyOwner(env, content) {
-  if (!env.DISCORD_OWNER_ID) return;
+  if (!env.DISCORD_ALERTS_CHANNEL) return;
   try {
-    const dm = await dc(env, 'POST', '/users/@me/channels', { recipient_id: env.DISCORD_OWNER_ID });
-    await dc(env, 'POST', `/channels/${dm.id}/messages`, { content });
+    await dc(env, 'POST', `/channels/${env.DISCORD_ALERTS_CHANNEL}/messages`, {
+      content: `<@${env.DISCORD_OWNER_ID}> ${content}`,
+      allowed_mentions: { users: [env.DISCORD_OWNER_ID] },
+      flags: 4,
+    });
   } catch (err) {
     console.log('notifyOwner failed', err.message);
   }
