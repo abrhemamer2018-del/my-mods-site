@@ -8,18 +8,22 @@ platforms:
 status: complete
 releaseDate: 2026-10-06
 gameRelease: 2025-03-04
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv6c2hvs.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Grand.Theft.Auto.V.Enhanced.zip
-    size: 10.98 MB
+    size: 8.55 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-27
+    notes:
+      - "إصلاح رسالة «نسخة اللعبة لا تطابق نسخة التعريب» في نسخة Epic: الأداة صارت تدمج التعريب في ملفات لعبتك نفسها، فتعمل مع كل المتاجر والتحديثات"
   - version: "1.0"
     date: 2026-10-06
     notes:
