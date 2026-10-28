@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-01
 addedAt: 2026-10-01T07:53:46+03:00
 gameRelease: 2023-09-05
-version: "1.1"
+version: "1.2"
 cover: ./cover-murhctxc.webp
 banner: ./banner-mupr00wo.webp
 screenshots:
@@ -20,12 +20,20 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Starfield_Installer.zip
-    size: 7.54 MB
+    size: 7.64 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-28
+    notes:
+      - "إصلاح الأسطر المقلوبة في بطاقات الخلفية ورسائل التعليمات وخيارات الحوار: الأسطر صارت بعرض أضيق مربع تظهر فيه"
+      - "أوصاف الإعدادات ونوافذ التأكيد تظهر كاملة بعد أن كانت تُقص عند السطر الأول"
+      - "أيقونات الأزرار ترجع في قائمة المساعدة بدل كلمات مثل [تفعيل]"
+      - "تصحيح 115 سطراً ظهرت فيها حروف غير عربية، وإصلاح نصوص ملوّنة ظهر فيها رمز"
+      - "عناوين الإعدادات تبقى في سطر واحد"
   - version: "1.1"
     date: 2026-10-28
     at: 2026-10-28T08:17:35+03:00
