@@ -8,18 +8,25 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-08
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvch8826.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_DC_Installer.zip
-    size: 10.45 MB
+    size: 10.57 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-28
+    at: 2026-10-28T15:51:22+03:00
+    notes:
+      - "إصلاح خروج اللعبة عند فتح أسلوب قتال في قائمة القدرات (Abilities)"
+      - "كرات القدرات ترجع بألوانها الصحيحة بدل المربعات المكسورة"
+      - "تصحيح رموز في أول بعض الأسطر ونصوص PlayStation"
   - version: "1.1"
     date: 2026-10-22
     at: 2026-10-22T22:25:23+03:00
