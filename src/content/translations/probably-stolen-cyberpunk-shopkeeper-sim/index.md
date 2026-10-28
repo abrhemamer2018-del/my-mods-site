@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvsi19d3cp2.webp
   - ./shot-mvsi1g5cosy.webp
   - ./shot-mvsi1xb9f07.webp
+video: https://www.youtube.com/watch?v=eL828dBUM-4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Probably_Stolen_Installer.zip
