@@ -131,13 +131,52 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
       </div>
 
       <div class="sp-grid">
-        {/* عارض الصور: الغلاف ثم لقطات التعريب */}
+        {/* عارض الصور: الغلاف (أو فيديو يوتيوب بدله إن وُجد) ثم لقطات التعريب */}
         <div class="viewer">
-          <a href={media[0].full} class="vw-main" aria-label="تكبير الصورة">
-            <Image src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={1200} height={675} loading="eager" />
+          {
+            videoId && (
+              <a
+                href={`https://www.youtube.com/watch?v=${videoId}`}
+                class="yt vw-yt"
+                data-id={videoId}
+                target="_blank"
+                rel="noopener"
+                aria-label={`تشغيل فيديو تعريب ${d.titleAr}`}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+                  onerror={`this.onerror=null;this.src='https://i.ytimg.com/vi/${videoId}/hqdefault.jpg'`}
+                  alt={`فيديو تعريب ${d.titleAr}`}
+                  loading="eager"
+                />
+                <span class="play" aria-hidden="true">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+              </a>
+            )
+          }
+          <a href={videoId && shots.length ? shots[0].full : media[0].full} class="vw-main" aria-label="تكبير الصورة" hidden={!!videoId}>
+            <Image src={videoId && shots.length ? shots[0].thumb : d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={1200} height={675} loading="eager" />
           </a>
           {
-            media.length > 1 && (
+            videoId && shots.length > 0 && (
+              <div class="vw-thumbs">
+                <button type="button" class="shot vw-vid on" aria-label={`فيديو تعريب ${d.titleAr}`}>
+                  <img src={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} alt="" loading="lazy" />
+                  <span class="mini-play" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                  </span>
+                </button>
+                {shots.map((m, i) => (
+                  <a href={m.full} class="shot" data-index={i + 1}>
+                    <Image src={m.thumb} alt={`لقطة ${i + 1} من تعريب ${d.titleAr}`} width={240} />
+                  </a>
+                ))}
+              </div>
+            )
+          }
+          {
+            !videoId && media.length > 1 && (
               <div class="vw-thumbs">
                 {media.map((m, i) => (
                   <a href={m.full} class:list={['shot', { on: i === 0 }]} data-index={i}>
@@ -244,28 +283,6 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
         </button>
         <Content />
       </div>
-
-      {
-        videoId && (
-          <section class="block" data-pagefind-ignore>
-            <h2>فيديو التعريب</h2>
-            {/* صورة الفيديو وزر التشغيل أولاً، ومشغّل يوتيوب يُحمَّل عند الضغط فقط حتى تبقى الصفحة سريعة */}
-            <a
-              href={`https://www.youtube.com/watch?v=${videoId}`}
-              class="yt"
-              data-id={videoId}
-              target="_blank"
-              rel="noopener"
-              aria-label={`تشغيل فيديو تعريب ${d.titleAr}`}
-            >
-              <img src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt={`فيديو تعريب ${d.titleAr}`} loading="lazy" />
-              <span class="play" aria-hidden="true">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-              </span>
-            </a>
-          </section>
-        )
-      }
 
       {
         d.requirements.length > 0 && (
@@ -1104,6 +1121,34 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
+  /* الفيديو في مكان الغلاف */
+  .vw-yt {
+    border-radius: 18px;
+    border-color: rgb(255 255 255 / 0.08);
+    box-shadow: 0 24px 60px rgb(0 0 0 / 0.5);
+  }
+  .vw-yt[hidden],
+  .vw-main[hidden] {
+    display: none;
+  }
+  .vw-vid {
+    position: relative;
+    padding: 0;
+    background: #000;
+    cursor: pointer;
+  }
+  .mini-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 30px;
+    height: 21px;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    background: #e0242b;
+    color: #fff;
+  }
   /* صندوق التحميل */
   .buy {
     display: flex;
@@ -1594,7 +1639,7 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
 <script>
   // عارض الصور: يفتح الصورة كبيرة داخل الموقع بدل فتحها في نافذة جديدة
   const box = document.querySelector<HTMLDialogElement>('.lightbox');
-  const links = [...document.querySelectorAll<HTMLAnchorElement>('.vw-thumbs .shot, .vw-main')].filter(
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.vw-thumbs a.shot, .vw-main')].filter(
     (a, i, all) => !(a.classList.contains('vw-main') && all.length > 1),
   );
   if (box && links.length) {
@@ -1617,6 +1662,23 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
     // الصور المصغّرة تغيّر الصورة الكبيرة، والضغط على الكبيرة يفتحها في العارض
     const main = document.querySelector<HTMLAnchorElement>('.vw-main')!;
     const mainImg = main.querySelector('img')!;
+    // الفيديو (إن وُجد) مكان الغلاف: اختيار لقطة يخفيه ويوقفه، وزره المصغّر يعيده
+    const yt = document.querySelector<HTMLAnchorElement>('.vw-yt');
+    const vid = document.querySelector<HTMLButtonElement>('.vw-vid');
+    const ytHome = yt ? [...yt.childNodes] : [];
+    const ytHref = yt?.href;
+    const showVideo = (on: boolean) => {
+      if (!yt || !vid) return;
+      if (!on && yt.querySelector('iframe')) {
+        yt.replaceChildren(...ytHome);
+        yt.href = ytHref!;
+      }
+      yt.hidden = !on;
+      main.hidden = on;
+      vid.classList.toggle('on', on);
+      if (on) links.forEach((x) => x.classList.remove('on'));
+    };
+    vid?.addEventListener('click', () => showVideo(true));
     let picked = 0;
     links.forEach((a, i) =>
       a.addEventListener('click', (e) => {
@@ -1626,6 +1688,7 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
         mainImg.src = a.dataset.big || a.href;
         mainImg.removeAttribute('srcset');
         links.forEach((x) => x.classList.toggle('on', x === a));
+        showVideo(false);
       }),
     );
     if (links.length > 1)
