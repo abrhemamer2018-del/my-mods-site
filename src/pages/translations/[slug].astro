@@ -6,7 +6,7 @@ import Icon from '../../components/Icon.astro';
 import TranslationCard from '../../components/TranslationCard.astro';
 import { downloadsOf } from '../../lib/downloads';
 import { getTranslations, formatDate, relatedTranslations, youtubeId, type Translation } from '../../lib/utils';
-import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
+import { CATEGORY_LABELS, SITE, SOCIAL, STATUS_LABELS } from '../../config';
 
 export async function getStaticPaths() {
   const all = await getTranslations();
@@ -404,12 +404,16 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
       </label>
       <label>
         للتواصل معك (اختياري)
-        <input name="contact" maxlength="100" placeholder="اسمك في ديسكورد أو حسابك في إكس" />
+        <input name="contact" maxlength="100" placeholder="اسمك في ديسكورد (حتى ننبّهك لما نرد)" />
       </label>
 
       <div class="rf-actions">
         <button type="submit" class="btn btn-primary">إرسال البلاغ</button>
         <span class="rf-status" id="report-status" role="status"></span>
+      </div>
+      <div class="rf-done" id="report-done" hidden>
+        <p>تابع الرد على بلاغك في سيرفر ديسكورد تعريبات.</p>
+        <a class="btn btn-primary" href={SOCIAL.find((s) => s.icon === 'discord')?.url} target="_blank" rel="noopener">ادخل الديسكورد</a>
       </div>
       <p class="muted rf-alt">
         تفضّل المتابعة مباشرة؟{" "}
@@ -805,6 +809,21 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
   }
   .rf-status.err {
     color: #ff6b81;
+  }
+  .rf-done {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--success);
+    border-radius: 10px;
+  }
+  .rf-done[hidden] {
+    display: none;
+  }
+  .rf-done p {
+    margin: 0;
   }
   .rf-alt {
     margin: 0;
@@ -1666,7 +1685,11 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
   const form = document.getElementById('report-form') as HTMLFormElement | null;
   const status = document.getElementById('report-status');
   if (box && form && status) {
-    document.getElementById('report-open')?.addEventListener('click', () => box.showModal());
+    document.getElementById('report-open')?.addEventListener('click', () => {
+      document.getElementById('report-done')?.setAttribute('hidden', '');
+      status.textContent = '';
+      box.showModal();
+    });
     document.getElementById('report-close')?.addEventListener('click', () => box.close());
     box.addEventListener('click', (e) => {
       if (e.target === box) box.close();
@@ -1693,9 +1716,9 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
         const out = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(out.error || 'تعذّر الإرسال');
         status.className = 'rf-status ok';
-        status.textContent = '✅ وصل بلاغك، شكراً لك! سنراجعه قريباً.';
+        status.textContent = '✅ وصل بلاغك، شكراً لك!';
         form.reset();
-        setTimeout(() => box.close(), 2500);
+        document.getElementById('report-done')?.removeAttribute('hidden');
       } catch (ex) {
         status.className = 'rf-status err';
         status.textContent = (ex as Error).message;
