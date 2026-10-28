@@ -12,7 +12,7 @@ status: complete
 releaseDate: 2026-10-01
 addedAt: 2026-10-01T19:54:58+03:00
 gameRelease: 2016-02-26
-version: "1.0"
+version: "1.1"
 cover: ./cover-murh9d61.webp
 banner: ./banner-muprxmwx.webp
 screenshots:
@@ -29,6 +29,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-28
+    notes:
+      - "إصلاح رجوع اللعبة للقائمة الرئيسية عند تحميل حفظ أو بدء لعبة على مزرعة المروج"
+      - "إصلاح أسئلة العالِم في مهرجان الصحراء"
+      - "تصحيح وصف مزرعة المروج وبعض رسائل البريد"
   - version: "1.0"
     date: 2026-10-01
     notes:
