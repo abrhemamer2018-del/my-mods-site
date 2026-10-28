@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-01
 addedAt: 2026-10-01T07:53:46+03:00
 gameRelease: 2023-09-05
-version: "1.0"
+version: "1.1"
 cover: ./cover-murhctxc.webp
 banner: ./banner-mupr00wo.webp
 screenshots:
@@ -20,12 +20,20 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Starfield_Installer.zip
-    size: 7.46 MB
+    size: 7.54 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-28
+    notes:
+      - "إصلاح ترتيب الأسطر: النصوص في المهارات والأوصاف صارت تُقرأ من الأعلى إلى الأسفل وداخل مربعاتها"
+      - "اسم المتحدث في الترجمة السفلية صار على اليمين"
+      - "تصغير الخط وتوحيد المسافات بين الأسطر"
+      - "عبارة «فتح القفل» في المهارات صارت في سطر مستقل فوق الوصف"
+      - "تصحيح آلاف الحوارات التي كانت ترجمتها تعود للسطر التالي"
   - version: "1.0"
     date: 2026-10-01
     notes:
