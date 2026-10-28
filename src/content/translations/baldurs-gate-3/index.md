@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-02
 addedAt: 2026-10-02T21:15:26+03:00
 gameRelease: 2023-08-03
-version: "2.2"
+version: "2.3"
 cover: ./cover-mv4kxul3.webp
 screenshots:
   - ./shot-muvkec8tptm.webp
@@ -20,12 +20,19 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BG3_Installer.zip
-    size: 34.72 MB
+    size: 34.77 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "2.3"
+    date: 2026-10-28
+    at: 2026-10-28T18:20:00+03:00
+    notes:
+      - "تصحيح الألفاظ الدينية: «القوى الإلهية» للاعب وقدراته صارت «المقدسة» (استدعاء القوة المقدسة، الضربة المقدسة)، و«يا إلهي» صارت «يا للهول»"
+      - "إصلاح سطر «إعادة الشحن» الملتصق في تلميحات الموارد"
+      - "إصلاح الخط المائل المكسور في 49 سطراً وأسماء الوجوه التعبيرية"
   - version: "2.2"
     date: 2026-10-27
     at: 2026-10-27T19:42:21+03:00
