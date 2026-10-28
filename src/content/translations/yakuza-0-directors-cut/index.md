@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-08
-version: "1.2"
+version: "1.3"
 cover: ./cover-mvch8826.webp
 screenshots: []
 downloads:
@@ -20,6 +20,13 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-10-28
+    at: 2026-10-28T17:10:32+03:00
+    notes:
+      - "تصحيح محادثة لماجيما مع مضيفة كانت أسطرها منزاحة"
+      - "تصحيح أسماء أماكن في الخريطة واسم Club Moon وأخطاء ترجمة أخرى"
+      - "حماية إضافية من خروج اللعبة في قوائم حركات الحماس وUltimate والحلبة"
   - version: "1.2"
     date: 2026-10-28
     at: 2026-10-28T15:51:22+03:00
