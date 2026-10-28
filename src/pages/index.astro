@@ -45,9 +45,14 @@ const dlTotal = [...(await downloadCounts()).values()].reduce((a, b) => a + b, 0
 const updates = translations
   .flatMap((t) => {
     const log = [...t.data.changelog].sort((a, b) => b.date.getTime() - a.date.getTime());
-    return log.map((c, i) => ({ t, c, prev: log[i + 1]?.version, isNew: i === log.length - 1 }));
+    return log.map((c, i) => {
+      const isNew = i === log.length - 1;
+      // نفس اليوم: الأحدث بالوقت الدقيق (at، أو وقت الإضافة للإصدار الأول)
+      const when = (c.at ?? (isNew ? t.data.addedAt : undefined) ?? c.date).getTime();
+      return { t, c, prev: log[i + 1]?.version, isNew, when };
+    });
   })
-  .sort((a, b) => b.c.date.getTime() - a.c.date.getTime() || Number(a.isNew) - Number(b.isNew))
+  .sort((a, b) => b.c.date.getTime() - a.c.date.getTime() || b.when - a.when || Number(a.isNew) - Number(b.isNew))
   .slice(0, 14);
 // نافذة قريباً: ألعاب ستصدر (src/data/soon.json) تبقى 14 يوماً بعد صدورها، وتعريبات قيد العمل
 const soon = soonData.games

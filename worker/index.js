@@ -762,12 +762,23 @@ async function saveEntry(gh, payload) {
     const oldText = exists ? await existing.text() : '';
     const old = oldText.match(/^addedAt:\s*["']?([^"'\r\n]+)/m);
     data.addedAt = old ? old[1].trim() : new Date().toISOString();
+    let oldData;
+    try {
+      oldData = parse(oldText.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] || '');
+    } catch {}
+    // وقت نشر كل إصدار (ليس في نموذج اللوحة): نحتفظ بوقت الإصدار القديم، والإصدار الجديد يأخذ الآن،
+    // فتترتّب تحديثات اليوم الواحد في "آخر التحديثات"
+    if (Array.isArray(data.changelog)) {
+      const oldLog = Array.isArray(oldData?.changelog) ? oldData.changelog : [];
+      for (const c of data.changelog) {
+        const prev = oldLog.find((o) => o && String(o.version) === String(c.version));
+        if (prev?.at) c.at = prev.at instanceof Date ? prev.at.toISOString() : String(prev.at);
+        else if (exists && !prev) c.at = new Date().toISOString();
+      }
+    }
     // وسوم Steam ليست في نموذج اللوحة: نحتفظ بالموجودة، وإن لم توجد نجلبها (فشل الجلب لا يمنع الحفظ)
     if (!Array.isArray(data.tags) || !data.tags.length) {
-      let oldTags;
-      try {
-        oldTags = parse(oldText.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] || '')?.tags;
-      } catch {}
+      const oldTags = oldData?.tags;
       if (Array.isArray(oldTags) && oldTags.length) data.tags = oldTags;
       else {
         try {

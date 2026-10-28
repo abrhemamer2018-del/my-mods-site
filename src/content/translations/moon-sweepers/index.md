@@ -27,6 +27,7 @@ team:
 changelog:
   - version: "1.0.1"
     date: 2026-10-26
+    at: 2026-10-26T12:49:38+03:00
     notes:
       - إصلاح تحذير مضاد الفيروسات (Windows Defender) عند تحميل أداة التثبيت
   - version: "1.0"

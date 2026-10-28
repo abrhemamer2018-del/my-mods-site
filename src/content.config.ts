@@ -41,6 +41,8 @@ const translations = defineCollection({
           z.object({
             version: z.string(),
             date: z.coerce.date(),
+            // وقت النشر الدقيق (يضعه الـ worker للإصدار الجديد): يرتّب تحديثات اليوم الواحد في "آخر التحديثات"
+            at: z.coerce.date().optional(),
             notes: z.array(z.string()),
           }),
         )

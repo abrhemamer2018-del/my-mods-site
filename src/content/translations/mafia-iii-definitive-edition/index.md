@@ -22,6 +22,7 @@ team:
 changelog:
   - version: "1.0"
     date: 2026-10-22
+    at: 2026-10-22T16:53:45+03:00
     notes:
       - الإصدار الأول
   - version: "1.1"
