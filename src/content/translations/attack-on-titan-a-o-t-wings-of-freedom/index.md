@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2016-08-26
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvfaipqt.webp
 screenshots:
   - ./shot-mvfakzc2vde.webp
@@ -19,12 +19,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AoT_WoF_Installer.zip
-    size: 5.32 MB
+    size: 5.42 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-28
+    notes:
+      - "إصلاح تجمّد اللعبة أثناء المهام: رسائل المعركة والمهام وحوارات المعسكر وأوصاف المعدات صارت ضمن عدد الأسطر الذي تتسع له صناديقها"
+      - "أداة التثبيت لم تعد ترفض اللعبة بسبب حجم ملف التشغيل، مع إصلاح تحذير مضاد الفيروسات"
   - version: "1.0"
     date: 2026-10-19
     notes:
