@@ -8,18 +8,24 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-11
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvchbsql.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Kiwami_Installer.zip
-    size: 6.94 MB
+    size: 7.05 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-28
+    at: 2026-10-28T17:59:22+03:00
+    notes:
+      - "حماية من خروج اللعبة عند فتح أسلوب قتال في قائمة القدرات (Abilities)"
+      - "تصحيح اسم مكانين في الخريطة كانا يظهران باسم واحد، وتصحيحات صغيرة في الترجمة"
   - version: "1.1"
     date: 2026-10-22
     at: 2026-10-22T22:51:18+03:00
