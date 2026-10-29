@@ -12,7 +12,7 @@
 //    (ما زال يعمل في منشورات "تحتاج تصويت" القديمة)
 //
 //  الإعدادات:
-//    DISCORD_PUBLIC_KEY, DISCORD_REQUESTS_FORUM  في wrangler.jsonc (ليست سرية)
+//    DISCORD_PUBLIC_KEY, DISCORD_REQUESTS_FORUM, DISCORD_REQUESTS_LOG  في wrangler.jsonc (ليست سرية)
 //    DISCORD_BOT_TOKEN  سر في Cloudflare (Settings → Variables and Secrets)
 // ============================================================
 
@@ -142,7 +142,7 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
   }
 
   // طلب واحد ناجح في الأسبوع لكل عضو (التصويت على طلب قديم لا يُحسب)
-  const last = userId !== env.DISCORD_OWNER_ID && (await lastRequestAt(env, it.guild_id, userId));
+  const last = userId !== env.DISCORD_OWNER_ID && (await lastRequestAt(env, userId));
   if (last) {
     const next = Math.ceil((last + REQUEST_EVERY) / 1000);
     return {
@@ -166,6 +166,10 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
     },
   });
   await dc(env, 'PUT', `/channels/${thread.id}/thread-members/${userId}`);
+  await dc(env, 'POST', `/channels/${env.DISCORD_REQUESTS_LOG}/messages`, {
+    content: `<@${userId}> طلب **${game.name}** (${peak.toLocaleString('en-US')} لاعب)\nhttps://discord.com/channels/${it.guild_id}/${thread.id}`,
+    allowed_mentions: { parse: [] },
+  });
   if (hot) {
     await notifyOwner(env, `🔥 **طلب جديد دخل قائمة المراجعة:** ${game.name} (${peak.toLocaleString('en-US')} لاعب)\n` +
       `https://discord.com/channels/${it.guild_id}/${thread.id}`);
@@ -360,20 +364,20 @@ async function findRequest(env, guildId, name) {
   return null;
 }
 
-/** وقت آخر طلب نشره البوت لهذا العضو خلال الأسبوع (من حقل "طلبها" في المنشور)، أو null */
-async function lastRequestAt(env, guildId, userId) {
+/** وقت آخر طلب لهذا العضو خلال الأسبوع من روم السجل المخفي، أو null.
+ *  كل سطر في السجل يبدأ بمنشن صاحب الطلب؛ حذف السطر يسمح له بطلب جديد */
+async function lastRequestAt(env, userId) {
   const since = Date.now() - REQUEST_EVERY;
-  const created = (t) => Number(BigInt(t.id) >> 22n) + 1420070400000;
-  const [active, archived] = await Promise.all([
-    dc(env, 'GET', `/guilds/${guildId}/threads/active`),
-    dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_FORUM}/threads/archived/public?limit=100`),
-  ]);
-  const recent = [...(active.threads || []), ...(archived.threads || [])]
-    .filter((t) => t.parent_id === env.DISCORD_REQUESTS_FORUM && t.owner_id === env.DISCORD_APP_ID && created(t) >= since)
-    .sort((a, b) => created(b) - created(a));
-  for (const t of recent) {
-    const msg = await dc(env, 'GET', `/channels/${t.id}/messages/${t.id}`, undefined, true);
-    if (msg?.embeds?.[0]?.fields?.some((f) => f.value === `<@${userId}>`)) return created(t);
+  let before = '';
+  for (let page = 0; page < 5; page++) {
+    const msgs = await dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_LOG}/messages?limit=100${before ? `&before=${before}` : ''}`);
+    for (const m of msgs) {
+      const at = Date.parse(m.timestamp);
+      if (at < since) return null;
+      if (m.author?.id === env.DISCORD_APP_ID && m.content.startsWith(`<@${userId}>`)) return at;
+    }
+    if (msgs.length < 100) break;
+    before = msgs[msgs.length - 1].id;
   }
   return null;
 }
