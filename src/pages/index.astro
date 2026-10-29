@@ -83,8 +83,7 @@ const catsOf = (t: (typeof translations)[number]) =>
   CATS.filter((c) => c.tags.some((tag) => t.data.tags.includes(tag))).map((c) => c.id);
 // يظهر الزر فقط إن كان في النوع 5 ألعاب على الأقل
 const shownCats = CATS.map((c) => ({ ...c, n: byGame.filter((t) => catsOf(t).includes(c.id)).length })).filter((c) => c.n >= 5);
-const dlOf = new Map(await Promise.all([...byGame, ...pinned].map(async (t) => [t.id, await downloadsOf(t)] as const)));
-const filesOf = (t: (typeof translations)[number]) => t.data.downloads.map((f) => decodeURIComponent(f.url.split('/').pop() ?? '')).join('|');
+const dlOf = new Map(await Promise.all(byGame.map(async (t) => [t.id, await downloadsOf(t)] as const)));
 // جديد التعريبات بعرض الصفحة: تظهر أول 30 (6 صفوف من 5)، و"عرض المزيد" يُظهر 30 أخرى عند كل ضغطة
 const PAGE_SIZE = 30;
 
@@ -360,7 +359,7 @@ const jsonLd = [
         </div>
         <div class="pin-grid">
           {pinned.map((t) => (
-            <a href={`/translations/${t.id}/`} class="pin-card" data-files={filesOf(t)}>
+            <a href={`/translations/${t.id}/`} class="pin-card">
               {/* هالة ضوء بألوان غلاف اللعبة نفسها تنعكس تحت البطاقة */}
               <Image class="pin-glow" src={t.data.cover} alt="" width={320} aria-hidden="true" />
               {/* إطار متدرج بألوان الشعار، والغلاف كاملاً بنسبته 16:9 بلا قص */}
@@ -374,14 +373,6 @@ const jsonLd = [
                       <strong dir="ltr">{t.data.title}</strong>
                       <span>{t.data.titleAr}</span>
                     </span>
-                  </span>
-                  {/* شارة عدد التحميلات أعلى الغلاف؛ تتحدّث في المتصفح من ‎/api/downloads */}
-                  <span class="pin-dl" hidden={!(dlOf.get(t.id)! > 0)}>
-                    <span class="pin-dl-ic">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
-                    </span>
-                    <b dir="ltr" class="pin-dl-n">{compact.format(dlOf.get(t.id) ?? 0)}</b>
-                    <small>تحميل</small>
                   </span>
                   {/* لوحة زجاجية للاسم */}
                   <span class="pin-glass">
@@ -859,59 +850,6 @@ const jsonLd = [
     background: rgb(11 13 23 / 0.55);
     border: 1px solid rgb(255 255 255 / 0.12);
   }
-  /* شارة التحميلات: كبسولة زجاجية في الزاوية العليا المقابلة للاسم */
-  .pin-dl {
-    position: absolute;
-    top: 12px;
-    inset-inline-end: 12px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 4px 12px 4px 5px;
-    border-radius: 999px;
-    background: rgb(11 13 23 / 0.6);
-    border: 1px solid rgb(255 255 255 / 0.14);
-    box-shadow:
-      0 6px 18px rgb(0 0 0 / 0.35),
-      inset 0 1px 0 rgb(255 255 255 / 0.08);
-    backdrop-filter: blur(6px);
-    line-height: 1;
-    transition:
-      transform 0.35s,
-      border-color 0.35s,
-      box-shadow 0.35s;
-  }
-  .pin-dl[hidden] {
-    display: none;
-  }
-  .pin-dl-ic {
-    width: 24px;
-    height: 24px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    color: #fff;
-    background: linear-gradient(135deg, var(--accent), #8b95ff);
-    box-shadow: 0 0 12px rgb(25 195 214 / 0.55);
-  }
-  .pin-dl b {
-    font-size: 0.95rem;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: 0.2px;
-  }
-  .pin-dl small {
-    font-size: 0.74rem;
-    color: #c9cde6;
-    font-weight: 600;
-  }
-  .pin-card:hover .pin-dl {
-    transform: translateY(-2px);
-    border-color: rgb(25 195 214 / 0.55);
-    box-shadow:
-      0 8px 22px rgb(0 0 0 / 0.4),
-      0 0 18px rgb(25 195 214 / 0.25);
-  }
   .sec-sub {
     font-size: 0.92rem;
   }
@@ -982,30 +920,6 @@ const jsonLd = [
       border-radius: 14px;
     }
     .pin-glass {
-      display: none;
-    }
-    .pin-dl {
-      top: 8px;
-      inset-inline-end: 8px;
-      gap: 5px;
-      padding: 3px 9px 3px 3px;
-    }
-    .pin-dl-ic {
-      width: 19px;
-      height: 19px;
-    }
-    .pin-dl-ic svg {
-      width: 11px;
-      height: 11px;
-    }
-    .pin-dl b {
-      font-size: 0.8rem;
-    }
-    .pin-dl small {
-      font-size: 0.66rem;
-    }
-    /* البطاقات الصغيرة: الرقم فقط */
-    .pin-card:not(:first-child):not(:last-child:nth-child(even)) .pin-dl small {
       display: none;
     }
     .pin-m {
@@ -2486,12 +2400,6 @@ const jsonLd = [
           card.querySelector('.dl-n')!.textContent = fmt.format(n);
           card.querySelector<HTMLElement>('.dls')!.hidden = false;
           card.querySelector<HTMLElement>('.when')!.hidden = true;
-        });
-        document.querySelectorAll<HTMLElement>('.pin-card[data-files]').forEach((card) => {
-          const n = card.dataset.files!.split('|').reduce((sum, f) => sum + (files[f] || 0), 0);
-          if (!n) return;
-          card.querySelector('.pin-dl-n')!.textContent = fmt.format(n);
-          card.querySelector<HTMLElement>('.pin-dl')!.hidden = false;
         });
       })
       .catch(() => (dlEl.textContent = fmt.format(Number(dlEl.dataset.fallback) + offset)));
