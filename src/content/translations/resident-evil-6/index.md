@@ -12,7 +12,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-20
 gameRelease: 2013-03-21
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvgivcf3.webp
 screenshots:
   - ./shot-mvgj074fgtb.webp
@@ -22,12 +22,18 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Resident_Evil_6_Installer.zip
-    size: 14.48 MB
+    size: 1.98 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-29
+    at: 2026-10-29T22:30:00+03:00
+    notes:
+      - "التعريب يعمل الآن على كل نسخ اللعبة وإصداراتها، لا نسخة Steam وحدها: الأداة لم تعد ترفض بحجة «نسخة اللعبة تغيّرت»، وتدمج الترجمة في ملفات نسختك نفسها"
+      - "حجم التحميل أصغر بكثير (2 ميغابايت بدل 14)"
   - version: "1.0"
     date: 2026-10-20
     notes:
