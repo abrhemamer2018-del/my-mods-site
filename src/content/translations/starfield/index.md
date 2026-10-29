@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-01
 addedAt: 2026-10-01T07:53:46+03:00
 gameRelease: 2023-09-05
-version: "1.2"
+version: "1.3"
 cover: ./cover-murhctxc.webp
 banner: ./banner-mupr00wo.webp
 screenshots:
@@ -20,12 +20,20 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Starfield_Installer.zip
-    size: 7.64 MB
+    size: 7.66 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-10-29
+    at: 2026-10-29T13:50:00+03:00
+    notes:
+      - "رموز قمرة القيادة وأنظمة السفينة (LAS وBAL وMSL وENG وSHD وGRV) ورموز الموارد على الكواكب (Fe وPb وHe-3) تظهر كاملة بعد أن كانت مقطوعة"
+      - "سمات الكوكب غير المستكشف تظهر «غير معروف» بدل «$UNKNOWN»"
+      - "إصلاح رسائل طرفيات ومذكرات وحوارات كانت تعرض ترجمة النص المجاور"
+      - "إكمال نصوص كانت ترجمتها مقطوعة في منتصفها، وتصحيح قرون وأرقام خاطئة"
   - version: "1.2"
     date: 2026-10-28
     notes:
