@@ -107,6 +107,9 @@ const jsonLd = [
 
 const related = relatedTranslations(item, all, RELATED_COUNT);
 const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
+// عدد تحميلات هذا التعريب وقت البناء؛ يتحدّث في المتصفح من ‎/api/downloads
+const myDl = await downloadsOf(item);
+const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop() ?? '')).join('|');
 ---
 
 <BaseLayout fullTitle={pageTitle} description={seoDescription} image={og.src} jsonLd={jsonLd}>
@@ -256,6 +259,20 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
                 ))
               ) : (
                 <p class="muted">روابط التحميل ستتوفر قريباً.</p>
+              )
+            }
+            {/* عدد التحميلات تحت الزر بين خطين؛ يختفي إن كان صفراً */}
+            {
+              d.downloads.length > 0 && (
+                <p class="dl-count" id="dl-count" data-files={myFiles} hidden={myDl <= 0}>
+                  <span class="dl-count-in">
+                    <span class="dl-count-ic">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
+                    </span>
+                    <b dir="ltr" id="dl-count-n">{myDl.toLocaleString('en-US')}</b>
+                    <span>تحميل حتى الآن</span>
+                  </span>
+                </p>
               )
             }
             <p class="legal muted">
@@ -1189,6 +1206,53 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
     background: rgb(0 0 0 / 0.15);
     font-size: 0.8rem;
   }
+  .dl-count {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0 0;
+    max-width: none;
+    color: #c9cde6;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .dl-count[hidden] {
+    display: none;
+  }
+  /* خطان يتلاشيان نحو الطرفين (الصفحة RTL: ‎::before على اليمين).
+     border لا height:1px: مع تصغير الموقع 90% يختفي الخط الذي سمكه 1px */
+  .dl-count::before,
+  .dl-count::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid rgb(25 195 214 / 0.6);
+    mask-image: linear-gradient(to right, transparent, #000);
+  }
+  .dl-count::before {
+    mask-image: linear-gradient(to left, transparent, #000);
+  }
+  .dl-count-in {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .dl-count-ic {
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), #8b95ff);
+    box-shadow: 0 0 12px rgb(25 195 214 / 0.55);
+  }
+  .dl-count b {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
   .buy .legal {
     margin-top: 10px;
   }
@@ -1619,6 +1683,23 @@ const relatedDl = await Promise.all(related.map((t) => downloadsOf(t)));
     }
   }
 </style>
+
+<script>
+  // عدد التحميلات الحي من GitHub (عبر /api/downloads) بدل رقم وقت البناء
+  const dlEl = document.getElementById('dl-count');
+  if (dlEl?.dataset.files) {
+    fetch('/api/downloads')
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then(({ files }) => {
+        if (!files) return;
+        const n = dlEl.dataset.files!.split('|').reduce((sum, f) => sum + (files[f] || 0), 0);
+        if (!n) return;
+        document.getElementById('dl-count-n')!.textContent = n.toLocaleString('en-US');
+        dlEl.hidden = false;
+      })
+      .catch(() => {});
+  }
+</script>
 
 <script>
   // تشغيل فيديو يوتيوب داخل الصفحة عند الضغط (بدل فتحه في تبويب جديد)
