@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-04
 addedAt: 2026-10-04T23:01:27+03:00
 gameRelease: 2025-04-03
-version: "1.0"
+version: "1.1"
 cover: ./cover-muu8uxla.webp
 banner: ./banner-muu8veyf.webp
 screenshots:
@@ -20,12 +20,19 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TLOU2_Installer.zip
-    size: 3.42 MB
+    size: 3.45 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-29
+    at: 2026-10-29T05:45:00+03:00
+    notes:
+      - "إصلاح نصوص كانت تظهر فيها رموز غريبة أو حروف غير عربية في الإعدادات والتلميحات وترجمة مقاطع الإضافات"
+      - "إصلاح ترجمات كانت مُزاحة سطراً في تعليق المطورين وعبارات السيرافيين، وتصحيح أرقام تحديات «لا عودة» ورمز الخزنة"
+      - "تصحيح ترتيب الأسطر في الملاحظات والتلميحات التي تستخدم فاصل الأسطر القديم"
   - version: "1.0"
     date: 2026-10-04
     notes:
