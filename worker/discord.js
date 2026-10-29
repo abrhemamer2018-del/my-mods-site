@@ -119,12 +119,14 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
 
   const peak = await peakPlayers(game.id);
   if (peak < MIN_PEAK) {
-    return (
+    // الرفض يصل في رسالة خاصة، فلا يبقى شيء في السيرفر
+    return {
+      dm:
       `شكراً على طلبك 🌹\n` +
       `**${game.name}** أعلى عدد لاعبين فيها خلال آخر 30 يوم كان **${peak}** لاعب، ` +
       `وحالياً نستقبل طلبات الألعاب اللي يوصل لاعبينها **${MIN_PEAK}** لاعب أو أكثر، عشان نقدر نركز على الألعاب اللي يستفيد منها أكثر عدد.\n\n` +
-      LIVE_TIP
-    );
+      LIVE_TIP,
+    };
   }
 
   // طلب مكرر: نضيف صوته على المنشور القديم
@@ -353,7 +355,8 @@ async function forumTags(env) {
 // ------------------------------------------------------------
 //  أدوات
 // ------------------------------------------------------------
-/** يشغّل العمل بعد الرد المؤجل، ثم يكتب النتيجة في رسالة مخفية لصاحب التفاعل */
+/** يشغّل العمل بعد الرد المؤجل، ثم يكتب النتيجة في رسالة مخفية لصاحب التفاعل.
+ *  النتيجة { dm } تُرسل خاصاً ويُحذف الرد المخفي؛ وإن كانت رسائله الخاصة مقفلة تبقى في الرد المخفي */
 async function background(env, it, work) {
   let content;
   try {
@@ -363,7 +366,20 @@ async function background(env, it, work) {
     content = 'صار خطأ عندنا 😅 حاول مرة ثانية بعد شوي.';
   }
   console.log('Discord reply', it.data?.custom_id, content);
-  await fetch(`${API}/webhooks/${it.application_id}/${it.token}/messages/@original`, {
+  const original = `${API}/webhooks/${it.application_id}/${it.token}/messages/@original`;
+  if (content?.dm) {
+    const userId = it.member?.user?.id || it.user?.id;
+    try {
+      const ch = await dc(env, 'POST', '/users/@me/channels', { recipient_id: userId });
+      await dc(env, 'POST', `/channels/${ch.id}/messages`, { content: content.dm, allowed_mentions: { parse: [] } });
+      await fetch(original, { method: 'DELETE' });
+      return;
+    } catch (err) {
+      console.log('DM failed', err.message);
+      content = content.dm;
+    }
+  }
+  await fetch(original, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ content, allowed_mentions: { parse: [] } }),
