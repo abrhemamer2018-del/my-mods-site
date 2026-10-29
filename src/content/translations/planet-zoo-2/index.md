@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2026-10-13
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv8aczjj.webp
 screenshots:
   - ./shot-mv89vaxzr02.webp
@@ -19,12 +19,19 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_PlanetZoo2_Installer.zip
-    size: 45.20 MB
+    size: 2.87 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-29
+    at: 2026-10-29T22:15:00+03:00
+    notes:
+      - متوافق مع تحديث اللعبة 1.0.8 على Steam (29 أكتوبر 2026) مع تعريب النصوص الجديدة
+      - أداة التثبيت صارت تدمج التعريب في ملفات لعبتك نفسها، فلا ترفض نسخة اللعبة بعد أي تحديث قادم؛ يكفي إعادة التثبيت
+      - تصحيحات في الترجمة، وحجم التحميل صار أصغر بكثير
   - version: "1.1"
     date: 2026-10-25
     at: 2026-10-25T21:45:06+03:00
