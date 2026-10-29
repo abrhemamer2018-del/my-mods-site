@@ -19,6 +19,8 @@
 export const MIN_PEAK = 1000;
 export const AUTO_PEAK = 1000;
 export const VOTES_NEEDED = 5;
+// عضو نُشر له طلب لا يرسل طلباً جديداً قبل أسبوع
+export const REQUEST_EVERY = 7 * 86400000;
 
 export const TAGS = {
   hot: 'مطلوبة بقوة',
@@ -137,6 +139,18 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
       `هذي اللعبة مطلوبة من قبل 👍 ${v.already ? 'وصوتك محسوب من قبل.' : 'أضفنا صوتك على الطلب.'}\n` +
       `https://discord.com/channels/${it.guild_id}/${old.id}`
     );
+  }
+
+  // طلب واحد ناجح في الأسبوع لكل عضو (التصويت على طلب قديم لا يُحسب)
+  const last = userId !== env.DISCORD_OWNER_ID && (await lastRequestAt(env, it.guild_id, userId));
+  if (last) {
+    const next = Math.ceil((last + REQUEST_EVERY) / 1000);
+    return {
+      dm:
+        `شكراً على طلبك 🌹\n` +
+        `نستقبل طلب تعريب واحد في الأسبوع من كل عضو، وطلبك الأخير كان قبل أقل من أسبوع.\n` +
+        `تقدر تطلب **${game.name}** <t:${next}:R> (<t:${next}:f>).`,
+    };
   }
 
   const hot = peak >= AUTO_PEAK;
@@ -342,6 +356,24 @@ async function findRequest(env, guildId, name) {
     if (found) return found;
     if (!res.has_more || !res.threads?.length) break;
     before = res.threads[res.threads.length - 1].thread_metadata.archive_timestamp;
+  }
+  return null;
+}
+
+/** وقت آخر طلب نشره البوت لهذا العضو خلال الأسبوع (من حقل "طلبها" في المنشور)، أو null */
+async function lastRequestAt(env, guildId, userId) {
+  const since = Date.now() - REQUEST_EVERY;
+  const created = (t) => Number(BigInt(t.id) >> 22n) + 1420070400000;
+  const [active, archived] = await Promise.all([
+    dc(env, 'GET', `/guilds/${guildId}/threads/active`),
+    dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_FORUM}/threads/archived/public?limit=100`),
+  ]);
+  const recent = [...(active.threads || []), ...(archived.threads || [])]
+    .filter((t) => t.parent_id === env.DISCORD_REQUESTS_FORUM && t.owner_id === env.DISCORD_APP_ID && created(t) >= since)
+    .sort((a, b) => created(b) - created(a));
+  for (const t of recent) {
+    const msg = await dc(env, 'GET', `/channels/${t.id}/messages/${t.id}`, undefined, true);
+    if (msg?.embeds?.[0]?.fields?.some((f) => f.value === `<@${userId}>`)) return created(t);
   }
   return null;
 }
