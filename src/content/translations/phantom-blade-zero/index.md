@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvt870vna0k.webp
   - ./shot-mvt87katksp.webp
   - ./shot-mvt8aikbs0r.webp
+video: https://www.youtube.com/watch?v=u4X5V5Uk-Cg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_PhantomBladeZero_Installer.zip
