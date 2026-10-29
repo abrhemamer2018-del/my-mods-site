@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2023-04-26
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvfan8p0.webp
 screenshots:
   - ./shot-mvfaoefdwcp.webp
@@ -18,12 +18,18 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AOT2_Installer.zip
-    size: 2.52 MB
+    size: 2.56 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-29
+    at: 2026-10-29T22:07:00+03:00
+    notes:
+      - "إصلاح رسالة «حدث خطأ» عند التثبيت في بعض نسخ اللعبة غير Steam: الأداة تتعرّف الآن على ملف الخط في نسختك حتى لو كان مضغوطاً بطريقة مختلفة"
+      - "رسائل خطأ أوضح: تخبرك إن كان ملف من ملفات اللعبة مفتوحاً عند برنامج آخر، أو القرص ممتلئاً، أو برنامج الحماية يمنع الكتابة"
   - version: "1.1"
     date: 2026-10-27
     at: 2026-10-27T15:01:55+03:00
