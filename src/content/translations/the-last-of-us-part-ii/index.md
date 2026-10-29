@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-04
 addedAt: 2026-10-04T23:01:27+03:00
 gameRelease: 2025-04-03
-version: "1.1"
+version: "1.3"
 cover: ./cover-muu8uxla.webp
 banner: ./banner-muu8veyf.webp
 screenshots:
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-10-29
+    at: 2026-10-29T13:00:00+03:00
+    notes:
+      - "إصلاح الترجمة اللي كانت تطلع مشفرة (رموز وعلامات استفهام) في ترجمة الحوار والقوائم ومربع الأزرار تحت الشاشة واسم الفصل"
+      - "إصلاح ترتيب الحروف في نافذة الإعدادات (Setup) اللي تظهر قبل تشغيل اللعبة"
   - version: "1.1"
     date: 2026-10-29
     at: 2026-10-29T05:45:00+03:00
