@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-30
 gameRelease: 2014-09-30
-version: "1.0"
+version: "1.0.4"
 cover: ./cover-mvurdvqz.webp
 screenshots:
   - ./shot-mvurh2dcc96.webp
@@ -20,12 +20,20 @@ video: https://youtu.be/mLvh44PnubM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ShadowOfMordor_Installer.zip
-    size: 1.68 MB
+    size: 1.70 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.4"
+    date: 2026-10-30
+    at: 2026-10-30T17:35:00+03:00
+    notes:
+      - "أوصاف المهارات تظهر الآن بالترتيب الصحيح من فوق إلى تحت (كان بعضها مقلوب الأسطر)"
+      - "نصائح شاشة التحميل في سطرين أو أكثر بعرض الشريط بدل الأسطر الطويلة"
+      - "الخط العربي يُدمج في خطوط لعبتك وقت التثبيت، والأوصاف محاذاة لليمين"
+      - "تصحيح كلمات في الترجمة: «اصعد للأعلى»، «النزول للتعلّق»، «صعق القفز»، «حرق الشبح»، وضمير المؤنث في بعض الحوار"
   - version: "1.0"
     date: 2026-10-30
     notes:
