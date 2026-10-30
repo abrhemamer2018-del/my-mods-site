@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-25
 gameRelease: 2020-05-19
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvnzuvuo.webp
 screenshots:
   - ./shot-mvnzw808a6x.webp
@@ -19,12 +19,18 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Mafia2DE_Installer.zip
-    size: 0.99 MB
+    size: 1.08 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-30
+    at: 2026-10-30T10:55:00+03:00
+    notes:
+      - "إذا ثبّتّ التعريب قبل أول تشغيل للعبة، تظهر رسالة تشرح الخطوات بدل «تم بنجاح» (كانت اللعبة تبقى بالإنجليزي)"
+      - "تصحيح أخطاء في الترجمة: وصف القائمة الرئيسية، وحروف غريبة، وعلامات تنصيص مكررة في بعض الحوارات"
   - version: "1.0"
     date: 2026-10-25
     notes:
@@ -47,10 +53,11 @@ tags:
 
 ## طريقة التثبيت
 
-1. حمّل الملف وفك ضغطه.
-2. أغلق اللعبة إن كانت مفتوحة.
+1. شغّل اللعبة **مرة واحدة على الأقل** حتى القائمة الرئيسية، ثم أغلقها (لازم قبل التثبيت حتى تتغير لغة اللعبة).
+2. حمّل الملف وفك ضغطه.
 3. شغّل الأداة واضغط **تثبيت**.
 4. شغّل اللعبة، وستفتح بالعربية مباشرة.
+5. فعّل الترجمة (Subtitles) من الإعدادات ثم إعدادات اللعب لترى الحوارات بالعربية.
 
 الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
