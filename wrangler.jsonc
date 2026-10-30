@@ -42,6 +42,12 @@
     // روم مخفي: سطر لكل طلب منشور، ومنه يعرف البوت حد طلب واحد في الأسبوع
     "DISCORD_REQUESTS_LOG": "1565214121727627316"
   },
+  // بوت ديسكورد يظهر متصلاً: كائن واحد يمسك اتصال Gateway (worker/presence.js)
+  "durable_objects": {
+    "bindings": [{ "name": "BOT_PRESENCE", "class_name": "BotPresence" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["BotPresence"] }],
+  "triggers": { "crons": ["* * * * *"] },
   "observability": {
     "logs": {
       "enabled": true,

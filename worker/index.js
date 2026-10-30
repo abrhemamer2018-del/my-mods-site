@@ -10,6 +10,8 @@
 // ============================================================
 import { isAbusive } from './moderation.js';
 import { discordInteraction } from './discord.js';
+import { keepPresence } from './presence.js';
+export { BotPresence } from './presence.js';
 import { parse, stringify } from 'yaml';
 
 const SESSION_DAYS = 7;
@@ -35,6 +37,11 @@ export default {
       const status = err.status || 500;
       return json({ error: err.expose ? err.message : 'حدث خطأ في الخادم' }, status);
     }
+  },
+
+  // كل دقيقة: يبقي بوت ديسكورد متصلاً (worker/presence.js)
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(keepPresence(env));
   },
 };
 
