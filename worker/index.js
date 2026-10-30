@@ -621,7 +621,7 @@ async function reportProblem(request, env, url) {
 }
 
 const REPORT_REPLY =
-  '✅ وصلنا بلاغك، شكراً لك!\nفريق تعريبات بيراجعه في أقرب وقت، وأي حل أو تحديث بينكتب هنا في نفس المنشور.';
+  '✅ وصلنا بلاغك، شكراً لك!\nفريق تعريبات بيراجعه في أقرب وقت.';
 
 async function replyToReport(env, threadId) {
   if (!env.DISCORD_BOT_TOKEN || !threadId) return;
