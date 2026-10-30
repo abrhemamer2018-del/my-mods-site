@@ -595,22 +595,50 @@ async function reportProblem(request, env, url) {
       { title: `⚠️ بلاغ: ${title}`.slice(0, 250), url: page, color: 0xe0344f, fields, timestamp: new Date().toISOString() },
     ],
   };
+  // wait=true: يرجع ديسكورد الرسالة، ومنها رقم منشور المنتدى
+  const hook = new URL(env.DISCORD_REPORTS_WEBHOOK_URL);
+  hook.searchParams.set('wait', 'true');
   const send = (b) =>
-    fetch(env.DISCORD_REPORTS_WEBHOOK_URL, {
+    fetch(hook, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(b),
     });
   let res = await send(body);
   // إن كانت القناة منتدى (Forum) فهي تحتاج عنواناً لكل منشور
+  let forum = false;
   if (res.status === 400 && /thread/i.test(await res.clone().text())) {
+    forum = true;
     res = await send({ ...body, thread_name: `بلاغ: ${title}`.slice(0, 100) });
   }
   if (!res.ok) {
     console.log('Report webhook error', res.status, await res.text());
     throw httpError(502, 'تعذّر إرسال البلاغ، حاول لاحقاً أو استخدم ديسكورد');
   }
+  // رد البوت تحت البلاغ مباشرة (فشله لا يُفشل البلاغ)
+  if (forum) await replyToReport(env, (await res.json().catch(() => null))?.channel_id);
   return { ok: true };
+}
+
+const REPORT_REPLY =
+  '✅ وصلنا بلاغك، شكراً لك!\nفريق تعريبات بيراجعه في أقرب وقت، وأي حل أو تحديث بينكتب هنا في نفس المنشور.';
+
+async function replyToReport(env, threadId) {
+  if (!env.DISCORD_BOT_TOKEN || !threadId) return;
+  try {
+    const res = await fetch(`https://discord.com/api/v10/channels/${threadId}/messages`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'DiscordBot (https://ta3reebat.com, 1)',
+      },
+      body: JSON.stringify({ content: REPORT_REPLY, allowed_mentions: { parse: [] } }),
+    });
+    if (!res.ok) console.log('Report reply error', res.status, await res.text());
+  } catch (err) {
+    console.log('Report reply error', err.message);
+  }
 }
 
 // ------------------------------------------------------------
