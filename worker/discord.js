@@ -6,10 +6,9 @@
 //  - زر "طلب تعريب" (منشور مثبت في منتدى طلب-تعريب) → نموذج: رابط اللعبة في Steam أو اسمها
 //  - يُقاس أعلى عدد لاعبين خلال 30 يوماً:
 //      أقل من MIN_PEAK  → رفض مهذب مخفي (لا يراه غير صاحب الطلب)
-//      MIN_PEAK أو أكثر → منشور "مطلوبة بقوة" يدخل المراجعة مباشرة
-//    (MIN_PEAK = AUTO_PEAK منذ 2026-10-29: أي عضو يقدر يصوّت ولو ما تهمه اللعبة، فلا تُنشر طلبات "تحتاج تصويت" جديدة)
+//      MIN_PEAK أو أكثر → منشور "تحتاج تصويت"، ويصير "جاهزة للمراجعة" عند VOTES_NEEDED أصوات
+//    (منذ 2026-10-30 الشرطان معاً: ما نعرّب لعبة ما وصلت VOTES_NEEDED أصوات، وصوت صاحب الطلب واحد منها)
 //  - الصوت = الانضمام إلى منشور الطلب (Thread member)، فيتابع اللاعب الطلب ولا يتكرر صوته
-//    (ما زال يعمل في منشورات "تحتاج تصويت" القديمة)
 //
 //  الإعدادات:
 //    DISCORD_PUBLIC_KEY, DISCORD_REQUESTS_FORUM, DISCORD_REQUESTS_LOG  في wrangler.jsonc (ليست سرية)
@@ -17,7 +16,6 @@
 // ============================================================
 
 export const MIN_PEAK = 1000;
-export const AUTO_PEAK = 1000;
 export const VOTES_NEEDED = 5;
 // عضو نُشر له طلب لا يرسل طلباً جديداً قبل أسبوع
 export const REQUEST_EVERY = 7 * 86400000;
@@ -31,6 +29,10 @@ export const TAGS = {
 const API = 'https://discord.com/api/v10';
 const SITE_URL = 'https://ta3reebat.com';
 const VOTES_FIELD = 'الأصوات';
+const VOTE_TEXT =
+  `🗳️ تحتاج **${VOTES_NEEDED} أصوات** عشان تدخل قائمة المراجعة، وما نعرّب لعبة ما وصلت ${VOTES_NEEDED} أصوات.\n` +
+  'إذا تبيها معربة اضغط الزر تحت 👇';
+const READY_TEXT = `✅ وصلت **${VOTES_NEEDED} أصوات** ودخلت **قائمة المراجعة**.`;
 const EPHEMERAL = 64;
 const LIVE_TIP =
   `💡 تقدر تلعبها بالعربي الحين مع برنامج **تعريبات لايف**: يترجم نصوص أي لعبة للعربي مباشرة على الشاشة وأنت تلعب.\n` +
@@ -153,14 +155,13 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
     };
   }
 
-  const hot = peak >= AUTO_PEAK;
   const tags = await forumTags(env);
   const thread = await dc(env, 'POST', `/channels/${env.DISCORD_REQUESTS_FORUM}/threads`, {
     name: game.name.slice(0, 100),
     auto_archive_duration: 10080,
-    applied_tags: [tags[hot ? TAGS.hot : TAGS.vote]].filter(Boolean),
+    applied_tags: [tags[TAGS.vote]].filter(Boolean),
     message: {
-      embeds: [requestEmbed(game, store, peak, hot, userId, 1)],
+      embeds: [requestEmbed(game, store, peak, userId, 1)],
       components: voteButton(1),
       allowed_mentions: { parse: [] },
     },
@@ -170,27 +171,18 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
     content: `<@${userId}> طلب **${game.name}** (${peak.toLocaleString('en-US')} لاعب)\nhttps://discord.com/channels/${it.guild_id}/${thread.id}`,
     allowed_mentions: { parse: [] },
   });
-  if (hot) {
-    await notifyOwner(env, `🔥 **طلب جديد دخل قائمة المراجعة:** ${game.name} (${peak.toLocaleString('en-US')} لاعب)\n` +
-      `https://discord.com/channels/${it.guild_id}/${thread.id}`);
-  }
-
   return (
     `تم نشر طلبك ✅\nhttps://discord.com/channels/${it.guild_id}/${thread.id}\n` +
-    (hot
-      ? 'اللعبة عليها إقبال كبير ودخلت قائمة المراجعة مباشرة.'
-      : `تحتاج **${VOTES_NEEDED}** أصوات عشان تدخل قائمة المراجعة، شارك الرابط مع اللي يبونها معربة.`)
+    `يحتاج **${VOTES_NEEDED}** أصوات (صوتك واحد منها) عشان يدخل قائمة المراجعة، شارك الرابط مع اللي يبونها معربة.`
   );
 }
 
-function requestEmbed(game, store, peak, hot, userId, votes) {
+function requestEmbed(game, store, peak, userId, votes) {
   return {
     title: game.name,
     url: store,
-    color: hot ? 0xf26b3a : 0x19c3d6,
-    description: hot
-      ? '🔥 اللعبة عليها إقبال كبير، ودخلت **قائمة المراجعة** مباشرة.'
-      : `🗳️ تحتاج **${VOTES_NEEDED} أصوات** عشان تدخل قائمة المراجعة.\nإذا تبيها معربة اضغط الزر تحت 👇`,
+    color: 0x19c3d6,
+    description: VOTE_TEXT,
     fields: [
       { name: 'أعلى عدد لاعبين (30 يوم)', value: peak.toLocaleString('en-US'), inline: true },
       { name: VOTES_FIELD, value: String(votes), inline: true },
@@ -236,30 +228,33 @@ async function addVote(env, thread, userId) {
   const ours = fresh.owner_id === env.DISCORD_APP_ID;
   const votes = Math.max(1, (fresh.member_count || 2) - 1);
 
+  // "مطلوبة بقوة" (قبل 2026-10-30) تحتاج الأصوات أيضاً
+  const tags = await forumTags(env);
+  const applied = fresh.applied_tags || [];
+  const waiting = [tags[TAGS.vote], tags[TAGS.hot]].filter((t) => t && applied.includes(t));
+  const ready = votes >= VOTES_NEEDED && waiting.length > 0 && !!tags[TAGS.ready];
+
   const label = fresh.member_count >= 50 ? '+50' : String(votes);
   const msg = ours && (await dc(env, 'GET', `/channels/${thread.id}/messages/${thread.id}`, undefined, true));
   if (msg?.embeds?.[0]) {
     const embed = msg.embeds[0];
     embed.fields = (embed.fields || []).map((f) => (f.name === VOTES_FIELD ? { ...f, value: label } : f));
+    if (ready) embed.description = READY_TEXT;
     await dc(env, 'PATCH', `/channels/${thread.id}/messages/${thread.id}`, {
       embeds: [embed],
       components: voteButton(label),
     });
   }
 
-  let ready = false;
-  const tags = await forumTags(env);
-  const applied = fresh.applied_tags || [];
-  if (votes >= VOTES_NEEDED && tags[TAGS.vote] && applied.includes(tags[TAGS.vote]) && tags[TAGS.ready]) {
+  if (ready) {
     await dc(env, 'PATCH', `/channels/${thread.id}`, {
-      applied_tags: [...applied.filter((t) => t !== tags[TAGS.vote]), tags[TAGS.ready]],
+      applied_tags: [...applied.filter((t) => !waiting.includes(t)), tags[TAGS.ready]],
     });
     await dc(env, 'POST', `/channels/${thread.id}/messages`, {
       content: `✅ وصل الطلب **${VOTES_NEEDED} أصوات** ودخل قائمة المراجعة. شكراً لكل اللي صوّتوا!`,
     });
     await notifyOwner(env, `✅ **طلب وصل ${VOTES_NEEDED} أصوات ودخل قائمة المراجعة:** ${fresh.name}\n` +
       `https://discord.com/channels/${fresh.guild_id}/${thread.id}`);
-    ready = true;
   }
   return { votes, ready };
 }
