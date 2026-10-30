@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-10
 addedAt: 2026-10-10T09:15:04+03:00
 gameRelease: 2022-01-20
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv1zulqj.webp
 screenshots:
   - ./shot-mv1zzjawd77.webp
@@ -19,12 +19,19 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HITMAN3_Installer.zip
-    size: 61.39 MB
+    size: 4.09 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-30
+    notes:
+      - يعمل مع تحديث اللعبة الأخير وأي تحديث قادم، ومع كل نسخ اللعبة (يُبنى التعريب من ملفات لعبتك وقت التثبيت)
+      - تعريب المهمة الجديدة «المُضيف» وحزم Alter Ego وThe Host
+      - تصحيح ترجمات منزاحة في أهداف وحوارات (بانكوك، تصعيد كيرنر وغيرها)
+      - أداة التثبيت أصغر بكثير (4 ميجا بدل 61)
   - version: "1.0"
     date: 2026-10-10
     notes:
