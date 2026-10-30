@@ -16,7 +16,6 @@ screenshots:
   - ./shot-mvv4zok1r9d.webp
   - ./shot-mvv4zr8zh4o.webp
   - ./shot-mvv504t4egi.webp
-video: https://youtu.be/x6N4aD8lMYU
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DeadCells_Installer.zip
