@@ -11,7 +11,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-15
 gameRelease: 2024-01-24
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv8n3by1.webp
 screenshots:
   - ./shot-mv8n42tswpj.webp
@@ -21,12 +21,16 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Enshrouded_Installer.zip
-    size: 7.57 MB
+    size: 8.10 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-30
+    notes:
+      - إصلاح منع ويندوز للتحميل وحذفه لأداة التثبيت (تنبيه خاطئ من برنامج الحماية)
   - version: "1.1"
     date: 2026-10-15
     notes:
