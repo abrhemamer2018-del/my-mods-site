@@ -4,7 +4,12 @@ import { getArticles, getTranslations, seriesOf, SERIES } from '../lib/utils';
 
 // بصمة محتوى كل صفحة مهمة: الخادم (worker/indexnow.js) يقارنها بعد كل نشر،
 // فيبلغ Bing (IndexNow) بالصفحات التي تغيّرت فقط، مهما كانت طريقة تعديلها (لوحة التحكم أو Git)
-const hash = (x: unknown) => createHash('sha1').update(JSON.stringify(x)).digest('hex').slice(0, 16);
+// fsPath (مسار الصورة على جهاز البناء) يختلف بين بناء وآخر، فلا يدخل في البصمة
+const hash = (x: unknown) =>
+  createHash('sha1')
+    .update(JSON.stringify(x, (k, v) => (k === 'fsPath' ? undefined : v)))
+    .digest('hex')
+    .slice(0, 16);
 
 export const GET: APIRoute = async () => {
   const translations = await getTranslations();
