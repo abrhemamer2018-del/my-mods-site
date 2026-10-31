@@ -14,9 +14,34 @@ const d = item.data;
 const { Content } = await render(item);
 const og = d.cover ? (await getImage({ src: d.cover, width: 1200, format: 'jpg' })).src : undefined;
 const back = d.kind === 'lesson' ? { href: '/lessons/', label: 'الدروس' } : { href: '/articles/', label: 'المقالات' };
+// البيانات المنظمة (schema.org): مقال ومسار الصفحة، تفهمها محركات البحث
+const pageUrl = new URL(`/articles/${item.id}/`, Astro.site).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: d.title,
+    description: d.description,
+    datePublished: d.date.toISOString(),
+    inLanguage: 'ar',
+    mainEntityOfPage: pageUrl,
+    image: new URL(og ?? '/og.png', Astro.site).href,
+    author: { '@type': 'Organization', name: 'تعريبات', url: new URL('/', Astro.site).href },
+    publisher: { '@type': 'Organization', name: 'تعريبات', url: new URL('/', Astro.site).href },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: back.label, item: new URL(back.href, Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: d.title, item: pageUrl },
+    ],
+  },
+];
 ---
 
-<BaseLayout title={d.title} description={d.description} image={og}>
+<BaseLayout title={d.title} description={d.description} image={og} jsonLd={jsonLd}>
   <article class="container section wrap" data-pagefind-body>
     <a href={back.href} class="muted back">› {back.label}</a>
     <h1>{d.title}</h1>

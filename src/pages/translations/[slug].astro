@@ -103,6 +103,19 @@ const jsonLd = [
       { '@type': 'ListItem', position: 3, name: `تعريب ${d.title}`, item: pageUrl },
     ],
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })),
+  },
+];
+
+// روابط مقالات الشرح تحت الأسئلة الشائعة (روابط داخلية تساعد الزائر ومحركات البحث)
+const GUIDES = [
+  { href: '/articles/how-to-install-arabic-translation/', label: 'طريقة التثبيت خطوة بخطوة' },
+  { href: '/articles/translation-stopped-after-update/', label: 'التعريب توقف بعد تحديث اللعبة' },
+  { href: '/articles/is-the-installer-safe/', label: 'هل أداة التثبيت آمنة؟' },
+  { href: '/articles/broken-arabic-letters-fix/', label: 'الحروف العربية مقطعة أو معكوسة' },
 ];
 
 const related = relatedTranslations(item, all, RELATED_COUNT);
@@ -314,6 +327,24 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
         )
       }
 
+      <section class="block faq" id="faq">
+        <h2>أسئلة شائعة</h2>
+        {faq.map((x) => (
+          <details>
+            <summary>{x.q}</summary>
+            <p>{x.a}</p>
+          </details>
+        ))}
+        <p class="guides">
+          شروحات تهمك:
+          {GUIDES.map((g, i) => (
+            <>
+              {i > 0 && ' · '}
+              <a href={g.href}>{g.label}</a>
+            </>
+          ))}
+        </p>
+      </section>
     </article>
 
   </div>
@@ -908,6 +939,14 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
     margin: 0;
     padding: 0 18px 16px;
     color: var(--muted);
+  }
+  .faq .guides {
+    margin-top: 14px;
+    color: var(--muted);
+    line-height: 2;
+  }
+  .faq .guides a {
+    color: var(--accent);
   }
   .changelog {
     list-style: none;
