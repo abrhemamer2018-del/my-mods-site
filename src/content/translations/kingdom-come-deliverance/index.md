@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-06
 addedAt: 2026-10-07T03:13:07+03:00
 gameRelease: 2018-02-13
-version: "1.0"
+version: "1.1"
 cover: ./cover-muxcsvaf.webp
 banner: ./banner-muxcs5m6.webp
 screenshots:
@@ -20,12 +20,18 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_KCD_Installer.zip
-    size: 26.69 MB
+    size: 26.87 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-31
+    notes:
+      - أسماء الأزرار (Shift وSpace وEsc وغيرها) تظهر كاملة بالإنجليزي بدل الأسماء المترجمة المقصوصة
+      - تصحيح أخطاء ترجمة (مكافأة مهارة، مبالغ بالغروشن، سطران متبادلان في الحوار)
+      - "ملاحظة: إذا ظهرت حروف الأزرار مربعات فحوّل الكيبورد إلى الإنجليزي (Alt+Shift) قبل تشغيل اللعبة"
   - version: "1.0"
     date: 2026-10-06
     notes:
