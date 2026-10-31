@@ -777,7 +777,43 @@ const jsonLd = [
     transform: translateY(-50%);
     width: 1px;
     height: 28px;
-    background: var(--border);
+    background: linear-gradient(transparent, rgb(255 255 255 / 0.2), transparent);
+  }
+  /* الشريط العائم: إطار متدرج بألوان الشعار بدل الحد الرمادي، مع ظل يرفعه عن البانر (نفس المقاسات) */
+  .stats-wrap .stats-strip {
+    position: relative;
+    border-color: transparent;
+    box-shadow: 0 18px 50px rgb(0 0 0 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.05);
+  }
+  .stats-wrap .stats-strip::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgb(224 52 79 / 0.6), rgb(255 255 255 / 0.1) 30%, rgb(255 255 255 / 0.1) 70%, rgb(25 195 214 / 0.7));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .s-ico {
+    box-shadow: 0 6px 18px rgb(25 195 214 / 0.2), inset 0 1px 0 rgb(255 255 255 / 0.4);
+  }
+  /* عناوين الأقسام: خط قصير متدرج تحت العنوان (موضع مطلق فلا يغير المسافات) */
+  .section-head h2 {
+    position: relative;
+  }
+  .section-head h2::after {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: -7px;
+    width: 46px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 12px rgb(25 195 214 / 0.5);
   }
 
   /* تعريبات مثبتة: بطاقات مضيئة — إطار متدرج بألوان الشعار، ولوحة زجاجية، وهالة ضوء بألوان الغلاف */
@@ -894,6 +930,19 @@ const jsonLd = [
   }
   .pin-card:hover .pin-img {
     transform: scale(1.05);
+  }
+  /* لمعة تعبر البطاقة عند مرور الفأرة */
+  .pin-in::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, transparent 35%, rgb(255 255 255 / 0.18) 50%, transparent 65%);
+    transform: translateX(110%);
+  }
+  .pin-card:hover .pin-in::after {
+    transform: translateX(-110%);
+    transition: transform 0.9s ease;
   }
   .pin-card:hover .pin-glow {
     opacity: 0.9;
