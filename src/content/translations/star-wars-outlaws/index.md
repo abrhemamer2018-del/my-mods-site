@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-01
 addedAt: 2026-10-01T06:39:08+03:00
 gameRelease: 2024-11-21
-version: "2.2"
+version: "2.3"
 cover: ./cover-mv4pnsqh.webp
 screenshots:
   - ./shot-mv4pdqg4j06.webp
@@ -25,6 +25,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "2.3"
+    date: 2026-10-31
+    at: 2026-10-31T08:50:00+03:00
+    notes:
+      - إصلاح بقية أسماء المتكلمين التي كانت تظهر معكوسة (مثل سليرو وبيب فورتونا وغوراك)
   - version: "2.2"
     date: 2026-10-31
     at: 2026-10-31T07:30:00+03:00
