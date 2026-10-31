@@ -11,6 +11,7 @@ gameRelease: 2025-12-11
 version: "1.2"
 cover: ./cover-mvchbsql.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=oz1E9OJjxb8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Kiwami_Installer.zip

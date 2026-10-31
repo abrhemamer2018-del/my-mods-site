@@ -19,6 +19,7 @@ screenshots:
   - ./shot-mvjl7nonx3f.webp
   - ./shot-mvjl7ufae66.webp
   - ./shot-mvjl80nhh6c.webp
+video: https://www.youtube.com/watch?v=aMfpQRoWGbE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_Installer.zip

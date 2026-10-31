@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muxae3srv7n.webp
   - ./shot-muxae3v31l7.webp
   - ./shot-muxae3x4ayi.webp
+video: https://www.youtube.com/watch?v=1rR2QMUTAtc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_CONTROL_Resonant_Installer.zip

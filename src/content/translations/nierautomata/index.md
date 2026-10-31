@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv662dfr2wd.webp
   - ./shot-mv662myj600.webp
   - ./shot-mv662t0y99s.webp
+video: https://www.youtube.com/watch?v=iRAHnXbPIQo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_NieRAutomata_Installer.zip

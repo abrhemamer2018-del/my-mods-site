@@ -20,6 +20,7 @@ screenshots:
   - ./shot-muyhnl9vxed.webp
   - ./shot-muyhnlbhge3.webp
   - ./shot-muyhnleba0n.webp
+video: https://www.youtube.com/watch?v=gFj8qt9HiZg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DMC5_Installer.zip

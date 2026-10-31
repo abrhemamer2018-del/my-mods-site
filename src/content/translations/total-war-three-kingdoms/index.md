@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvr1iiyhw4q.webp
   - ./shot-mvr1io2uxia.webp
   - ./shot-mvr1ipsf53e.webp
+video: https://www.youtube.com/watch?v=4UhSsPhIpqM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Total_War_THREE_KINGDOMS_Arabic.zip

@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mv1yubhg0d1.webp
   - ./shot-mv1yubkddqo.webp
   - ./shot-mv1yuolj3e5.webp
+video: https://www.youtube.com/watch?v=c5zIp12TO0Y
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SallyFace_Installer.zip

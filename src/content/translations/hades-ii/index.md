@@ -20,6 +20,7 @@ screenshots:
   - ./shot-muuglrouh5b.webp
   - ./shot-muuglrqz9tw.webp
   - ./shot-muuglrt5n3s.webp
+video: https://www.youtube.com/watch?v=U8lJRcUeEMs
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HadesII_Installer_V2.rar

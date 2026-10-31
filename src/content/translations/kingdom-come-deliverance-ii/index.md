@@ -20,6 +20,7 @@ screenshots:
   - ./shot-murcrya2lru.webp
   - ./shot-murcrycg8du.webp
   - ./shot-murcryenm1l.webp
+video: https://www.youtube.com/watch?v=sXDoP90YkOc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_KCD2_Installer.zip

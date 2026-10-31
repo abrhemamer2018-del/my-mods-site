@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv5pg0b6062.webp
   - ./shot-mv5pgjshelp.webp
   - ./shot-mv5pgvtsmre.webp
+video: https://www.youtube.com/watch?v=LE3SZ52OD3c
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DOTO_Installer.zip

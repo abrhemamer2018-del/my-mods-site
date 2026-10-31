@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muxc6kpk5bp.webp
   - ./shot-muxc6kser7q.webp
   - ./shot-muxc6kufyps.webp
+video: https://www.youtube.com/watch?v=HMaoyMht7_0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_KCD_Installer.zip

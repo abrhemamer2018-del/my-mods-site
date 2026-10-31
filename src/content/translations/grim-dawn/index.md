@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvpd2y9w9a1.webp
   - ./shot-mvpd35yhuzm.webp
   - ./shot-mvpd3hdfpcp.webp
+video: https://www.youtube.com/watch?v=BfABNZqU-PA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GrimDawn_Installer.zip

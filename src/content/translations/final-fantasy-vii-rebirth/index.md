@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mvb2bpm6y4w.webp
   - ./shot-mvb2bw9ydem.webp
   - ./shot-mvb2ca8b8ws.webp
+video: https://www.youtube.com/watch?v=vKbIQTq2EUU
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FF7_Rebirth_Installer.zip

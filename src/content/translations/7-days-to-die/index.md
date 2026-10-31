@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv1ao5d458a.webp
   - ./shot-mv1ap613zjn.webp
   - ./shot-mv1apnw8g6c.webp
+video: https://www.youtube.com/watch?v=BaZA5-CtlXY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/7.Days.to.Die.zip

@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv670n1kjqs.webp
   - ./shot-mv670r7eu6i.webp
   - ./shot-mv670wp90qp.webp
+video: https://www.youtube.com/watch?v=-gDRefbthKM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Palworld_Installer.zip

@@ -15,6 +15,7 @@ banner: ./banner-muscx89w.webp
 screenshots:
   - ./shot-muscoqol54h.webp
   - ./shot-muscoz8019a.webp
+video: https://www.youtube.com/watch?v=mJntSVa4OBE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SpaceMarine2_Installer.zip

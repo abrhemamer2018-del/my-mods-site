@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvgi9mz4qqm.webp
   - ./shot-mvgi9vb6dks.webp
   - ./shot-mvgia66tqqw.webp
+video: https://www.youtube.com/watch?v=j_6Tr67e0Bo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Resident_Evil_HD_Remaster_Installer.zip

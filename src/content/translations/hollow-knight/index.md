@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv5pre88qm6.webp
   - ./shot-mv5pruszxlg.webp
   - ./shot-mv5ps0znko0.webp
+video: https://www.youtube.com/watch?v=UAO2urG23S4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HollowKnight_Installer.zip

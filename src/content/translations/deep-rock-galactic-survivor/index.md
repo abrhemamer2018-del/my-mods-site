@@ -11,6 +11,7 @@ gameRelease: 2025-09-17
 version: "1.0"
 cover: ./cover-mvjj62og.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=BktYZWvd1Fg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Deep_Rock_Galactic_Survivor_Installer.zip

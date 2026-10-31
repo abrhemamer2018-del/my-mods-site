@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvjkqma91bl.webp
   - ./shot-mvjkqp3fi5s.webp
   - ./shot-mvjkr2bwggj.webp
+video: https://www.youtube.com/watch?v=hhk4HAxLhq8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ManorLords_Installer.zip

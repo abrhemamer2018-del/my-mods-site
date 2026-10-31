@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvaq2zuyz78.webp
   - ./shot-mvaq39lgpk3.webp
   - ./shot-mvaq3ly4qgj.webp
+video: https://www.youtube.com/watch?v=QrDF57Cr7-Y
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ScarletNexus_Installer.zip

@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvshx5wym1v.webp
   - ./shot-mvshxnit3m4.webp
   - ./shot-mvshxxr090d.webp
+video: https://www.youtube.com/watch?v=ZQzIZkxsWYw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GTA4_Arabic_Installer.zip

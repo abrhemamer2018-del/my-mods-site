@@ -14,6 +14,7 @@ screenshots:
   - ./shot-mvjkunx4fh8.webp
   - ./shot-mvjkunysz0a.webp
   - ./shot-mvjkuo0s472.webp
+video: https://www.youtube.com/watch?v=1KOb5AIeTLc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_PacificDrive_Installer.zip

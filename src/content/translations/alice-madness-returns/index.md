@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv3zrwruazl.webp
   - ./shot-mv3zs3h79xa.webp
   - ./shot-mv3zs9wo9bq.webp
+video: https://www.youtube.com/watch?v=cFrs5UGB-ns
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AliceMadnessReturns_Installer.zip

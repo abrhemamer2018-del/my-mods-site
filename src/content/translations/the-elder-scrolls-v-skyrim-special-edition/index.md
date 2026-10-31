@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muufjtgltvo.webp
   - ./shot-muufjtintti.webp
   - ./shot-muufknaaepn.webp
+video: https://www.youtube.com/watch?v=Adzx8Brrd6I
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Skyrim_Installer.zip

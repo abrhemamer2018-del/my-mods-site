@@ -13,6 +13,7 @@ cover: ./cover-mvjkiyzv.webp
 screenshots:
   - ./shot-mvjkjjdlyi1.webp
   - ./shot-mvjkjjfp8p4.webp
+video: https://www.youtube.com/watch?v=mwZ_hVuPJk0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Icarus_Installer.zip

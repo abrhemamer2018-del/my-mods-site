@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvktz3rd9cb.webp
   - ./shot-mvktzcjw21i.webp
   - ./shot-mvktzqvnhr3.webp
+video: https://www.youtube.com/watch?v=7AVB9Ejot8s
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FFRS_Installer.zip

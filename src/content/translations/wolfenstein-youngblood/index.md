@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv8pmpge0ng.webp
   - ./shot-mv8pmrk92w5.webp
   - ./shot-mv8pmyy2mjt.webp
+video: https://www.youtube.com/watch?v=Zjwo5EJxn9E
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Wolfenstein_Youngblood_Installer.zip

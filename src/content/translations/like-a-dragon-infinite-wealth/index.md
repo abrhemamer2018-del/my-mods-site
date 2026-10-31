@@ -15,6 +15,7 @@ screenshots:
   - ./shot-muyigoowu5a.webp
   - ./shot-muyigor99x5.webp
   - ./shot-muyigotl63u.webp
+video: https://www.youtube.com/watch?v=H_GCywy6uhY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LAD_IW_Installer.rar

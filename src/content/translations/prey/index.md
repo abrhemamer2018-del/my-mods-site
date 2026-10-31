@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvhqumj2kam.webp
   - ./shot-mvhqvd108e7.webp
   - ./shot-mvhqvkod8e0.webp
+video: https://www.youtube.com/watch?v=1hKTZGflqrc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Prey_Installer.zip

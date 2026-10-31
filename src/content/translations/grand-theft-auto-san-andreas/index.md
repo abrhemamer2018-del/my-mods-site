@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvsht6yovud.webp
   - ./shot-mvsht9cfcyl.webp
   - ./shot-mvshtcpu39q.webp
+video: https://www.youtube.com/watch?v=yOzcbtsw_pQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GTA_San_Andreas_Installer.zip

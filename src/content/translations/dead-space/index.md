@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv1oj5n1hn9.webp
   - ./shot-mv1ojiwb01i.webp
   - ./shot-mv1ojpq40dk.webp
+video: https://www.youtube.com/watch?v=ctQl9wa3ydE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/DeadSpace.zip

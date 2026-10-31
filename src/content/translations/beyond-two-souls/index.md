@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv1b4eej5f0.webp
   - ./shot-mv1b4p28vd0.webp
   - ./shot-mv1b56rdech.webp
+video: https://www.youtube.com/watch?v=MtEoS0MaNyA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BeyondTwoSouls_Installer.zip

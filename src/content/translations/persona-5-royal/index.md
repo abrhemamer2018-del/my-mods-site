@@ -19,6 +19,7 @@ screenshots:
   - ./shot-mvc1e0jc6nh.webp
   - ./shot-mvc1e8s6w3w.webp
   - ./shot-mvc1f495js0.webp
+video: https://www.youtube.com/watch?v=SKpSpvFCZRw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_P5R_Installer.zip

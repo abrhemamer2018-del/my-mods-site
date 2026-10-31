@@ -18,6 +18,7 @@ screenshots:
   - ./shot-muxhtsowq83.webp
   - ./shot-muxhtsr554i.webp
   - ./shot-muxhtstdw9u.webp
+video: https://www.youtube.com/watch?v=hkygiqC7ulQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Like_a_Dragon_Installer.zip

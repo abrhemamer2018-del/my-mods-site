@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mvb2174x3ek.webp
   - ./shot-mvb2254vvz3.webp
   - ./shot-mvb22ge2awo.webp
+video: https://www.youtube.com/watch?v=DG_gy1Tecco
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Persona3Reload_v1.0.zip

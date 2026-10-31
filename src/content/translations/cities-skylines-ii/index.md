@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvhqrjnftuh.webp
   - ./shot-mvhqrl3uxyn.webp
   - ./shot-mvhqrnb1rmj.webp
+video: https://www.youtube.com/watch?v=7vlKoMi4Qr0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Cities_Skylines_II_Installer.zip

@@ -14,6 +14,7 @@ screenshots:
   - ./shot-mvjl1qiqxxh.webp
   - ./shot-mvjl1qkpe1z.webp
   - ./shot-mvjl1qmml7d.webp
+video: https://www.youtube.com/watch?v=H2qITQHud2I
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_The_Evil_Within_Installer.zip

@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mv8pcvmmv57.webp
   - ./shot-mv8pdivs3ka.webp
   - ./shot-mv8pdlsjpgn.webp
+video: https://www.youtube.com/watch?v=Viv8e9_-kHo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Wolfenstein_TOB_Installer.zip

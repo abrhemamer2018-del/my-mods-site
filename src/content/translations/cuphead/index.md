@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv44s69feef.webp
   - ./shot-mv44s8gmelx.webp
   - ./shot-mv44sbogrsm.webp
+video: https://www.youtube.com/watch?v=NN-9SQXoi50
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Cuphead_Installer.zip

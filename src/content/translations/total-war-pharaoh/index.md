@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvr0uljkq3z.webp
   - ./shot-mvr0uwm1ivo.webp
   - ./shot-mvr0vts94vu.webp
+video: https://www.youtube.com/watch?v=xLhE6ZOJvFg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Total_War_PHARAOH_Installer.zip

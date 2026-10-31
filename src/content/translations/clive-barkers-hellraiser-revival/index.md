@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv2zn37d5wp.webp
   - ./shot-mv2zna29u6x.webp
   - ./shot-mv2znnv95vx.webp
+video: https://www.youtube.com/watch?v=noSKx69ZFYI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Hellraiser_Installer.zip

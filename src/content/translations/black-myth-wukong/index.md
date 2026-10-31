@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muvsfn5fuxi.webp
   - ./shot-muvsfn7gzz6.webp
   - ./shot-muvsfn9adre.webp
+video: https://www.youtube.com/watch?v=Wl05yGSDpxY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BlackMythWukong_Installer.zip

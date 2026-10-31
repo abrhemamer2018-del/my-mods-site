@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muxbrjdggbx.webp
   - ./shot-muxbrjewjnj.webp
   - ./shot-muxbrjihqoy.webp
+video: https://www.youtube.com/watch?v=1J8tQ-0a8mo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MafiaTOC_Installer.zip

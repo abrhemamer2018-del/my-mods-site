@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mv1pwnz3vde.webp
   - ./shot-mv1pwr44hxr.webp
   - ./shot-mv1pxep39p8.webp
+video: https://www.youtube.com/watch?v=WAMBwnpO_SI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Fallout4_Installer.zip

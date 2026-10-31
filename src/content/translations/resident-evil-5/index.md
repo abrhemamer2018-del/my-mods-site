@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvgisocinz0.webp
   - ./shot-mvgisska8s7.webp
   - ./shot-mvgittqppee.webp
+video: https://www.youtube.com/watch?v=EUI48f4iWPc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ResidentEvil5_Installer.zip

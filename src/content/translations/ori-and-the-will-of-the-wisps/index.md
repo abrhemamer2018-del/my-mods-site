@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv66eo4reao.webp
   - ./shot-mv66eyegee7.webp
   - ./shot-mv66f66156n.webp
+video: https://www.youtube.com/watch?v=-QFOJ_L6yFM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Ori_WotW_Installer.zip

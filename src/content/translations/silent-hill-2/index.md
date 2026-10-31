@@ -16,6 +16,7 @@ screenshots:
   - ./shot-muzu7gaj99g.webp
   - ./shot-muzu7gcsrx1.webp
   - ./shot-muzu7gfm2xv.webp
+video: https://www.youtube.com/watch?v=7f5qac5f3mE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SilentHill2_Installer.zip

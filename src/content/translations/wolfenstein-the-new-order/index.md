@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv8p0ubjdfa.webp
   - ./shot-mv8p16di96u.webp
   - ./shot-mv8p1f48eyr.webp
+video: https://www.youtube.com/watch?v=Pht8Bsq8Cno
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Wolfenstein_TNO_Installer.zip

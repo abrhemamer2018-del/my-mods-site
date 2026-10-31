@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv200eguldg.webp
   - ./shot-mv200qghsyy.webp
   - ./shot-mv200zrt5t9.webp
+video: https://www.youtube.com/watch?v=WB2BSbaRmgY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HITMAN3_Installer.zip

@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mv1avzj52oe.webp
   - ./shot-mv1aw7fdr8p.webp
   - ./shot-mv1awfxjtgb.webp
+video: https://www.youtube.com/watch?v=yGZGSdgJVPM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AWayOut_Installer.zip

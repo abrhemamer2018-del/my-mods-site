@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvmhhbrucpt.webp
   - ./shot-mvmhhw8g1e2.webp
   - ./shot-mvmhi2lqvbs.webp
+video: https://www.youtube.com/watch?v=s3ws82dj_fA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DREDGE_Installer.zip

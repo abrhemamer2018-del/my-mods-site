@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvp1gk1ri4s.webp
   - ./shot-mvp1gsrqd90.webp
   - ./shot-mvp1h13mf3d.webp
+video: https://www.youtube.com/watch?v=3mnxjDNe5cI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Styx_Installer.zip

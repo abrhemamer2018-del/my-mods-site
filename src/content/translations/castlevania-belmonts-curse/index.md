@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvcw5hzrlmx.webp
   - ./shot-mvcw649hsrf.webp
   - ./shot-mvcw6bq9cn2.webp
+video: https://www.youtube.com/watch?v=yMqfvXfnTYk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Castlevania_Belmonts_Curse_Installer.zip

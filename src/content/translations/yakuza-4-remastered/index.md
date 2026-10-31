@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv84b5ta5m0.webp
   - ./shot-mv84dhsnsid.webp
   - ./shot-mv84dkbyuk5.webp
+video: https://www.youtube.com/watch?v=XEXau52ey6Q
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza4_Remastered_Installer.zip

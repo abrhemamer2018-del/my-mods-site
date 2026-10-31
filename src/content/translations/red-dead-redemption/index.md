@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mutp489wvny.webp
   - ./shot-mutp48bvv88.webp
   - ./shot-mutp48f560a.webp
+video: https://www.youtube.com/watch?v=mnvc6uC6xZE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RDR_Installer.zip

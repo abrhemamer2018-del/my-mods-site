@@ -16,6 +16,7 @@ screenshots:
   - ./shot-muzv54oez4j.webp
   - ./shot-muzv5fgq0kc.webp
   - ./shot-muzv5pc32xq.webp
+video: https://www.youtube.com/watch?v=kXZoKdr-xeo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LiesofP_Installer.zip

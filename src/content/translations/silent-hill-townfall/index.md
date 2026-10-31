@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muxast59l6y.webp
   - ./shot-muxast6tvgb.webp
   - ./shot-muxast8qnon.webp
+video: https://www.youtube.com/watch?v=9VjP6RyfGrQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Townfall_Installer.zip

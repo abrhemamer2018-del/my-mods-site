@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv5pjpg78u4.webp
   - ./shot-mv5pjs1d4kv.webp
   - ./shot-mv5pk08e6pb.webp
+video: https://www.youtube.com/watch?v=6-1KRSoTMr4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Frostpunk_Installer.zip

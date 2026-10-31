@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv6747obqbi.webp
   - ./shot-mv674an91zx.webp
   - ./shot-mv674j862wd.webp
+video: https://www.youtube.com/watch?v=z5XGFgEUFzk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RoboCop_Installer.zip

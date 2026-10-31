@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvigzwfo4xu.webp
   - ./shot-mvih03q5lcz.webp
   - ./shot-mvih0f1n1v6.webp
+video: https://www.youtube.com/watch?v=m3EF-71dodo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_The_Witcher_EE_Arabic.zip

@@ -18,6 +18,7 @@ screenshots:
   - ./shot-muztgdytaeq.webp
   - ./shot-muztge16ka4.webp
   - ./shot-muztge3ub8r.webp
+video: https://www.youtube.com/watch?v=hVJXZR5ahYA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_OMORI_Installer.zip

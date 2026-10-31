@@ -11,6 +11,7 @@ gameRelease: 2025-03-04
 version: "1.1"
 cover: ./cover-mv6c2hvs.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=NXTlh31ZWZ4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Grand.Theft.Auto.V.Enhanced.zip

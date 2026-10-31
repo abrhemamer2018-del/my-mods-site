@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv1t3ledgf4.webp
   - ./shot-mv1t3yrnzec.webp
   - ./shot-mv1t4whir44.webp
+video: https://www.youtube.com/watch?v=4DLuLKbqYy0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Fallout76_Installer.zip

@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv3cxkhhrv2.webp
   - ./shot-mv3cxsyj961.webp
   - ./shot-mv3cy39q4vt.webp
+video: https://www.youtube.com/watch?v=sZekdr76hAY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Judgment_Installer.zip

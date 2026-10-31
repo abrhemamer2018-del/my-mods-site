@@ -11,6 +11,7 @@ gameRelease: 2023-11-08
 version: "1.0"
 cover: ./cover-mvch4upn.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=e6kBGscgkZA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LAD_Gaiden_Installer.zip

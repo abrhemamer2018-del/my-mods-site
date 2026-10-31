@@ -11,6 +11,7 @@ gameRelease: 2021-01-28
 version: "1.0"
 cover: ./cover-mvch9prr.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=eAIae9XCETY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza3_Remastered_Installer.zip

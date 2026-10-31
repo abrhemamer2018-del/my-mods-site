@@ -13,6 +13,7 @@ cover: ./cover-mvjkneze.webp
 screenshots:
   - ./shot-mvjkoccewhq.webp
   - ./shot-mvjkocekowy.webp
+video: https://www.youtube.com/watch?v=aOadxZBsPiA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LittleNightmares_Installer.zip

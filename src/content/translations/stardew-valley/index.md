@@ -20,6 +20,7 @@ screenshots:
   - ./shot-muprpw46cxa.webp
   - ./shot-muprpw7ljgp.webp
   - ./shot-muprpwbh39s.webp
+video: https://www.youtube.com/watch?v=8A7A1X1TVNc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_StardewValley_Installer.zip

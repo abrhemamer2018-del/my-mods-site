@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv8mhe56feo.webp
   - ./shot-mv8mhy7626w.webp
   - ./shot-mv8micwpgtk.webp
+video: https://www.youtube.com/watch?v=T9CcbwO9LFk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BioShockInfinite_Installer.zip

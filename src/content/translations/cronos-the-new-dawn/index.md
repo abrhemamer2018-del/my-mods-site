@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvjj5e7f9of.webp
   - ./shot-mvjj5gdgjzx.webp
   - ./shot-mvjj5j0esp3.webp
+video: https://www.youtube.com/watch?v=81QCcARZ4DI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Cronos_Installer.zip

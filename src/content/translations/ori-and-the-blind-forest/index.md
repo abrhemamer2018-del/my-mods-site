@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv666z4tex6.webp
   - ./shot-mv6674shw8j.webp
   - ./shot-mv667n6f5ie.webp
+video: https://www.youtube.com/watch?v=VrbGwU5Zx4M
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Ori_Installer.zip

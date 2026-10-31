@@ -20,6 +20,7 @@ screenshots:
   - ./shot-mvgjeg3u73g.webp
   - ./shot-mvgjenvb5je.webp
   - ./shot-mvgjepxdub6.webp
+video: https://www.youtube.com/watch?v=WqRVWVzhFJs
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Resident_Evil_4_2005_Installer.zip

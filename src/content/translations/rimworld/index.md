@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mur28z488al.webp
   - ./shot-mur28z6c4mt.webp
   - ./shot-mur28z92ufj.webp
+video: https://www.youtube.com/watch?v=eScFJuQxkVE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RimWorld_Installer.zip

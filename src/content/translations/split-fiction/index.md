@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muyi93r70k3.webp
   - ./shot-muyi96qz2j9.webp
   - ./shot-muyi9a6yhr7.webp
+video: https://www.youtube.com/watch?v=zXQ7sjNV35k
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SplitFiction_Installer.zip

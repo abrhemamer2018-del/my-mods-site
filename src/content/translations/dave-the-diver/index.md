@@ -19,6 +19,7 @@ screenshots:
   - ./shot-muvlfppm92f.webp
   - ./shot-muvlfprgrr3.webp
   - ./shot-muvlfpt96ia.webp
+video: https://www.youtube.com/watch?v=GgXHaZiym9U
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DaveTheDiver_Installer.zip

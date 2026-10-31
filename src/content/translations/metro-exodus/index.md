@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv290p00070.webp
   - ./shot-mv2911zy7fq.webp
   - ./shot-mv292e14dnz.webp
+video: https://www.youtube.com/watch?v=c_YddLpfD5o
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Metro_Exodus_Installer.zip

@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muvn18hbjho.webp
   - ./shot-muvn18jsvqb.webp
   - ./shot-muvn18lxa0s.webp
+video: https://www.youtube.com/watch?v=NtSRtcXcCnk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BL4_Installer.zip

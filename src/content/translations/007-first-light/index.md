@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muvkuopv7w2.webp
   - ./shot-muvkuormvxb.webp
   - ./shot-muvkuotfuj8.webp
+video: https://www.youtube.com/watch?v=gDvbGANDH4E
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_007FirstLight_Installer.zip

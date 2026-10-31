@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv8m1klqco6.webp
   - ./shot-mv8m1so6u5k.webp
   - ./shot-mv8m2988ugw.webp
+video: https://www.youtube.com/watch?v=_YTh_-C6HKI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BioShock2_Remastered_Installer.zip

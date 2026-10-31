@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv67e4m4ddy.webp
   - ./shot-mv67ec5h9ap.webp
   - ./shot-mv67ehwu43o.webp
+video: https://www.youtube.com/watch?v=Kx3R2CNhLWA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Sifu_Installer.zip

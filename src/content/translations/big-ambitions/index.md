@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvfin2nqumg.webp
   - ./shot-mvfinbvez63.webp
   - ./shot-mvfioenasat.webp
+video: https://www.youtube.com/watch?v=4do3s_TW0Rk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BigAmbitions_Installer.zip

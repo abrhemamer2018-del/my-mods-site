@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvgj3sd9r4p.webp
   - ./shot-mvgj3x7whlb.webp
   - ./shot-mvgj46l8avy.webp
+video: https://www.youtube.com/watch?v=KgnZpfoR4Hk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Resident_Evil_Revelations_Installer.zip

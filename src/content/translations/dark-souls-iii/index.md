@@ -21,6 +21,7 @@ screenshots:
   - ./shot-muzvhn69qfy.webp
   - ./shot-muzvhn9lnu5.webp
   - ./shot-muzvhnd2zo1.webp
+video: https://www.youtube.com/watch?v=cWBwFhUv1-8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DS3_Installer.zip

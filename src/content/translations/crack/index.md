@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvqoquxbddz.webp
   - ./shot-mvqor6y8kew.webp
   - ./shot-mvqorpixqtb.webp
+video: https://www.youtube.com/watch?v=m6m25-zRJfU
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_CRACK_Installer.zip

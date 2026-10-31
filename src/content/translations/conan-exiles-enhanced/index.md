@@ -14,6 +14,7 @@ screenshots:
   - ./shot-mvfj3qnesl6.webp
   - ./shot-mvfj3tnjwxn.webp
   - ./shot-mvfj3watfn0.webp
+video: https://www.youtube.com/watch?v=z5b-l29mzew
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ConanExiles_Installer.zip

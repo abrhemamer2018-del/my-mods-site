@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvshds3spoa.webp
   - ./shot-mvshe7fykm9.webp
   - ./shot-mvsheyp3yq7.webp
+video: https://www.youtube.com/watch?v=m8oQllwqw_I
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GTA_Vice_City_Installer.zip

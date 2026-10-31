@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvpdym3ua03.webp
   - ./shot-mvpdypprjht.webp
   - ./shot-mvpdyr48y29.webp
+video: https://www.youtube.com/watch?v=KanCiSGxSKM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Stellaris_Installer.zip

@@ -19,6 +19,7 @@ screenshots:
   - ./shot-mv331jgy9v9.webp
   - ./shot-mv331pn9y5v.webp
   - ./shot-mv33207h0v6.webp
+video: https://www.youtube.com/watch?v=5eUzjWeLU80
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DRG_Installer.zip

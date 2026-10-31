@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv8426psd0n.webp
   - ./shot-mv846gla2y0.webp
   - ./shot-mv846ioqjsu.webp
+video: https://www.youtube.com/watch?v=kF93KfCILGY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza5_Remastered_Installer_Full.zip

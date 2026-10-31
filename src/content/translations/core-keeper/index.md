@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvmh5fog8fy.webp
   - ./shot-mvmh5pi189v.webp
   - ./shot-mvmh5sbx5g0.webp
+video: https://www.youtube.com/watch?v=3un-nSYuURM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_CoreKeeper_Installer.zip

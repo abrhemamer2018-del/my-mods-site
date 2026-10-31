@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvih41df2e8.webp
   - ./shot-mvih4vrb1tf.webp
   - ./shot-mvih54hyl59.webp
+video: https://www.youtube.com/watch?v=HedLjjlSy3Y
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Witcher2_Installer.zip

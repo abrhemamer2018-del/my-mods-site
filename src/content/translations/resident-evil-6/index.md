@@ -19,6 +19,7 @@ screenshots:
   - ./shot-mvgj0j7ft4n.webp
   - ./shot-mvgj0rlg84i.webp
   - ./shot-mvgj123l6jb.webp
+video: https://www.youtube.com/watch?v=8SlXT8JtYSM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Resident_Evil_6_Installer.zip

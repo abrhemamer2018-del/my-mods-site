@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv65jxzcbdy.webp
   - ./shot-mv65k46lu97.webp
   - ./shot-mv65kkl77ls.webp
+video: https://www.youtube.com/watch?v=KZMV6cXSlLg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_NieR_Replicant_Arabic.zip

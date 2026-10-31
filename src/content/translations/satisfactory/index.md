@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv67a4qmas5.webp
   - ./shot-mv67a648oi6.webp
   - ./shot-mv67ad6oasg.webp
+video: https://www.youtube.com/watch?v=Jt4XOPiPJHs
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Satisfactory_Installer.zip

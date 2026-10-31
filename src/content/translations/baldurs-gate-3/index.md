@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muvkecdocah.webp
   - ./shot-muvkecg2u96.webp
   - ./shot-muvkeckaiic.webp
+video: https://www.youtube.com/watch?v=1T22wNvoNiU
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BG3_Installer.zip

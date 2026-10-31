@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvj4fzhz8xb.webp
   - ./shot-mvj4g675ftf.webp
   - ./shot-mvj4geibx8e.webp
+video: https://www.youtube.com/watch?v=i2c1f_RDgGg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FarCry3_Installer.zip

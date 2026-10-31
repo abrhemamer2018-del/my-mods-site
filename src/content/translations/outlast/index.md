@@ -14,6 +14,7 @@ screenshots:
   - ./shot-mve62d4tc82.webp
   - ./shot-mve62tyvye3.webp
   - ./shot-mve6367s49p.webp
+video: https://www.youtube.com/watch?v=ZkSydla4sxo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Outlast_Installer.zip

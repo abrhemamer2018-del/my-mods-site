@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv5rb60k192.webp
   - ./shot-mv5rb62egzq.webp
   - ./shot-mv5rbreror0.webp
+video: https://www.youtube.com/watch?v=6XGeJwsUP9c
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Silksong_Installer.zip

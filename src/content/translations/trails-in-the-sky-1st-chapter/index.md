@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mvnl490sxf4.webp
   - ./shot-mvnl4rnf2wx.webp
   - ./shot-mvnl5gv7i0r.webp
+video: https://www.youtube.com/watch?v=CLAYxiAXad0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TrailsSky1st_Installer.zip

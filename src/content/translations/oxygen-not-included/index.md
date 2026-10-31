@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv66m7h0lvt.webp
   - ./shot-mv66mergvnq.webp
   - ./shot-mv66mjn23n3.webp
+video: https://www.youtube.com/watch?v=wcLayGm_pM4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_OxygenNotIncluded_Installer.zip

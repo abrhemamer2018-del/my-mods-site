@@ -18,6 +18,7 @@ screenshots:
   - ./shot-muvsn6tx31v.webp
   - ./shot-muvsnvt5k3g.webp
   - ./shot-muvso7hsik6.webp
+video: https://www.youtube.com/watch?v=2AysHTv7X8k
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ItTakesTwo_Installer.zip

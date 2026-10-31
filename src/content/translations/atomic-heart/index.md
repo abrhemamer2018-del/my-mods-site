@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvmgv2qkoqt.webp
   - ./shot-mvmgvrcueir.webp
   - ./shot-mvmgvu3kb3e.webp
+video: https://www.youtube.com/watch?v=CPpK7N5UyB0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AtomicHeart_Installer.zip

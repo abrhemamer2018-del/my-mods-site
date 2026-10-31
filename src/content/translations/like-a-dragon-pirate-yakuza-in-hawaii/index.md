@@ -11,6 +11,7 @@ gameRelease: 2025-02-20
 version: "1.0"
 cover: ./cover-mvch70ce.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=vBmYPiWoigQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LAD_Pirate_Yakuza_Installer.zip

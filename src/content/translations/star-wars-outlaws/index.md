@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv4pe3ccaja.webp
   - ./shot-mv4penchj7h.webp
   - ./shot-mv4pewe4wo2.webp
+video: https://www.youtube.com/watch?v=HlfuN4yj3yg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_StarWarsOutlaws_V2.zip

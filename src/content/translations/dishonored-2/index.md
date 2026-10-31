@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv5p907xqn8.webp
   - ./shot-mv5p960t401.webp
   - ./shot-mv5p9coc7wd.webp
+video: https://www.youtube.com/watch?v=7bLNC8VDTlQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Dishonored2_Installer.zip

@@ -11,6 +11,7 @@ gameRelease: 2026-02-11
 version: "1.0"
 cover: ./cover-mvchdabl.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=I4gaM8LA1b8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Kiwami3_Installer.zip

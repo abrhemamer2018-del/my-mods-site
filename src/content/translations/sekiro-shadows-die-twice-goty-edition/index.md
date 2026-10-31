@@ -16,6 +16,7 @@ screenshots:
   - ./shot-muxbugvhbtv.webp
   - ./shot-muxbugxpgng.webp
   - ./shot-muxbuh0a6tb.webp
+video: https://www.youtube.com/watch?v=rXMX4YJ7Lks
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Sekiro.zip

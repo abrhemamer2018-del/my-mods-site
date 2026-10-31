@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvp1ly196nx.webp
   - ./shot-mvp1mdi73qa.webp
   - ./shot-mvp1mx46gba.webp
+video: https://www.youtube.com/watch?v=dEM3_CJFZWQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Moon_Sweepers_Installer.zip

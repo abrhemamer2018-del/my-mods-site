@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvh6s1yjyq9.webp
   - ./shot-mvh6s4ysl12.webp
   - ./shot-mvh6sg94ajs.webp
+video: https://www.youtube.com/watch?v=BoGc3i0qq6A
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ReadyOrNot_Installer.zip

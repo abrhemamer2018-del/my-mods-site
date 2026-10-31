@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv67xium8tn.webp
   - ./shot-mv67xncvesh.webp
   - ./shot-mv67xtme7ta.webp
+video: https://www.youtube.com/watch?v=GkEwheG7eI0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Subnautica_Installer.zip

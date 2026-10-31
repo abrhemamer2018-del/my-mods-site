@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvjjtcmx0c0.webp
   - ./shot-mvjjts0kw8z.webp
   - ./shot-mvjjtyz98ns.webp
+video: https://www.youtube.com/watch?v=aaQ1NvM6opo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DXHRDC_Installer.zip

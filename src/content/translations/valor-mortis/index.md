@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvcwo1zjhij.webp
   - ./shot-mvcwo6bazfq.webp
   - ./shot-mvcwofwr1hr.webp
+video: https://www.youtube.com/watch?v=UJvs80cr2RA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ValorMortis_Installer.zip

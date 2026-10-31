@@ -19,6 +19,7 @@ screenshots:
   - ./shot-mv4x6vuhqng.webp
   - ./shot-mv4x7cjs3pm.webp
   - ./shot-mv4x8ax7e54.webp
+video: https://www.youtube.com/watch?v=R2Ebc_OFeug
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TLOU1_Installer_V2.zip

@@ -14,6 +14,7 @@ cover: ./cover-mv272cjm.webp
 screenshots:
   - ./shot-muo008te4y8.webp
   - ./shot-muo00b5gsg7.webp
+video: https://www.youtube.com/watch?v=MRb4MwoDOWA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RuneFactory_Azuma_Installer.zip

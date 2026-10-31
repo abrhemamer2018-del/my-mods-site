@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mus614fr81d.webp
   - ./shot-mus614iazxc.webp
   - ./shot-mus614kl0ux.webp
+video: https://www.youtube.com/watch?v=aozqa_7PLhE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_NMS_Installer.exe

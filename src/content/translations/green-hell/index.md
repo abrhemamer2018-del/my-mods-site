@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvpcy3pf87f.webp
   - ./shot-mvpcybyjjds.webp
   - ./shot-mvpcyh5p6h6.webp
+video: https://www.youtube.com/watch?v=fvXKRzTf_V4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GreenHell_Installer.zip

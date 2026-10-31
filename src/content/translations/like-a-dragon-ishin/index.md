@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvjklrzm6aj.webp
   - ./shot-mvjkls1gflv.webp
   - ./shot-mvjkls3puw4.webp
+video: https://www.youtube.com/watch?v=xT-Z_SgPC2w
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Ishin_Installer.zip

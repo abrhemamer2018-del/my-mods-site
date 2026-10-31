@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv23g6ftjb2.webp
   - ./shot-mv23gh0eyek.webp
   - ./shot-mv23gsbgwi6.webp
+video: https://www.youtube.com/watch?v=aApSteSbeGA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/inZOI.rar

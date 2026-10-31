@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvpda7gi3ng.webp
   - ./shot-mvpdacty4pa.webp
   - ./shot-mvpdalce8zn.webp
+video: https://www.youtube.com/watch?v=HrdweuF8_Go
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MGSV_TPP_Installer.zip

@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvfaojuyew3.webp
   - ./shot-mvfaomt0wr5.webp
   - ./shot-mvfap10zkjf.webp
+video: https://www.youtube.com/watch?v=Yqe6wochMQs
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AOT2_Installer.zip

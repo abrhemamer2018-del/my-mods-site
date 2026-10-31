@@ -11,6 +11,7 @@ gameRelease: 2020-05-19
 version: "1.1"
 cover: ./cover-mvjla4pe.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=kmKOLvnullE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Mafia3DE_Installer.zip

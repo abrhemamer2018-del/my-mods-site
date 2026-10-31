@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muyh834bi3l.webp
   - ./shot-muyh836prgk.webp
   - ./shot-muyh839f503.webp
+video: https://www.youtube.com/watch?v=kQJb8He0pYA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AC6_Installer.zip

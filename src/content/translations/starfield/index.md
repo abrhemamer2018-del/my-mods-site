@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mupr26519zs.webp
   - ./shot-mupr2695o9d.webp
   - ./shot-mupr26cruh9.webp
+video: https://www.youtube.com/watch?v=kfYEiTdsyas
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Starfield_Installer.zip

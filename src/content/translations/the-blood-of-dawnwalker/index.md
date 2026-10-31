@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mux9y1g4zth.webp
   - ./shot-mux9y53rwpc.webp
   - ./shot-mux9y9hk8zf.webp
+video: https://www.youtube.com/watch?v=pNTT7lknCE0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Dawnwalker_Installer.zip

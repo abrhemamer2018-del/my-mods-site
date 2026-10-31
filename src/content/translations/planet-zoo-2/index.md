@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv89veyb281.webp
   - ./shot-mv89vhulgv7.webp
   - ./shot-mv89xb3l9cz.webp
+video: https://www.youtube.com/watch?v=yuwryiCHaEU
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_PlanetZoo2_Installer.zip

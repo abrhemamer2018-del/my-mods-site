@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvmgzblhiph.webp
   - ./shot-mvmh043arir.webp
   - ./shot-mvmh10rqqop.webp
+video: https://www.youtube.com/watch?v=gjLQ2Uj4OPw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Borderlands3_Installer.zip

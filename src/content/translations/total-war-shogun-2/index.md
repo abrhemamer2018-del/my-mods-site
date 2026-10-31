@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvr148rydya.webp
   - ./shot-mvr14ccs3hh.webp
   - ./shot-mvr14iyjrtl.webp
+video: https://www.youtube.com/watch?v=dQdr2bX3VQc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Total_War_SHOGUN_2_Installer.zip

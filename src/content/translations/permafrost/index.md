@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv5u5ljam62.webp
   - ./shot-mv5u5r2v5wp.webp
   - ./shot-mv5u62v9dm2.webp
+video: https://www.youtube.com/watch?v=WoY5mEkBp0I
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Permafrost_Arabic.zip

@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvpe87pb9nc.webp
   - ./shot-mvpe8emm8c3.webp
   - ./shot-mvpe8n11co3.webp
+video: https://www.youtube.com/watch?v=o-_rvGiLNUA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TheLongDark_Installer.zip

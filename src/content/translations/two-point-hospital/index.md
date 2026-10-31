@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv68qonxoio.webp
   - ./shot-mv68qw15g4i.webp
   - ./shot-mv68r4qkcjw.webp
+video: https://www.youtube.com/watch?v=CqqVi7fkKPE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TwoPointHospital_Installer.zip

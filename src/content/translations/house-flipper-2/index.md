@@ -11,6 +11,7 @@ gameRelease: 2023-12-14
 version: "1.1"
 cover: ./cover-mvjke313.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=3TehYZlq5S4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_House_Flipper_2_Installer.zip

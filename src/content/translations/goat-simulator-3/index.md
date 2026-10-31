@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mvjk97zrss1.webp
   - ./shot-mvjk9c2hjhu.webp
   - ./shot-mvjk9gx2ovd.webp
+video: https://www.youtube.com/watch?v=2wkTsOoxqQc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GoatSimulator3_Installer.zip

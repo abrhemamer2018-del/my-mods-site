@@ -11,6 +11,7 @@ gameRelease: 2025-12-08
 version: "1.3"
 cover: ./cover-mvch8826.webp
 screenshots: []
+video: https://www.youtube.com/watch?v=N5E-R6NjMgk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_DC_Installer.zip

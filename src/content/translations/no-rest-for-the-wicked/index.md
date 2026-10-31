@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvo033kz18j.webp
   - ./shot-mvo038ulwdv.webp
   - ./shot-mvo03etywt2.webp
+video: https://www.youtube.com/watch?v=e-iK7d2-C5A
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_NoRestForTheWicked_Installer.zip

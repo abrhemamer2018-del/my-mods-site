@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mv8nsmbsx6p.webp
   - ./shot-mv8nsv9yo5o.webp
   - ./shot-mv8ntjqogc3.webp
+video: https://www.youtube.com/watch?v=NNzSKwwfXgA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Wolfenstein2_Installer.zip

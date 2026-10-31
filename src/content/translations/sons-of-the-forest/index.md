@@ -16,6 +16,7 @@ screenshots:
   - ./shot-muyhzpkfu58.webp
   - ./shot-muyhzpo310i.webp
   - ./shot-muyhzprstp1.webp
+video: https://www.youtube.com/watch?v=IwvhH3islZw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SonsOfTheForest_Installer.zip

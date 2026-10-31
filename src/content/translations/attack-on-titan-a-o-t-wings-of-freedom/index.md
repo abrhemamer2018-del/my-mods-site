@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvfaleo42jp.webp
   - ./shot-mvfalop645i.webp
   - ./shot-mvfalzmluih.webp
+video: https://www.youtube.com/watch?v=szUQxm_iwjY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AoT_WoF_Installer.zip

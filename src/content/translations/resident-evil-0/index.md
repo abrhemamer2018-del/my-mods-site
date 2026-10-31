@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvgid406dlj.webp
   - ./shot-mvgid9a9kbs.webp
   - ./shot-mvgidgesrvs.webp
+video: https://www.youtube.com/watch?v=QbjC_WZy_jo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RE0_Installer.zip

@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvpdnaoksq7.webp
   - ./shot-mvpdnm74ph3.webp
   - ./shot-mvpdo3z19mi.webp
+video: https://www.youtube.com/watch?v=ajh3YHJ6baI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MGSDelta_Installer.zip

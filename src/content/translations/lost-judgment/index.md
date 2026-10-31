@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mus5j2lsvi6.webp
   - ./shot-mus5k2kld8w.webp
   - ./shot-mus5keouldl.webp
+video: https://www.youtube.com/watch?v=TmoPKbtEviM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LostJudgment_Installer.exe

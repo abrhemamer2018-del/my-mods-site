@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvb255r9q4i.webp
   - ./shot-mvb25cy2a74.webp
   - ./shot-mvb25xvx0t1.webp
+video: https://www.youtube.com/watch?v=gx9k7J63660
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FF7R_Installer.zip

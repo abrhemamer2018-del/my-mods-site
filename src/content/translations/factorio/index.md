@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvmhmc4o7jk.webp
   - ./shot-mvmhmhgiy01.webp
   - ./shot-mvmhmncvjav.webp
+video: https://www.youtube.com/watch?v=BqaAjgpsoW8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Factorio_Installer.zip

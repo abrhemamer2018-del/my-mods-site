@@ -19,6 +19,7 @@ screenshots:
   - ./shot-mv65dl3zx2w.webp
   - ./shot-mv65dughzuu.webp
   - ./shot-mv65eanmz9v.webp
+video: https://www.youtube.com/watch?v=YznXuKwJtMg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LifeIsStrange_Arabic.zip

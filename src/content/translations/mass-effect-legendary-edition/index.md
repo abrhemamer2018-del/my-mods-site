@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mv25r5ifi6r.webp
   - ./shot-mv25rg53tmq.webp
   - ./shot-mv25rmb1nut.webp
+video: https://www.youtube.com/watch?v=DOQrEbOIRIw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MassEffectLE_Installer.zip

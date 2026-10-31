@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvpdut6s2dq.webp
   - ./shot-mvpdux10252.webp
   - ./shot-mvpdv15s6nc.webp
+video: https://www.youtube.com/watch?v=IhXThLoMwqA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ScrapMechanic_Installer.zip

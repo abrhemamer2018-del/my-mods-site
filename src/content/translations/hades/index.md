@@ -18,6 +18,7 @@ banner: ./banner-muo0pqjy.webp
 screenshots:
   - ./shot-muo0qt1kqs7.webp
   - ./shot-muo0qt5djwi.webp
+video: https://www.youtube.com/watch?v=mD8x5xLHRho
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Hades_Installer_V2.zip

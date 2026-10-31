@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv67i66452k.webp
   - ./shot-mv67ia6l7u0.webp
   - ./shot-mv67ihu3t0l.webp
+video: https://www.youtube.com/watch?v=Rda52S3Jah8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Stray_Installer.zip

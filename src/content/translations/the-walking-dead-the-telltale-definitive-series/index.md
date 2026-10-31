@@ -17,6 +17,7 @@ screenshots:
   - ./shot-mv683r7pwdm.webp
   - ./shot-mv683wnc028.webp
   - ./shot-mv684n9ey3n.webp
+video: https://www.youtube.com/watch?v=8jPuRaVhGEM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TWD_Definitive_Installer.zip

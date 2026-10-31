@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvjl4cwpjq9.webp
   - ./shot-mvjl4cyeryj.webp
   - ./shot-mvjl4k4vqij.webp
+video: https://www.youtube.com/watch?v=aEBnIsVvECA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TheEvilWithin2_Installer.zip

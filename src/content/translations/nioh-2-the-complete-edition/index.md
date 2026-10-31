@@ -17,6 +17,7 @@ screenshots:
   - ./shot-muzud3m2fws.webp
   - ./shot-muzud3pewn9.webp
   - ./shot-muzud3sq4wf.webp
+video: https://www.youtube.com/watch?v=ZaGvUmpBkRQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Nioh2_Installer.zip

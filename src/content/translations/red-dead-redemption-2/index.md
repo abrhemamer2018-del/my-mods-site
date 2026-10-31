@@ -23,6 +23,7 @@ screenshots:
   - ./shot-muufxstibga.webp
   - ./shot-muufxswjjlb.webp
   - ./shot-muufxszpoot.webp
+video: https://www.youtube.com/watch?v=HVRzx17WHVk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RDR2_Installer.zip

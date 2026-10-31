@@ -20,6 +20,7 @@ screenshots:
   - ./shot-muyhsiti4f6.webp
   - ./shot-muyhsivvcnr.webp
   - ./shot-muyhsixwhrd.webp
+video: https://www.youtube.com/watch?v=MaoWzKlHG-M
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MafiaDE_Installer.zip

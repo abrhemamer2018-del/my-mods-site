@@ -18,6 +18,7 @@ screenshots:
   - ./shot-muxmo5ddi2f.webp
   - ./shot-muxmo5fg7vh.webp
   - ./shot-muxmo5hpmym.webp
+video: https://www.youtube.com/watch?v=WuIDxjeIuVo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_YakuzaKiwami2_Installer.zip

@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvj4p4xrnmg.webp
   - ./shot-mvj4pe3g70p.webp
   - ./shot-mvj4q8vb9uw.webp
+video: https://www.youtube.com/watch?v=Uz1gWM-YEQk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_FarCry4_Installer.zip

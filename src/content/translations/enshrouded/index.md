@@ -18,6 +18,7 @@ screenshots:
   - ./shot-mv8n49coqft.webp
   - ./shot-mv8n4ewwxrk.webp
   - ./shot-mv8n4scr6fn.webp
+video: https://www.youtube.com/watch?v=JCjK1mVQQ_8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Enshrouded_Installer.zip

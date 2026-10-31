@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mvnzwmua0ps.webp
   - ./shot-mvnzwy341i8.webp
   - ./shot-mvnzxctday5.webp
+video: https://www.youtube.com/watch?v=wHoqwphzhzc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Mafia2DE_Installer.zip
