@@ -5,7 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import TranslationCard from '../../components/TranslationCard.astro';
 import { downloadsOf } from '../../lib/downloads';
-import { getTranslations, formatDate, relatedTranslations, youtubeId, type Translation } from '../../lib/utils';
+import { getTranslations, formatDate, relatedTranslations, seriesOf, youtubeId, type Translation } from '../../lib/utils';
 import { CATEGORY_LABELS, SITE, SOCIAL, STATUS_LABELS } from '../../config';
 
 export async function getStaticPaths() {
@@ -38,7 +38,11 @@ const RELATED_COUNT = 4;
 const all = await getTranslations();
 // عنوان الصفحة بالصيغ التي يبحث بها الناس: "تعريب لعبة X بالعربي ... تحميل مجاني"
 const hasArabicName = /[؀-ۿ]/.test(d.titleAr) && d.titleAr.trim() !== d.title.trim();
-const pageTitle = `تعريب لعبة ${d.title} بالعربي${hasArabicName ? ` (${d.titleAr})` : ''} — تحميل مجاني`;
+const pageTitle = `تعريب لعبة ${d.title} بالعربي${hasArabicName ? ` (${d.titleAr})` : ''} — تحميل مجاني`
+  .replace(/[™®]/g, '')
+  .replace(/\s+/g, ' ');
+// صفحة السلسلة (إن وُجدت): رابط "كل أجزاء السلسلة" فوق التعريبات المشابهة
+const series = seriesOf(item);
 
 // أسئلة شائعة: تظهر في الصفحة، وتفهمها محركات البحث (FAQPage) فقد تعرضها تحت النتيجة
 const faq = [
@@ -354,7 +358,8 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
       <section class="container related" data-pagefind-ignore>
         <div class="section-head">
           <h2>تعريبات أخرى قد تعجبك</h2>
-          <a href="/translations/" class="more-pill">كل التعريبات ‹</a>
+          {series && <a href={`/series/${series.slug}/`} class="more-pill">كل أجزاء سلسلة {series.ar} ‹</a>}
+          <a href="/translations/" class={series ? 'more-pill more-pill-2' : 'more-pill'}>كل التعريبات ‹</a>
         </div>
         <div class="related-cards">
           {related.map((t, i) => <TranslationCard item={t} downloads={relatedDl[i]} />)}
@@ -1457,6 +1462,9 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
     margin: 0;
     padding-inline-start: 22px;
     line-height: 2;
+  }
+  .section-head .more-pill-2 {
+    margin-inline-start: 8px !important;
   }
   .section-head .more-pill {
     margin-inline-start: auto;

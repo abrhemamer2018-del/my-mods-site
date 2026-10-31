@@ -36,7 +36,7 @@ const SERIES_COMMON = new Set(['dead', 'dark', 'black', 'star', 'red', 'life', '
 const SERIES_ALIAS: Record<string, string> = { 'like dragon': 'yakuza', 'lost judgment': 'judgment' };
 
 /** مفتاح السلسلة من الاسم الإنجليزي: "Nioh 2 – The Complete Edition" و "Nioh: Complete Edition" ← "nioh" */
-function seriesKey(title: string) {
+export function seriesKey(title: string) {
   const words = title
     .toLowerCase()
     .replace(/[™®]/g, '')
@@ -44,6 +44,27 @@ function seriesKey(title: string) {
     .filter((w) => w && !SERIES_SKIP.has(w) && !/^\d+$/.test(w));
   const key = SERIES_COMMON.has(words[0]) ? words.slice(0, 2).join(' ') : (words[0] ?? '');
   return SERIES_ALIAS[key] ?? key;
+}
+
+// صفحات السلاسل (/series/slug/): الناس يبحثون "تعريب ياكوزا" بدون رقم الجزء. key = مفتاح seriesKey
+export const SERIES = [
+  { key: 'yakuza', slug: 'yakuza', ar: 'ياكوزا', en: 'Yakuza / Like a Dragon' },
+  { key: 'resident', slug: 'resident-evil', ar: 'ريزدنت إيفل', en: 'Resident Evil' },
+  { key: 'far', slug: 'far-cry', ar: 'فار كراي', en: 'Far Cry' },
+  { key: 'grand theft', slug: 'gta', ar: 'جي تي أي', en: 'Grand Theft Auto' },
+  { key: 'mafia', slug: 'mafia', ar: 'مافيا', en: 'Mafia' },
+  { key: 'wolfenstein', slug: 'wolfenstein', ar: 'ولفنشتاين', en: 'Wolfenstein' },
+  { key: 'bioshock', slug: 'bioshock', ar: 'بايوشوك', en: 'BioShock' },
+  { key: 'dishonored', slug: 'dishonored', ar: 'ديسونورد', en: 'Dishonored' },
+  { key: 'final fantasy', slug: 'final-fantasy', ar: 'فاينل فانتسي', en: 'Final Fantasy' },
+  { key: 'silent', slug: 'silent-hill', ar: 'سايلنت هيل', en: 'Silent Hill' },
+  { key: 'total', slug: 'total-war', ar: 'توتال وار', en: 'Total War' },
+];
+
+/** سلسلة اللعبة إن كان لها صفحة سلسلة */
+export function seriesOf(t: Translation) {
+  const key = seriesKey(t.data.title);
+  return SERIES.find((s) => s.key === key);
 }
 
 // وسوم عامة توجد في أغلب الألعاب، فوزنها في التشابه قليل
