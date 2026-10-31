@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-24
 gameRelease: 2020-08-14
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvmhjrca.webp
 screenshots:
   - ./shot-mvmhm548smo.webp
@@ -18,12 +18,17 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Factorio_Installer.zip
-    size: 0.80 MB
+    size: 1.05 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-10-31
+    at: 2026-10-31T08:50:00+03:00
+    notes:
+      - "إصلاح: العربية ما كانت تظهر في قائمة اللغات (اللعبة تخفي الرمز ar)؛ صارت تظهر باسم «العربية (ar-SA)» في كل النسخ (Steam وGOG)"
   - version: "1.1"
     date: 2026-10-28
     at: 2026-10-28T00:14:47+03:00
