@@ -44,9 +44,15 @@
   },
   // بوت ديسكورد يظهر متصلاً: كائن واحد يمسك اتصال Gateway (worker/presence.js)
   "durable_objects": {
-    "bindings": [{ "name": "BOT_PRESENCE", "class_name": "BotPresence" }]
+    "bindings": [
+      { "name": "BOT_PRESENCE", "class_name": "BotPresence" },
+      { "name": "INDEXNOW_STATE", "class_name": "IndexNowState" }
+    ]
   },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["BotPresence"] }],
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["BotPresence"] },
+    { "tag": "v2", "new_sqlite_classes": ["IndexNowState"] }
+  ],
   "triggers": { "crons": ["* * * * *"] },
   "observability": {
     "logs": {

@@ -12,6 +12,8 @@ import { isAbusive } from './moderation.js';
 import { discordInteraction } from './discord.js';
 import { keepPresence } from './presence.js';
 export { BotPresence } from './presence.js';
+import { indexNowCheck } from './indexnow.js';
+export { IndexNowState } from './indexnow.js';
 import { parse, stringify } from 'yaml';
 
 const SESSION_DAYS = 7;
@@ -39,9 +41,10 @@ export default {
     }
   },
 
-  // كل دقيقة: يبقي بوت ديسكورد متصلاً (worker/presence.js)
+  // كل دقيقة: يبقي بوت ديسكورد متصلاً (worker/presence.js)، ويبلغ IndexNow بصفحات آخر نشر (worker/indexnow.js)
   async scheduled(event, env, ctx) {
     ctx.waitUntil(keepPresence(env));
+    ctx.waitUntil(indexNowCheck(env));
   },
 };
 
@@ -870,36 +873,8 @@ async function saveEntry(gh, payload) {
     }
   }
 
-  // إبلاغ Bing (IndexNow) بالصفحة الجديدة أو المعدّلة، والرئيسية لأنها تتغير معها
-  if (!cleaned.draft) {
-    const page = type === 'translations' ? `/translations/${slug}/` : `/articles/${slug}/`;
-    await indexNow([page, '/', type === 'translations' ? '/translations/' : '/articles/']);
-  }
+  // إبلاغ Bing (IndexNow) يتم تلقائياً بعد نشر الموقع (worker/indexnow.js)
   return { ok: true, sha, discord };
-}
-
-// ------------------------------------------------------------
-//  IndexNow: يُبلغ Bing (ومحركات بحث أخرى) فوراً بالصفحات الجديدة أو المعدّلة
-//  المفتاح منشور في public/<KEY>.txt لإثبات ملكية الموقع
-// ------------------------------------------------------------
-const INDEXNOW_KEY = 'f1246762d2966315fcb31ce6252e3253';
-
-async function indexNow(paths) {
-  try {
-    await fetch('https://api.indexnow.org/indexnow', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify({
-        host: 'ta3reebat.com',
-        key: INDEXNOW_KEY,
-        keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
-        urlList: paths.map((p) => SITE_URL + p),
-      }),
-    });
-  } catch (err) {
-    // الإبلاغ اختياري: فشله لا يؤثر على الحفظ
-    console.log('IndexNow failed', err.message);
-  }
 }
 
 async function deleteEntry(gh, url) {
