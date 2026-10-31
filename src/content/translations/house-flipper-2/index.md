@@ -8,18 +8,24 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2023-12-14
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvjke313.webp
 screenshots: []
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_House_Flipper_2_Installer.zip
-    size: 14.31 MB
+    size: 3.43 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-31
+    notes:
+      - يعمل على آخر تحديث للعبة (إضافة الحيوانات الأليفة Pets) وعلى كل الإصدارات والمتاجر، ولا يحتاج تحديثاً بعد كل تحديث للعبة
+      - ترجمة أكثر من 1300 نص جديد، منها محتوى الحيوانات الأليفة
+      - إصلاح بعض النصوص (رقم هاتف، علامات تنصيص مكررة، حروف غير موجودة في الخط)
   - version: "1.0"
     date: 2026-10-22
     notes:
