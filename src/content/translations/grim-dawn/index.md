@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-26
 gameRelease: 2016-02-25
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvpczhhj.webp
 screenshots:
   - ./shot-mvpd2rio09a.webp
@@ -18,12 +18,20 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GrimDawn_Installer.zip
-    size: 2.10 MB
+    size: 2.19 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-31
+    notes:
+      - إصلاح الأسطر الطويلة في الحوار التي كانت تظهر بترتيب خاطئ عند بعض اللاعبين (اللعبة كانت ترسم بخط ويندوز بدل خط التعريب)
+      - إصلاح ظهور الهمزة ونقاط الياء، وموضع اسم المتكلم
+      - ترتيب أهداف المهام في قائمة المهام النشطة
+      - صفحات الحوار الطويلة تنقسم عند نهاية السطر
+      - تصحيحات في الترجمة
   - version: "1.0"
     date: 2026-10-26
     notes:
