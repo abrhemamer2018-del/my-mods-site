@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-01
 addedAt: 2026-10-01T06:39:08+03:00
 gameRelease: 2024-11-21
-version: "2.1"
+version: "2.2"
 cover: ./cover-mv4pnsqh.webp
 screenshots:
   - ./shot-mv4pdqg4j06.webp
@@ -19,12 +19,20 @@ screenshots:
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_StarWarsOutlaws_V2.zip
-    size: 7.16 MB
+    size: 7.35 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "2.2"
+    date: 2026-10-31
+    at: 2026-10-31T07:30:00+03:00
+    notes:
+      - إصلاح أسماء المتكلمين المعكوسة في الترجمة وفي نافذة الاتصال
+      - تصحيح «إغلاق» و«مهرّب» وترجمة كلمات مثل «دقائق» التي كانت تظهر بالإنجليزي
+      - إصلاح تلميحات الأزرار التي كانت تنقسم على عدة أسطر
+      - إكمال نصوص كانت مقطوعة وتصحيح ترجمات كانت في غير مكانها
   - version: "2.1"
     date: 2026-10-23
     at: 2026-10-23T09:03:02+03:00
