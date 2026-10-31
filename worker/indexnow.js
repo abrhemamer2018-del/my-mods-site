@@ -47,15 +47,25 @@ export class IndexNowState {
     const body = await request.text();
     const old = await this.state.storage.get('manifest');
     if (old === body) return new Response('same');
+    // بعد فشل (مثل 429 كثرة الطلبات) ننتظر قبل المحاولة التالية: 15 دقيقة ثم تتضاعف حتى 6 ساعات
+    const fail = (await this.state.storage.get('fail')) ?? { n: 0, at: 0 };
+    if (Date.now() < fail.at) return new Response('waiting');
 
     const now = JSON.parse(body);
     const before = old ? JSON.parse(old) : {};
     const changed = Object.keys(now).filter((p) => now[p] !== before[p]);
     const removed = Object.keys(before).filter((p) => !(p in now));
     const paths = [...changed, ...removed];
-    // IndexNow يقبل حتى 10000 رابط في الطلب
-    for (let i = 0; i < paths.length; i += 10000) await submit(paths.slice(i, i + 10000));
+    try {
+      // IndexNow يقبل حتى 10000 رابط في الطلب
+      for (let i = 0; i < paths.length; i += 10000) await submit(paths.slice(i, i + 10000));
+    } catch (err) {
+      const n = fail.n + 1;
+      await this.state.storage.put('fail', { n, at: Date.now() + Math.min(15 * 2 ** (n - 1), 360) * 60000 });
+      throw err;
+    }
     await this.state.storage.put('manifest', body);
+    await this.state.storage.delete('fail');
     console.log(`IndexNow submitted ${paths.length} pages`);
     return new Response(`submitted ${paths.length}`);
   }
