@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-29
 gameRelease: 2026-10-28
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvt8s8u8.webp
 screenshots:
   - ./shot-mvt86i1996n.webp
@@ -20,12 +20,17 @@ video: https://www.youtube.com/watch?v=u4X5V5Uk-Cg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_PhantomBladeZero_Installer.zip
-    size: 88.20 MB
+    size: 88.25 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-10-31
+    at: 2026-10-31T16:55:00+03:00
+    notes:
+      - تغيير لقب «رسول الحجاب» إلى «مبعوث الحجاب» وتوحيد اسم الشخصية في كل النصوص
   - version: "1.0"
     date: 2026-10-29
     notes:
