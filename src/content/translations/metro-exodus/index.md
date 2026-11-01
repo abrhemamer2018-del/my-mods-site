@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-10
 addedAt: 2026-10-10T13:27:36+03:00
 gameRelease: 2020-02-14
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv290bjj.webp
 screenshots:
   - ./shot-mv290p00070.webp
@@ -19,12 +19,19 @@ video: https://www.youtube.com/watch?v=c_YddLpfD5o
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Metro_Exodus_Installer.zip
-    size: 6.90 MB
+    size: 5.28 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-01
+    at: 2026-11-01T19:15:00+03:00
+    notes:
+      - "أداة التثبيت تبني التعريب من ملفات نسختك نفسها، فيعمل على نسخ Epic وGOG وليس Steam فقط"
+      - "الأداة تختار الإصدار العادي من اللعبة، وتنبّهك إن اخترت مجلد Enhanced Edition (التعريب للإصدار العادي)"
+      - "تصحيح بعض الألفاظ في الترجمة"
   - version: "1.0"
     date: 2026-10-10
     notes:
