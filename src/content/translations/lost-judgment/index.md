@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-03
 addedAt: 2026-10-03T11:58:55+03:00
 gameRelease: 2022-09-14
-version: "1.0"
+version: "1.1"
 cover: ./cover-mus5ffwv.webp
 banner: ./banner-mus5h1g9.webp
 screenshots:
@@ -21,12 +21,20 @@ video: https://www.youtube.com/watch?v=TmoPKbtEviM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LostJudgment_Installer.exe
-    size: 57.38 MB
+    size: 57.17 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-01
+    at: 2026-11-01T20:10:00+03:00
+    notes:
+      - "إصلاح نصوص الحوار الطويلة (خاصة في المهام الجانبية): كانت تنزل يسار الشاشة خارج مربع الحوار، وصارت داخله مرتبة ومحاذاة لليمين"
+      - "اختصار بعض الحوارات الطويلة جداً لتظهر كاملة في المربع"
+      - "تصحيح نصوص فيها رموز زائدة أو كلمات إنجليزية (نزالات الملاكمة، مهارات EX، وغيرها)"
+      - "أداة تثبيت جديدة"
   - version: "1.0"
     date: 2026-10-03
     notes:
