@@ -15,6 +15,7 @@ screenshots:
   - ./shot-mvy8n198dyb.webp
   - ./shot-mvy8nhtqyvy.webp
   - ./shot-mvy8nxp5oiz.webp
+video: https://youtu.be/xv7hKyb_5qE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Crysis_Remastered_Installer.zip
