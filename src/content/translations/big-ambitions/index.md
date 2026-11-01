@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2026-08-28
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvfikzdl.webp
 screenshots:
   - ./shot-mvfimzlhh4y.webp
@@ -19,12 +19,19 @@ video: https://www.youtube.com/watch?v=4do3s_TW0Rk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BigAmbitions_Installer.zip
-    size: 1.31 MB
+    size: 1.48 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-01
+    at: 2026-11-01T08:40:00+03:00
+    notes:
+      - "إصلاح زر «إزالة التعريب»: صار يحذف التعريب حتى لو نقلت اللعبة إلى قرص آخر أو أعدت تثبيتها"
+      - "تصحيح نصوص في صفحات المساعدة (وصفات المصنع ومحطات العمل وتجار الجملة وطاولة الطعام)"
+      - "التعريب مبني على آخر إصدار للعبة (Build 3682): حدّث لعبتك من Steam إن كان رقمها أقدم"
   - version: "1.0"
     date: 2026-10-19
     notes:
