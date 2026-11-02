@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-13
 addedAt: 2026-10-13T00:21:50+03:00
 gameRelease: 2025-09-04
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv5r7sr8.webp
 screenshots:
   - ./shot-mv5rb5yibes.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=6XGeJwsUP9c
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Silksong_Installer.zip
-    size: 19.53 MB
+    size: 9.53 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-02
+    at: 2026-11-02T22:15:00+03:00
+    notes:
+      - "أداة تثبيت جديدة تعمل على كل نسخ اللعبة: تدمج التعريب في ملفات لعبتك نفسها بدل استبدالها بملفات نسخة واحدة (كانت تمنع تشغيل اللعبة في النسخ الأقدم مثل 1.0.29315)"
+      - "الأداة تجد نسخة GOG تلقائياً"
+      - "تصحيح كلمات في بعض الحوارات وأسماء الأعداء"
   - version: "1.0"
     date: 2026-10-13
     notes:
