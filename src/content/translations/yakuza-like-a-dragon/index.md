@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-07
 addedAt: 2026-10-07T05:40:33+03:00
 gameRelease: 2020-11-10
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-muxguhe8.webp
 banner: ./banner-muxiwlns.webp
 screenshots:
@@ -28,6 +28,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-11-03
+    at: 2026-11-03T00:55:00+03:00
+    notes:
+      - تقليل تحذيرات برامج مكافحة الفيروسات الكاذبة عند فحص أداة التثبيت (نفس التعريب بدون أي تغيير)
   - version: "1.0"
     date: 2026-10-07
     notes:
