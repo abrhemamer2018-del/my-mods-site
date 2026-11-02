@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-04
 addedAt: 2026-10-04T13:55:15+03:00
 gameRelease: 2024-10-29
-version: "1.0"
+version: "1.1"
 cover: ./cover-mutp0ay7.webp
 banner: ./banner-mutp2eew.webp
 screenshots:
@@ -21,12 +21,20 @@ video: https://www.youtube.com/watch?v=mnvc6uC6xZE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RDR_Installer.zip
-    size: 285.50 MB
+    size: 32.90 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-02
+    at: 2026-11-02T13:10:00+03:00
+    notes:
+      - "أداة تثبيت جديدة تعمل على كل نسخ اللعبة: تبني التعريب من ملفات لعبتك نفسها بدل استبدالها بملفات نسخة واحدة"
+      - "حجم التحميل صار 33 ميجا بدل 285"
+      - "تصحيح أسماء وكلمات ظهرت فيها حروف غريبة (مثل والتون) وأرقام المبالغ وأسطر الشرح"
+      - "ترجمة حوارات ونصوص بقيت بالإنجليزية (البوكر، النرد، بعض المشاهد)"
   - version: "1.0"
     date: 2026-10-04
     notes:
