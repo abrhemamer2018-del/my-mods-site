@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mvzg522n0bu.webp
   - ./shot-mvzg52540bj.webp
   - ./shot-mvzg527im1c.webp
-video: https://youtube.com/shorts/AWUxNrI6828
+video: https://www.youtube.com/watch?v=JAqvK1peFrA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ShiftAtMidnight_Installer.zip
