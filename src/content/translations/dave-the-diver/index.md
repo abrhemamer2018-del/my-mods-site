@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-05
 addedAt: 2026-10-05T21:42:44+03:00
 gameRelease: 2023-06-28
-version: "1.0"
+version: "1.1"
 cover: ./cover-muvlhage.webp
 banner: ./banner-muvlhs5h.webp
 screenshots:
@@ -23,12 +23,19 @@ video: https://www.youtube.com/watch?v=GgXHaZiym9U
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DaveTheDiver_Installer.zip
-    size: 96.83 MB
+    size: 2.79 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-03
+    at: 2026-11-03T01:10:00+03:00
+    notes:
+      - "يعمل على آخر تحديث للعبة وعلى كل إصداراتها: التعريب يُدمج في ملفات اللاعب نفسها بدل استبدالها"
+      - "أداة التثبيت: إن كانت نسخة 1.0 قد عطّلت اللعبة بعد التحديث تطلب التحقق من سلامة ملفات اللعبة في Steam أولاً"
+      - "تصحيح نصوص: فواصل صفحات الحوار، وأسطر رسائل الحفظ والإعدادات، واسم وصفة وعنوان كتاب"
   - version: "1.0"
     date: 2026-10-05
     notes:
