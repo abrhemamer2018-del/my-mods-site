@@ -15,7 +15,7 @@ screenshots:
   - ./shot-mvzfl8k64y3.webp
   - ./shot-mvzfl8m1iad.webp
   - ./shot-mvzfl8pnppn.webp
-video: https://youtube.com/shorts/sc-gpMS_nJw
+video: https://www.youtube.com/watch?v=SUyPij_S8Qo&t=3s
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Barotrauma_Installer.zip
