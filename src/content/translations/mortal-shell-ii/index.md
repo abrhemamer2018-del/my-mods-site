@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-02
 gameRelease: 2026-08-20
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvzg6vqz.webp
 screenshots:
   - ./shot-mvzgazozjrm.webp
@@ -20,12 +20,16 @@ video: https://www.youtube.com/watch?v=Zd7xpEfZ_88
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MortalShell2_Installer.zip
-    size: 2.71 MB
+    size: 2.73 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-02
+    notes:
+      - إصلاح خطأ «pak: version 3» في أداة التثبيت عند وجود مودات أو ملفات pak أخرى في مجلد اللعبة
   - version: "1.0"
     date: 2026-11-02
     notes:
