@@ -14,7 +14,7 @@ screenshots:
   - ./shot-mvzfxjfacdv.webp
   - ./shot-mvzfxji932m.webp
   - ./shot-mvzfxjk52uq.webp
-video: https://youtube.com/shorts/YoevZaw-Yj8
+video: https://www.youtube.com/watch?v=CZ7V4RLC4Nw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Blasphemous2_Installer.zip
