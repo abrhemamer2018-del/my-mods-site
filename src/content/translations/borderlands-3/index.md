@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-24
 gameRelease: 2020-03-13
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvmgy0pj.webp
 screenshots:
   - ./shot-mvmgz863xm8.webp
@@ -19,12 +19,18 @@ video: https://www.youtube.com/watch?v=gjLQ2Uj4OPw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Borderlands3_Installer.zip
-    size: 5.12 MB
+    size: 5.31 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-02
+    notes:
+      - إصلاح توقف أداة التثبيت إذا كان في مجلد اللعبة ملفات مودات أخرى أو ملف pak تالف
+      - رسائل خطأ أوضح، وأداة مبنية من جديد لتجنب تحذيرات مضاد الفيروسات
+      - تصحيح ثلاث كلمات في الترجمة
   - version: "1.0"
     date: 2026-10-24
     notes:
