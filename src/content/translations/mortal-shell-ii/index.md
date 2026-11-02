@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mvzgazsrnue.webp
   - ./shot-mvzgb7luzl4.webp
   - ./shot-mvzgbf6s0zs.webp
-video: https://youtube.com/shorts/E_ChDF3dEnU
+video: https://www.youtube.com/watch?v=Zd7xpEfZ_88
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MortalShell2_Installer.zip
