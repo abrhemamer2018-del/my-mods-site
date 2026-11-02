@@ -12,7 +12,7 @@ status: complete
 releaseDate: 2026-10-13
 gameRelease: 2015-01-29
 addedAt: 2026-10-13T06:55:38+03:00
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv65afw3.webp
 screenshots:
   - ./shot-mv65dizd5ii.webp
@@ -23,12 +23,18 @@ video: https://www.youtube.com/watch?v=YznXuKwJtMg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LifeIsStrange_Arabic.zip
-    size: 1.64 MB
+    size: 1.35 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-03
+    notes:
+      - "التعريب يعمل على كل إصدارات اللعبة: يُدمج في ملفات اللاعب نفسها بدل استبدالها"
+      - "أداة التثبيت: رسالة واضحة إن كان المجلد المختار لإصدار آخر مثل Life is Strange Remastered أو Before the Storm"
+      - "تصحيح نصوص: كلمتان في المذكرات ورسائل اللابتوب، وأسماء أزرار الكيبورد بقيت بالإنجليزية"
   - version: "1.0"
     date: 2026-10-13
     notes:
