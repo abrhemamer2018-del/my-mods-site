@@ -11,7 +11,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-16
 gameRelease: 2024-02-01
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvb1z3ll.webp
 screenshots:
   - ./shot-mvb20l8tw7o.webp
@@ -22,12 +22,17 @@ video: https://www.youtube.com/watch?v=DG_gy1Tecco
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Persona3Reload_v1.0.zip
-    size: 15.25 MB
+    size: 15.58 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-03
+    notes:
+      - "أداة التثبيت ما عادت ترفض نسخ اللعبة الأخرى: تفحص ملفات النصوص في نسختك وتعرّب كل ملف يطابق، وما تغيّر في نسختك يبقى بالإنجليزية"
+      - "تصحيح نص: وصف Hermes في شرح البرسونا"
   - version: "1.0"
     date: 2026-10-16
     notes:
