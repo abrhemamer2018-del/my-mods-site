@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-02
 gameRelease: 2023-03-13
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvzfke08.webp
 screenshots:
   - ./shot-mvzfl8hwiwh.webp
@@ -19,12 +19,18 @@ video: https://www.youtube.com/watch?v=SUyPij_S8Qo&t=3s
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Barotrauma_Installer.zip
-    size: 1.68 MB
+    size: 1.70 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-02
+    notes:
+      - "إصلاح انهيار اللعبة عند بدء لعبة جديدة على إصدارات Barotrauma غير 1.13.5"
+      - "التعريب يعمل على كل إصدارات اللعبة"
+      - "أداة التثبيت: إعادة اللغة الأصلية بشكل صحيح عند إزالة التعريب"
   - version: "1.0"
     date: 2026-11-02
     notes:
