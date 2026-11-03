@@ -8,19 +8,26 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-08
-version: "1.3"
+version: "1.4"
 cover: ./cover-mvch8826.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=N5E-R6NjMgk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_DC_Installer.zip
-    size: 10.57 MB
+    size: 10.68 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.4"
+    date: 2026-11-03
+    at: 2026-11-03T16:53:27+03:00
+    notes:
+      - "الحوارات تظهر كاملة دفعة وحدة بدل ما تنكتب حرف حرف من اليسار، فتقدر تقراها من اليمين على طول"
+      - "الحوارات الطويلة صارت 3 أسطر بدل 4 حتى ما تتزاحم في المربع"
+      - "تصحيح نصوص في بداية القصة وكلمة «رسول» صارت «مرسال»"
   - version: "1.3"
     date: 2026-10-28
     at: 2026-10-28T17:10:32+03:00
