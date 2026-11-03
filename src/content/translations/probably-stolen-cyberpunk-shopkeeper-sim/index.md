@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-28
 gameRelease: 2026-10-28
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvsh804g.webp
 screenshots:
   - ./shot-mvsi107k7ij.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=eL828dBUM-4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Probably_Stolen_Installer.zip
-    size: 0.66 MB
+    size: 0.77 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-03
+    at: 2026-11-03T12:20:00.000Z
+    notes:
+      - يعمل على آخر تحديث للعبة (نصوص غيّرها التحديث كانت ترجع إنجليزية، مثل ملاحظة المرشد «الأحداث»)
+      - النص الذي يغيّر فيه تحديث قادم المسافات أو الأسطر فقط يبقى عربياً
+      - تعريب النصوص الجديدة في التحديث (خيارات معدل الإطارات والمزامنة العمودية، أزرار تحكم، صلاحيات المودات)
   - version: "1.0"
     date: 2026-10-28
     notes:
@@ -51,7 +58,9 @@ tags:
 1. حمّل الملف وفك ضغطه.
 2. أغلق اللعبة إن كانت مفتوحة.
 3. شغّل الأداة واضغط **تثبيت**.
-4. شغّل اللعبة، وستفتح بالعربية مباشرة.
+4. شغّل اللعبة، ومن القائمة الرئيسية اضغط **Mods**.
+5. فعّل **Tarib Arabic - التعريب العربي** ووافق، ثم أغلق اللعبة وشغّلها من جديد. إن كان التعريب مثبّتاً من قبل وظهر «لم يتم التحميل»، فاضغط **«مراجعة وتفعيل»**.
+6. أبقِ لغة اللعبة على English: التعريب يحل محلها.
 
 الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
