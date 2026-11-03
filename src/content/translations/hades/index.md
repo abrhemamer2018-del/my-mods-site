@@ -12,7 +12,7 @@ status: complete
 releaseDate: 2026-09-30
 addedAt: 2026-09-30T14:26:28+03:00
 gameRelease: 2020-09-17
-version: "2.0"
+version: "2.1"
 cover: ./cover-murhbbxe.webp
 banner: ./banner-muo0pqjy.webp
 screenshots:
@@ -22,12 +22,18 @@ video: https://www.youtube.com/watch?v=mD8x5xLHRho
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Hades_Installer_V2.zip
-    size: 3.74 MB
+    size: 3.97 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "2.1"
+    date: 2026-11-03
+    notes:
+      - "إصلاح خيارات الشخصيات (سيزيف ويوريديس وباتروكلس وغيرهم) اللي ما كانت تظهر فتعلق الجولة"
+      - "ظهور نصوص كانت مفقودة: شروط المخطوطة وأسماء الأزرار وبعض قوائم الإعدادات والشكر"
+      - "تصحيح نصوص: هرمس «مبعوث الآلهة»، رموز مقلوبة في بعض الرسائل، وسطور فيها حروف غريبة"
   - version: "2.0"
     date: 2026-09-30
     notes:
@@ -52,7 +58,7 @@ tags:
 1. حمّل الملف وفك ضغطه.
 2. أغلق اللعبة إن كانت مفتوحة.
 3. شغّل الأداة واضغط **تثبيت**.
-4. شغّل اللعبة، وستفتح بالعربية مباشرة.
+4. شغّل اللعبة، ومن **Settings ← Languages** اختر **«العربية»** (تظهر مكان اللغة الروسية).
 
 الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
