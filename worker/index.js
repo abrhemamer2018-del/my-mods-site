@@ -13,6 +13,7 @@ import { discordInteraction } from './discord.js';
 import { keepPresence } from './presence.js';
 export { BotPresence } from './presence.js';
 import { indexNowCheck } from './indexnow.js';
+import { buildRetryCheck } from './buildretry.js';
 export { IndexNowState } from './indexnow.js';
 import { parse, stringify } from 'yaml';
 
@@ -41,10 +42,12 @@ export default {
     }
   },
 
-  // كل دقيقة: يبقي بوت ديسكورد متصلاً (worker/presence.js)، ويبلغ IndexNow بصفحات آخر نشر (worker/indexnow.js)
+  // كل دقيقة: يبقي بوت ديسكورد متصلاً (worker/presence.js)، ويبلغ IndexNow بصفحات آخر نشر (worker/indexnow.js)،
+  // ويعيد بناء Cloudflare إن فشل قبل أن يبدأ (worker/buildretry.js)
   async scheduled(event, env, ctx) {
     ctx.waitUntil(keepPresence(env));
     ctx.waitUntil(indexNowCheck(env));
+    ctx.waitUntil(buildRetryCheck(env));
   },
 };
 

@@ -40,7 +40,10 @@
     "DISCORD_OWNER_ID": "419033682968444930",
     "DISCORD_ALERTS_CHANNEL": "1564738883072032808",
     // روم مخفي: سطر لكل طلب منشور، ومنه يعرف البوت حد طلب واحد في الأسبوع
-    "DISCORD_REQUESTS_LOG": "1565214121727627316"
+    "DISCORD_REQUESTS_LOG": "1565214121727627316",
+    // إعادة البناء التلقائية (worker/buildretry.js): الحساب ووسم الـ worker (ليس اسمه). التوكن CF_BUILDS_TOKEN سر في Cloudflare
+    "CF_ACCOUNT_ID": "7c7374f739463a66fec6fef03115de4e",
+    "WORKER_TAG": "7f3c5857cdfe4f9f8b79317a6a8171d3"
   },
   // بوت ديسكورد يظهر متصلاً: كائن واحد يمسك اتصال Gateway (worker/presence.js)
   "durable_objects": {
