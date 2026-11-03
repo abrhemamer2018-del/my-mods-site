@@ -8,19 +8,24 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-11
-version: "1.2"
+version: "1.3"
 cover: ./cover-mvchbsql.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=oz1E9OJjxb8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Kiwami_Installer.zip
-    size: 7.05 MB
+    size: 7.16 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-04
+    at: 2026-11-04T01:08:53+03:00
+    notes:
+      - "الحوارات تظهر كاملة دفعة وحدة بدل ما تنكتب حرف حرف من اليسار، فتقدر تقراها من اليمين على طول"
   - version: "1.2"
     date: 2026-10-28
     at: 2026-10-28T17:59:22+03:00
