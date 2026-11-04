@@ -15,7 +15,7 @@ status: complete
 releaseDate: 2026-10-04
 addedAt: 2026-10-05T02:17:33+03:00
 gameRelease: 2019-12-05
-version: "1.0"
+version: "1.1"
 cover: ./cover-muy3zlxp.webp
 banner: ./banner-muufx06v.webp
 screenshots:
@@ -27,12 +27,19 @@ video: https://www.youtube.com/watch?v=HVRzx17WHVk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RDR2_Installer.zip
-    size: 9.37 MB
+    size: 9.64 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-04
+    notes:
+      - كلمة شاشة الموت تظهر كاملة متصلة
+      - ترتيب الأسطر صحيح في مربعات المساعدة
+      - تصحيح 40 خطأ في النصوص
+      - الأداة تجد نسخة Rockstar Launcher تلقائياً
   - version: "1.0"
     date: 2026-10-04
     notes:
