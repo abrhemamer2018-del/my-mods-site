@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-29
 gameRelease: 2026-10-28
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvt8s8u8.webp
 screenshots:
   - ./shot-mvt86i1996n.webp
@@ -20,12 +20,18 @@ video: https://www.youtube.com/watch?v=u4X5V5Uk-Cg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_PhantomBladeZero_Installer.zip
-    size: 88.25 MB
+    size: 88.32 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-04
+    at: 2026-11-04T17:05:00+03:00
+    notes:
+      - يشتغل على آخر تحديث للعبة (نوفمبر 2026)، وإذا حدّثت اللعبة وطلعت إنجليزي أعد تثبيت التعريب
+      - ترجمة النصوص الجديدة في التحديث (إعدادات صوت الضربات ورسائل المظللات) والأوصاف اللي تغيّرت
   - version: "1.1"
     date: 2026-10-31
     at: 2026-10-31T16:55:00+03:00
