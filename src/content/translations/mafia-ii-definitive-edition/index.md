@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-25
 gameRelease: 2020-05-19
-version: "1.2"
+version: "1.3"
 cover: ./cover-mvnzuvuo.webp
 screenshots:
   - ./shot-mvnzw808a6x.webp
@@ -20,12 +20,18 @@ video: https://www.youtube.com/watch?v=wHoqwphzhzc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Mafia2DE_Installer.zip
-    size: 1.1 MB
+    size: 1.2 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-04
+    at: 2026-11-04T09:00:00+03:00
+    notes:
+      - "إذا كانت نسختك من اللعبة بدون ملفات اللغة اليابانية (التعريب يُكتب مكانها)، الأداة تخبرك بذلك أول ما تفتحها وتقول لك كيف تحلها، بدل رسالة «صيغة ملف غير مفهومة»"
+      - "إذا اخترت مجلد Mafia II القديمة (2010)، الأداة تخبرك أن التعريب للإصدار النهائي فقط"
   - version: "1.2"
     date: 2026-10-30
     at: 2026-10-30T21:45:00+03:00
