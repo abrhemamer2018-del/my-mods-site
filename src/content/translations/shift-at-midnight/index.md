@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-02
 gameRelease: 2026-07-22
-version: "1.0"
+version: "1.0.2"
 cover: ./cover-mvzg3uth.webp
 screenshots:
   - ./shot-mvzg51y4kch.webp
@@ -20,12 +20,21 @@ video: https://www.youtube.com/watch?v=JAqvK1peFrA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ShiftAtMidnight_Installer.zip
-    size: 941 KB
+    size: 990 KB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.2"
+    date: 2026-11-04
+    at: 2026-11-04T20:45:00+03:00
+    notes:
+      - ترجمة مشاعر الزبائن في مقياس المشاعر (مثل Tired وUnbothered) كانت تظهر بالإنجليزي
+  - version: "1.0.1"
+    date: 2026-11-02
+    notes:
+      - علامات الترقيم داخل النص العربي، وأوصاف بطاقة الهوية في الكمبيوتر، وقوائم المهام
   - version: "1.0"
     date: 2026-11-02
     notes:
@@ -51,7 +60,7 @@ tags:
 1. حمّل الملف وفك ضغطه.
 2. أغلق اللعبة إن كانت مفتوحة.
 3. شغّل الأداة واضغط **تثبيت**.
-4. شغّل اللعبة، وستفتح بالعربية مباشرة.
+4. شغّل اللعبة واختر اللغة **English** (من شاشة اللغة أول مرة، أو من الإعدادات)، وستظهر العربية مكان الإنجليزية.
 
 الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
