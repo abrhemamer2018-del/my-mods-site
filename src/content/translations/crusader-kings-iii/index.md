@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-11-04
 gameRelease: 2020-09-01
 version: "1.0"
-cover: ./cover-mw2867cq.webp
+cover: ./cover-mw2946qs.webp
 screenshots:
   - ./shot-mw28f1b0oup.webp
   - ./shot-mw28f1dwbcn.webp
