@@ -11,7 +11,7 @@ status: complete
 releaseDate: 2026-10-07
 addedAt: 2026-10-07T07:51:48+03:00
 gameRelease: 2019-05-09
-version: "1.0"
+version: "1.1"
 cover: ./cover-muxlw3jk.webp
 banner: ./banner-muxlxt8b.webp
 screenshots:
@@ -22,12 +22,19 @@ video: https://www.youtube.com/watch?v=WuIDxjeIuVo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_YakuzaKiwami2_Installer.zip
-    size: 208.19 MB
+    size: 208.48 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-04
+    at: 2026-11-04T20:37:23+03:00
+    notes:
+      - "الحوارات تظهر كاملة دفعة وحدة بدل ما تنكتب حرف حرف من اليسار، فتقدر تقراها من اليمين على طول"
+      - "نوافذ الحفظ والتحميل وشاشة البداية وشرح الإعدادات صارت أسطرها تنزل صح بدل ما يطلع فيها حرفين غريبين"
+      - "الأرقام في الحوارات والأوصاف صارت تظهر صح وبترتيبها الصحيح"
   - version: "1.0"
     date: 2026-10-07
     notes:
