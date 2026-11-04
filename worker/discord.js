@@ -24,6 +24,8 @@ export const TAGS = {
   hot: 'مطلوبة بقوة',
   vote: 'تحتاج تصويت',
   ready: 'جاهزة للمراجعة',
+  // لعبة جربناها وما نقدر نعرّبها: البوت لا يضيف أصواتاً ولا يعيد فتح منشورها (الوسم يضيفه صاحب السيرفر بيده)
+  closed: 'غير ممكنة',
 };
 
 const API = 'https://discord.com/api/v10';
@@ -137,6 +139,19 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
   const old = await findRequest(env, it.guild_id, game.name);
   if (old) {
     const v = await addVote(env, old, userId);
+    if (v.closed) {
+      return {
+        dm:
+          `شكراً على طلبك 🌹
+` +
+          `**${game.name}** جربناها من قبل وللأسف ما نقدر نعرّبها حالياً، والسبب مكتوب هنا:
+` +
+          `https://discord.com/channels/${it.guild_id}/${old.id}
+
+` +
+          LIVE_TIP,
+      };
+    }
     return (
       `هذي اللعبة مطلوبة من قبل 👍 ${v.already ? 'وصوتك محسوب من قبل.' : 'أضفنا صوتك على الطلب.'}\n` +
       `https://discord.com/channels/${it.guild_id}/${old.id}`
@@ -208,6 +223,9 @@ function voteButton(votes) {
 async function handleVote(env, threadId, userId) {
   const thread = await dc(env, 'GET', `/channels/${threadId}`);
   const v = await addVote(env, thread, userId);
+  if (v.closed) return `هذي اللعبة ما نقدر نعرّبها حالياً، والسبب مكتوب في المنشور.
+
+${LIVE_TIP}`;
   if (v.already) return 'صوتك محسوب من قبل 👍';
   if (v.ready) return `تم تسجيل صوتك 👍 ووصل الطلب ${VOTES_NEEDED} أصوات، ودخل قائمة المراجعة ✅`;
   return 'تم تسجيل صوتك 👍 وبيوصلك تنبيه إذا صار جديد في الطلب.';
@@ -215,6 +233,9 @@ async function handleVote(env, threadId, userId) {
 
 /** يضيف اللاعب لمنشور الطلب، ويحدّث العداد والوسم في منشورات البوت → { already, votes, ready } */
 async function addVote(env, thread, userId) {
+  const tags = await forumTags(env);
+  if (tags[TAGS.closed] && (thread.applied_tags || []).includes(tags[TAGS.closed])) return { closed: true };
+
   const isMember = await dc(env, 'GET', `/channels/${thread.id}/thread-members/${userId}`, undefined, true);
   if (isMember) return { already: true };
 
@@ -229,7 +250,6 @@ async function addVote(env, thread, userId) {
   const votes = Math.max(1, (fresh.member_count || 2) - 1);
 
   // "مطلوبة بقوة" (قبل 2026-10-30) تحتاج الأصوات أيضاً
-  const tags = await forumTags(env);
   const applied = fresh.applied_tags || [];
   const waiting = [tags[TAGS.vote], tags[TAGS.hot]].filter((t) => t && applied.includes(t));
   const ready = votes >= VOTES_NEEDED && waiting.length > 0 && !!tags[TAGS.ready];
