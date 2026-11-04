@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-12
 addedAt: 2026-10-12T23:33:05+03:00
 gameRelease: 2018-04-24
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv5pjj85.webp
 screenshots:
   - ./shot-mv5pjpg78u4.webp
@@ -19,12 +19,19 @@ video: https://www.youtube.com/watch?v=6-1KRSoTMr4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Frostpunk_Installer.zip
-    size: 19.39 MB
+    size: 10.66 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-04
+    at: 2026-11-04T12:30:00+03:00
+    notes:
+      - "التعريب صار يشتغل على نسخة Epic Games وعلى أي نسخة ثانية من اللعبة: الأداة تدمج التعريب في ملفات لعبتك نفسها بدل ما تستبدلها، فما تطلع رسالة «نسخة اللعبة لا تطابق هذا التعريب»"
+      - "إذا كان فيه سطر يختلف في نسختك، يبقى بالإنجليزية والباقي كله بالعربية"
+      - "تصحيح 9 أسطر: «المبعوث» بدل «الرسول»، و«متنبئ» بدل «نبي»"
   - version: "1.0"
     date: 2026-10-12
     notes:
