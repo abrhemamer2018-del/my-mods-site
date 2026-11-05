@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2019-01-23
-version: "1.1"
+version: "1.2"
 cover: ./cover-mw0smmit.webp
 screenshots:
   - ./shot-mw0sqigueko.webp
@@ -25,6 +25,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-06
+    notes:
+      - التعريب يعمل الآن مع المودات عبر ModTheSpire، ويظهر في قائمة المودات باسم «Arabic - التعريب العربي»
+      - توافق كلمات وصف البطاقات مع مود BaseMod
   - version: "1.1"
     date: 2026-11-06
     notes:
@@ -57,7 +62,7 @@ tags:
 3. شغّل الأداة واضغط **تثبيت**.
 4. شغّل اللعبة من Steam بزر **Play** كالمعتاد، وستفتح بالعربية مباشرة.
 
-> التعريب لا يعمل عبر **ModTheSpire** (مشغّل المودات)، ولن يظهر في قائمة مودات ModTheSpire لأنه ليس مود ModTheSpire. شغّل اللعبة العادية (Play Slay the Spire).
+> **مع المودات:** التعريب يعمل أيضاً عبر **ModTheSpire**، ويظهر في قائمة المودات باسم «Arabic - التعريب العربي». العربي يشتغل تلقائياً سواء فعّلته في القائمة أو لا. نصوص المودات الأخرى تبقى بلغتها الأصلية.
 
 الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
