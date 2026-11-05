@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-08
-version: "1.4"
+version: "1.5"
 cover: ./cover-mvch8826.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=N5E-R6NjMgk
@@ -21,6 +21,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.5"
+    date: 2026-11-06
+    at: 2026-11-06T00:15:00+03:00
+    notes:
+      - "معارك الذروة (Climax Battles): كيريو القوي وماجيما القوي صاروا يبدؤون بقوتهم الكاملة (الدم والقدرات) مثل النسخة الأصلية"
   - version: "1.4"
     date: 2026-11-03
     at: 2026-11-03T16:53:27+03:00
