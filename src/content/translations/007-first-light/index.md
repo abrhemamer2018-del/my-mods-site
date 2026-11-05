@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-05
 addedAt: 2026-10-05T21:24:42+03:00
 gameRelease: 2026-05-26
-version: "1.0"
+version: "1.1"
 cover: ./cover-muvkth4u.webp
 banner: ./banner-muvktd96.webp
 screenshots:
@@ -21,12 +21,19 @@ video: https://www.youtube.com/watch?v=gDvbGANDH4E
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_007FirstLight_Installer.zip
-    size: 51.09 MB
+    size: 51.47 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-06
+    notes:
+      - أسطر الترجمة ما عادت تنقلب من تحت لفوق مع حجم الترجمة الكبير
+      - اسم المتكلم صار على يمين السطر وبالعربي
+      - تصحيح كلمات إنجليزية بقيت داخل الترجمة
+      - أداة التثبيت ما عادت تخلط بين اللعبة وHITMAN 3
   - version: "1.0"
     date: 2026-10-05
     notes:
