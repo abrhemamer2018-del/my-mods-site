@@ -12,7 +12,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2025-12-08
-version: "1.5"
+version: "1.6"
 cover: ./cover-mvjl6k30.webp
 screenshots:
   - ./shot-mvjl7g1svhn.webp
@@ -29,6 +29,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.6"
+    date: 2026-11-06
+    at: 2026-11-06T01:45:00+03:00
+    notes:
+      - "معارك الذروة (Climax Battles): كيريو القوي وماجيما القوي صاروا يبدؤون بكل قدراتهم ودمهم الكامل، وكرات شجرة القدرات وقائمة Details رجعت طبيعية"
+      - "إصلاح انهيار اللعبة عند اختيار أسلوب Dragon of Dojima في معارك الذروة"
   - version: "1.5"
     date: 2026-11-05
     at: 2026-11-05T23:25:00+03:00

@@ -5,7 +5,7 @@ import soonData from '../data/soon.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import TranslationCard from '../components/TranslationCard.astro';
-import { getArticles, getTranslations, getUpcoming, formatDate } from '../lib/utils';
+import { getTranslations, getUpcoming, formatDate } from '../lib/utils';
 import Icon from '../components/Icon.astro';
 import { LIVE, SITE, SOCIAL } from '../config';
 import pinnedData from '../data/pinned.json';
@@ -87,10 +87,6 @@ const dlOf = new Map(await Promise.all(byGame.map(async (t) => [t.id, await down
 // جديد التعريبات بعرض الصفحة: تظهر أول 30 (6 صفوف من 5)، و"عرض المزيد" يُظهر 30 أخرى عند كل ضغطة
 const PAGE_SIZE = 30;
 
-// قسم المقالات يظهر فقط عند وجود 3 مقالات أو أكثر، حتى لا يبدو الموقع غير نشط
-const ARTICLES_MIN = 3;
-const allArticles = await getArticles();
-const articles = allArticles.length >= ARTICLES_MIN ? allArticles.slice(0, 3) : [];
 
 const lastAdded = translations[0]?.data.releaseDate;
 const discord = SOCIAL.find((s) => s.icon === 'discord');
@@ -509,28 +505,6 @@ const jsonLd = [
     </ol>
   </section>
 
-  {
-    articles.length > 0 && (
-      <section class="container section">
-        <div class="section-head">
-          <h2>أحدث المقالات والدروس</h2>
-          <a href="/articles/">المزيد ‹</a>
-        </div>
-        <div class="articles">
-          {articles.map((a) => (
-            <a href={`/articles/${a.id}/`} class="panel article">
-              <span class="badge">{a.data.kind === 'lesson' ? 'درس' : 'مقال'}</span>
-              <h3>{a.data.title}</h3>
-              <p class="muted">{a.data.description}</p>
-              <time class="muted" datetime={a.data.date.toISOString()}>
-                {formatDate(a.data.date)}
-              </time>
-            </a>
-          ))}
-        </div>
-      </section>
-    )
-  }
 </BaseLayout>
 
 <style>
@@ -1262,39 +1236,7 @@ const jsonLd = [
     }
   }
 
-  .articles {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-  }
-  .article {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .article:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-  }
-  .article h3 {
-    font-size: 1.2rem;
-    margin: 4px 0 0;
-  }
-  .article p {
-    margin: 0;
-  }
-  .article time {
-    margin-top: auto;
-    font-size: 0.85rem;
-  }
 
-  @media (max-width: 800px) {
-    .articles {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
   /* الجوال والشاشات الصغيرة: الإحصائيات 4 أرقام بلا أيقونات فوق حافة البانر، وتحتها زر تعريبات لايف */
   @media (max-width: 760px) {
     .stats-wrap {
@@ -1408,9 +1350,6 @@ const jsonLd = [
     .stats-strip li + li::before {
       inset-inline-start: 0;
       height: 36px;
-    }
-    .articles {
-      grid-template-columns: 1fr;
     }
   }
 
