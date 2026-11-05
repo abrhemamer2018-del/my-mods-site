@@ -10,18 +10,25 @@ interface Props {
   items: (Translation | 'live')[];
   // البانر التلقائي (آخر الإضافات): يظهر فوق كل لعبة "أُضيف حديثاً · منذ…"
   recent?: boolean;
+  // تجربة /wide/: الخلفية مشهد واضح من اللعبة (أول صورة من صورها) بدل الغلاف المموّه
+  wide?: boolean;
+  // تجربة /lab/: نص البانر أبسط (بلا شارات المنصة/الحجم/النسخة، والحجم داخل زر التحميل)
+  lab?: boolean;
 }
-const { items, recent = false } = Astro.props;
+const { items, recent = false, wide = false, lab = false } = Astro.props;
 const multi = items.length > 1;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
-<section class="hx" aria-roledescription="carousel" aria-label="أحدث التعريبات" data-count={items.length} tabindex="-1">
+<section class:list={['hx', { lab }]} aria-roledescription="carousel" aria-label="أحدث التعريبات" data-count={items.length} tabindex="-1">
   {/* الخلفية: صورة كل شريحة مموّهة، تتبدل بتلاشٍ ناعم */}
   <div class="hx-bg" aria-hidden="true">
-    {items.map((item, i) => (
-      <Image class:list={['hx-bg-img', { on: i === 0 }]} src={item === 'live' ? liveImg : (item.data.banner ?? item.data.cover)} alt="" width={480} loading={i === 0 ? 'eager' : 'lazy'} />
-    ))}
+    {items.map((item, i) => {
+      const scene = wide && item !== 'live' ? item.data.screenshots[0] : undefined;
+      return (
+        <Image class:list={['hx-bg-img', { on: i === 0, sharp: scene }]} src={scene ?? (item === 'live' ? liveImg : (item.data.banner ?? item.data.cover))} alt="" width={scene ? 1920 : 480} loading={i === 0 ? 'eager' : 'lazy'} />
+      );
+    })}
   </div>
 
   <div class="container hx-in">
@@ -70,7 +77,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
               <h2 class:list={['hx-title', { long: d.title.length > 22, xlong: d.title.length > 34 }]} dir="ltr">{d.title}</h2>
               <p class="hx-ar">{d.titleAr}</p>
               <p class="hx-sum">{d.summary}</p>
-              <ul class="hx-meta">
+              {!lab && <ul class="hx-meta">
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></svg>
                   <span dir="ltr">{d.platforms.join(' · ')}</span>
@@ -89,7 +96,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
                   مجاني · تثبيت بضغطة
                 </li>
-              </ul>
+              </ul>}
               <div class="hx-cta">
                 <a href={url} class="btn btn-primary hx-main-btn" tabindex={tab}>
                   صفحة التعريب
@@ -99,6 +106,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
                   <a href={file.url} class="btn hx-ghost" tabindex={tab} rel="nofollow">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16" /></svg>
                     تحميل مباشر
+                    {lab && file.size && <span class="hx-size" dir="ltr">{file.size}</span>}
                   </a>
                 )}
               </div>
@@ -725,6 +733,89 @@ const pad = (n: number) => String(n).padStart(2, '0');
     }
     .hx-thumb {
       flex: 0 0 92px;
+    }
+  }
+  /* ---------- تجربة /lab/: نص أهدأ وأنظف ---------- */
+  .hx.lab .hx-text {
+    position: relative;
+    padding-inline-start: 22px;
+  }
+  /* خط رفيع متدرج بألوان الشعار على جانب النص */
+  .hx.lab .hx-text::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, var(--accent), rgb(25 195 214 / 0.15) 60%, transparent);
+    opacity: 1;
+    transform: none;
+  }
+  .hx.lab .hx-tag {
+    padding: 0;
+    gap: 7px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #aeb5d6;
+    background: none;
+    border: 0;
+    backdrop-filter: none;
+  }
+  .hx.lab .hx-tag .hx-dot {
+    width: 7px;
+    height: 7px;
+    color: #ff5c77;
+  }
+  .hx.lab .hx-tag-warn {
+    color: var(--warning);
+  }
+  .hx.lab .hx-kick {
+    min-height: 0;
+    margin-bottom: 10px;
+  }
+  .hx.lab .hx-ar {
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+    opacity: 0.95;
+  }
+  .hx.lab .hx-sum {
+    max-width: 52ch;
+    margin: 16px 0 26px;
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: #b9bfdc;
+    -webkit-line-clamp: 2;
+  }
+  .hx.lab .hx-cta {
+    align-items: center;
+    gap: 14px;
+  }
+  .hx.lab .hx-main-btn {
+    border-radius: 14px;
+    padding: 0.8em 1.9em;
+  }
+  .hx.lab .hx-ghost {
+    border-radius: 14px;
+    padding: 0.8em 1.3em;
+    background: rgb(255 255 255 / 0.04);
+    border-color: rgb(255 255 255 / 0.12);
+  }
+  .hx.lab .hx-size {
+    padding: 2px 8px;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #9aa1c4;
+    background: rgb(255 255 255 / 0.07);
+  }
+  @media (max-width: 760px) {
+    .hx.lab .hx-text {
+      padding-inline-start: 14px;
+    }
+    .hx.lab .hx-sum {
+      margin: 10px 0 16px;
     }
   }
   @media (prefers-reduced-motion: reduce) {
