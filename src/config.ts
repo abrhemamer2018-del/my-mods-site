@@ -14,14 +14,14 @@ export const SITE = {
   // أضف هنا تحميلات سابقة من خارج GitHub (مثل Nexus و MediaFire) لتُجمع معه، أو اتركه 0
   downloadsOffset: 0,
   // رابط قناة #الإبلاغ-عن-مشكلة في ديسكورد (يظهر في نموذج الإبلاغ)
-  reportDiscordUrl: 'https://discord.gg/DugSmwpDW',
+  reportDiscordUrl: 'https://discord.gg/Tb829VJD6M',
   // بريد طلبات إزالة المحتوى (صفحة /copyright/). يُحوَّل إلى بريدك عبر Cloudflare Email Routing
   copyrightEmail: 'copyright@ta3reebat.com',
 };
 
 // روابط التواصل — احذف أي سطر لا تحتاجه
 export const SOCIAL: { label: string; url: string; icon: string }[] = [
-  { label: 'ديسكورد', url: 'https://discord.gg/FtpStyNE8', icon: 'discord' },
+  { label: 'ديسكورد', url: 'https://discord.gg/Tb829VJD6M', icon: 'discord' },
   { label: 'يوتيوب', url: 'https://www.youtube.com/@ta3reebat', icon: 'youtube' },
   { label: 'إكس (تويتر)', url: 'https://x.com/ta3reebat', icon: 'x' },
   { label: 'ادعمنا على Ko-fi', url: 'https://ko-fi.com/ibrahimalobaidi', icon: 'heart' },
