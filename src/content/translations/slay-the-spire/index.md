@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2019-01-23
-version: "1.0"
+version: "1.1"
 cover: ./cover-mw0smmit.webp
 screenshots:
   - ./shot-mw0sqigueko.webp
@@ -19,12 +19,17 @@ video: https://www.youtube.com/watch?v=9SZUtyYSOjQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SlayTheSpire_Installer.zip
-    size: 1.37 MB
+    size: 1.38 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-06
+    notes:
+      - إصلاح الحروف المتقطعة وعدم ظهور التعريب عند تشغيل اللعبة من Steam
+      - إصلاح ملف التحميل الذي كان يُنزّل الإصدار الأول القديم بدل النسخة الكاملة
   - version: "1.0"
     date: 2026-11-03
     notes:
@@ -50,7 +55,9 @@ tags:
 1. حمّل الملف وفك ضغطه.
 2. أغلق اللعبة إن كانت مفتوحة.
 3. شغّل الأداة واضغط **تثبيت**.
-4. شغّل اللعبة، وستفتح بالعربية مباشرة.
+4. شغّل اللعبة من Steam بزر **Play** كالمعتاد، وستفتح بالعربية مباشرة.
+
+> التعريب لا يعمل عبر **ModTheSpire** (مشغّل المودات)، ولن يظهر في قائمة مودات ModTheSpire لأنه ليس مود ModTheSpire. شغّل اللعبة العادية (Play Slay the Spire).
 
 الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
