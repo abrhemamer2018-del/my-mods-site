@@ -11,8 +11,6 @@ import { LIVE, SITE, SOCIAL } from '../config';
 import pinnedData from '../data/pinned.json';
 import heroData from '../data/hero.json';
 
-// تجربة: صفحة /lab/ تعرض البانر بالتصميم التجريبي
-const { lab = false } = Astro.props;
 const translations = await getTranslations();
 // قسم "جديد التعريبات": الألعاب الأحدث صدوراً أولاً (تاريخ صدور اللعبة)، ومن لا تاريخ لها حسب تاريخ التعريب
 const pinnedIds = new Set(pinnedData.slugs);
@@ -122,7 +120,7 @@ const jsonLd = [
 <BaseLayout jsonLd={jsonLd}>
   {/* العنوان الرئيسي للصفحة لمحركات البحث وقارئات الشاشة (مخفي بصرياً) */}
   <h1 class="sr-only">موقع {SITE.name} — {SITE.tagline}</h1>
-  {heroItems.length > 0 && <Hero items={heroItems} recent={!chosenHero.length} lab={lab} />}
+  {heroItems.length > 0 && <Hero items={heroItems} recent={!chosenHero.length} />}
 
   {/* شريط الإحصائيات مدمج على الحافة السفلية للبانر */}
   <div class="container stats-wrap">
