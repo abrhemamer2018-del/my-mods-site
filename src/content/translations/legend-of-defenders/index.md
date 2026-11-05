@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mw3ma27twt0.webp
   - ./shot-mw3mablx2fs.webp
   - ./shot-mw3mah5w9dl.webp
-video: https://www.youtube.com/watch?v=y3CE9Mhlj98
+video: https://www.youtube.com/watch?v=o6p9EJ8tPrQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LegendOfDefenders_Installer.zip
