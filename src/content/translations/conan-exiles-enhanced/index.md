@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2018-05-08
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvfiv9jb.webp
 screenshots:
   - ./shot-mvfj3qnesl6.webp
@@ -18,12 +18,18 @@ video: https://www.youtube.com/watch?v=z5b-l29mzew
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ConanExiles_Installer.zip
-    size: 5.82 MB
+    size: 5.97 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-05
+    at: 2026-11-05T22:50:00+03:00
+    notes:
+      - "إصلاح توقف أداة التثبيت برسالة «pak: version 4» عند وجود مودات قديمة في مجلد اللعبة: الأداة صارت تتخطاها وتكمل التثبيت"
+      - "تصحيح ألقاب في الترجمة: «النبي المجنون» صار «المتنبئ المجنون» و«رسول» صار «مبعوث»، وتصحيح حروف فارسية في بعض الأسماء"
   - version: "1.1"
     date: 2026-10-28
     at: 2026-10-28T00:18:53+03:00
