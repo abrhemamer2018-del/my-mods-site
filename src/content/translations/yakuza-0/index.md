@@ -12,7 +12,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2025-12-08
-version: "1.4"
+version: "1.5"
 cover: ./cover-mvjl6k30.webp
 screenshots:
   - ./shot-mvjl7g1svhn.webp
@@ -23,12 +23,17 @@ video: https://www.youtube.com/watch?v=aMfpQRoWGbE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_0_Installer.zip
-    size: 72.82 MB
+    size: 72.83 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.5"
+    date: 2026-11-05
+    at: 2026-11-05T23:25:00+03:00
+    notes:
+      - "معارك الذروة (Climax Battles): كيريو القوي وماجيما القوي صاروا يبدؤون بقوتهم الكاملة (الدم والقدرات) مثل النسخة الأصلية"
   - version: "1.4"
     date: 2026-11-04
     at: 2026-11-04T00:56:06+03:00
