@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-06
 gameRelease: 2025-03-04
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv6c2hvs.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=NXTlh31ZWZ4
@@ -21,6 +21,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-06
+    at: 2026-11-06T23:10:26+03:00
+    notes:
+      - "الأداة صارت تتعرف على نسخة Legacy وتوضح أن التعريب لنسخة Enhanced فقط، وأن Enhanced مجانية لكل من يملك اللعبة في Steam وEpic وRockstar"
+      - "تصحيح 4 أسطر: «نبي/رسول» صارت «عرّاف» و«سُعاة» و«أوصل الخبر»"
   - version: "1.1"
     date: 2026-10-27
     at: 2026-10-27T20:04:31+03:00
@@ -56,6 +62,8 @@ tags:
 الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
 ## ملاحظة
+
+التعريب لنسخة **Enhanced** فقط (الملف GTA5_Enhanced.exe)، ونسخة Legacy غير مدعومة. نسخة Enhanced مجانية لكل من يملك اللعبة في Steam وEpic ومشغّل Rockstar: ثبّتها من مكتبتك.
 
 قد تظهر رسالة "Windows protected your PC" أو تحذير، وهذا طبيعي:
 
