@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-05
 addedAt: 2026-10-05T21:24:42+03:00
 gameRelease: 2026-05-26
-version: "1.1"
+version: "1.2"
 cover: ./cover-muvkth4u.webp
 banner: ./banner-muvktd96.webp
 screenshots:
@@ -27,6 +27,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-06
+    notes:
+      - أسماء الأسلحة الطويلة ما عادت تنقلب من تحت لفوق
+      - تصحيح كلمات: عبور، تحرير، دخول، المفجر، ملقى
   - version: "1.1"
     date: 2026-11-06
     notes:
