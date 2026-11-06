@@ -12,7 +12,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2025-12-08
-version: "1.6"
+version: "1.7"
 cover: ./cover-mvjl6k30.webp
 screenshots:
   - ./shot-mvjl7g1svhn.webp
@@ -29,6 +29,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.7"
+    date: 2026-11-06
+    at: 2026-11-06T07:45:00+03:00
+    notes:
+      - "إصلاح انهيار اللعبة عند الدخول على أي أسلوب في قائمة القدرات (Abilities)، في القصة وPremium Adventure"
+      - "شجرة القدرات ترجع بكراتها الملوّنة وقائمة Details بقدراتها، وكيريو/ماجيما القوي في معارك الذروة يبدأ بكل قدراته"
   - version: "1.6"
     date: 2026-11-06
     at: 2026-11-06T01:45:00+03:00
