@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-05
 addedAt: 2026-10-05T21:24:42+03:00
 gameRelease: 2026-05-26
-version: "1.2"
+version: "1.3"
 cover: ./cover-muvkth4u.webp
 banner: ./banner-muvktd96.webp
 screenshots:
@@ -27,6 +27,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-06
+    notes:
+      - عنوان تحذير الصرع ما عاد ينقلب من تحت لفوق
   - version: "1.2"
     date: 2026-11-06
     notes:
