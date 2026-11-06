@@ -12,7 +12,7 @@ status: complete
 releaseDate: 2026-10-10
 addedAt: 2026-10-10T04:33:04+03:00
 gameRelease: 2015-11-09
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv1ppx1n.webp
 screenshots:
   - ./shot-mv1pwnz3vde.webp
@@ -22,12 +22,19 @@ video: https://www.youtube.com/watch?v=WAMBwnpO_SI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Fallout4_Installer.zip
-    size: 5.31 MB
+    size: 5.58 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-06
+    at: 2026-11-06T09:35:00+03:00
+    notes:
+      - "إصلاح تلخبط الأسطر الطويلة: كل النصوص صارت تنقسم على عرض مربعها الحقيقي في اللعبة (الترجمة، بطاقة SPECIAL، البيب-بوي، الحواسيب، الكتب، شاشات التحميل والرسائل)"
+      - "جمل الواجهة الطويلة (نوافذ التأكيد والرسائل) صارت تنقرأ بالترتيب الصحيح من فوق إلى تحت"
+      - "تعريب ملفات Creation Club بالكامل بالتقسيم الجديد، وتصحيح بعض الكلمات والرموز في الحواسيب"
   - version: "1.0"
     date: 2026-10-10
     notes:
