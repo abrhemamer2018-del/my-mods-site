@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-18
 gameRelease: 2017-04-24
-version: "1.0"
+version: "1.1"
 cover: ./cover-mve6dty6.webp
 screenshots:
   - ./shot-mve6effyey1.webp
@@ -18,12 +18,17 @@ video: https://www.youtube.com/watch?v=MKrUZ36IVAY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Outlast2_Installer.zip
-    size: 14.01 MB
+    size: 1.62 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-06
+    notes:
+      - "أداة التثبيت صارت تشتغل على كل نسخ اللعبة (Steam وGOG وEpic) بدل رسالة \"محتاج تحديث\""
+      - "تصحيح كلمة النبي إلى المتنبئ في وصف نوث، وأرقام عناوين المذكرات"
   - version: "1.0"
     date: 2026-10-18
     notes:
