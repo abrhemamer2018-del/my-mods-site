@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-21
 gameRelease: 2012-04-16
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvih2wh3.webp
 screenshots:
   - ./shot-mvih3md53za.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-06
+    notes:
+      - أداة تثبيت جديدة بخصائص ملف كاملة حتى لا تشك فيها برامج الحماية
+      - "تصحيح 39 سطراً: «رسول» صارت «مبعوث» و«النبي ليبودا» صارت «المتنبئ ليبودا»"
   - version: "1.0"
     date: 2026-10-21
     notes:
