@@ -8,19 +8,24 @@ platforms:
 status: complete
 releaseDate: 2026-10-06
 gameRelease: 2025-03-04
-version: "1.2"
+version: "1.3"
 cover: ./cover-mv6c2hvs.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=NXTlh31ZWZ4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Grand.Theft.Auto.V.Enhanced.zip
-    size: 8.55 MB
+    size: 8.71 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-07
+    at: 2026-11-07T23:45:00+03:00
+    notes:
+      - "إصلاح النصوص الطويلة التي كانت تُقرأ من الأسفل إلى الأعلى: رسائل المساعدة أعلى الشاشة والترجمة أسفلها وأوصاف القوائم ورسائل الهاتف صارت مقسّمة على أسطر بالترتيب الصحيح"
   - version: "1.2"
     date: 2026-11-06
     at: 2026-11-06T23:10:26+03:00
