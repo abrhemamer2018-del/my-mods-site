@@ -15,7 +15,8 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const API = 'https://discord.com/api/v10';
 const SITE = 'https://ta3reebat.com';
-const MODEL = 'claude-opus-5-5';
+// Haiku 5.5: أرخص بأكثر من 40 مرة من Opus (التعليمات + قائمة الألعاب ≈ 23 ألف وحدة؛ مع Opus كل رد بعد هدوء ساعة ≈ 19 سنت)
+const MODEL = 'claude-haiku-5-5';
 const GUILD = '1554792025654825030';
 const GENERAL = '1556889084541149275'; // دردشة-عامة-✍️
 const REQUEST_CHANNEL = '1564741411071336491'; // 📩اطلب-تعريب-هنا
@@ -82,6 +83,8 @@ const SYSTEM = `أنت «تعريبات»، بوت سيرفر ديسكورد ل�
 - البلاغات: زر «الإبلاغ عن مشكلة» في صفحة اللعبة بالموقع، أو منشور في <#${REPORTS_FORUM}> مع صورة واسم اللعبة.
 - طلب تعريب لعبة: من روم <#${REQUEST_CHANNEL}> بالزر «اطلب تعريب» واكتب اسم اللعبة أو رابطها في ستيم. الشروط: أعلى عدد لاعبين للعبة في آخر 30 يوم على ستيم لازم يكون 1000 أو أكثر، وما تكون أونلاين أو فيها نظام مكافحة غش (خوفاً على حسابات اللاعبين من الحظر)، وطلب واحد ناجح لكل عضو في الأسبوع. الطلب ينزل في <#${VOTES_FORUM}>، والتصويت بالانضمام للمنشور، ولازم يوصل 5 أصوات عشان يدخل قائمة المراجعة. حتى بعد المراجعة مو كل لعبة ينفع تعريبها، والألعاب غير القصصية (سباقات، رياضة...) غالباً ما نعربها.
 - المواعيد: ما نعطي مواعيد لأي تعريب، ولا نعد بتعريب لعبة معينة.
+- قبل ما تقترح طلب أي لعبة: إذا هي أونلاين (MMO أو لعب جماعي عبر الإنترنت، مثل Aion و Lost Ark و Black Desert و Valorant و Fortnite) أو فيها مكافحة غش، قل إننا ما نعربها خوفاً على حسابات اللاعبين من الحظر، ولا تقترح طلبها، واقترح تعريبات لايف.
+- الرومات: اكتبها دائماً بنفس صيغة <#رقم> المكتوبة هنا بالضبط، ولا تخترع أسماء رومات أو روابط.
 - تعريبات لايف: برنامج مجاني يترجم نصوص أي لعبة للعربي مباشرة على الشاشة وأنت تلعب، يشتغل على Windows 10 أو 11، واللعبة لازم تكون Borderless أو Windowed. ${SITE}/live/ . اقترحه لمن يبي لعبة مو معربة عندنا.
 - التعريبات القادمة: ${SITE}/upcoming/
 - رابط السيرفر الدائم: https://discord.gg/Tb829VJD6M
@@ -389,11 +392,9 @@ export class ChatBot {
   // ------------------------------------------------------------
   /** طلب إلى Claude بمخرج JSON حسب schema */
   async ask(system, schema, userText, maxTokens) {
-    const res = await this.client.beta.messages.create({
+    const res = await this.client.messages.create({
       model: MODEL,
       max_tokens: maxTokens,
-      betas: ['server-side-fallback-2026-07-01'],
-      fallbacks: 'default',
       system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral', ttl: '1h' } }],
       output_config: { effort: 'low', format: { type: 'json_schema', schema } },
       messages: [{ role: 'user', content: userText }],
