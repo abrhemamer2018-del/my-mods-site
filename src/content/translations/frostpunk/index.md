@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-12
 addedAt: 2026-10-12T23:33:05+03:00
 gameRelease: 2018-04-24
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv5pjj85.webp
 screenshots:
   - ./shot-mv5pjpg78u4.webp
@@ -19,12 +19,18 @@ video: https://www.youtube.com/watch?v=6-1KRSoTMr4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Frostpunk_Installer.zip
-    size: 10.66 MB
+    size: 10.68 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-07
+    at: 2026-11-07T22:40:00+03:00
+    notes:
+      - "إصلاح النصوص المعكوسة في التلميحات (مثل تلميح مستويات البخار في المولّد): كانت الحروف مقطّعة ومكتوبة من اليسار، والحين تظهر صحيحة من اليمين"
+      - "الأسطر الطويلة صارت مرتبة من فوق لتحت بدل ما يطلع آخر السطر فوق"
   - version: "1.1"
     date: 2026-11-04
     at: 2026-11-04T12:30:00+03:00
