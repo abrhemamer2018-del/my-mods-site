@@ -10,7 +10,7 @@
 // ============================================================
 import { isAbusive } from './moderation.js';
 import { discordInteraction } from './discord.js';
-import { keepPresence } from './presence.js';
+import { keepPresence, botStatus } from './presence.js';
 export { BotPresence } from './presence.js';
 import { indexNowCheck } from './indexnow.js';
 import { buildRetryCheck } from './buildretry.js';
@@ -33,6 +33,9 @@ export default {
     if (url.pathname === '/api/discord/interactions' && request.method === 'POST') {
       return discordInteraction(request, env, ctx, { steamFind, origin: url.origin });
     }
+
+    // حالة بوت ديسكورد (تشخيص: متصل؟ آخر الأحداث والأخطاء)
+    if (url.pathname === '/api/bot-status' && request.method === 'GET') return botStatus(env);
 
     try {
       return await handleApi(request, env, url);

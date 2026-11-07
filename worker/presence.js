@@ -33,7 +33,11 @@ export class BotPresence {
   }
 
   // يُستدعى من cron: يتأكد أن المنبّه يعمل والاتصال قائم
-  async fetch() {
+  async fetch(request) {
+    // ‎/api/bot-status: حالة الاتصال وآخر الأحداث والأخطاء (بدون أسرار) لتشخيص البوت
+    if (new URL(request.url).pathname === '/status') {
+      return Response.json({ connected: !!this.ws, seq: this.seq, ...this.chat.status() });
+    }
     await this.ensure();
     return new Response('ok');
   }
@@ -81,7 +85,10 @@ export class BotPresence {
       this.ws = ws;
       this.acked = true;
       ws.addEventListener('message', (ev) => this.onMessage(ws, ev.data));
-      const lost = () => { if (this.ws === ws) this.ws = null; };
+      const lost = (ev) => {
+        this.chat.note(`closed ${ev?.code ?? ''} ${ev?.reason ?? ''}`);
+        if (this.ws === ws) this.ws = null;
+      };
       ws.addEventListener('close', lost);
       ws.addEventListener('error', lost);
     })().finally(() => { this.connecting = null; });
@@ -106,9 +113,10 @@ export class BotPresence {
         });
         break;
       case 0: // Dispatch
+        this.chat.note(msg.t);
         if (msg.t === 'READY') this.chat.setBotId(msg.d.user.id);
         else if (msg.t === 'MESSAGE_CREATE')
-          this.chat.onMessage(msg.d).catch((e) => console.log('chatbot', e.message));
+          this.chat.onMessage(msg.d).catch((e) => this.chat.fail('onMessage', e));
         break;
       case 11: // Heartbeat ACK
         this.acked = true;
@@ -117,6 +125,7 @@ export class BotPresence {
         this.send({ op: 1, d: this.seq });
         break;
       case 7: // Reconnect
+        this.chat.note(`op ${msg.op}`);
       case 9: // Invalid Session
         this.drop(); // المنبّه التالي يعيد الاتصال
         break;
@@ -125,6 +134,10 @@ export class BotPresence {
 }
 
 // يوقظ كائن الحضور (من cron)
+export function botStatus(env) {
+  return env.BOT_PRESENCE.get(env.BOT_PRESENCE.idFromName('bot')).fetch('https://presence/status');
+}
+
 export function keepPresence(env) {
   const stub = env.BOT_PRESENCE.get(env.BOT_PRESENCE.idFromName('bot'));
   return stub.fetch('https://presence/');

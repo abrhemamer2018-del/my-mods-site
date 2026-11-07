@@ -139,7 +139,26 @@ export class ChatBot {
     this.pending = new Map(); // روم ← مؤقّت الانتظار في الدردشة العامة
     this.recentLinks = new Map(); // عضو ← [{host, channel, at}]
     this.userReplies = new Map(); // عضو ← أوقات الردود
+    this.events = []; // آخر أحداث Gateway (للتشخيص)
+    this.errors = []; // آخر الأخطاء
+    this.counts = {};
     this.client = env.ANTHROPIC_API_KEY ? new Anthropic({ apiKey: env.ANTHROPIC_API_KEY, maxRetries: 2 }) : null;
+  }
+
+  note(type) {
+    this.counts[type] = (this.counts[type] || 0) + 1;
+    this.events.unshift(`${new Date().toISOString().slice(11, 19)} ${type}`);
+    this.events.length = Math.min(this.events.length, 15);
+  }
+
+  fail(where, e) {
+    console.log(where, e?.message);
+    this.errors.unshift(`${new Date().toISOString().slice(5, 19)} ${where}: ${String(e?.message || e).slice(0, 300)}`);
+    this.errors.length = Math.min(this.errors.length, 15);
+  }
+
+  status() {
+    return { botId: this.botId, ai: !!this.client, counts: this.counts, events: this.events, errors: this.errors };
   }
 
   setBotId(id) {
@@ -170,7 +189,7 @@ export class ChatBot {
         m.channel_id,
         setTimeout(() => {
           this.pending.delete(m.channel_id);
-          this.answer(m.channel_id, m, false).catch((e) => console.log('chatbot answer', e.message));
+          this.answer(m.channel_id, m, false).catch((e) => this.fail('answer', e));
         }, DEBOUNCE_MS),
       );
     }
@@ -240,7 +259,7 @@ export class ChatBot {
       if (r?.verdict === 'scam') return { scam: true, reason: r.reason || 'رابط نصب' };
       if (r?.verdict === 'suspicious') return { scam: false, reason: r.reason || 'رابط مشبوه' };
     } catch (e) {
-      console.log('link check failed', e.message);
+      this.fail('link check', e);
     }
     return null;
   }
@@ -251,7 +270,7 @@ export class ChatBot {
     try {
       await dc(this.env, 'DELETE', `/channels/${m.channel_id}/messages/${m.id}`, undefined, audit);
     } catch (e) {
-      console.log('delete failed', e.message);
+      this.fail('delete', e);
       return;
     }
     let muted = false;
@@ -262,7 +281,7 @@ export class ChatBot {
         }, audit);
         muted = true;
       } catch (e) {
-        console.log('timeout failed', e.message);
+        this.fail('timeout', e);
       }
     }
     // تنبيه قصير في الروم يختفي بعد 30 ثانية
@@ -321,7 +340,7 @@ export class ChatBot {
     try {
       r = await this.ask(await this.systemWithCatalog(), REPLY_SCHEMA, prompt, 4000);
     } catch (e) {
-      console.log('chatbot ask failed', e.message);
+      this.fail('ask', e);
       return;
     }
     if (!r) return;
@@ -337,7 +356,7 @@ export class ChatBot {
         times.push(now);
         this.userReplies.set(m.author.id, times);
       } catch (e) {
-        console.log('chatbot send failed', e.message);
+        this.fail('send', e);
       }
     }
     if (r.alert_owner) {
@@ -380,7 +399,7 @@ export class ChatBot {
       messages: [{ role: 'user', content: userText }],
     });
     if (res.stop_reason === 'refusal' || res.stop_reason === 'max_tokens') {
-      console.log('chatbot stop', res.stop_reason);
+      this.fail('stop', res.stop_reason);
       return null;
     }
     const block = res.content.find((b) => b.type === 'text');
@@ -398,7 +417,7 @@ export class ChatBot {
         this.catalog = `${data.count} تعريب:\n${data.games.join('\n')}`;
         this.catalogAt = Date.now();
       } catch (e) {
-        console.log('catalog failed', e.message);
+        this.fail('catalog', e);
         this.catalog ||= `القائمة غير متاحة الآن؛ وجّه السائل إلى ${SITE}/translations/`;
       }
     }
@@ -454,7 +473,7 @@ export class ChatBot {
         flags: 4,
       });
     } catch (e) {
-      console.log('alert failed', e.message);
+      this.fail('alert', e);
     }
   }
 }
