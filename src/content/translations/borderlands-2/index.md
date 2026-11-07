@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mw6itvpoveg.webp
   - ./shot-mw6iuepsb3w.webp
   - ./shot-mw6iuo8tawh.webp
-video: https://www.youtube.com/watch?v=kKVf5feSMEg
+video: https://www.youtube.com/watch?v=9PlLwA_uVCw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Borderlands2_Installer.zip
