@@ -3,10 +3,15 @@
 //  - Durable Object واحد يمسك اتصال Gateway مفتوحاً ويرسل نبضات القلب
 //  - المنبّه (alarm) كل 30 ثانية يرسل النبضة ويبقي الكائن حياً، ويعيد الاتصال إن انقطع
 //  - مهمة cron كل دقيقة توقظه لو توقف لأي سبب
-//  لا يستقبل أي أحداث (intents = 0)؛ الطلبات ما زالت عبر /api/discord/interactions
+//  يستقبل رسائل السيرفر (GUILDS + GUILD_MESSAGES + MESSAGE_CONTENT) ويمررها لـ worker/chatbot.js
+//  (حارس الروابط والردود الذكية)؛ أزرار الطلبات ما زالت عبر /api/discord/interactions
 // ============================================================
 
+import { ChatBot } from './chatbot.js';
+
 const GATEWAY = 'https://gateway.discord.gg/?v=10&encoding=json';
+// GUILDS (1) + GUILD_MESSAGES (512) + MESSAGE_CONTENT (32768)
+const INTENTS = 1 | (1 << 9) | (1 << 15);
 const TICK_MS = 30_000;
 const PRESENCE = {
   status: 'online',
@@ -24,6 +29,7 @@ export class BotPresence {
     this.seq = null;
     this.acked = true;
     this.connecting = null;
+    this.chat = new ChatBot(state, env);
   }
 
   // يُستدعى من cron: يتأكد أن المنبّه يعمل والاتصال قائم
@@ -93,11 +99,16 @@ export class BotPresence {
           op: 2,
           d: {
             token: this.env.DISCORD_BOT_TOKEN,
-            intents: 0,
+            intents: INTENTS,
             properties: { os: 'cloudflare', browser: 'ta3reebat', device: 'ta3reebat' },
             presence: PRESENCE,
           },
         });
+        break;
+      case 0: // Dispatch
+        if (msg.t === 'READY') this.chat.setBotId(msg.d.user.id);
+        else if (msg.t === 'MESSAGE_CREATE')
+          this.chat.onMessage(msg.d).catch((e) => console.log('chatbot', e.message));
         break;
       case 11: // Heartbeat ACK
         this.acked = true;
