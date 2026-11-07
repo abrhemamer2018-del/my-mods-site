@@ -421,7 +421,42 @@ export class ChatBot {
         this.catalog ||= `القائمة غير متاحة الآن؛ وجّه السائل إلى ${SITE}/translations/`;
       }
     }
-    return `${SYSTEM}\n\n# قائمة التعريبات\n${this.catalog}`;
+    return `${SYSTEM}\n\n# قائمة التعريبات\n${this.catalog}\n\n# طلبات منتدى التصويت\n${await this.requests()}`;
+  }
+
+  /** طلبات المنتدى مع حالتها (وسم المنشور)، تتحدث كل ساعة */
+  async requests() {
+    if (this.reqText && Date.now() - this.reqAt < 3600_000) return this.reqText;
+    try {
+      const forum = await dc(this.env, 'GET', `/channels/${VOTES_FORUM}`);
+      const tags = Object.fromEntries(forum.available_tags.map((t) => [t.id, t.name]));
+      const threads = (await dc(this.env, 'GET', `/guilds/${GUILD}/threads/active`)).threads.filter(
+        (t) => t.parent_id === VOTES_FORUM,
+      );
+      let before = '';
+      for (let page = 0; page < 5; page++) {
+        const r = await dc(this.env, 'GET', `/channels/${VOTES_FORUM}/threads/archived/public?limit=100${before}`);
+        threads.push(...r.threads);
+        if (!r.has_more || !r.threads.length) break;
+        before = `&before=${encodeURIComponent(r.threads.at(-1).thread_metadata.archive_timestamp)}`;
+      }
+      const lines = threads
+        .map((t) => {
+          const state = (t.applied_tags || []).map((id) => tags[id]).filter(Boolean);
+          // «غير ممكنة» تغلب أي وسم ثاني
+          const s = state.includes('غير ممكنة') ? 'غير ممكنة (السبب في المنشور)' : state.join('، ') || 'بدون حالة';
+          return `${t.name} | ${s} | https://discord.com/channels/${GUILD}/${t.id}`;
+        })
+        .sort();
+      this.reqText =
+        'كل منشور طلب لعبة (الاسم | الحالة | الرابط). «تحتاج تصويت» = يحتاج 5 أصوات، «جاهزة للمراجعة» = وصل 5 أصوات وبنشوفه، «قيد التعريب» = نشتغل عليه، «غير ممكنة» = جربناها وما ينفع تعريبها (أعطه رابط المنشور فيه السبب، ولا تقترح يطلبها مرة ثانية). إذا اللعبة لها منشور، أعطه رابطه بدل ما تقول اطلبها.\n' +
+        lines.join('\n');
+      this.reqAt = Date.now();
+    } catch (e) {
+      this.fail('requests', e);
+      this.reqText ||= 'قائمة الطلبات غير متاحة الآن.';
+    }
+    return this.reqText;
   }
 
   /** حد يومي لطلبات Claude (يُحفظ في التخزين حتى لا يضيع مع إعادة التشغيل) */
