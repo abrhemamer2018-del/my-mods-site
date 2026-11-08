@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-28
 gameRelease: 2020-03-24
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvshw759.webp
 screenshots:
   - ./shot-mvshwihn3rh.webp
@@ -20,12 +20,18 @@ video: https://www.youtube.com/watch?v=ZQzIZkxsWYw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GTA4_Arabic_Installer.zip
-    size: 2.56 MB
+    size: 2.73 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-08
+    at: 2026-11-08T15:55:00+03:00
+    notes:
+      - "أداة التثبيت تتعرف الآن على نسخة مشغّل Rockstar Games (تلقائياً أو بالاختيار اليدوي)"
+      - "إصلاح أسطر مترجمة في غير مكانها في عرض الكوميديا، وعلامات تنصيص مكررة، وسطرين بلا ترجمة"
   - version: "1.0"
     date: 2026-10-28
     notes:
@@ -53,7 +59,7 @@ tags:
 3. شغّل الأداة واضغط **تثبيت**.
 4. شغّل اللعبة، وستفتح بالعربية مباشرة.
 
-الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو GOG أو Epic. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
+الأداة سوف تجد مجلد اللعبة تلقائياً في Steam أو مشغّل Rockstar Games. وإن لم تجده، اضغط **«اختيار يدوي»** وحدد مجلد اللعبة.
 
 ## ملاحظة
 
