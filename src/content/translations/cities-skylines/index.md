@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-30
 gameRelease: 2015-03-10
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvv41vmc.webp
 screenshots:
   - ./shot-mvv51dwdlwk.webp
@@ -20,12 +20,18 @@ video: https://youtu.be/gXmahfaFjPQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Cities_Skylines_Installer.zip
-    size: 1.52 MB
+    size: 1.69 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-08
+    at: 2026-11-08T17:25:00+03:00
+    notes:
+      - "إصلاح الفراغات بين الحروف العربية المتصلة"
+      - "منع تعارض محتمل بين التعريب وتعديلات الورشة (Workshop) التي تعتمد على Harmony"
   - version: "1.0"
     date: 2026-10-30
     notes:
