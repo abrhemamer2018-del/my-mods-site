@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-09
 addedAt: 2026-10-09T21:40:33+03:00
 gameRelease: 2020-06-18
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv1b34z4.webp
 screenshots:
   - ./shot-mv1b3pg354h.webp
@@ -20,12 +20,18 @@ video: https://www.youtube.com/watch?v=MtEoS0MaNyA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BeyondTwoSouls_Installer.zip
-    size: 409.46 MB
+    size: 409.81 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-08
+    at: 2026-11-08T15:50:00+03:00
+    notes:
+      - "أداة تثبيت جديدة: خطوات واضحة، ورسائل خطأ تقول وش المشكلة بالضبط إذا ما تم التثبيت"
+      - "الأداة الجديدة تحدّث التعريب فوق النسخة القديمة مباشرة بدون إزالة"
   - version: "1.0"
     date: 2026-10-09
     notes:
