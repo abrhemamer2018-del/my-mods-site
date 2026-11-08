@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-08
 gameRelease: 2015-06-23
-version: "1.0"
+version: "1.1"
 cover: ./cover-mw7qxvdu.webp
 screenshots:
   - ./shot-mw7qzca344e.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-09
+    notes:
+      - "أداة التثبيت تعرض نسبة التقدم وعدد الملفات أثناء التثبيت (كانت تبدو متوقفة على «جارٍ العمل» والتثبيت شغال)"
+      - تثبيت أسرع على الأقراص البطيئة (كتابة أقل بحوالي 13 GB)
+      - البحث التلقائي يشمل مجلد نسخة Epic Games
   - version: "1.0"
     date: 2026-11-08
     notes:
