@@ -12,7 +12,7 @@ status: complete
 releaseDate: 2026-10-10
 addedAt: 2026-10-10T04:33:04+03:00
 gameRelease: 2015-11-09
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv1ppx1n.webp
 screenshots:
   - ./shot-mv1pwnz3vde.webp
@@ -22,12 +22,20 @@ video: https://www.youtube.com/watch?v=WAMBwnpO_SI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Fallout4_Installer.zip
-    size: 5.58 MB
+    size: 5.61 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-08
+    at: 2026-11-08T09:25:00+03:00
+    notes:
+      - "إصلاح أوصاف المهارات في شجرة المهارات (Vault-Tec): الوصف صار يظهر كاملاً وبالترتيب الصحيح بدل سطر واحد مقطوع"
+      - "إصلاح الكلمات الملتصقة بدون مسافات مثل «الحظالمتطلبات» في سطر المتطلبات وغيره"
+      - "رفع اسم المهمة في لافتة «بدأت/اكتملت» حتى لا يركب فوق أهداف المهمة"
+      - "تصحيح بعض الكلمات في حوارات Far Harbor"
   - version: "1.1"
     date: 2026-11-06
     at: 2026-11-06T09:35:00+03:00
