@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2023-04-26
-version: "1.2"
+version: "1.3"
 cover: ./cover-mvfan8p0.webp
 screenshots:
   - ./shot-mvfaoefdwcp.webp
@@ -19,12 +19,18 @@ video: https://www.youtube.com/watch?v=Yqe6wochMQs
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AOT2_Installer.zip
-    size: 2.56 MB
+    size: 2.72 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-08
+    at: 2026-11-08T17:30:00+03:00
+    notes:
+      - "إصلاح خروج اللعبة عند الوصول إلى مناطق معينة في بعض المهمات: كانت في 30 رسالة مهمة أقواس زائدة حول رموز اللعبة («[[r]» و«[/]]») فتنهار اللعبة عند ظهور الرسالة"
+      - "تصحيح سطرين في الحياة اليومية كُتب فيهما رمز بدل اسم موبليت وإيان"
   - version: "1.2"
     date: 2026-10-29
     at: 2026-10-29T22:07:00+03:00
