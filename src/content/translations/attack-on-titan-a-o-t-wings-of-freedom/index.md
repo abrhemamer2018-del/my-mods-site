@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2016-08-26
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvfaipqt.webp
 screenshots:
   - ./shot-mvfakzc2vde.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=szUQxm_iwjY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AoT_WoF_Installer.zip
-    size: 5.42 MB
+    size: 5.59 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-08
+    at: 2026-11-08T18:45:00+03:00
+    notes:
+      - "إصلاح 41 رسالة مهمة كانت رموز تلوينها مقلوبة أو فارغة فيتلوّن فيها غير الكلمة المقصودة"
+      - "تصحيحات في الترجمة: «السعاة» بدل «الرسل»، وإزالة علامات تنصيص زائدة حول 16 سطراً"
+      - "أداة تثبيت محدّثة"
   - version: "1.1"
     date: 2026-10-28
     at: 2026-10-28T07:55:00+03:00
