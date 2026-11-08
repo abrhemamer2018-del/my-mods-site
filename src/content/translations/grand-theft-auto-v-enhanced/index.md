@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-06
 gameRelease: 2025-03-04
-version: "1.3"
+version: "1.4"
 cover: ./cover-mv6c2hvs.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=NXTlh31ZWZ4
@@ -21,6 +21,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.4"
+    date: 2026-11-08
+    at: 2026-11-08T21:20:00+03:00
+    notes:
+      - "إصلاح إعادة تنزيل اللعبة من مشغّل Rockstar بعد التثبيت: التعريب صار لا يمسّ ملفات اللعبة الأصلية، ويوضع نسخة معرّبة في المجلد mods (يحتاج نحو 40 جيجابايت فارغة)"
+      - "إذا تحدّثت اللعبة تعمل بالإنجليزية تلقائياً بدل أن تتعطل، حتى تعيد تثبيت التعريب"
   - version: "1.3"
     date: 2026-11-07
     at: 2026-11-07T23:45:00+03:00
