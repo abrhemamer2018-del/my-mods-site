@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-19
 gameRelease: 2023-04-26
-version: "1.3"
+version: "1.4"
 cover: ./cover-mvfan8p0.webp
 screenshots:
   - ./shot-mvfaoefdwcp.webp
@@ -25,6 +25,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.4"
+    date: 2026-11-08
+    at: 2026-11-08T18:35:00+03:00
+    notes:
+      - "إصلاح انهيار اللعبة في المحادثات بعد اختيار الاسم (حوار المدرب كيث وما بعده): حوارات المحادثات صارت في سطرين بدل ثلاثة، لأن مربعها لا يتسع لأكثر"
+      - "تنبيه في شاشة إنشاء الشخصية: اكتب الاسم واللقب بالحروف الإنجليزية الكبيرة (مثل EREN)، لأن الحروف الصغيرة تظهر حروفاً غير مفهومة"
   - version: "1.3"
     date: 2026-11-08
     at: 2026-11-08T17:30:00+03:00
