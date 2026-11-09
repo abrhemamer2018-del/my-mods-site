@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-07
 gameRelease: 2012-09-17
-version: "1.0"
+version: "1.1"
 cover: ./cover-mw6iqjgf.webp
 screenshots:
   - ./shot-mw6ithp3ztn.webp
@@ -20,12 +20,17 @@ video: https://www.youtube.com/watch?v=9PlLwA_uVCw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Borderlands2_Installer.zip
-    size: 14.74 MB
+    size: 14.78 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-09
+    at: 2026-11-09T17:35:00+03:00
+    notes:
+      - "إصلاح فشل التثبيت برسالة «لم يُعثر على ملف اللعبة» عند من لا يملك كل إضافات اللعبة (DLC): تُتخطى الإضافات غير المثبتة ويُعرّب الباقي"
   - version: "1.0"
     date: 2026-11-07
     notes:
