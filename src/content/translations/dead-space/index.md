@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-10
 addedAt: 2026-10-10T03:53:24+03:00
 gameRelease: 2023-01-27
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv1ob1gq.webp
 screenshots:
   - ./shot-mv1oj5n1hn9.webp
@@ -19,12 +19,21 @@ video: https://www.youtube.com/watch?v=ctQl9wa3ydE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/DeadSpace.zip
-    size: 485 KB
+    size: 778 KB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-09
+    at: 2026-11-09T17:50:00+03:00
+    notes:
+      - "إصلاح النصوص الملخبطة (حروف تتبادل مكانها حول المسافات مثل «هؤلاء الأوغاد»)"
+      - "إصلاح ترتيب أسطر الترجمة النصية حين يظهر اسم المتحدث"
+      - "إصلاح النصوص المقلوبة على شاشات اللعبة (محطة الحفظ، استخدم)"
+      - "إصلاح وسوم ظاهرة في نصوص Unitology وترتيب نصوص أزرار التحكم"
+      - "التحديث يُثبَّت فوق الإصدار السابق مباشرة"
   - version: "1.0"
     date: 2026-10-10
     notes:
