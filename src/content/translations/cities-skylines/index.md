@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-30
 gameRelease: 2015-03-10
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvv41vmc.webp
 screenshots:
   - ./shot-mvv51dwdlwk.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-09
+    at: 2026-11-09T14:20:00+03:00
+    notes:
+      - "إصلاح النص العربي في واجهة مودات الورشة التي فيها ترجمة عربية خاصة بها (مثل TM:PE): كان يظهر مقلوباً مع التعريب"
+      - "التعريب صار يستخدم مود Harmony من الورشة إذا كان مشتركاً فيه، بدل تحميل نسخة ثانية منه"
   - version: "1.1"
     date: 2026-11-08
     at: 2026-11-08T17:25:00+03:00
