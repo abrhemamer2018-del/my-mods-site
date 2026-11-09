@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-06
 addedAt: 2026-10-07T01:53:30+03:00
 gameRelease: 2026-09-02
-version: "1.0"
+version: "1.1"
 cover: ./cover-mux9oom4.webp
 banner: ./banner-mux9oucj.webp
 screenshots:
@@ -22,12 +22,19 @@ video: https://www.youtube.com/watch?v=pNTT7lknCE0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Dawnwalker_Installer.zip
-    size: 3.14 MB
+    size: 3.58 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-09
+    notes:
+      - إصلاح منع تنزيل أداة التثبيت (تحذير Windows Defender الخاطئ)
+      - التعريب يُدمج الآن مع ملفات لعبتك وقت التثبيت، فيعمل على كل الإصدارات والتحديثات
+      - ترجمة 99 سطراً جديداً ومتغيراً من تحديث اللعبة (صعوبة «القصة» الجديدة، إعادة ضبط القدرات، إعدادات جديدة)
+      - تصحيحات في الترجمة
   - version: "1.0"
     date: 2026-10-06
     notes:
