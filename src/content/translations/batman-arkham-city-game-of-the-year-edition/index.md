@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mw7r4kz2o5u.webp
   - ./shot-mw7r4sh66bf.webp
   - ./shot-mw7r52y0xqh.webp
-video: https://www.youtube.com/watch?v=aW9Ygc--xMs
+video: https://www.youtube.com/watch?v=FCTdm8Nb7Ps
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BatmanArkhamCity_Installer.zip
