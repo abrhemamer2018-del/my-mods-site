@@ -16,7 +16,7 @@
 // ============================================================
 
 export const MIN_PEAK = 1000;
-export const VOTES_NEEDED = 5;
+export const VOTES_NEEDED = 10;
 // عضو نُشر له طلب لا يرسل طلباً جديداً قبل أسبوع
 export const REQUEST_EVERY = 7 * 86400000;
 
