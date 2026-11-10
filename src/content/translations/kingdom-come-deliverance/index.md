@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-06
 addedAt: 2026-10-07T03:13:07+03:00
 gameRelease: 2018-02-13
-version: "1.5"
+version: "1.6"
 cover: ./cover-muxcsvaf.webp
 banner: ./banner-muxcs5m6.webp
 screenshots:
@@ -21,12 +21,17 @@ video: https://www.youtube.com/watch?v=HMaoyMht7_0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_KCD_Installer.zip
-    size: 27.02 MB
+    size: 27.03 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.6"
+    date: 2026-11-10
+    at: 2026-11-10T15:00:00+03:00
+    notes:
+      - "إصلاح نص المهمة في البطاقة فوق علامة الخريطة: كانت الأسطر تظهر من الأسفل إلى الأعلى"
   - version: "1.5"
     date: 2026-11-10
     at: 2026-11-10T12:30:00+03:00
