@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-08
 gameRelease: 2013-10-24
-version: "1.0"
+version: "1.1"
 cover: ./cover-mw7qpttz.webp
 screenshots:
   - ./shot-mw7quchgz4g.webp
@@ -20,12 +20,16 @@ video: https://www.youtube.com/watch?v=FoTAQr1jBuY
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_BatmanArkhamOrigins_Installer.zip
-    size: 8.16 MB
+    size: 8.15 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-10
+    notes:
+      - "توحيد اسم حركة الصد (Counter): «صد» بدل «رد فعل» و«التصدي» في القوائم والتحكم والترقيات والنصائح"
   - version: "1.0"
     date: 2026-11-08
     notes:
