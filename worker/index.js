@@ -9,7 +9,7 @@
 //    GITHUB_TOKEN    توكن GitHub بصلاحية Contents: Read and write على المستودع
 // ============================================================
 import { isAbusive } from './moderation.js';
-import { discordInteraction } from './discord.js';
+import { discordInteraction, closeTranslatedRequest } from './discord.js';
 import { keepPresence, botStatus } from './presence.js';
 export { BotPresence } from './presence.js';
 import { indexNowCheck } from './indexnow.js';
@@ -876,6 +876,15 @@ async function saveEntry(gh, payload) {
     } catch (err) {
       console.log('Discord announce failed', err.message);
       discord = 'failed';
+    }
+  }
+
+  // تعريب جديد منشور: منشور طلبه في منتدى التصويت يُقفل بوسم «تم التعريب» (فشله لا يُفشل الحفظ)
+  if (type === 'translations' && payload.isNew && !cleaned.draft) {
+    try {
+      await closeTranslatedRequest(gh.env, cleaned.title);
+    } catch (err) {
+      console.log('Close request failed', err.message);
     }
   }
 

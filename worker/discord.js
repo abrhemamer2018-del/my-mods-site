@@ -26,6 +26,8 @@ export const TAGS = {
   ready: 'جاهزة للمراجعة',
   // لعبة جربناها وما نقدر نعرّبها: البوت لا يضيف أصواتاً ولا يعيد فتح منشورها (الوسم يضيفه صاحب السيرفر بيده)
   closed: 'غير ممكنة',
+  // لعبة نزل تعريبها في الموقع: منشورها مقفل ومؤرشف (closeTranslatedRequest)
+  done: 'تم التعريب',
 };
 
 const API = 'https://discord.com/api/v10';
@@ -355,10 +357,11 @@ async function alreadyTranslated(env, origin, name) {
 //  منتدى الطلبات
 // ------------------------------------------------------------
 /** منشور طلب قديم لنفس اللعبة (مفتوح أو مؤرشف)، بمطابقة الاسم الإنجليزي داخل العنوان */
-async function findRequest(env, guildId, name) {
+async function findRequest(env, guildId, name, exact = false) {
   const want = norm(name);
   if (want.length < 3) return null;
-  const match = (t) => ` ${norm(t.name)} `.includes(` ${want} `);
+  // exact: الاسم كاملاً (إقفال منشور بعد التعريب)، فـ Far Cry لا يقفل منشور Far Cry 3
+  const match = (t) => (exact ? norm(t.name) === want : ` ${norm(t.name)} `.includes(` ${want} `));
 
   const active = await dc(env, 'GET', `/guilds/${guildId}/threads/active`);
   const hit = (active.threads || []).find((t) => t.parent_id === env.DISCORD_REQUESTS_FORUM && match(t));
@@ -377,6 +380,20 @@ async function findRequest(env, guildId, name) {
     before = res.threads[res.threads.length - 1].thread_metadata.archive_timestamp;
   }
   return null;
+}
+
+/** نزل تعريب اللعبة في الموقع: منشور طلبها يأخذ وسم «تم التعريب» ويُقفل ويؤرشف بصمت (بدون رسالة ولا منشن)،
+ *  فيختفي من «تحتاج تصويت» و«جاهزة للمراجعة». الطلب المكرر بعدها يأخذ رابط الموقع (alreadyTranslated) */
+export async function closeTranslatedRequest(env, name) {
+  if (!env.DISCORD_BOT_TOKEN || !env.DISCORD_REQUESTS_FORUM) return null;
+  const forum = await dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_FORUM}`);
+  const tags = Object.fromEntries((forum.available_tags || []).map((t) => [t.name, t.id]));
+  const post = tags[TAGS.done] && (await findRequest(env, forum.guild_id, name, true));
+  if (!post) return null;
+  if (post.thread_metadata?.archived) await dc(env, 'PATCH', `/channels/${post.id}`, { archived: false });
+  await dc(env, 'PATCH', `/channels/${post.id}`, { applied_tags: [tags[TAGS.done]] });
+  await dc(env, 'PATCH', `/channels/${post.id}`, { archived: true, locked: true });
+  return post.id;
 }
 
 /** وقت آخر طلب لهذا العضو خلال الأسبوع من روم السجل المخفي، أو null.
