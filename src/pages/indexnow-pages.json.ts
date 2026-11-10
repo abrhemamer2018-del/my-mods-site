@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { createHash } from 'node:crypto';
-import { getArticles, getTranslations, seriesOf, SERIES } from '../lib/utils';
+import { getArticles, getTranslations, getUpcoming, seriesOf, SERIES } from '../lib/utils';
 
 // بصمة محتوى كل صفحة مهمة: الخادم (worker/indexnow.js) يقارنها بعد كل نشر،
 // فيبلغ Bing (IndexNow) بالصفحات التي تغيّرت فقط، مهما كانت طريقة تعديلها (لوحة التحكم أو Git)
@@ -27,6 +27,8 @@ export const GET: APIRoute = async () => {
   pages['/'] = list;
   pages['/translations/'] = list;
   pages['/articles/'] = hash(articles.map((a) => a.id));
+  // التعريبات القادمة تتغير مع كل تعريب جديد قيد العمل أو تغيّر نسبة الإنجاز
+  pages['/upcoming/'] = hash((await getUpcoming()).map((t) => [t.id, t.data]));
 
   return new Response(JSON.stringify(pages), { headers: { 'Content-Type': 'application/json' } });
 };
