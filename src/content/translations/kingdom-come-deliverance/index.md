@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-06
 addedAt: 2026-10-07T03:13:07+03:00
 gameRelease: 2018-02-13
-version: "1.4"
+version: "1.5"
 cover: ./cover-muxcsvaf.webp
 banner: ./banner-muxcs5m6.webp
 screenshots:
@@ -21,12 +21,20 @@ video: https://www.youtube.com/watch?v=HMaoyMht7_0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_KCD_Installer.zip
-    size: 27.01 MB
+    size: 27.02 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.5"
+    date: 2026-11-10
+    at: 2026-11-10T12:30:00+03:00
+    notes:
+      - "إصلاح صفحات المساعدة (ومنها صفحة الإقناع): النص كان مقطوعاً أو متداخلاً مع البند الذي تحته"
+      - "إصلاح ألوان النصوص الملونة الممتدة على أكثر من سطر (تحذير الحفظ المعدّل، الكتب، تعليمات النرد)"
+      - "تصحيح مخاطبة هنري بصيغة المؤنث في عدد من الحوارات"
+      - "«أبي» بدل «الأب» فوق رأس والد هنري"
   - version: "1.4"
     date: 2026-11-09
     at: 2026-11-09T14:30:00+03:00
