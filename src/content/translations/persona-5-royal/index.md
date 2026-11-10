@@ -12,7 +12,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-16
 gameRelease: 2022-10-20
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvb1o5up.webp
 screenshots:
   - ./shot-mvb1pfap4ir.webp
@@ -23,7 +23,7 @@ video: https://www.youtube.com/watch?v=SKpSpvFCZRw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_P5R_Installer.zip
-    size: 49.10 MB
+    size: 49.39 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -40,6 +40,13 @@ changelog:
       - "الأداة تعمل الآن مع كل نسخ اللعبة، ومنها النسخ غير Steam والإصدارات الأقدم مثل 1.03B (لم تعد تظهر رسالة: نسخة اللعبة لا تطابق هذا التعريب)"
       - "التعريب يُطبَّق على ملف EN.CPK الموجود عندك بدل نسخة محددة منه، ونتيجته في نسخة Steam مطابقة للإصدار 1.0 تماماً"
       - "إن لم تجد الأداة مجلد اللعبة تلقائياً، اضغط «اختيار يدوي» وحدد المجلد الذي فيه P5R.exe"
+  - version: "1.2"
+    date: 2026-11-10
+    notes:
+      - "تعريب ترجمة كل مشاهد الأنمي (350 سطراً جديداً كانت بالإنجليزي، مثل مشهد هروب جوكر من الكازينو)"
+      - "إصلاح حرف الجيم في أول الكلمة: كان يظهر «؟» في ترجمة المشاهد"
+      - "وقت اليوم في التقويم أعلى الشاشة (الصباح، بعد الظهر، المساء...) يظهر بالعربي كاملاً بدل الإنجليزي"
+      - "تصحيح أكثر من 400 سطر في الحوارات (أقواس زائدة، وألفاظ مثل «رسل/رسول» صارت «مبعوث»)"
 addedAt: 2026-10-16T15:17:45.532Z
 tags:
   - "JRPG"
