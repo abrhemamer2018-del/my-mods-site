@@ -19,6 +19,8 @@ export const MIN_PEAK = 1000;
 export const VOTES_NEEDED = 10;
 // عضو نُشر له طلب لا يرسل طلباً جديداً قبل أسبوع
 export const REQUEST_EVERY = 7 * 86400000;
+// أصوات كل عضو خلال 7 أيام (صاحب السيرفر مستثنى؛ صوت صاحب الطلب على طلبه ما يُحسب منها)
+export const VOTES_PER_WEEK = 3;
 
 export const TAGS = {
   hot: 'مطلوبة بقوة',
@@ -141,6 +143,15 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
   const old = await findRequest(env, it.guild_id, game.name);
   if (old) {
     const v = await addVote(env, old, userId);
+    if (v.limit) {
+      return {
+        dm:
+          `هذي اللعبة مطلوبة من قبل 👍
+https://discord.com/channels/${it.guild_id}/${old.id}
+
+` + limitText(v.next),
+      };
+    }
     if (v.closed) {
       return {
         dm:
@@ -229,8 +240,15 @@ async function handleVote(env, threadId, userId) {
 
 ${LIVE_TIP}`;
   if (v.already) return 'صوتك محسوب من قبل 👍';
+  if (v.limit) return limitText(v.next);
   if (v.ready) return `تم تسجيل صوتك 👍 ووصل الطلب ${VOTES_NEEDED} أصوات، ودخل قائمة المراجعة ✅`;
   return 'تم تسجيل صوتك 👍 وبيوصلك تنبيه إذا صار جديد في الطلب.';
+}
+
+function limitText(next) {
+  const t = Math.ceil(next / 1000);
+  return `كل عضو له **${VOTES_PER_WEEK} أصوات** في الأسبوع، واستخدمتها كلها 🗳️
+تقدر تصوّت مرة ثانية <t:${t}:R> (<t:${t}:f>).`;
 }
 
 /** يضيف اللاعب لمنشور الطلب، ويحدّث العداد والوسم في منشورات البوت → { already, votes, ready } */
@@ -241,10 +259,21 @@ async function addVote(env, thread, userId) {
   const isMember = await dc(env, 'GET', `/channels/${thread.id}/thread-members/${userId}`, undefined, true);
   if (isMember) return { already: true };
 
+  // حد الأصوات الأسبوعي: كل صوت سطر "<@id> صوّت" في روم السجل المخفي
+  if (userId !== env.DISCORD_OWNER_ID) {
+    const used = await logTimes(env, userId, 'صوّت');
+    if (used.length >= VOTES_PER_WEEK) return { limit: true, next: Math.min(...used) + REQUEST_EVERY };
+  }
+
   if (thread.thread_metadata?.archived) {
     await dc(env, 'PATCH', `/channels/${thread.id}`, { archived: false });
   }
   await dc(env, 'PUT', `/channels/${thread.id}/thread-members/${userId}`);
+  await dc(env, 'POST', `/channels/${env.DISCORD_REQUESTS_LOG}/messages`, {
+    content: `<@${userId}> صوّت على **${thread.name}**
+https://discord.com/channels/${thread.guild_id}/${thread.id}`,
+    allowed_mentions: { parse: [] },
+  });
 
   // البوت عضو في منشوراته وفي الطلبات القديمة التي رد عليها، فلا يُحسب صوتاً. ديسكورد يتوقف عن العد عند 50
   const fresh = await dc(env, 'GET', `/channels/${thread.id}`);
@@ -396,22 +425,30 @@ export async function closeTranslatedRequest(env, name) {
   return post.id;
 }
 
-/** وقت آخر طلب لهذا العضو خلال الأسبوع من روم السجل المخفي، أو null.
- *  كل سطر في السجل يبدأ بمنشن صاحب الطلب؛ حذف السطر يسمح له بطلب جديد */
+/** وقت آخر طلب لهذا العضو خلال الأسبوع، أو null (حذف سطره من روم السجل يسمح له بطلب جديد) */
 async function lastRequestAt(env, userId) {
+  const times = await logTimes(env, userId, 'طلب');
+  return times.length ? Math.max(...times) : null;
+}
+
+/** أوقات أسطر هذا العضو من نوع kind ("طلب" أو "صوّت") خلال آخر 7 أيام في روم السجل المخفي.
+ *  كل سطر يبدأ بمنشن العضو ثم النوع؛ حذف السطر يرجّع له الطلب أو الصوت */
+async function logTimes(env, userId, kind) {
   const since = Date.now() - REQUEST_EVERY;
+  const head = `<@${userId}> ${kind} `;
+  const times = [];
   let before = '';
-  for (let page = 0; page < 5; page++) {
+  for (let page = 0; page < 15; page++) {
     const msgs = await dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_LOG}/messages?limit=100${before ? `&before=${before}` : ''}`);
     for (const m of msgs) {
       const at = Date.parse(m.timestamp);
-      if (at < since) return null;
-      if (m.author?.id === env.DISCORD_APP_ID && m.content.startsWith(`<@${userId}>`)) return at;
+      if (at < since) return times;
+      if (m.author?.id === env.DISCORD_APP_ID && m.content.startsWith(head)) times.push(at);
     }
     if (msgs.length < 100) break;
     before = msgs[msgs.length - 1].id;
   }
-  return null;
+  return times;
 }
 
 /** وسوم المنتدى بالاسم → المعرّف */
