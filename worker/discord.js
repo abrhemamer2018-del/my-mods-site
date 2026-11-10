@@ -21,6 +21,9 @@ export const VOTES_NEEDED = 10;
 export const REQUEST_EVERY = 7 * 86400000;
 // أصوات كل عضو خلال 7 أيام (صاحب السيرفر مستثنى؛ صوت صاحب الطلب على طلبه ما يُحسب منها)
 export const VOTES_PER_WEEK = 3;
+// سقف شغل صاحب السيرفر: ما يكون في «جاهزة للمراجعة» + «قيد التعريب» أكثر من هذا العدد (user's rule 2026-11-11:
+// ما يقدر يعرّب أكثر من 3 ألعاب في اليوم). اللي تكمّل أصواتها والقائمة مليانة تاخذ «بانتظار دورها» (queueTick)
+export const READY_CAP = 3;
 
 export const TAGS = {
   hot: 'مطلوبة بقوة',
@@ -30,6 +33,8 @@ export const TAGS = {
   closed: 'غير ممكنة',
   // لعبة نزل تعريبها في الموقع: منشورها مقفل ومؤرشف (closeTranslatedRequest)
   done: 'تم التعريب',
+  progress: 'قيد التعريب',
+  queue: 'بانتظار دورها',
 };
 
 const API = 'https://discord.com/api/v10';
@@ -38,7 +43,12 @@ const VOTES_FIELD = 'الأصوات';
 const VOTE_TEXT =
   `🗳️ تحتاج **${VOTES_NEEDED} أصوات** عشان تدخل قائمة المراجعة، وما نعرّب لعبة ما وصلت ${VOTES_NEEDED} أصوات.\n` +
   'إذا تبيها معربة اضغط الزر تحت 👇';
-const READY_TEXT = `✅ وصلت **${VOTES_NEEDED} أصوات** ودخلت **قائمة المراجعة**.`;
+const NO_DATES = 'ما نعطي مواعيد، وأول ما يتغير شي بيوصلكم تنبيه هنا 🔔';
+const READY_TEXT = `✅ وصلت **${VOTES_NEEDED} أصوات** ودخلت **قائمة المراجعة**.\n${NO_DATES}`;
+const queueText = (pos, n) =>
+  `✅ وصلت **${VOTES_NEEDED} أصوات** وهي الحين **بانتظار دورها** للمراجعة.\n📋 دورها: **${pos} من ${n}**.\n${NO_DATES}`;
+const PROGRESS_TEXT = '🛠️ **قيد التعريب**: بدأنا نشتغل عليها.\nما نعطي مواعيد، وأول ما ينزل التعريب بيوصلكم تنبيه هنا 🔔';
+const CLOSED_TEXT = '⛔ **غير ممكنة**: جربنا نعرّبها وللأسف ما نقدر حالياً.';
 const EPHEMERAL = 64;
 const LIVE_TIP =
   `💡 تقدر تلعبها بالعربي الحين مع برنامج **تعريبات لايف**: يترجم نصوص أي لعبة للعربي مباشرة على الشاشة وأنت تلعب.\n` +
@@ -242,6 +252,7 @@ ${LIVE_TIP}`;
   if (v.already) return 'صوتك محسوب من قبل 👍';
   if (v.limit) return limitText(v.next);
   if (v.ready) return `تم تسجيل صوتك 👍 ووصل الطلب ${VOTES_NEEDED} أصوات، ودخل قائمة المراجعة ✅`;
+  if (v.queued) return `تم تسجيل صوتك 👍 ووصل الطلب ${VOTES_NEEDED} أصوات، ودخل طابور الانتظار للمراجعة ⏳`;
   return 'تم تسجيل صوتك 👍 وبيوصلك تنبيه إذا صار جديد في الطلب.';
 }
 
@@ -297,17 +308,124 @@ https://discord.com/channels/${thread.guild_id}/${thread.id}`,
     });
   }
 
+  let queued = false;
   if (ready) {
-    await dc(env, 'PATCH', `/channels/${thread.id}`, {
-      applied_tags: [...applied.filter((t) => !waiting.includes(t)), tags[TAGS.ready]],
-    });
-    await dc(env, 'POST', `/channels/${thread.id}/messages`, {
-      content: `✅ وصل الطلب **${VOTES_NEEDED} أصوات** ودخل قائمة المراجعة. شكراً لكل اللي صوّتوا!`,
-    });
-    await notifyOwner(env, `✅ **طلب وصل ${VOTES_NEEDED} أصوات ودخل قائمة المراجعة:** ${fresh.name}\n` +
-      `https://discord.com/channels/${fresh.guild_id}/${thread.id}`);
+    const posts = await allPosts(env);
+    const live = (p) => !hasTag(p, tags[TAGS.closed]) && !hasTag(p, tags[TAGS.done]);
+    const busy = posts.filter((p) => live(p) && (hasTag(p, tags[TAGS.ready]) || hasTag(p, tags[TAGS.progress]))).length;
+    const keep = applied.filter((t) => !waiting.includes(t));
+    if (busy < READY_CAP || !tags[TAGS.queue]) {
+      await dc(env, 'PATCH', `/channels/${thread.id}`, { applied_tags: [...keep, tags[TAGS.ready]] });
+      await say(env, thread.id, `✅ وصل الطلب **${VOTES_NEEDED} أصوات** ودخل قائمة المراجعة. شكراً لكل اللي صوّتوا!`);
+      await notifyOwner(env, `✅ **طلب وصل ${VOTES_NEEDED} أصوات ودخل قائمة المراجعة:** ${fresh.name}\n` +
+        `https://discord.com/channels/${fresh.guild_id}/${thread.id}`);
+    } else {
+      queued = true;
+      await dc(env, 'PATCH', `/channels/${thread.id}`, { applied_tags: [...keep, tags[TAGS.queue]] });
+      const n = posts.filter((p) => live(p) && hasTag(p, tags[TAGS.queue])).length + 1;
+      if (msg?.embeds?.[0]) {
+        await dc(env, 'PATCH', `/channels/${thread.id}/messages/${thread.id}`, {
+          embeds: [{ ...msg.embeds[0], description: queueText(n, n) }],
+        });
+      }
+      await say(env, thread.id,
+        `✅ وصل الطلب **${VOTES_NEEDED} أصوات**! قائمة المراجعة مليانة الحين، فدخل **طابور الانتظار** (دوره ${n}).\n` +
+        'أول ما يفضى مكان يدخل لحاله، واللي أصواته أكثر يدخل أول. كمّلوا التصويت 👍');
+    }
   }
-  return { votes, ready };
+  return { votes, ready: ready && !queued, queued };
+}
+
+// ------------------------------------------------------------
+//  طابور المراجعة (كل 10 دقائق من cron)
+// ------------------------------------------------------------
+const hasTag = (t, id) => !!id && (t.applied_tags || []).includes(id);
+const votesOf = (t) => Math.max(1, (t.member_count || 2) - 1);
+
+/** كل منشورات منتدى الطلبات (المفتوحة والمؤرشفة) */
+async function allPosts(env) {
+  const forum = await dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_FORUM}`);
+  const active = await dc(env, 'GET', `/guilds/${forum.guild_id}/threads/active`);
+  const posts = (active.threads || []).filter((t) => t.parent_id === env.DISCORD_REQUESTS_FORUM);
+  let before = '';
+  for (let page = 0; page < 5; page++) {
+    const res = await dc(env, 'GET',
+      `/channels/${env.DISCORD_REQUESTS_FORUM}/threads/archived/public?limit=100${before ? `&before=${encodeURIComponent(before)}` : ''}`);
+    posts.push(...(res.threads || []));
+    if (!res.has_more || !res.threads?.length) break;
+    before = res.threads[res.threads.length - 1].thread_metadata.archive_timestamp;
+  }
+  return posts;
+}
+
+/** رسالة من البوت داخل المنشور (توصل تنبيه لكل اللي صوّتوا، بدون منشن) */
+async function say(env, threadId, content) {
+  const t = await dc(env, 'GET', `/channels/${threadId}`);
+  if (t.thread_metadata?.archived) await dc(env, 'PATCH', `/channels/${threadId}`, { archived: false });
+  await dc(env, 'POST', `/channels/${threadId}/messages`, { content, allowed_mentions: { parse: [] } });
+}
+
+/** يغيّر نص بطاقة الطلب (منشورات البوت فقط) ويرجّع النص القديم، أو null إذا ما فيه بطاقة */
+async function setCard(env, threadId, description, removeButton = false) {
+  const msg = await dc(env, 'GET', `/channels/${threadId}/messages/${threadId}`, undefined, true);
+  const embed = msg?.embeds?.[0];
+  if (!embed) return null;
+  const old = embed.description || '';
+  if (old !== description || (removeButton && msg.components?.length)) {
+    const t = await dc(env, 'GET', `/channels/${threadId}`);
+    if (t.thread_metadata?.archived) await dc(env, 'PATCH', `/channels/${threadId}`, { archived: false });
+    await dc(env, 'PATCH', `/channels/${threadId}/messages/${threadId}`, {
+      embeds: [{ ...embed, description }],
+      ...(removeButton ? { components: [] } : {}),
+    });
+  }
+  return old;
+}
+
+/** يدخل ألعاب الطابور لما يفضى مكان، يحدّث أرقام الدور، ويبلغ المصوّتين لما صاحب السيرفر يحط
+ *  «قيد التعريب» أو «غير ممكنة» بيده */
+export async function queueTick(env) {
+  if (!env.DISCORD_BOT_TOKEN || !env.DISCORD_REQUESTS_FORUM) return;
+  const tags = await forumTags(env);
+  if (!tags[TAGS.queue]) return;
+  const posts = (await allPosts(env)).filter((t) => t.owner_id === env.DISCORD_APP_ID);
+
+  for (const t of posts) {
+    if (hasTag(t, tags[TAGS.done])) continue;
+    if (hasTag(t, tags[TAGS.closed])) {
+      const old = await setCard(env, t.id, CLOSED_TEXT, true);
+      if (old !== null && !old.startsWith('⛔')) {
+        await say(env, t.id, `⛔ للأسف جربنا نعرّب **${t.name}** وما نقدر نعرّبها حالياً.\n\n${LIVE_TIP}`);
+        await dc(env, 'PATCH', `/channels/${t.id}`, { archived: true, locked: true });
+      } else if (old !== null && !t.thread_metadata?.archived) {
+        await dc(env, 'PATCH', `/channels/${t.id}`, { archived: true, locked: true });
+      }
+    } else if (hasTag(t, tags[TAGS.progress])) {
+      const old = await setCard(env, t.id, PROGRESS_TEXT);
+      if (old !== null && !old.startsWith('🛠️')) {
+        await say(env, t.id, `🛠️ بدأنا تعريب **${t.name}**! أول ما ينزل بيوصلكم تنبيه هنا.`);
+      }
+    }
+  }
+
+  const live = (t) => !hasTag(t, tags[TAGS.closed]) && !hasTag(t, tags[TAGS.done]);
+  let busy = posts.filter((t) => live(t) && (hasTag(t, tags[TAGS.ready]) || hasTag(t, tags[TAGS.progress]))).length;
+  // الأكثر أصواتاً أول، ولو تساووا الأقدم أول
+  const queue = posts
+    .filter((t) => live(t) && hasTag(t, tags[TAGS.queue]))
+    .sort((a, b) => votesOf(b) - votesOf(a) || (BigInt(a.id) < BigInt(b.id) ? -1 : 1));
+
+  while (busy < READY_CAP && queue.length) {
+    const t = queue.shift();
+    busy++;
+    await dc(env, 'PATCH', `/channels/${t.id}`, {
+      applied_tags: [...t.applied_tags.filter((x) => x !== tags[TAGS.queue]), tags[TAGS.ready]],
+    });
+    await setCard(env, t.id, READY_TEXT);
+    await say(env, t.id, `✅ جا دور **${t.name}** ودخلت قائمة المراجعة!\n${NO_DATES}`);
+    await notifyOwner(env, `✅ **دخلت قائمة المراجعة من الطابور:** ${t.name}\nhttps://discord.com/channels/${t.guild_id}/${t.id}`);
+  }
+  for (let i = 0; i < queue.length; i++) await setCard(env, queue[i].id, queueText(i + 1, queue.length));
 }
 
 // ------------------------------------------------------------
@@ -411,9 +529,10 @@ async function findRequest(env, guildId, name, exact = false) {
   return null;
 }
 
-/** نزل تعريب اللعبة في الموقع: منشور طلبها يأخذ وسم «تم التعريب» ويُقفل ويؤرشف بصمت (بدون رسالة ولا منشن)،
+/** نزل تعريب اللعبة في الموقع: منشور طلبها يأخذ وسم «تم التعريب» ويُقفل ويؤرشف، وتنزل فيه رسالة بالرابط
+ *  (تنبيه للمصوّتين، بدون منشن)،
  *  فيختفي من «تحتاج تصويت» و«جاهزة للمراجعة». الطلب المكرر بعدها يأخذ رابط الموقع (alreadyTranslated) */
-export async function closeTranslatedRequest(env, name) {
+export async function closeTranslatedRequest(env, name, url) {
   if (!env.DISCORD_BOT_TOKEN || !env.DISCORD_REQUESTS_FORUM) return null;
   const forum = await dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_FORUM}`);
   const tags = Object.fromEntries((forum.available_tags || []).map((t) => [t.name, t.id]));
@@ -421,6 +540,10 @@ export async function closeTranslatedRequest(env, name) {
   if (!post) return null;
   if (post.thread_metadata?.archived) await dc(env, 'PATCH', `/channels/${post.id}`, { archived: false });
   await dc(env, 'PATCH', `/channels/${post.id}`, { applied_tags: [tags[TAGS.done]] });
+  if (post.owner_id === env.DISCORD_APP_ID && url) {
+    await setCard(env, post.id, `🎉 **تم التعريب**: ${url}`, true);
+    await say(env, post.id, `🎉 نزل تعريب **${post.name}**! شكراً لكل اللي صوّتوا 🌹\n${url}`);
+  }
   await dc(env, 'PATCH', `/channels/${post.id}`, { archived: true, locked: true });
   return post.id;
 }

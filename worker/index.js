@@ -9,7 +9,7 @@
 //    GITHUB_TOKEN    توكن GitHub بصلاحية Contents: Read and write على المستودع
 // ============================================================
 import { isAbusive } from './moderation.js';
-import { discordInteraction, closeTranslatedRequest } from './discord.js';
+import { discordInteraction, closeTranslatedRequest, queueTick } from './discord.js';
 import { keepPresence, botStatus } from './presence.js';
 export { BotPresence } from './presence.js';
 import { indexNowCheck } from './indexnow.js';
@@ -51,6 +51,10 @@ export default {
     ctx.waitUntil(keepPresence(env));
     ctx.waitUntil(indexNowCheck(env));
     ctx.waitUntil(buildRetryCheck(env));
+    // طابور المراجعة في ديسكورد: كل 10 دقائق (worker/discord.js queueTick)
+    if (new Date(event.scheduledTime).getUTCMinutes() % 10 === 0) {
+      ctx.waitUntil(queueTick(env).catch((e) => console.log('queueTick failed', e.message)));
+    }
   },
 };
 
@@ -882,7 +886,7 @@ async function saveEntry(gh, payload) {
   // تعريب جديد منشور: منشور طلبه في منتدى التصويت يُقفل بوسم «تم التعريب» (فشله لا يُفشل الحفظ)
   if (type === 'translations' && payload.isNew && !cleaned.draft) {
     try {
-      await closeTranslatedRequest(gh.env, cleaned.title);
+      await closeTranslatedRequest(gh.env, cleaned.title, `${SITE_URL}/translations/${slug}/`);
     } catch (err) {
       console.log('Close request failed', err.message);
     }
