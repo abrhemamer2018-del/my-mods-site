@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-26
 gameRelease: 2026-02-19
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvp1d55y.webp
 screenshots:
   - ./shot-mvp1gexu1yu.webp
@@ -19,7 +19,7 @@ video: https://www.youtube.com/watch?v=3mnxjDNe5cI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Styx_Installer.zip
-    size: 2.92 MB
+    size: 3.18 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -29,6 +29,12 @@ changelog:
     date: 2026-10-26
     notes:
       - الإصدار الأول
+  - version: "1.1"
+    date: 2026-11-10
+    notes:
+      - "إصلاح أزرار التفاعل (فتح، نظر، اختباء، فتح وإغلاق...): كانت تظهر حروفاً منفصلة ومعكوسة، والآن تظهر بالعربي الصحيح"
+      - "إصلاح تلميحات الأزرار في القوائم بالطريقة نفسها"
+      - "تصحيح التنصيص «» في 9 أسطر حوار، ومسافات أسماء الرونيات وعناوين المهام"
 addedAt: 2026-10-26T09:21:45.111Z
 tags:
   - Stealth
