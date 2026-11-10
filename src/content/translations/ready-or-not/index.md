@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-21
 gameRelease: 2023-12-13
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvh6qoby.webp
 screenshots:
   - ./shot-mvh6ryqf9ee.webp
@@ -19,12 +19,18 @@ video: https://www.youtube.com/watch?v=BoGc3i0qq6A
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ReadyOrNot_Installer.zip
-    size: 7.99 MB
+    size: 8.28 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-10
+    at: 2026-11-10T19:50:00.000Z
+    notes:
+      - "أداة التثبيت صارت تتعرّف على نسخة Epic Games تلقائياً وعند الاختيار اليدوي"
+      - "تصحيحات صغيرة في بعض النصوص"
   - version: "1.0"
     date: 2026-10-21
     notes:
