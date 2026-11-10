@@ -38,9 +38,18 @@ const RELATED_COUNT = 4;
 const all = await getTranslations();
 // عنوان الصفحة بالصيغ التي يبحث بها الناس: "تعريب لعبة X بالعربي ... تحميل مجاني"
 const hasArabicName = /[؀-ۿ]/.test(d.titleAr) && d.titleAr.trim() !== d.title.trim();
-const pageTitle = `تعريب لعبة ${d.title} بالعربي${hasArabicName ? ` (${d.titleAr})` : ''} — تحميل مجاني`
-  .replace(/[™®]/g, '')
-  .replace(/\s+/g, ' ');
+// Bing يعتبر العنوان الأطول من 70 حرفاً طويلاً (يُقصّ في النتائج)، فنأخذ أطول صيغة تدخل في الحد
+const TITLE_MAX = 70;
+const clean = (x: string) => x.replace(/[™®]/g, '').replace(/\s+/g, ' ').trim();
+const arName = hasArabicName ? ` (${d.titleAr})` : '';
+const titleOptions = [
+  `تعريب لعبة ${d.title} بالعربي${arName} — تحميل مجاني`,
+  `تعريب لعبة ${d.title} بالعربي${arName}`,
+  `تعريب لعبة ${d.title} بالعربي — تحميل مجاني`,
+  `تعريب لعبة ${d.title} بالعربي`,
+  `تعريب ${d.title}`,
+].map(clean);
+const pageTitle = titleOptions.find((x) => x.length <= TITLE_MAX) ?? titleOptions[titleOptions.length - 1];
 // صفحة السلسلة (إن وُجدت): رابط "كل أجزاء السلسلة" فوق التعريبات المشابهة
 const series = seriesOf(item);
 
