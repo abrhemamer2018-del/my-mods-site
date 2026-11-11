@@ -12,6 +12,7 @@
 //  السر المطلوب في Cloudflare: ANTHROPIC_API_KEY (رصيد platform.claude.com)
 // ============================================================
 import Anthropic from '@anthropic-ai/sdk';
+import { chatAbuse } from './moderation.js';
 
 const API = 'https://discord.com/api/v10';
 const SITE = 'https://ta3reebat.com';
@@ -178,6 +179,12 @@ export class ChatBot {
     if (m.channel_id === this.env.DISCORD_ALERTS_CHANNEL || m.channel_id === this.env.DISCORD_REQUESTS_LOG) return;
     const staff = await this.isStaff(m);
 
+    // 0) الكلام البذيء: حظر مباشر (الكلمات الخفيفة = حذف وتنبيه)
+    if (!staff && m.content) {
+      const level = chatAbuse(m.content);
+      if (level) return this.punishAbuse(m, level);
+    }
+
     // 1) الروابط
     if (!staff) {
       const verdict = await this.checkLinks(m);
@@ -269,6 +276,43 @@ export class ChatBot {
       this.fail('link check', e);
     }
     return null;
+  }
+
+  /** كلام بذيء: 'ban' = حذف + حظر (مع حذف رسائله آخر ساعة) + تنبيه المالك بالنص؛ 'mild' = حذف + تنبيه يختفي */
+  async punishAbuse(m, level) {
+    const uid = m.author.id;
+    const audit = { 'X-Audit-Log-Reason': encodeURIComponent('كلام بذيء في الدردشة') };
+    const where = `<#${m.channel_id}>`;
+    const text = String(m.content).slice(0, 300).replace(/`/g, "'");
+    if (level === 'ban') {
+      let banned = false;
+      try {
+        await dc(this.env, 'PUT', `/guilds/${GUILD}/bans/${uid}`, { delete_message_seconds: 3600 }, audit);
+        banned = true;
+      } catch (e) {
+        this.fail('ban', e);
+        await dc(this.env, 'DELETE', `/channels/${m.channel_id}/messages/${m.id}`, undefined, audit).catch(() => {});
+        await dc(this.env, 'PATCH', `/guilds/${GUILD}/members/${uid}`, {
+          communication_disabled_until: new Date(Date.now() + TIMEOUT_MS).toISOString(),
+        }, audit).catch((err) => this.fail('timeout', err));
+      }
+      await this.alert(
+        `${banned ? '⛔ **حظرنا**' : '⚠️ **ما قدرنا نحظر** (أسكتناه 24 ساعة)'} <@${uid}> (${m.author.username}) بسبب كلام بذيء في ${where}:\n` +
+          `\`\`\`${text}\`\`\`\nإذا كان غلط: Server Settings ← Bans ← اختره ← Revoke Ban.`,
+        true,
+      );
+      return;
+    }
+    try {
+      await dc(this.env, 'DELETE', `/channels/${m.channel_id}/messages/${m.id}`, undefined, audit);
+      const note = await dc(this.env, 'POST', `/channels/${m.channel_id}/messages`, {
+        content: `⚠️ <@${uid}> حذفنا رسالتك لأن فيها كلام ما يناسب السيرفر. تكرارها ممكن يوصلك للحظر.`,
+        allowed_mentions: { users: [uid] },
+      });
+      setTimeout(() => dc(this.env, 'DELETE', `/channels/${m.channel_id}/messages/${note.id}`).catch(() => {}), 30_000);
+    } catch (e) {
+      this.fail('abuse', e);
+    }
   }
 
   async punish(m, { scam, reason }) {

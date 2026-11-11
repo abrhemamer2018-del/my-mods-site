@@ -71,3 +71,65 @@ export function isAbusive(...texts) {
   const compact = tokens.join('');
   return PHRASE_LIST.some((p) => compact.includes(p));
 }
+
+// ------------------------------------------------------------
+//  الدردشة في ديسكورد (worker/chatbot.js): 'ban' = حظر مباشر (user's rule 2026-11-11)، 'mild' = حذف وتنبيه.
+//  أدق من isAbusive لأن العقوبة حظر: الكلمة القصيرة (كس، زب) ما تنقص منها سابقة غير «يا» (بكس = سيارة)،
+//  والعبارات تُفحص داخل الكلمة الواحدة أو كلمتين متتاليتين بالضبط (عكس مكان ≠ كسمك).
+// ------------------------------------------------------------
+const MILD = new Set(['خره', 'خرا', 'زق', 'shit'].map(normalize));
+// اسم شائع في الخليج: ما نعاقب عليه في الدردشة (يبقى في فلتر البلاغات)
+const CHAT_IGNORE = new Set(['زامل'].map(normalize));
+
+function chatToken(t) {
+  const cands = new Set([t]);
+  for (const p of PREFIXES) {
+    if (!t.startsWith(p)) continue;
+    const rest = t.slice(p.length);
+    if (rest.length >= 3 || (rest.length === 2 && p === 'يا')) cands.add(rest);
+  }
+  for (const c of [...cands]) {
+    for (const s of SUFFIXES) if (c.endsWith(s) && c.length - s.length >= 2) cands.add(c.slice(0, -s.length));
+  }
+  let level = null;
+  for (const c of cands) {
+    if (!WORD_SET.has(c) || CHAT_IGNORE.has(c)) continue;
+    if (!MILD.has(c)) return 'ban';
+    level = 'mild';
+  }
+  return level;
+}
+
+/** درجة الإساءة في رسالة دردشة: 'ban' أو 'mild' أو null */
+export function chatAbuse(text) {
+  const n = normalize(text);
+  let level = null;
+  const take = (l) => {
+    if (l === 'ban') return true;
+    if (l) level = 'mild';
+    return false;
+  };
+  const tokens = n.split(/[^\p{L}]+/u).filter(Boolean);
+  for (const t of tokens) if (take(chatToken(t))) return 'ban';
+  // حروف مفردة متتالية (ك س م ك)
+  let run = '';
+  for (const t of [...tokens, '__']) {
+    if (t.length === 1) run += t;
+    else {
+      if (run.length >= 2 && take(chatToken(run))) return 'ban';
+      run = '';
+    }
+  }
+  // عبارة داخل كلمة واحدة مفصولة برموز (ك.س.م.ك، f*ck) أو كلمتين متتاليتين بالضبط (كس امك)
+  // كلمة عادية: العبارة لازم تكون في أولها (fuckyou) عشان Scunthorpe ما تنحسب؛ المفصولة برموز: في أي مكان
+  for (const chunk of n.split(/\s+/)) {
+    const c = chunk.replace(/[^\p{L}]+/gu, '');
+    if (!c) continue;
+    const split = c !== chunk;
+    if (PHRASE_LIST.some((p) => (split ? c.includes(p) : c.startsWith(p)))) return 'ban';
+  }
+  for (let i = 0; i + 1 < tokens.length; i++) {
+    if (PHRASE_LIST.includes(tokens[i] + tokens[i + 1])) return 'ban';
+  }
+  return level;
+}
