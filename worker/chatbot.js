@@ -471,7 +471,15 @@ export class ChatBot {
     }
     if (direct) dc(this.env, 'POST', `/channels/${channelId}/typing`, {}).catch(() => {});
 
-    const channelName = await this.channelName(channelId);
+    const { name: channelName, parent } = await this.channelInfo(channelId);
+    // داخل منشور بلاغ: البلاغ مرفوع خلاص، فلا نوجهه يرفع بلاغ (2026-11-11: البوت قال لصاحب البلاغ «ارفع بلاغ»)
+    const inReport =
+      parent === REPORTS_FORUM
+        ? `
+مهم: هذي المحادثة داخل منشور بلاغ في <#${REPORTS_FORUM}> نفسه، يعني العضو رفع بلاغه خلاص وهو في المكان الصح. ` +
+          'لا تقول له يرفع بلاغ أو يفتح منشور جديد. قل له إن بلاغه وصلنا وبنشوفه ونعطيه خبر هنا في نفس المنشور، ' +
+          'وإذا تعرف خطوة معروفة تحل مشكلته اذكرها باختصار، وإذا ناقص اسم اللعبة أو صورة المشكلة اطلبها منه هنا في المنشور. alert_owner=false.'
+        : '';
     const lines = history
       .slice()
       .reverse()
@@ -480,7 +488,8 @@ export class ChatBot {
       `روم: #${channelName}\n<chat>\n${lines.join('\n')}\n</chat>\n\n` +
       (direct
         ? `الرسالة المعلّمة بـ >>> من ${target.author.username} منشنتك أو ردت على رسالتك: لازم ترد عليها (reply=true).`
-        : `قرر: هل الرسالة المعلّمة بـ >>> من ${target.author.username} تحتاج رد منك حسب «متى ترد»؟`);
+        : `قرر: هل الرسالة المعلّمة بـ >>> من ${target.author.username} تحتاج رد منك حسب «متى ترد»؟`) +
+      inReport;
 
     let r;
     try {
@@ -661,10 +670,10 @@ export class ChatBot {
     return (p & PERM_ADMIN) !== 0n || (p & PERM_MANAGE_MESSAGES) !== 0n;
   }
 
-  async channelName(id) {
+  async channelInfo(id) {
     if (!this.channelNames.has(id)) {
       const ch = await dc(this.env, 'GET', `/channels/${id}`).catch(() => null);
-      this.channelNames.set(id, ch?.name || id);
+      this.channelNames.set(id, { name: ch?.name || id, parent: ch?.parent_id || null });
     }
     return this.channelNames.get(id);
   }
