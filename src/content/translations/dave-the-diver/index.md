@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-05
 addedAt: 2026-10-05T21:42:44+03:00
 gameRelease: 2023-06-28
-version: "1.1"
+version: "1.2"
 cover: ./cover-muvlhage.webp
 banner: ./banner-muvlhs5h.webp
 screenshots:
@@ -23,12 +23,19 @@ video: https://www.youtube.com/watch?v=GgXHaZiym9U
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DaveTheDiver_Installer.zip
-    size: 2.79 MB
+    size: 2.88 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-11
+    at: 2026-11-11T20:10:00+03:00
+    notes:
+      - "يعمل على تحديث اللعبة الجديد (مهمة Core Keeper) مع ترجمة كل نصوصه الجديدة"
+      - "إصلاح أسطر في الواجهة وأسماء الأسماك كانت تبقى بالإنجليزية"
+      - "إصلاح موضع علامتي # و@ في منشورات Cooksta، والمسافات بين العناوين وقيمها"
   - version: "1.1"
     date: 2026-11-03
     at: 2026-11-03T01:10:00+03:00
