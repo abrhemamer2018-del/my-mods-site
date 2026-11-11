@@ -95,6 +95,9 @@ const SYSTEM = `أنت «تعريبات»، بوت سيرفر ديسكورد ل�
 # تنبيه صاحب السيرفر (alert_owner)
 خلها true مع سبب قصير إذا: بلاغ خلل في أحد تعريباتنا ما حلّته الخطوات المعروفة (وجّهه يرفع بلاغ في <#${REPORTS_FORUM}> فيه اسم اللعبة وصورة، وقل إننا نتابع البلاغات هناك؛ لا تطلب منه التفاصيل في الدردشة)، أو أحد يطلب صاحب السيرفر شخصياً لأمر مهم، أو شكوى، أو عرض تعاون أو إعلان، أو سؤال مهم ما تعرف جوابه. وإلا false.
 
+# أسئلة طريقة التعريب (احذفها بصمت)
+إذا الرسالة المعلّمة تسأل كيف نعرّب أو بأي أدوات، أو هل التعريب بالذكاء الاصطناعي / ترجمة آلية / ChatGPT / Google Translate أو يدوي، أو تشكك أو تعلّق على ذلك: reply=false و text فارغ و delete_msg=true. لا تجاوب عليها أبداً ولا تقل إنها يدوية ولا آلية. أي رسالة ثانية: delete_msg=false.
+
 # ممنوع
 - المواضيع الدينية والسياسية والطائفية: اعتذر بلطف وباختصار ورجّع الكلام للألعاب.
 - الكلام المسيء: لا ترد بمثله؛ تجاهله (reply=false) أو رد بهدوء.
@@ -107,8 +110,9 @@ export const REPLY_SCHEMA = {
     text: { type: 'string', description: 'نص الرد (فارغ إذا reply=false)' },
     alert_owner: { type: 'boolean' },
     alert_reason: { type: 'string', description: 'سبب التنبيه باختصار (فارغ إذا false)' },
+    delete_msg: { type: 'boolean', description: 'true إذا الرسالة سؤال عن طريقة التعريب أو هل هو بالذكاء الاصطناعي' },
   },
-  required: ['reply', 'text', 'alert_owner', 'alert_reason'],
+  required: ['reply', 'text', 'alert_owner', 'alert_reason', 'delete_msg'],
   additionalProperties: false,
 };
 
@@ -347,6 +351,23 @@ export class ChatBot {
       return;
     }
     if (!r) return;
+    // سؤال عن طريقة التعريب: يُحذف بصمت بدون رد (الإدارة مستثناة)، مع سطر بدون منشن في روم التنبيهات
+    // رسائل السجل (history) بدون member، فنفحص الإدارة على رسالة البوابة m إذا هي نفسها
+    if (r.delete_msg && target.id === m.id && !(await this.isStaff(m))) {
+      try {
+        await dc(this.env, 'DELETE', `/channels/${channelId}/messages/${target.id}`, undefined, {
+          'X-Audit-Log-Reason': encodeURIComponent('سؤال عن طريقة التعريب'),
+        });
+        await this.alert(
+          `🗑️ حذفت سؤال عن طريقة التعريب من <@${target.author.id}> (${target.author.username}) في <#${channelId}>\n` +
+            '```\n' + (target.content || '').replace(/```/g, "'''").slice(0, 500) + '\n```',
+          false,
+        );
+      } catch (e) {
+        this.fail('delete question', e);
+      }
+      return;
+    }
     if (r.reply && r.text?.trim()) {
       const text = r.text.replace(/@(everyone|here)/g, '@​$1').slice(0, 1900);
       try {
