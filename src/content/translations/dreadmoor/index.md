@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mwcefdudblc.webp
   - ./shot-mwcefjnx61r.webp
   - ./shot-mwcefrgpm01.webp
-video: https://www.youtube.com/watch?v=6qTJLmjKysU
+video: https://youtu.be/mVdCozKbTP8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DREADMOOR_Installer.zip
