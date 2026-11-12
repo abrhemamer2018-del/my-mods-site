@@ -876,6 +876,33 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
     return `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
   }
 
+  // ------------------------------------------------ منشور فيسبوك: فيسبوك لا يقبل نصاً جاهزاً في الرابط،
+  // فننسخ النص عند الضغط ونفتح نافذة المشاركة (فيها رابط التعريب وصورته)، والمستخدم يلصق بـ Ctrl+V ثم "نشر"
+  function fbText(it: { slug: string; title: string | null }) {
+    const name = (it.title || it.slug).replace(/\s*\((.*)\)$/, ' ($1)');
+    return `🎮 تعريب جديد: ${name}
+تعريب عربي كامل ومجاني مع أداة تثبيت سهلة، ويعمل على Steam و Epic و GOG ✅
+
+📥 التحميل من الرابط 👇
+https://ta3reebat.com/translations/${it.slug}/
+
+#تعريبات #تعريب #ألعاب_مترجمة`;
+  }
+  function fbShareUrl(it: { slug: string }) {
+    return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://ta3reebat.com/translations/${it.slug}/`)}`;
+  }
+  document.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('.btn-fb');
+    if (!a?.dataset.text) return;
+    // ننسخ قبل فتح النافذة (الحافظة تحتاج أن تكون الصفحة في الواجهة)
+    e.preventDefault();
+    navigator.clipboard
+      .writeText(a.dataset.text)
+      .then(() => toast('✔ نُسخ نص المنشور — في نافذة فيسبوك اضغط Ctrl+V ثم "نشر"'))
+      .catch(() => toast('لم يُنسخ النص تلقائياً', true))
+      .finally(() => window.open(a.href, 'fbshare', 'width=680,height=720'));
+  });
+
   // ------------------------------------------------ إرسال التعريبات المحددة إلى ديسكورد
   const picks = () => $$<HTMLInputElement>('.pick-discord');
   function updateSelected() {
@@ -1181,7 +1208,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
           <div class="name"><strong>${esc(it.title || it.slug)}</strong><small>${esc(it.slug)}${it.date ? ' · ' + esc(it.date) : ''}</small></div>
           <div class="actions">
             <a class="btn small" href="${base}${it.slug}/" target="_blank">عرض</a>
-            ${isT ? `<a class="btn small btn-x" target="_blank" rel="noopener" title="نشر على إكس" href="${xShareUrl(it)}">𝕏 نشر</a><a class="btn small" target="_blank" title="منشور فيسبوك وإنستغرام" href="/admin/social/?game=${encodeURIComponent(it.slug)}">📣 فيسبوك/إنستا</a>` : ''}
+            ${isT ? `<a class="btn small btn-x" target="_blank" rel="noopener" title="نشر على إكس" href="${xShareUrl(it)}">𝕏 نشر</a><a class="btn small btn-fb" target="_blank" rel="noopener" title="نشر على فيسبوك (النص يُنسخ، الصقه بـ Ctrl+V)" data-text="${esc(fbText(it))}" href="${fbShareUrl(it)}">f نشر</a><a class="btn small" target="_blank" title="منشور إنستغرام (نص + صورة جاهزة)" href="/admin/social/?game=${encodeURIComponent(it.slug)}&platform=ig">📷 إنستا</a>` : ''}
             <button class="btn small edit">تعديل</button>
             <button class="btn small danger del">حذف</button>
           </div>`;

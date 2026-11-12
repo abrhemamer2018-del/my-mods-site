@@ -93,7 +93,8 @@ const config = { games, discord, site: SITE_URL, siteName: SITE.name };
           </div>
           <textarea id="text" rows="18" dir="rtl"></textarea>
           <div class="sp-actions">
-            <button type="button" id="copy" class="btn btn-primary">📋 نسخ النص</button>
+            <button type="button" id="post" class="btn btn-primary"></button>
+            <button type="button" id="copy" class="btn">📋 نسخ النص</button>
             <a id="open" class="btn" target="_blank" rel="noopener">صفحة التعريب ↗</a>
           </div>
           <p class="muted small" id="hint"></p>
@@ -332,10 +333,11 @@ const config = { games, discord, site: SITE_URL, siteName: SITE.name };
         text.value = buildText(g);
         updateCount();
         $<HTMLAnchorElement>('open').href = g.url;
-        $('hint').textContent =
-          state.platform === 'ig'
-            ? 'إنستغرام لا يجعل الروابط في المنشور قابلة للضغط؛ ضع رابط صفحة التعريب في البايو قبل النشر.'
-            : 'فيسبوك يعرض معاينة الرابط تلقائياً، لكن الصورة المرفقة تجذب أكثر — ارفعها مع المنشور.';
+        const ig = state.platform === 'ig';
+        $('post').textContent = ig ? '📷 نشر على إنستغرام' : 'f نشر على فيسبوك';
+        $('hint').textContent = ig
+          ? 'زر النشر يحمّل الصورة وينسخ النص ويفتح إنستغرام: اضغط (+) ← اختر الصورة ← الصق النص بـ Ctrl+V ← مشاركة. ضع رابط الموقع في البايو لأن روابط المنشور لا تُضغط.'
+          : 'زر النشر ينسخ النص ويفتح نافذة فيسبوك وفيها رابط التعريب وصورته: اضغط Ctrl+V ثم "نشر".';
         draw(g);
       }
       function updateCount() {
@@ -344,24 +346,60 @@ const config = { games, discord, site: SITE_URL, siteName: SITE.name };
       }
       text.addEventListener('input', updateCount);
 
-      $('copy').addEventListener('click', async () => {
+      async function copyText() {
         try {
           await navigator.clipboard.writeText(text.value);
         } catch {
           text.select();
           document.execCommand('copy');
         }
+      }
+      const fileName = (g: Game) =>
+        `${g.id}-${state.platform === 'ig' ? 'instagram' : 'facebook'}${state.kind === 'update' ? '-update' : ''}.png`;
+      function downloadImage(g: Game) {
+        const a = document.createElement('a');
+        a.download = fileName(g);
+        a.href = cv.toDataURL('image/png');
+        a.click();
+      }
+      // مثل زر إكس: ضغطة واحدة تفتح النشر والنص جاهز في الحافظة
+      $('post').addEventListener('click', async () => {
+        const g = state.game;
+        if (!g) return;
+        // النسخ أولاً (الحافظة تحتاج أن تكون الصفحة في الواجهة)، ثم فتح النافذة ما زال ضمن نفس الضغطة
+        await copyText();
+        if (state.platform === 'fb') {
+          // فيسبوك لا يقبل نصاً جاهزاً في الرابط: نافذة المشاركة فيها رابط التعريب وصورته، والنص يُلصق بـ Ctrl+V
+          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(g.url)}`, 'fbshare', 'width=680,height=720');
+          return;
+        }
+        const mobile = matchMedia('(pointer: coarse)').matches && 'canShare' in navigator;
+        if (!mobile) {
+          // على الكمبيوتر: تحميل الصورة + فتح إنستغرام (النص في الحافظة)
+          downloadImage(g);
+          window.open('https://www.instagram.com/', '_blank');
+          return;
+        }
+        // على الجوال: قائمة المشاركة بالصورة والنص (تظهر فيها إنستغرام)
+        const blob: Blob | null = await new Promise((ok) => cv.toBlob(ok, 'image/png'));
+        const file = blob && new File([blob], fileName(g), { type: 'image/png' });
+        if (file && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], text: text.value });
+            return;
+          } catch {}
+        }
+        downloadImage(g);
+        location.href = 'https://www.instagram.com/';
+      });
+      $('copy').addEventListener('click', async () => {
+        await copyText();
         const b = $('copy');
         b.textContent = '✔ تم النسخ';
         setTimeout(() => (b.textContent = '📋 نسخ النص'), 1500);
       });
       $('dl').addEventListener('click', () => {
-        const g = state.game;
-        if (!g) return;
-        const a = document.createElement('a');
-        a.download = `${g.id}-${state.platform === 'ig' ? 'instagram' : 'facebook'}${state.kind === 'update' ? '-update' : ''}.png`;
-        a.href = cv.toDataURL('image/png');
-        a.click();
+        if (state.game) downloadImage(state.game);
       });
 
       // ?game=slug يفتح لعبة مباشرة (رابط من لوحة التحكم)
