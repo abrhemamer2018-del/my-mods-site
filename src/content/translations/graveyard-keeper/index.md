@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-10
 gameRelease: 2018-08-15
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwao991n.webp
 screenshots:
   - ./shot-mwaodvaed4p.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=Zd5S5rlKf_M
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GraveyardKeeper_Installer.zip
-    size: 1.32 MB
+    size: 1.36 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-12
+    at: 2026-11-12T06:50:00+03:00
+    notes:
+      - "يعمل على تحديث اللعبة الجديد في Steam (نسخة 32 بت)، وكان التعريب لا يظهر فيه"
+      - "أداة التثبيت تختار ملفات التشغيل المناسبة لنسختك (32 أو 64 بت) تلقائياً"
+      - "إظهار سطر الموقع في القائمة الرئيسية تحت رقم الإصدار"
   - version: "1.0"
     date: 2026-11-10
     notes:
