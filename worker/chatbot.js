@@ -482,6 +482,15 @@ export class ChatBot {
           'لا تقول له يرفع بلاغ أو يفتح منشور جديد. قل له إن بلاغه وصلنا وبنشوفه ونعطيه خبر هنا في نفس المنشور، ' +
           'وإذا تعرف خطوة معروفة تحل مشكلته اذكرها باختصار، وإذا ناقص اسم اللعبة أو صورة المشكلة اطلبها منه هنا في المنشور. alert_owner=false.'
         : '';
+    // برا منشور البلاغ: إذا العضو عنده بلاغ مفتوح فلا نقول «ارفع بلاغ جديد» (2026-11-13: Omar Osama عنده بلاغ وقاله البوت افتح بلاغ)
+    const reports = parent === REPORTS_FORUM ? [] : await this.openReports(target.author.id);
+    const hasReport = reports.length
+      ? `
+مهم: ${target.author.username} عنده بلاغ مرفوع خلاص في ${reports.map((t) => `<#${t.id}> (${t.name})`).join(' و ')}. ` +
+        'إذا رسالته عن مشكلة في نفس اللعبة: لا تقول له يرفع بلاغ جديد أبداً؛ قل إن بلاغه عندنا وبنتابعه ونعطيه خبر هناك، ' +
+        'واطلب منه يحط الصورة أو التفاصيل الجديدة في نفس منشور بلاغه (اذكر رابط المنشور). ' +
+        'إذا كانت عن لعبة ثانية، وجّهه يرفع بلاغ لها كالعادة.'
+      : '';
     const lines = history
       .slice()
       .reverse()
@@ -491,7 +500,8 @@ export class ChatBot {
       (direct
         ? `الرسالة المعلّمة بـ >>> من ${target.author.username} منشنتك أو ردت على رسالتك: لازم ترد عليها (reply=true).`
         : `قرر: هل الرسالة المعلّمة بـ >>> من ${target.author.username} تحتاج رد منك حسب «متى ترد»؟`) +
-      inReport;
+      inReport +
+      hasReport;
 
     let r;
     try {
@@ -672,6 +682,41 @@ export class ChatBot {
     let p = this.roles[GUILD] || 0n;
     for (const id of m.member?.roles || []) p |= this.roles[id] || 0n;
     return (p & PERM_ADMIN) !== 0n || (p & PERM_MANAGE_MESSAGES) !== 0n;
+  }
+
+  /** منشورات البلاغ اللي العضو صاحبها أو مشارك فيها (المفتوحة + المؤرشفة آخر 14 يوم)، مخزنة 5 دقائق */
+  async openReports(uid) {
+    this.reportCache ||= new Map();
+    const c = this.reportCache.get(uid);
+    if (c && Date.now() - c.at < 300_000) return c.list;
+    const list = [];
+    try {
+      const active = (await dc(this.env, 'GET', `/guilds/${GUILD}/threads/active`)).threads || [];
+      const archived =
+        (await dc(this.env, 'GET', `/channels/${REPORTS_FORUM}/threads/archived/public?limit=50`).catch(() => null))
+          ?.threads || [];
+      const since = Date.now() - 14 * 86400_000;
+      const threads = [...active.filter((t) => t.parent_id === REPORTS_FORUM), ...archived]
+        .filter((t) => !t.thread_metadata?.locked)
+        .filter((t) => Date.parse(t.thread_metadata?.archive_timestamp || 0) > since || !t.thread_metadata?.archived);
+      // البلاغات من زر الموقع صاحبها الويبهوك، فنفحص عضوية العضو فيها (حد أقصى 15 فحص)
+      let checks = 0;
+      for (const t of threads) {
+        if (list.length >= 3) break;
+        if (t.owner_id === uid) {
+          list.push(t);
+          continue;
+        }
+        if (checks >= 15) continue;
+        checks++;
+        const mem = await dc(this.env, 'GET', `/channels/${t.id}/thread-members/${uid}`).catch(() => null);
+        if (mem?.user_id === uid || mem?.id === t.id) list.push(t);
+      }
+    } catch (e) {
+      this.fail('openReports', e);
+    }
+    this.reportCache.set(uid, { at: Date.now(), list });
+    return list;
   }
 
   async channelInfo(id) {
