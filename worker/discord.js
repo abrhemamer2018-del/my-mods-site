@@ -650,6 +650,14 @@ async function openInquiry(env, it, userId) {
     auto_archive_duration: 10080,
   });
   await dc(env, 'PUT', `/channels/${t.id}/thread-members/${userId}`);
+  // صاحب السيرفر ما عنده رتبة Admin، فمنشن الرتبة ما يضيفه؛ بدون عضوية ما تطلع له الصفحة تحت الروم
+  if (env.DISCORD_OWNER_ID && env.DISCORD_OWNER_ID !== userId) {
+    try {
+      await dc(env, 'PUT', `/channels/${t.id}/thread-members/${env.DISCORD_OWNER_ID}`);
+    } catch (err) {
+      console.log('add owner to inquiry failed', err.message);
+    }
+  }
   await dc(env, 'POST', `/channels/${t.id}/messages`, {
     content:
       `أهلاً <@${userId}> 👋 هذي صفحتك الخاصة، ما يشوفها غيرك وغير <@&${ADMIN_ROLE}>.\n` +
