@@ -74,6 +74,16 @@ export async function discordInteraction(request, env, ctx, helpers) {
     return reply({ type: 5, data: { flags: EPHEMERAL } });
   }
 
+  if (it.type === 3 && id === 'ask:open') {
+    ctx.waitUntil(background(env, it, () => openInquiry(env, it, userId)));
+    return reply({ type: 5, data: { flags: EPHEMERAL } });
+  }
+
+  if (it.type === 3 && id === 'ask:close') {
+    ctx.waitUntil(background(env, it, () => closeInquiry(env, it.channel_id, userId)));
+    return reply({ type: 5, data: { flags: EPHEMERAL } });
+  }
+
   if (it.type === 3 && id === 'req:vote') {
     ctx.waitUntil(background(env, it, () => handleVote(env, it.channel_id, userId)));
     return reply({ type: 5, data: { flags: EPHEMERAL } });
@@ -612,6 +622,57 @@ async function background(env, it, work) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ content, allowed_mentions: { parse: [] } }),
   });
+}
+
+// ------------------------------------------------------------
+//  الاستفسارات (user's rule 2026-11-12): زر «فتح استفسار» في روم ❓استفسارات يفتح Thread خاص (type 12)
+//  ما يشوفه غير صاحبه والإدارة (Admin يشوف كل الـ Threads الخاصة، ومنشن رتبة Admin يضيفهم للصفحة).
+//  الأعضاء ما يقدرون يكتبون في الروم نفسه ولا يفتحون Threads بأنفسهم؛ يكتبون داخل صفحتهم بس.
+// ------------------------------------------------------------
+export const INQUIRY_CHANNEL = '1570271165853860002';
+const ADMIN_ROLE = '1556989733945475103';
+
+async function openInquiry(env, it, userId) {
+  const user = it.member?.user || it.user || {};
+  const name = (user.global_name || user.username || 'عضو').slice(0, 40);
+  // صفحة مفتوحة وحدة لكل عضو
+  const active = await dc(env, 'GET', `/guilds/${it.guild_id}/threads/active`);
+  for (const t of active.threads || []) {
+    if (t.parent_id !== INQUIRY_CHANNEL) continue;
+    if (await dc(env, 'GET', `/channels/${t.id}/thread-members/${userId}`, undefined, true)) {
+      return `عندك صفحة استفسار مفتوحة: <#${t.id}>\nاكتب فيها، وإذا خلصت اضغط «إغلاق الاستفسار».`;
+    }
+  }
+  const t = await dc(env, 'POST', `/channels/${INQUIRY_CHANNEL}/threads`, {
+    name: `❓ ${name}`,
+    type: 12,
+    invitable: false,
+    auto_archive_duration: 10080,
+  });
+  await dc(env, 'PUT', `/channels/${t.id}/thread-members/${userId}`);
+  await dc(env, 'POST', `/channels/${t.id}/messages`, {
+    content:
+      `أهلاً <@${userId}> 👋 هذي صفحتك الخاصة، ما يشوفها غيرك وغير <@&${ADMIN_ROLE}>.\n` +
+      'اكتب استفسارك بالتفصيل هنا (وأرفق صورة إذا تحتاج)، وبنرد عليك هنا بأقرب وقت.\n' +
+      '⚠️ إذا عندك مشكلة في تعريب لعبة، البلاغ يكون في <#1558118652979454053> عشان نتابعه مع باقي البلاغات.',
+    allowed_mentions: { users: [userId], roles: [ADMIN_ROLE] },
+    components: [
+      { type: 1, components: [{ type: 2, style: 4, custom_id: 'ask:close', emoji: { name: '🔒' }, label: 'إغلاق الاستفسار' }] },
+    ],
+  });
+  await notifyOwner(env, `❓ **استفسار جديد** من <@${userId}> (${user.username}): <#${t.id}>`);
+  return `✅ انفتحت لك صفحة خاصة: <#${t.id}>\nاكتب استفسارك هناك.`;
+}
+
+async function closeInquiry(env, threadId, userId) {
+  const t = await dc(env, 'GET', `/channels/${threadId}`, undefined, true);
+  if (!t || t.parent_id !== INQUIRY_CHANNEL) return 'هذا الزر يشتغل داخل صفحة الاستفسار بس.';
+  await dc(env, 'POST', `/channels/${threadId}/messages`, {
+    content: `🔒 <@${userId}> قفل الاستفسار. إذا احتجت شي ثاني افتح استفسار جديد من <#${INQUIRY_CHANNEL}>.`,
+    allowed_mentions: { parse: [] },
+  });
+  await dc(env, 'PATCH', `/channels/${threadId}`, { archived: true, locked: true });
+  return '🔒 انقفل الاستفسار.';
 }
 
 /** تنبيه لصاحب السيرفر في قناة التنبيهات الخاصة مع منشن. فشله لا يوقف الطلب */
