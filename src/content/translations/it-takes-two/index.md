@@ -11,7 +11,7 @@ status: complete
 releaseDate: 2026-10-05
 addedAt: 2026-10-06T01:01:51+03:00
 gameRelease: 2021-03-25
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-muvsls9r.webp
 banner: ./banner-muvslvdz.webp
 screenshots:
@@ -22,12 +22,16 @@ video: https://www.youtube.com/watch?v=2AysHTv7X8k
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ItTakesTwo_Installer.zip
-    size: 824 KB
+    size: 831 KB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-11-12
+    notes:
+      - تحديث أداة التثبيت حتى لا يحظر المتصفح تنزيلها
   - version: "1.0"
     date: 2026-10-05
     notes:
