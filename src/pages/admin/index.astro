@@ -1181,7 +1181,7 @@ import { CATEGORY_LABELS, SITE, STATUS_LABELS } from '../../config';
           <div class="name"><strong>${esc(it.title || it.slug)}</strong><small>${esc(it.slug)}${it.date ? ' · ' + esc(it.date) : ''}</small></div>
           <div class="actions">
             <a class="btn small" href="${base}${it.slug}/" target="_blank">عرض</a>
-            ${isT ? `<a class="btn small btn-x" target="_blank" rel="noopener" title="نشر على إكس" href="${xShareUrl(it)}">𝕏 نشر</a>` : ''}
+            ${isT ? `<a class="btn small btn-x" target="_blank" rel="noopener" title="نشر على إكس" href="${xShareUrl(it)}">𝕏 نشر</a><a class="btn small" target="_blank" title="منشور فيسبوك وإنستغرام" href="/admin/social/?game=${encodeURIComponent(it.slug)}">📣 فيسبوك/إنستا</a>` : ''}
             <button class="btn small edit">تعديل</button>
             <button class="btn small danger del">حذف</button>
           </div>`;
