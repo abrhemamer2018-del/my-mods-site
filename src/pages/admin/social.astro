@@ -264,8 +264,22 @@ const config = { games, discord, site: SITE_URL, siteName: SITE.name };
         const ctx = cv.getContext('2d')!;
         ctx.direction = 'rtl';
         cover(ctx, im, W, H);
+        // إنستغرام عمودي: صورة اللعبة العريضة تُقص لو ملأت الإطار، فتُعرض كاملة بعرض الإطار
+        // فوق نسخة مموّهة منها، والنص تحتها
+        let shadeTop = H * 0.2;
+        if (ig) {
+          ctx.save();
+          ctx.filter = 'blur(40px) brightness(.45)';
+          cover(ctx, im, W, H);
+          ctx.restore();
+          const ih = Math.min(Math.round((W * im.height) / im.width), 720);
+          const top = Math.max(160, Math.round((1000 - ih) / 2 + 70)); // في المنتصف بين الشارة والعنوان
+          const sh = (ih * im.width) / W; // الصور الأطول من الإطار فقط تُقص من الأعلى والأسفل بالتساوي
+          ctx.drawImage(im, 0, (im.height - sh) / 2, im.width, sh, 0, top, W, ih);
+          shadeTop = top + ih * 0.7;
+        }
         // تظليل من الأسفل حتى يُقرأ النص فوق أي صورة
-        const gr = ctx.createLinearGradient(0, H * (ig ? 0.35 : 0.2), 0, H);
+        const gr = ctx.createLinearGradient(0, shadeTop, 0, H);
         gr.addColorStop(0, 'rgba(11,13,23,0)');
         gr.addColorStop(0.5, 'rgba(11,13,23,0.88)');
         gr.addColorStop(1, 'rgba(11,13,23,0.97)');
