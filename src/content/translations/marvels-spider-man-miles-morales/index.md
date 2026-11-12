@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-12
 gameRelease: 2022-11-18
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwe0d4h2.webp
 screenshots:
   - ./shot-mwe0dcil0z6.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-13
+    at: 2026-11-13T12:00:00.000Z
+    notes:
+      - "نافذة إعدادات المشغّل (Setup) صارت عربية مقروءة بدل الحروف المعكوسة"
+      - "رسائل الهاتف: إصلاح السطر المقسوم وتصحيح صيغ المذكر والمؤنث"
   - version: "1.0"
     date: 2026-11-12
     notes:
