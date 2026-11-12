@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-12
 gameRelease: 2025-06-19
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwe0mm1d.webp
 screenshots:
   - ./shot-mwe0qtkvnpa.webp
@@ -25,6 +25,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-13
+    notes:
+      - توافق مع نسخ اللعبة الأخرى: أزرار وعناوين القوائم الثابتة تتعرّب أينما كانت في ملفات نسختك
   - version: "1.0"
     date: 2026-11-12
     notes:
