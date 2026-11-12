@@ -1,6 +1,10 @@
 ---
 title: Grand Theft Auto V Enhanced
 titleAr: جراند ثيفت أوتو 5
+aliases:
+  - "GTA V"
+  - "GTA 5"
+  - "جي تي اي 5"
 summary: استمتع بتجربة عملاقي الترفيه Grand Theft Auto V وGrand Theft Auto Online، اللذين تم تحديثهما الآن ليناسبا الجيل الجديد؛ حيث يتميزان برسومات مذهلة، وسرعة أكبر في التحميل، وصوت ثلاثي الأبعاد، والمزيد، إلى جانب محتوى حصري للاعبي GTA Online.
 category: modern
 platforms:

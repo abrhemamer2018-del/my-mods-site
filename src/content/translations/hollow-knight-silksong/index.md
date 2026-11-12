@@ -1,6 +1,9 @@
 ---
 title: Hollow Knight Silksong
 titleAr: هولو نايت سيلك سونغ
+aliases:
+  - "Silksong"
+  - "سيلك سونغ"
 summary: "اكتشف مملكة شاسعة ومسكونة في لعبة هولو نايت: سيلكسونج (Hollow Knight: Silksong)! استكشف، وقاتل، وابقَ على قيد الحياة بينما تصعد إلى قمة أرضٍ يحكمها الحرير والأنغام."
 category: modern
 platforms:
