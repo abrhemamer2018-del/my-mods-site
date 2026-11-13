@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-13
 gameRelease: 2014-10-08
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwezoee8.webp
 screenshots:
   - ./shot-mwezrdu9l8o.webp
@@ -20,12 +20,17 @@ video: https://youtu.be/n8EvAJRuzAA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Sleeping_Dogs_DE_Installer.zip
-    size: 2.39 MB
+    size: 2.40 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-13
+    at: 2026-11-13T15:10:39.000Z
+    notes:
+      - "تكبير الترجمة السفلية في الحوارات والمشاهد إلى ضعف الحجم، وأطول الجمل تبقى داخل الشاشة"
   - version: "1.0"
     date: 2026-11-13
     notes:
