@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-04
 addedAt: 2026-10-05T02:12:10+03:00
 gameRelease: 2016-10-27
-version: "1.0"
+version: "1.1"
 cover: ./cover-muy3sg88.webp
 banner: ./banner-muufn7ro.webp
 screenshots:
@@ -21,12 +21,19 @@ video: https://www.youtube.com/watch?v=Adzx8Brrd6I
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Skyrim_Installer.zip
-    size: 5.20 MB
+    size: 5.92 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-13
+    at: 2026-11-13T15:00:00.000Z
+    notes:
+      - "إصلاح الكراش عند أول ارتفاع لمهارة (قتال هيلغن في بداية اللعبة)"
+      - "حروف رسائل ارتفاع المهارة والمهام والقائمة الوسطى صارت متصلة بدون فراغات"
+      - "تصحيح نصوص أحجار الحرّاس وبعض الكتب وأسماء أزرار التعليمات"
   - version: "1.0"
     date: 2026-10-04
     notes:
