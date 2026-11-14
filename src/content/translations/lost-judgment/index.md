@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-03
 addedAt: 2026-10-03T11:58:55+03:00
 gameRelease: 2022-09-14
-version: "1.1"
+version: "1.2"
 cover: ./cover-mus5ffwv.webp
 banner: ./banner-mus5h1g9.webp
 screenshots:
@@ -21,12 +21,22 @@ video: https://www.youtube.com/watch?v=TmoPKbtEviM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_LostJudgment_Installer.exe
-    size: 57.17 MB
+    size: 57.27 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-14
+    at: 2026-11-14T21:05:00+03:00
+    notes:
+      - "إصلاح لعبة السناك: الشخصيات صارت تظهر وتختفي في مكانها الصحيح"
+      - "إصلاح إعادة عرض ألعاب Master System في الأركيد"
+      - "الأرقام صارت بترتيبها الصحيح (المرحلة 1-3، رصيد 10-10-1 في أوتشو-كابو، Maze Hunter 3-D)"
+      - "الحسابات والوسوم في تطبيق البحث صارت صحيحة (@Tamazo و#CaféSpecial)"
+      - "ترتيب أسطر الحوار الطويلة لتبقى كاملة داخل المربع، واختصار بعضها"
+      - "تصحيح فواصل نصوص ملعب البيسبول وتصحيح نصوص أخرى"
   - version: "1.1"
     date: 2026-11-01
     at: 2026-11-01T20:10:00+03:00
