@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mwg17qf9ils.webp
   - ./shot-mwg17uwitm4.webp
   - ./shot-mwg181b20oy.webp
-video: https://www.youtube.com/watch?v=q_qe0NNrMUo
+video: https://www.youtube.com/watch?v=_OyFxwYPQ9E
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_ZEDZONE_Installer.zip
