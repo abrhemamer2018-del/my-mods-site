@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-12
 addedAt: 2026-10-12T23:33:05+03:00
 gameRelease: 2018-04-24
-version: "1.2"
+version: "1.3"
 cover: ./cover-mv5pjj85.webp
 screenshots:
   - ./shot-mv5pjpg78u4.webp
@@ -19,12 +19,18 @@ video: https://www.youtube.com/watch?v=6-1KRSoTMr4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Frostpunk_Installer.zip
-    size: 10.68 MB
+    size: 10.76 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-14
+    at: 2026-11-14T11:20:00+03:00
+    notes:
+      - "إصلاح ترتيب أسطر الوصف في قائمة الطور اللانهائي: كانت أول كلمات الجملة تنزل للسطر الثاني، والحين الأسطر مرتبة"
+      - "نفس الإصلاح لأوصاف إعدادات السيناريو المخصص وأوصاف الأبحاث"
   - version: "1.2"
     date: 2026-11-07
     at: 2026-11-07T22:40:00+03:00
