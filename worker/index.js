@@ -99,6 +99,7 @@ async function handleApi(request, env, url) {
   if (route === 'soon' && method === 'POST') return json(await saveSoon(gh, await request.json()));
   if (route === 'steam-game' && method === 'GET') return json(await steamGame(url));
   if (route === 'discord' && method === 'POST') return json(await announceToDiscord(gh, env, await request.json()));
+  if (route === 'facebook' && method === 'POST') return json(await postToFacebook(env, await request.json()));
 
   throw httpError(404, 'غير موجود');
 }
@@ -661,6 +662,47 @@ async function replyToReport(env, threadId) {
 const SITE_URL = 'https://ta3reebat.com';
 
 /** يرسل تعريباً واحداً (من لوحة التحكم): { slug } */
+// ------------------------------------------------------------
+//  النشر المباشر على صفحة فيسبوك (Graph API) بدل نافذة المشاركة المنبثقة التي تتعلق على "Posting"
+//  السرّان في Cloudflare: FB_PAGE_ID و FB_PAGE_TOKEN (توكن صفحة دائم بصلاحية pages_manage_posts)
+// ------------------------------------------------------------
+const FB_GRAPH = 'https://graph.facebook.com/v24.0';
+async function postToFacebook(env, payload) {
+  if (!env.FB_PAGE_ID || !env.FB_PAGE_TOKEN) {
+    throw httpError(500, 'لم يتم ضبط FB_PAGE_ID و FB_PAGE_TOKEN في إعدادات Cloudflare');
+  }
+  const message = String(payload.message || '').slice(0, 60000);
+  if (!message.trim()) throw httpError(400, 'نص المنشور فارغ');
+  let res;
+  if (payload.image) {
+    // منشور صورة: الصورة المصممة + النص (والرابط داخل النص)
+    const b64 = String(payload.image).replace(/^data:image\/\w+;base64,/, '');
+    const bin = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    if (bin.length > 8 * 1024 * 1024) throw httpError(400, 'الصورة أكبر من 8MB');
+    const form = new FormData();
+    form.append('source', new Blob([bin], { type: 'image/png' }), 'post.png');
+    form.append('message', message);
+    form.append('access_token', env.FB_PAGE_TOKEN);
+    res = await fetch(`${FB_GRAPH}/${env.FB_PAGE_ID}/photos`, { method: 'POST', body: form });
+  } else {
+    // منشور رابط: فيسبوك يعرض بطاقة صفحة التعريب (صورتها وعنوانها)
+    const link = String(payload.link || '');
+    if (link && !link.startsWith(SITE_URL + '/')) throw httpError(400, 'رابط غير مسموح');
+    const body = new URLSearchParams({ message, access_token: env.FB_PAGE_TOKEN });
+    if (link) body.set('link', link);
+    res = await fetch(`${FB_GRAPH}/${env.FB_PAGE_ID}/feed`, { method: 'POST', body });
+  }
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || data.error) {
+    const e = data.error || {};
+    // 190 = التوكن انتهى أو أُلغي
+    const msg = e.code === 190 ? 'توكن فيسبوك انتهى أو أُلغي، يجب تجديد FB_PAGE_TOKEN' : `فيسبوك رفض النشر: ${e.message || res.status}`;
+    throw httpError(502, msg);
+  }
+  const id = data.post_id || data.id || '';
+  return { ok: true, id, url: id ? `https://www.facebook.com/${id}` : '' };
+}
+
 async function announceToDiscord(gh, env, payload) {
   if (!env.DISCORD_WEBHOOK_URL) {
     throw httpError(500, 'لم يتم ضبط DISCORD_WEBHOOK_URL في إعدادات Cloudflare');

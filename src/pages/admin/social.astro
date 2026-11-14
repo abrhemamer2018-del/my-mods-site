@@ -351,7 +351,7 @@ const config = { games, discord, site: SITE_URL, siteName: SITE.name };
         $('post').textContent = ig ? '📷 نشر على إنستغرام' : 'f نشر على فيسبوك';
         $('hint').textContent = ig
           ? 'زر النشر يحمّل الصورة وينسخ النص ويفتح إنستغرام: اضغط (+) ← اختر الصورة ← الصق النص بـ Ctrl+V ← مشاركة. ضع رابط الموقع في البايو لأن روابط المنشور لا تُضغط.'
-          : 'زر النشر ينسخ النص ويفتح نافذة فيسبوك وفيها رابط التعريب وصورته: اضغط Ctrl+V ثم "نشر".';
+          : 'زر النشر ينشر الصورة والنص مباشرة على صفحة فيسبوك (عدّل النص قبل الضغط إن أردت).';
         draw(g);
       }
       function updateCount() {
@@ -383,8 +383,33 @@ const config = { games, discord, site: SITE_URL, siteName: SITE.name };
         // النسخ أولاً (الحافظة تحتاج أن تكون الصفحة في الواجهة)، ثم فتح النافذة ما زال ضمن نفس الضغطة
         await copyText();
         if (state.platform === 'fb') {
-          // فيسبوك لا يقبل نصاً جاهزاً في الرابط: نافذة المشاركة فيها رابط التعريب وصورته، والنص يُلصق بـ Ctrl+V
-          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(g.url)}`, 'fbshare', 'width=680,height=720');
+          // نشر مباشر على صفحة فيسبوك من الخادم: الصورة المصممة + النص كما هو في المربع
+          if (!confirm('نشر المنشور الآن على صفحة فيسبوك (الصورة + النص)؟')) return;
+          const b = $<HTMLButtonElement>('post');
+          b.disabled = true;
+          b.textContent = '… جارٍ النشر';
+          try {
+            const res = await fetch('/api/facebook', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'same-origin',
+              body: JSON.stringify({ message: text.value, image: cv.toDataURL('image/png') }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(data.error || 'حدث خطأ');
+            b.textContent = '✔ نُشر على فيسبوك';
+            if (data.url) window.open(data.url, '_blank');
+          } catch (err) {
+            const msg = (err as Error).message;
+            b.textContent = 'f نشر على فيسبوك';
+            if (msg.includes('FB_PAGE_ID')) {
+              // النشر المباشر غير مفعّل بعد: الطريقة القديمة (النص في الحافظة + نافذة المشاركة)
+              alert('النشر المباشر غير مفعّل بعد — النص منسوخ، الصقه بـ Ctrl+V في النافذة');
+              window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(g.url)}`, 'fbshare', 'width=680,height=720');
+            } else alert(msg);
+          } finally {
+            b.disabled = false;
+          }
           return;
         }
         const mobile = matchMedia('(pointer: coarse)').matches && 'canShare' in navigator;

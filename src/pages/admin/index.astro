@@ -891,16 +891,33 @@ https://ta3reebat.com/translations/${it.slug}/
   function fbShareUrl(it: { slug: string }) {
     return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://ta3reebat.com/translations/${it.slug}/`)}`;
   }
-  document.addEventListener('click', (e) => {
+  // النشر مباشرة على صفحة فيسبوك من الخادم (بلا نافذة ولا لصق)؛ إن لم يُضبط توكن الصفحة نرجع للنافذة القديمة
+  document.addEventListener('click', async (e) => {
     const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('.btn-fb');
     if (!a?.dataset.text) return;
-    // ننسخ قبل فتح النافذة (الحافظة تحتاج أن تكون الصفحة في الواجهة)
     e.preventDefault();
-    navigator.clipboard
-      .writeText(a.dataset.text)
-      .then(() => toast('✔ نُسخ نص المنشور — في نافذة فيسبوك اضغط Ctrl+V ثم "نشر"'))
-      .catch(() => toast('لم يُنسخ النص تلقائياً', true))
-      .finally(() => window.open(a.href, 'fbshare', 'width=680,height=720'));
+    if (a.dataset.busy) return;
+    if (!confirm('نشر هذا التعريب الآن على صفحة فيسبوك؟')) return;
+    a.dataset.busy = '1';
+    const label = a.textContent;
+    a.textContent = '… جارٍ النشر';
+    try {
+      const r = await api('facebook', { method: 'POST', body: JSON.stringify({ message: a.dataset.text, link: a.dataset.link }) });
+      a.textContent = '✔ نُشر';
+      toast('✔ تم النشر على صفحة فيسبوك');
+      if (r.url) window.open(r.url, '_blank');
+    } catch (err) {
+      a.textContent = label;
+      const msg = (err as Error).message;
+      if (msg.includes('FB_PAGE_ID')) {
+        // لم يُضبط النشر المباشر بعد: الطريقة القديمة (نسخ النص + نافذة المشاركة)
+        await navigator.clipboard.writeText(a.dataset.text).catch(() => {});
+        toast('النشر المباشر غير مفعّل بعد — نُسخ النص، الصقه بـ Ctrl+V في النافذة', true);
+        window.open(a.href, 'fbshare', 'width=680,height=720');
+      } else toast(msg, true);
+    } finally {
+      delete a.dataset.busy;
+    }
   });
 
   // ------------------------------------------------ إرسال التعريبات المحددة إلى ديسكورد
@@ -1208,7 +1225,7 @@ https://ta3reebat.com/translations/${it.slug}/
           <div class="name"><strong>${esc(it.title || it.slug)}</strong><small>${esc(it.slug)}${it.date ? ' · ' + esc(it.date) : ''}</small></div>
           <div class="actions">
             <a class="btn small" href="${base}${it.slug}/" target="_blank">عرض</a>
-            ${isT ? `<a class="btn small btn-x" target="_blank" rel="noopener" title="نشر على إكس" href="${xShareUrl(it)}">𝕏 نشر</a><a class="btn small btn-fb" target="_blank" rel="noopener" title="نشر على فيسبوك (النص يُنسخ، الصقه بـ Ctrl+V)" data-text="${esc(fbText(it))}" href="${fbShareUrl(it)}">f نشر</a><a class="btn small" target="_blank" title="منشور إنستغرام (نص + صورة جاهزة)" href="/admin/social/?game=${encodeURIComponent(it.slug)}&platform=ig">📷 إنستا</a>` : ''}
+            ${isT ? `<a class="btn small btn-x" target="_blank" rel="noopener" title="نشر على إكس" href="${xShareUrl(it)}">𝕏 نشر</a><a class="btn small btn-fb" target="_blank" rel="noopener" title="نشر مباشر على صفحة فيسبوك" data-text="${esc(fbText(it))}" data-link="https://ta3reebat.com/translations/${esc(it.slug)}/" href="${fbShareUrl(it)}">f نشر</a><a class="btn small" target="_blank" title="منشور إنستغرام (نص + صورة جاهزة)" href="/admin/social/?game=${encodeURIComponent(it.slug)}&platform=ig">📷 إنستا</a>` : ''}
             <button class="btn small edit">تعديل</button>
             <button class="btn small danger del">حذف</button>
           </div>`;
