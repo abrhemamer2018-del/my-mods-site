@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mwg13ootb9z.webp
   - ./shot-mwg13zrg2f9.webp
   - ./shot-mwg1454jqny.webp
-video: https://www.youtube.com/watch?v=ttVtllHkb4E
+video: https://youtu.be/ukUezykO7ek
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SlayTheSpire2_Installer.zip
