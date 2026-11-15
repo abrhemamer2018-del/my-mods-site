@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-04
 addedAt: 2026-10-04T23:01:27+03:00
 gameRelease: 2025-04-03
-version: "1.3"
+version: "1.4"
 cover: ./cover-muu8uxla.webp
 banner: ./banner-muu8veyf.webp
 screenshots:
@@ -21,12 +21,20 @@ video: https://www.youtube.com/watch?v=eOiUtRF8k28
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TLOU2_Installer.zip
-    size: 3.45 MB
+    size: 3.46 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.4"
+    date: 2026-11-15
+    at: 2026-11-15T21:45:00+03:00
+    notes:
+      - "إصلاح تنبيه مضاد الفيروسات عند تحميل الملف (إنذار كاذب)، والأداة الجديدة سليمة"
+      - "تقسيم الجمل الطويلة على أسطر بحسب عرض الشاشة فلا تنقلب أو تخرج عن مربعها"
+      - "تصحيح لقب قائدة السيرافيين إلى «العرّافة» وتصحيح أسطر أخرى في الرسائل والحوار"
+      - "إرجاع المسافات بين العناوين وقيمها، وتحسين نافذة أداة التثبيت"
   - version: "1.3"
     date: 2026-10-29
     at: 2026-10-29T13:00:00+03:00
