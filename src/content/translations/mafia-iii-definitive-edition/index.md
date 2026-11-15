@@ -8,14 +8,14 @@ platforms:
 status: complete
 releaseDate: 2026-10-22
 gameRelease: 2020-05-19
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvjla4pe.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=kmKOLvnullE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Mafia3DE_Installer.zip
-    size: 3.50 MB
+    size: 3.83 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
@@ -33,6 +33,15 @@ changelog:
       - "التعريب يُطبَّق على ملفات اللعبة الموجودة عندك بدل استبدالها، فلا يلغي تحديثات اللعبة"
       - "إن حدّث Steam اللعبة لاحقاً، افتح الأداة واضغط «تثبيت» مرة أخرى"
       - "حجم التحميل صار 3.5 ميغابايت بدل 15"
+  - version: "1.2"
+    date: 2026-11-16
+    at: 2026-11-16T00:25:00+03:00
+    notes:
+      - "إصلاح رسالة «ملف اللعبة غير متوقع (ليس SDS v20)»: الأداة كانت تختار مجلد Mafia 1 بدل Mafia III عند من عنده اللعبتان، وصارت تختار مجلد Mafia III الصحيح"
+      - "الأداة تقبل ملفات اللعبة من كل النسخ، وإن كانت ملفاتك معدّلة من مود آخر تعطيك خطوات الحل"
+      - "تعريب 96 نصاً جديداً أضافها آخر تحديث للعبة (إعدادات اليد وغيرها)"
+      - "إصلاح نسبة «الخسارة» و«الجودة» التي كانت لا تظهر، وعنوان المهمة، وعلامات التنصيص في بعض الحوارات"
+      - "لفّ أسطر أدق في الترجمة والقوائم حتى لا يخرج النص عن مربعه"
 addedAt: 2026-10-22T13:53:40.238Z
 tags:
   - Crime
