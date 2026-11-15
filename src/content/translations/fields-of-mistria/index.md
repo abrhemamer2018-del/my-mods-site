@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-01
 gameRelease: 2026-08-05
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvwwaleu.webp
 screenshots:
   - ./shot-mvwwglg6al9.webp
@@ -20,12 +20,18 @@ video: https://youtu.be/FX4ZIGOveUU
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Fields_of_Mistria_Installer.zip
-    size: 2.49 MB
+    size: 2.64 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-15
+    at: 2026-11-15T07:35:00+03:00
+    notes:
+      - "إصلاح رسالة «صيغة ملف غير مفهومة: text_styles.toml» عند التثبيت على بعض نسخ اللعبة: أداة التثبيت تتعامل الحين مع النسخ اللي ينقصها جزء من إعدادات الخطوط"
+      - "لو ظهر أي خطأ في التثبيت، الرسالة الحين توضح الجزء الناقص بالضبط"
   - version: "1.0"
     date: 2026-11-01
     notes:
