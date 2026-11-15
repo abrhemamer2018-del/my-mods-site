@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-06
 addedAt: 2026-10-07T02:06:08+03:00
 gameRelease: 2026-09-24
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-muxaeg0k.webp
 banner: ./banner-muxaeopi.webp
 screenshots:
@@ -21,12 +21,16 @@ video: https://www.youtube.com/watch?v=1rR2QMUTAtc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_CONTROL_Resonant_Installer.zip
-    size: 4.42 MB
+    size: 4.43 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-11-16
+    notes:
+      - تحديث أداة التثبيت حتى لا يحظرها مضاد الفيروسات أو المتصفح
   - version: "1.0"
     date: 2026-10-06
     notes:
