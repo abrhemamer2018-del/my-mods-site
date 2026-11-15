@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mwi5cf9khqh.webp
   - ./shot-mwi5cha4f6v.webp
   - ./shot-mwi5clgux58.webp
-video: https://www.youtube.com/watch?v=F-uGP2DkZKE
+video: https://www.youtube.com/watch?v=MUSwfEm53Eg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Hearts_of_Iron_IV_Installer.zip
