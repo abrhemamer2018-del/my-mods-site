@@ -12,19 +12,25 @@ platforms:
 status: complete
 releaseDate: 2026-10-06
 gameRelease: 2025-03-04
-version: "1.4"
+version: "1.5"
 cover: ./cover-mv6c2hvs.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=NXTlh31ZWZ4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Grand.Theft.Auto.V.Enhanced.zip
-    size: 8.71 MB
+    size: 8.22 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.5"
+    date: 2026-11-15
+    at: 2026-11-15T20:08:00+03:00
+    notes:
+      - "إصلاح خطأ «جدول النصوص global.gxt2 أكبر من الحد» الذي كان يوقف التثبيت عند من عنده مود آخر في مجلد mods: الأداة صارت تكمل التثبيت وتعرّب النصوص الأهم أولاً (القصة والقوائم والمساعدة)، وتخبرك بعدد الأسطر التي بقيت بالإنجليزية من GTA أونلاين"
+      - "إصلاح التصاق وحدات القياس بالأرقام (كم/س، ميل/س، قدم) وإضافة علامة $ التي كانت ناقصة من بعض المبالغ"
   - version: "1.4"
     date: 2026-11-08
     at: 2026-11-08T21:20:00+03:00
