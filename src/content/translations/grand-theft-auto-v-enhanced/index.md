@@ -12,19 +12,24 @@ platforms:
 status: complete
 releaseDate: 2026-10-06
 gameRelease: 2025-03-04
-version: "1.5"
+version: "1.6"
 cover: ./cover-mv6c2hvs.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=NXTlh31ZWZ4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Grand.Theft.Auto.V.Enhanced.zip
-    size: 8.22 MB
+    size: 8.13 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.6"
+    date: 2026-11-16
+    at: 2026-11-16T00:15:00+03:00
+    notes:
+      - "إصلاح رموز <br/> التي كانت تظهر في الشاشة القانونية عند تشغيل اللعبة وفي الشارات: هذه النصوص القانونية صارت تظهر بالإنجليزية الأصلية كما في اللعبة"
   - version: "1.5"
     date: 2026-11-15
     at: 2026-11-15T20:08:00+03:00
