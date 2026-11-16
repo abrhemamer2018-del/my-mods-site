@@ -241,7 +241,7 @@ const jsonLd = [
                   <li>
                     <a href={`/translations/${t.id}/`} class="rank-row">
                       <span class="rank-n">{i + 4}</span>
-                      <Image class="rank-img" src={t.data.cover} alt="" width={200} />
+                      <Image class="rank-img" src={t.data.cover} alt={`تعريب ${t.data.titleAr}`} width={200} />
                       <span class="rank-names">
                         <strong dir="ltr">{t.data.title}</strong>
                         <span>{t.data.titleAr}</span>
@@ -268,7 +268,7 @@ const jsonLd = [
               <li data-kind={isNew ? 'new' : 'upd'}>
                 <a href={`/translations/${t.id}/`} class="tl-row">
                   <span class="tl-dot" aria-hidden="true" />
-                  <Image class="tl-img" src={t.data.cover} alt="" width={240} />
+                  <Image class="tl-img" src={t.data.cover} alt={`تعريب ${t.data.titleAr}`} width={240} />
                   <span class="tl-main">
                     <span class="tl-top">
                       <strong dir="ltr">{t.data.title}</strong>
@@ -295,7 +295,7 @@ const jsonLd = [
           <div class="soon-list">
             {soon.map((g) => (
               <article class="soon-card">
-                <img class="soon-bg" src={g.image} alt="" aria-hidden="true" loading="lazy" />
+                <img class="soon-bg" src={g.image} alt={g.title} aria-hidden="true" loading="lazy" />
                 <img class="soon-img" src={g.image} alt={g.title} loading="lazy" />
                 <div class="soon-info">
                   <span class="soon-state" data-state>بانتظار الصدور</span>
@@ -331,7 +331,7 @@ const jsonLd = [
                 {inProgress.map((t) => (
                   <li>
                     <a href={`/translations/${t.id}/`}>
-                      <Image src={t.data.cover} alt="" width={200} />
+                      <Image src={t.data.cover} alt={`تعريب ${t.data.titleAr}`} width={200} />
                       <span><strong dir="ltr">{t.data.title}</strong><span class="prog-bar"><span style={`width:${t.data.progress ?? 0}%`} /></span></span>
                       <b>{t.data.progress ?? 0}%</b>
                     </a>
@@ -357,7 +357,7 @@ const jsonLd = [
           {pinned.map((t) => (
             <a href={`/translations/${t.id}/`} class="pin-card">
               {/* هالة ضوء بألوان غلاف اللعبة نفسها تنعكس تحت البطاقة */}
-              <Image class="pin-glow" src={t.data.cover} alt="" width={320} aria-hidden="true" />
+              <Image class="pin-glow" src={t.data.cover} alt={`تعريب ${t.data.titleAr}`} width={320} aria-hidden="true" />
               {/* إطار متدرج بألوان الشعار، والغلاف كاملاً بنسبته 16:9 بلا قص */}
               <span class="pin-frame">
                 <span class="pin-in">
@@ -445,7 +445,7 @@ const jsonLd = [
   <section class="container duo">
     <a href="/live/" class="duo-card duo-live">
       <span class="duo-thumb">
-        <img src="/live/after.webp" alt="" width="1280" height="673" loading="lazy" aria-hidden="true" />
+        <img src="/live/after.webp" alt="تعريبات لايف" width="1280" height="673" loading="lazy" aria-hidden="true" />
       </span>
       <span class="duo-body">
         <span class="duo-kicker"><span class="duo-dot"></span>جديد · برنامج مجاني</span>

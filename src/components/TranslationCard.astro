@@ -34,7 +34,7 @@ const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFracti
   data-search={`${d.title} ${d.titleAr}`.toLowerCase()}
 >
   {/* هالة متساوية بلون الغلاف: الغلاف مصغّر إلى بكسل واحد = متوسط ألوانه كلها (ملف صغير جداً) */}
-  <Image class="glow" src={d.cover} alt="" width={1} height={1} loading="lazy" aria-hidden="true" />
+  <Image class="glow" src={d.cover} alt={`تعريب ${d.titleAr}`} width={1} height={1} loading="lazy" aria-hidden="true" />
   <div class="card-in">
   <div class="thumb">
     <Image src={d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={480} height={270} />

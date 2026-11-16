@@ -24,7 +24,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     {items.map((item, i) => {
       const scene = wide && item !== 'live' ? item.data.screenshots[0] : undefined;
       return (
-        <Image class:list={['hx-bg-img', { on: i === 0, sharp: scene }]} src={scene ?? (item === 'live' ? liveImg : (item.data.banner ?? item.data.cover))} alt="" width={scene ? 1920 : 480} loading={i === 0 ? 'eager' : 'lazy'} />
+        <Image class:list={['hx-bg-img', { on: i === 0, sharp: scene }]} src={scene ?? (item === 'live' ? liveImg : (item.data.banner ?? item.data.cover))} alt={item === 'live' ? 'تعريبات لايف' : `تعريب ${item.data.titleAr}`} width={scene ? 1920 : 480} loading={i === 0 ? 'eager' : 'lazy'} />
       );
     })}
   </div>
@@ -50,7 +50,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
                 </div>
               </div>
               <a href="/live/" class="hx-media" tabindex="-1" aria-hidden="true">
-                <Image class="hx-glow" src={liveImg} alt="" width={320} loading={on ? 'eager' : 'lazy'} />
+                <Image class="hx-glow" src={liveImg} alt="تعريبات لايف" width={320} loading={on ? 'eager' : 'lazy'} />
                 <Image class="hx-img" src={liveImg} alt="تعريبات لايف" width={1200} loading={on ? 'eager' : 'lazy'} />
               </a>
             </div>
@@ -91,7 +91,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
             </div>
             <a href={url} class="hx-media" tabindex="-1" aria-hidden="true">
               {/* هالة ضوء بألوان الغلاف نفسه خلف الصورة */}
-              <Image class="hx-glow" src={d.banner ?? d.cover} alt="" width={320} loading={on ? 'eager' : 'lazy'} />
+              <Image class="hx-glow" src={d.banner ?? d.cover} alt={`تعريب ${d.titleAr}`} width={320} loading={on ? 'eager' : 'lazy'} />
               <Image class="hx-img" src={d.banner ?? d.cover} alt={`تعريب لعبة ${d.titleAr} (${d.title})`} width={1200} loading={on ? 'eager' : 'lazy'} />
             </a>
           </div>

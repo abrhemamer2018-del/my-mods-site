@@ -154,7 +154,7 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
 <BaseLayout fullTitle={pageTitle} description={seoDescription} image={og.src} jsonLd={jsonLd}>
   {/* أعلى الصفحة بأسلوب صفحة متجر: العنوان، ثم عارض صور كبير، وبجانبه صندوق التحميل والمعلومات */}
   <section class="sp" data-pagefind-body>
-    <Image class="sp-bg" src={d.banner ?? d.cover} alt="" aria-hidden="true" width={1920} height={600} loading="eager" />
+    <Image class="sp-bg" src={d.banner ?? d.cover} alt={`تعريب ${d.titleAr}`} aria-hidden="true" width={1920} height={600} loading="eager" />
     <div class="container sp-in">
       <nav class="crumbs" aria-label="مسار الصفحة">
         <a href="/">الرئيسية</a>
@@ -204,7 +204,7 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
             videoId && shots.length > 0 && (
               <div class="vw-thumbs">
                 <button type="button" class="shot vw-vid on" aria-label={`فيديو تعريب ${d.titleAr}`}>
-                  <img src={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} alt="" loading="lazy" />
+                  <img src={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`} alt={`فيديو تعريب ${d.titleAr}`} loading="lazy" />
                   <span class="mini-play" aria-hidden="true">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                   </span>
