@@ -7,6 +7,8 @@ import TranslationCard from '../../components/TranslationCard.astro';
 import { downloadsOf } from '../../lib/downloads';
 import { getTranslations, formatDate, relatedTranslations, seriesOf, youtubeId, type Translation } from '../../lib/utils';
 import { CATEGORY_LABELS, SITE, SOCIAL, STATUS_LABELS } from '../../config';
+// معلومات كل تعريب من ملفات مشروعه (عدد النصوص المعرّبة + أبرز المصطلحات)؛ يُولَّد من مشاريع التعريب
+import gameFacts from '../../data/game-facts.json';
 
 export async function getStaticPaths() {
   const all = await getTranslations();
@@ -53,6 +55,14 @@ const pageTitle = titleOptions.find((x) => x.length <= TITLE_MAX) ?? titleOption
 // صفحة السلسلة (إن وُجدت): رابط "كل أجزاء السلسلة" فوق التعريبات المشابهة
 const series = seriesOf(item);
 
+// قسم "عن التعريب": معلومات حقيقية خاصة بكل لعبة (لا نص مكرر بين الصفحات)
+const facts = (gameFacts as Record<string, { lines?: number; terms?: [string, string][] }>)[item.id] ?? {};
+const roundDown = (n: number) => (n >= 10000 ? Math.floor(n / 1000) * 1000 : n >= 1000 ? Math.floor(n / 100) * 100 : Math.floor(n / 10) * 10);
+const linesText = facts.lines ? `أكثر من ${roundDown(facts.lines).toLocaleString('en-US')} نص` : '';
+const history = [...d.changelog].sort((a, b) => a.date.getTime() - b.date.getTime());
+const firstRelease = history[0]?.date ?? d.releaseDate;
+const latest = history.length > 1 ? history[history.length - 1] : undefined;
+
 // أسئلة شائعة: تظهر في الصفحة، وتفهمها محركات البحث (FAQPage) فقد تعرضها تحت النتيجة
 const faq = [
   {
@@ -63,6 +73,9 @@ const faq = [
     q: 'هل يعمل التعريب مع نسخة Steam و Epic و GOG؟',
     a: 'نعم، التعريب يعمل على نسخة الكمبيوتر (PC) الأصلية من اللعبة، وأداة التثبيت تجد مجلد اللعبة تلقائياً في Steam أو Epic أو GOG.',
   },
+  ...(linesText
+    ? [{ q: `كم عدد النصوص المعرّبة في ${d.title}؟`, a: `يعرّب التعريب ${linesText} من نصوص ${d.titleAr} إلى العربية.` }]
+    : []),
   ...(d.gameVersion
     ? [{ q: 'ما نسخة اللعبة المدعومة؟', a: `التعريب مُختبَر على نسخة اللعبة ${d.gameVersion}. إن كانت نسختك أقدم فحدّث اللعبة أولاً.` }]
     : []),
@@ -326,6 +339,51 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
         </button>
         <Content />
       </div>
+
+      <section class="block about" id="about">
+        <h2>عن تعريب {d.titleAr}</h2>
+        <p>
+          تعريب <b>{d.titleAr}</b>{hasArabicName && <> (<span dir="ltr">{d.title}</span>)</>} يترجم {linesText || 'نصوص اللعبة'}
+          {linesText && ' من نصوص اللعبة'} إلى العربية، ويُثبَّت بأداة تجد مجلد اللعبة تلقائياً.
+          صدر أول إصدار منه في {formatDate(firstRelease)}، والإصدار الحالي <span dir="ltr">v{d.version}</span>
+          {latest && <> بتاريخ {formatDate(latest.date)}</>}.
+        </p>
+        {
+          latest && latest.notes.length > 0 && (
+            <>
+              <h3>الجديد في الإصدار <span dir="ltr">v{latest.version}</span></h3>
+              <ul class="about-notes">
+                {latest.notes.map((n) => (
+                  <li>{n}</li>
+                ))}
+              </ul>
+            </>
+          )
+        }
+        {
+          facts.terms && facts.terms.length > 0 && (
+            <>
+              <h3>أبرز مصطلحات {d.titleAr} في التعريب</h3>
+              <table class="terms">
+                <thead>
+                  <tr>
+                    <th>في التعريب</th>
+                    <th>بالإنجليزية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {facts.terms.map(([en, ar]) => (
+                    <tr>
+                      <td>{ar}</td>
+                      <td dir="ltr" lang="en">{en}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )
+        }
+      </section>
 
       {
         d.requirements.length > 0 && (
@@ -606,6 +664,44 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
   }
   .block h2 {
     font-size: 1.5rem;
+  }
+  .about p {
+    line-height: 1.9;
+  }
+  .about h3 {
+    font-size: 1.1rem;
+    margin: 22px 0 10px;
+  }
+  .about-notes {
+    margin: 0;
+    padding-inline-start: 22px;
+    line-height: 1.9;
+  }
+  .terms {
+    width: 100%;
+    max-width: 560px;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .terms th,
+  .terms td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: start;
+  }
+  .terms th {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .terms td[dir='ltr'],
+  .terms th:last-child {
+    text-align: left;
+  }
+  .terms tr:last-child td {
+    border-bottom: 0;
   }
   .yt {
     position: relative;
