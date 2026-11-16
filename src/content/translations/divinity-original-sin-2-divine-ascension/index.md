@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-11-16
 gameRelease: 2017-09-14
 version: "1.0"
-cover: ./cover-mwjhalc8.webp
+cover: ./cover-mwjhurge.webp
 screenshots:
   - ./shot-mwjhauiekgk.webp
   - ./shot-mwjhb2t428j.webp
