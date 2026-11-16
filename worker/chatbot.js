@@ -23,6 +23,11 @@ const GENERAL = '1556889084541149275'; // دردشة-عامة-✍️
 const REQUEST_CHANNEL = '1564741411071336491'; // 📩اطلب-تعريب-هنا
 const VOTES_FORUM = '1556915194775601212'; // 🗳️الطلبات-والتصويت
 const REPORTS_FORUM = '1558118652979454053'; // الإبلاغ-عن-مشكلة📄
+// رد ثابت على سؤال طريقة التعريب (قرار صاحب السيرفر 2026-11-16: رد بدل الحذف الصامت)
+const METHOD_REPLY =
+  'هلا فيك 👋 كل تعريب نشتغل عليه ونفحص نصوصه داخل اللعبة نفسها قبل ما ننشره. ' +
+  `وإذا لقيت أي خطأ في الترجمة ارفع بلاغ في <#${REPORTS_FORUM}> ونصلحه إن شاء الله.`;
+const METHOD_REPLY_EVERY_MS = 30 * 24 * 3600 * 1000; // مرة لكل عضو في 30 يوم، وبعدها سكوت
 const OUR_INVITE = 'tb829vjd6m';
 const TIMEOUT_MS = 24 * 3600 * 1000;
 const NOTICE_MS = 30_000; // تنبيه الحذف في الروم يختفي بعد 30 ثانية
@@ -120,8 +125,11 @@ const SYSTEM = `أنت «تعريبات»، بوت سيرفر ديسكورد ل�
 # تنبيه صاحب السيرفر (alert_owner)
 خلها true مع سبب قصير إذا: بلاغ خلل في أحد تعريباتنا ما حلّته الخطوات المعروفة (وجّهه يرفع بلاغ في <#${REPORTS_FORUM}> فيه اسم اللعبة وصورة، وقل إننا نتابع البلاغات هناك؛ لا تطلب منه التفاصيل في الدردشة)، أو أحد يطلب صاحب السيرفر شخصياً لأمر مهم، أو شكوى، أو عرض تعاون أو إعلان، أو سؤال مهم ما تعرف جوابه. وإلا false.
 
-# أسئلة طريقة التعريب (احذفها بصمت)
-إذا الرسالة المعلّمة تسأل كيف نعرّب أو بأي أدوات، أو هل التعريب بالذكاء الاصطناعي / ترجمة آلية / ChatGPT / Google Translate أو يدوي، أو تشكك أو تعلّق على ذلك: reply=false و text فارغ و delete_msg=true. لا تجاوب عليها أبداً ولا تقل إنها يدوية ولا آلية. أي رسالة ثانية: delete_msg=false.
+# أسئلة طريقة التعريب (method)
+- method="ask": سؤال أو استغراب بأدب عن طريقة تعريبنا نحن (كيف تعربون، بأي أدوات، هل هو بالذكاء الاصطناعي / ترجمة آلية / ChatGPT / Google Translate أو يدوي). البوت يرسل رد ثابت مكتوب مسبقاً، فخل reply=false و text فارغ.
+- method="mock": استهزاء أو تشكيك يقصد الإثارة عن طريقة تعريبنا («ترجمتكم قوقل»، «تعريب ذكاء اصطناعي خربان»، «لا تحملون منهم»). reply=false و text فارغ.
+- method="none": أي رسالة ثانية. ومنها: عضو يسأل كيف يعرّب هو لعبة بنفسه (Ren'Py، Unity، أدوات تعريب)، أو يتكلم عن ذكاء اصطناعي داخل لعبة، أو عن تجربته هو مع الذكاء الاصطناعي بدون ما يسأل عن تعريبنا، أو يسأل ليش انحذفت رسالة. هذي رد عليها عادي إذا تحتاج رد. وسؤال «ليش تنحذف الرسائل/التعليقات» جوابه بجملة قصيرة: البوت يحذف الرسائل اللي فيها إساءة أو روابط مشبوهة أو مخالفة لقوانين السيرفر، ولا تذكر طريقة التعريب.
+- لا تذكر أبداً من عندك طريقة تعريبنا (لا يدوي ولا آلي) في أي رد.
 
 # ممنوع
 - المواضيع الدينية والسياسية والطائفية: اعتذر بلطف وباختصار ورجّع الكلام للألعاب.
@@ -135,9 +143,13 @@ export const REPLY_SCHEMA = {
     text: { type: 'string', description: 'نص الرد (فارغ إذا reply=false)' },
     alert_owner: { type: 'boolean' },
     alert_reason: { type: 'string', description: 'سبب التنبيه باختصار (فارغ إذا false)' },
-    delete_msg: { type: 'boolean', description: 'true إذا الرسالة سؤال عن طريقة التعريب أو هل هو بالذكاء الاصطناعي' },
+    method: {
+      type: 'string',
+      enum: ['none', 'ask', 'mock'],
+      description: 'ask = سؤال بأدب عن طريقة تعريبنا، mock = استهزاء أو تشكيك عنها، none = غير ذلك',
+    },
   },
-  required: ['reply', 'text', 'alert_owner', 'alert_reason', 'delete_msg'],
+  required: ['reply', 'text', 'alert_owner', 'alert_reason', 'method'],
   additionalProperties: false,
 };
 
@@ -511,20 +523,38 @@ export class ChatBot {
       return;
     }
     if (!r) return;
-    // سؤال عن طريقة التعريب: يُحذف بصمت بدون رد (الإدارة مستثناة)، مع سطر بدون منشن في روم التنبيهات
-    // رسائل السجل (history) بدون member، فنفحص الإدارة على رسالة البوابة m إذا هي نفسها
-    if (r.delete_msg && target.id === m.id && !(await this.isStaff(m))) {
+    // طريقة التعريب (الإدارة مستثناة؛ رسائل السجل بدون member فنفحص على رسالة البوابة m إذا هي نفسها)
+    // ask: رد ثابت مكتوب مسبقاً (ما يألفه الذكاء الاصطناعي، فما يدخل في نقاش ولا يقول كلام غلط)،
+    //      مرة وحدة لكل عضو في 30 يوم، وبعدها سكوت بدون حذف
+    // mock: حذف + سطر بدون منشن في روم التنبيهات
+    if (r.method && r.method !== 'none' && target.id === m.id && !(await this.isStaff(m))) {
       try {
-        await dc(this.env, 'DELETE', `/channels/${channelId}/messages/${target.id}`, undefined, {
-          'X-Audit-Log-Reason': encodeURIComponent('سؤال عن طريقة التعريب'),
-        });
-        await this.alert(
-          `🗑️ حذفت سؤال عن طريقة التعريب من <@${target.author.id}> (${target.author.username}) في <#${channelId}>\n` +
-            '```\n' + (target.content || '').replace(/```/g, "'''").slice(0, 500) + '\n```',
-          false,
-        );
+        if (r.method === 'mock') {
+          await dc(this.env, 'DELETE', `/channels/${channelId}/messages/${target.id}`, undefined, {
+            'X-Audit-Log-Reason': encodeURIComponent('استهزاء بطريقة التعريب'),
+          });
+          await this.alert(
+            `🗑️ حذفت استهزاء بطريقة التعريب من <@${target.author.id}> (${target.author.username}) في <#${channelId}>\n` +
+              '```\n' + (target.content || '').replace(/```/g, "'''").slice(0, 500) + '\n```',
+            false,
+          );
+        } else {
+          const key = `method:${target.author.id}`;
+          const last = (await this.state.storage.get(key)) || 0;
+          if (now - last > METHOD_REPLY_EVERY_MS) {
+            await this.state.storage.put(key, now);
+            await dc(this.env, 'POST', `/channels/${channelId}/messages`, {
+              content: METHOD_REPLY,
+              message_reference: { message_id: target.id, fail_if_not_exists: false },
+              allowed_mentions: { parse: [], replied_user: direct },
+              flags: 4,
+            });
+            times.push(now);
+            this.userReplies.set(m.author.id, times);
+          }
+        }
       } catch (e) {
-        this.fail('delete question', e);
+        this.fail('method question', e);
       }
       return;
     }
