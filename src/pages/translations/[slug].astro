@@ -364,22 +364,28 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
           facts.terms && facts.terms.length > 0 && (
             <>
               <h3>أبرز مصطلحات {d.titleAr} في التعريب</h3>
-              <table class="terms">
-                <thead>
-                  <tr>
-                    <th>في التعريب</th>
-                    <th>بالإنجليزية</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {facts.terms.map(([en, ar]) => (
-                    <tr>
-                      <td>{ar}</td>
-                      <td dir="ltr" lang="en">{en}</td>
-                    </tr>
+              <div class="terms-grid">
+                {[facts.terms.slice(0, Math.ceil(facts.terms.length / 2)), facts.terms.slice(Math.ceil(facts.terms.length / 2))]
+                  .filter((half) => half.length > 0)
+                  .map((half) => (
+                    <table class="terms">
+                      <thead>
+                        <tr>
+                          <th>في التعريب</th>
+                          <th>بالإنجليزية</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {half.map(([en, ar]) => (
+                          <tr>
+                            <td>{ar}</td>
+                            <td dir="ltr" lang="en">{en}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   ))}
-                </tbody>
-              </table>
+              </div>
             </>
           )
         }
@@ -677,10 +683,21 @@ const myFiles = d.downloads.map((f) => decodeURIComponent(f.url.split('/').pop()
     padding-inline-start: 22px;
     line-height: 1.9;
   }
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 760px) {
+    .terms-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
   .terms {
     width: 100%;
-    max-width: 560px;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
