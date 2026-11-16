@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-16
 gameRelease: 2017-09-14
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwjhurge.webp
 screenshots:
   - ./shot-mwjhauiekgk.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-16
+    at: 2026-11-16T21:25:00+03:00
+    notes:
+      - "إصلاح ترجمة المشاهد السينمائية (مقدمات الأصول الست، الخاتمة والنهايات): كانت بعض الأسطر الطويلة تظهر مقلوبة، يأتي آخر الجملة فوق أولها، وصارت 59 جملة في سطرين بالترتيب الصحيح"
   - version: "1.0"
     date: 2026-11-16
     notes:
