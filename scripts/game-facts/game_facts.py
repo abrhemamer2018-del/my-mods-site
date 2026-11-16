@@ -257,11 +257,16 @@ def git(*a, cwd=CLONE, check=True):
 
 def auto():
     DATA.mkdir(parents=True, exist_ok=True)
+    # حساب GitHub نفسه الذي في نسخة الموقع، وإلا يفتح Windows نافذة «Select an account»
+    cred = 'credential.https://github.com.username'
+    user = git('config', cred, cwd=SITE_ROOT, check=False)
     if not (CLONE / '.git').exists():
         url = git('remote', 'get-url', 'origin', cwd=SITE_ROOT)
-        git('clone', '--depth', '50', url, str(CLONE), cwd=DATA)
-        for k in ('user.name', 'user.email'):
-            git('config', k, git('config', k, cwd=SITE_ROOT))
+        git(*(['-c', f'{cred}={user}'] if user else []), 'clone', '--depth', '50', url, str(CLONE), cwd=DATA)
+    for k in ('user.name', 'user.email', cred):
+        v = git('config', k, cwd=SITE_ROOT, check=False)
+        if v:
+            git('config', k, v)
     git('fetch', '-q', 'origin', 'main')
     git('reset', '-q', '--hard', 'origin/main')
     out, missing, redone = build(CLONE)
