@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-16
 gameRelease: 2017-09-14
-version: "1.1"
+version: "1.2"
 cover: ./cover-mwjhurge.webp
 screenshots:
   - ./shot-mwjhauiekgk.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-17
+    at: 2026-11-17T00:10:00+03:00
+    notes:
+      - "إصلاح رسائل الشرح بيد التحكم في الصندوق الجانبي: كان بعضها يُقطع وينزل جزء من كلمة إلى سطر وحده، وصارت 34 رسالة ضمن صندوقها"
+      - "تصحيح 100 جملة تقولها البطلة لرفاقها كانت تخاطبهم بصيغة المؤنث، مع إصلاح نجمة زائدة في بداية 13 سطر سرد"
   - version: "1.1"
     date: 2026-11-16
     at: 2026-11-16T21:25:00+03:00
