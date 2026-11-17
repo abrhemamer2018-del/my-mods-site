@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.3.1"
+version: "1.3.2"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3.2"
+    date: 2026-11-17
+    at: 2026-11-17T18:20:00+03:00
+    notes:
+      - "إصلاح: مع سطر خيارات التشغيل في ستيم كانت اللعبة لا تفتح (رسالة «تعذر تشغيل اللعبة»)؛ الآن يعيد التعريب ثم يفتح اللعبة"
   - version: "1.3.1"
     date: 2026-11-17
     at: 2026-11-17T14:00:00+03:00
