@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.3"
+version: "1.3.1"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3.1"
+    date: 2026-11-17
+    at: 2026-11-17T14:00:00+03:00
+    notes:
+      - "سطر خيارات التشغيل في ستيم يظهر الآن في نافذة خاصة بالاتجاه الصحيح مع زر «نسخ السطر» (كان يظهر مقلوباً داخل رسالة التثبيت)"
   - version: "1.3"
     date: 2026-11-17
     at: 2026-11-17T13:45:00+03:00
