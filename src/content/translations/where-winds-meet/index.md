@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.1"
+version: "1.2"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -20,12 +20,21 @@ video: https://www.youtube.com/watch?v=8wq9AddMIfk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Where_Winds_Meet_Installer.zip
-    size: 64.96 MB
+    size: 70.33 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-17
+    at: 2026-11-17T08:45:00+03:00
+    notes:
+      - "يدعم تحديث اللعبة 1.0.344 ونسخة Epic: أداة التثبيت صارت تعرّب السطر حتى لو تغيّر رقمه في نسختك، ما دام نصه الإنجليزي نفسه"
+      - "تعريب قرابة ألف نص كان باقياً بالإنجليزي (تلميحات، رسائل، أوصاف)"
+      - "إصلاح أسماء الساعات (ساعة يو بدل «أنت»)، والمسافة بالأمتار في متتبع المهام، و«وضع الكاميرا»، وتسميات الإعدادات المتداخلة"
+      - "مهم: اللعبة تنزّل تحديثات صغيرة من داخلها، وبعدها قد ترجع بعض النصوص للإنجليزي؛ الحل: أعد تشغيل أداة التثبيت واضغط تثبيت"
+      - "رسائل البريد داخل اللعبة يرسلها الخادم وتبقى بالإنجليزي"
   - version: "1.1"
     date: 2026-11-14
     at: 2026-11-14T20:10:00+03:00
