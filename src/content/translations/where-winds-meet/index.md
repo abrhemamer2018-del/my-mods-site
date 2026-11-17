@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.2"
+version: "1.3"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=8wq9AddMIfk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Where_Winds_Meet_Installer.zip
-    size: 70.33 MB
+    size: 70.34 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-17
+    at: 2026-11-17T13:45:00+03:00
+    notes:
+      - "التعريب يرجع وحده بعد تحديثات اللعبة الصغيرة: بعد التثبيت تنسخ الأداة سطراً تلصقه مرة واحدة في ستيم (خصائص اللعبة > خيارات التشغيل)، وبعدها تُعيد التعريب تلقائياً قبل تشغيل اللعبة إن رجع شيء للإنجليزي"
+      - "اختصار على سطح المكتب «إعادة تعريب Where Winds Meet» يعيد التعريب بضغطة (لكل المتاجر ومنها Epic)"
+      - "إزالة التعريب تحذف الاختصار ونسخة الأداة من مجلد اللعبة"
   - version: "1.2"
     date: 2026-11-17
     at: 2026-11-17T08:45:00+03:00
