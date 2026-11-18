@@ -6713,6 +6713,51 @@
    ]
   ]
  },
+ "quarantine-zone-the-last-check": {
+  "lines": 5441,
+  "terms": [
+   [
+    "Quarantine Zone",
+    "منطقة الحجر"
+   ],
+   [
+    "Checkpoint Alpha",
+    "نقطة التفتيش ألفا"
+   ],
+   [
+    "Liquidation",
+    "التصفية"
+   ],
+   [
+    "Liquidation Zone",
+    "منطقة التصفية"
+   ],
+   [
+    "Laboratory",
+    "المختبر"
+   ],
+   [
+    "Block",
+    "المجمّع"
+   ],
+   [
+    "Evacuation",
+    "الإجلاء"
+   ],
+   [
+    "Survivor",
+    "ناجٍ"
+   ],
+   [
+    "Infected",
+    "مصاب"
+   ],
+   [
+    "Uninfected",
+    "غير مصاب"
+   ]
+  ]
+ },
  "queens-domain": {
   "lines": 1948,
   "terms": [
@@ -9469,6 +9514,51 @@
    [
     "Abby",
     "آبي"
+   ]
+  ]
+ },
+ "xcom-2": {
+  "lines": 12950,
+  "terms": [
+   [
+    "ADVENT",
+    "أدفنت"
+   ],
+   [
+    "Avenger",
+    "الأفنجر"
+   ],
+   [
+    "Elders",
+    "الشيوخ"
+   ],
+   [
+    "Skyranger",
+    "سكاي رينجر"
+   ],
+   [
+    "Commander",
+    "القائد"
+   ],
+   [
+    "Resistance",
+    "المقاومة"
+   ],
+   [
+    "Avatar Project",
+    "مشروع الأفاتار"
+   ],
+   [
+    "Shadow Chamber",
+    "غرفة الظل"
+   ],
+   [
+    "Codex",
+    "كودكس"
+   ],
+   [
+    "Dark Event",
+    "حدث مظلم"
    ]
   ]
  },
