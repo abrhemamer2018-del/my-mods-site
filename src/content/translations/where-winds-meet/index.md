@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.3.2"
+version: "1.3.3"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -20,12 +20,18 @@ video: https://www.youtube.com/watch?v=8wq9AddMIfk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Where_Winds_Meet_Installer.zip
-    size: 70.34 MB
+    size: 70.35 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3.3"
+    date: 2026-11-18
+    at: 2026-11-18T12:40:00+03:00
+    notes:
+      - "زر «تقرير للدعم» في أداة التثبيت: لو بقي شيء بالإنجليزي عندك، اضغطه وأرسل لنا الملف الذي يظهر على سطح المكتب لنعرف السبب بالضبط"
+      - "إعادة التعريب قبل تشغيل اللعبة (سطر ستيم) تطلب صلاحية المسؤول إن احتاجتها بدل أن تفشل بصمت"
   - version: "1.3.2"
     date: 2026-11-17
     at: 2026-11-17T18:20:00+03:00
