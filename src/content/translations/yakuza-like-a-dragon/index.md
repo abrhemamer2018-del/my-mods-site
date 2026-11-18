@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-07
 addedAt: 2026-10-07T05:40:33+03:00
 gameRelease: 2020-11-10
-version: "1.0.1"
+version: "1.0.2"
 cover: ./cover-muxguhe8.webp
 banner: ./banner-muxiwlns.webp
 screenshots:
@@ -22,12 +22,19 @@ video: https://www.youtube.com/watch?v=hkygiqC7ulQ
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Like_a_Dragon_Installer.zip
-    size: 27.34 MB
+    size: 27.74 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.2"
+    date: 2026-11-18
+    at: 2026-11-18T12:05:00+03:00
+    notes:
+      - دعم ستيم ديك: أداة التثبيت تلقى اللعبة تلقائياً على ستيم ديك ولينكس (ذاكرة الجهاز أو بطاقة الذاكرة)
+      - تصحيح أرقام كانت مقلوبة مثل مستويات الأعداء (47-48)
+      - تصحيح جداول النقاط وأقواس زايدة في بعض النصوص، ومكان النجمة قبل أسماء بعض المهارات
   - version: "1.0.1"
     date: 2026-11-03
     at: 2026-11-03T00:55:00+03:00
