@@ -20,12 +20,17 @@ video: https://www.youtube.com/watch?v=8wq9AddMIfk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Where_Winds_Meet_Installer.zip
-    size: 70.35 MB
+    size: 70.36 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3.5"
+    date: 2026-11-20
+    at: 2026-11-20T01:20:00+03:00
+    notes:
+      - "إصلاح: عند بعض اللاعبين كانت اللعبة تفحص ملفاتها في كل تشغيل وترجع ملف النصوص الإنجليزي، فتظهر القصة الجديدة بالإنجليزي. الآن سطر خيارات التشغيل في ستيم يحمي ملف التعريب أثناء هذا الفحص"
   - version: "1.3.4"
     date: 2026-11-19
     at: 2026-11-19T19:40:00+03:00
