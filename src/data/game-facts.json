@@ -2069,6 +2069,51 @@
    ]
   ]
  },
+ "dark-souls-remastered": {
+  "lines": 21286,
+  "terms": [
+   [
+    "Estus Flask",
+    "قارورة إستوس"
+   ],
+   [
+    "Bonfire",
+    "موقد النار"
+   ],
+   [
+    "Humanity",
+    "الإنسانية"
+   ],
+   [
+    "Hollow",
+    "مُجوَّف"
+   ],
+   [
+    "Hollowing",
+    "التجوّف"
+   ],
+   [
+    "Undead",
+    "الميت الحي"
+   ],
+   [
+    "Chosen Undead",
+    "الميت الحي المختار"
+   ],
+   [
+    "Darksign",
+    "علامة الظلام"
+   ],
+   [
+    "Lordvessel",
+    "وعاء السيد"
+   ],
+   [
+    "Lord Soul",
+    "روح السيد"
+   ]
+  ]
+ },
  "dave-the-diver": {
   "lines": 28498,
   "terms": [
@@ -8387,6 +8432,51 @@
    [
     "Parlita",
     "بارليتا"
+   ]
+  ]
+ },
+ "the-elder-scrolls-iv-oblivion-remastered": {
+  "lines": 54923,
+  "terms": [
+   [
+    "Tamriel",
+    "تامريل"
+   ],
+   [
+    "Cyrodiil",
+    "سيروديل"
+   ],
+   [
+    "Imperial City",
+    "المدينة الإمبراطورية"
+   ],
+   [
+    "Oblivion Gate",
+    "بوابة أوبليفيون"
+   ],
+   [
+    "Mehrunes Dagon",
+    "ميهرونز داغون"
+   ],
+   [
+    "Uriel Septim",
+    "أوريل سبتيم"
+   ],
+   [
+    "Jauffre",
+    "جوفري"
+   ],
+   [
+    "Akatosh",
+    "أكاتوش"
+   ],
+   [
+    "Nine Divines",
+    "الآلهة التسعة"
+   ],
+   [
+    "Talos",
+    "تالوس"
    ]
   ]
  },
