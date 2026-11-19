@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.3.4"
+version: "1.3.5"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -20,7 +20,7 @@ video: https://www.youtube.com/watch?v=8wq9AddMIfk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Where_Winds_Meet_Installer.zip
-    size: 70.36 MB
+    size: 70.35 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
