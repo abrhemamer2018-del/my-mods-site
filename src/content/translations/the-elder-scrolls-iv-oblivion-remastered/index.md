@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mwnqz20sqoq.webp
   - ./shot-mwnqzhfer0v.webp
   - ./shot-mwnqzs347fx.webp
-video: https://www.youtube.com/watch?v=wFJ3PZuAjK4
+video: https://youtu.be/9Xy1uXHL-sU
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Oblivion_Remastered_Installer.zip
