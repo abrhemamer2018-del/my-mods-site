@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.3.3"
+version: "1.3.4"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3.4"
+    date: 2026-11-19
+    at: 2026-11-19T19:40:00+03:00
+    notes:
+      - "زر «تقرير للدعم» صار يجمع أيضاً ملفات التحديث التي تنزّلها اللعبة (بدون أي بيانات شخصية)، لنعرف سبب النصوص التي تبقى بالإنجليزي عند بعض اللاعبين"
   - version: "1.3.3"
     date: 2026-11-18
     at: 2026-11-18T12:40:00+03:00
