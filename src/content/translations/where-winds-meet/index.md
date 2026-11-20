@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.3.6"
+version: "1.3.7"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3.7"
+    date: 2026-11-20
+    at: 2026-11-20T21:05:00+03:00
+    notes:
+      - "إصلاح لنسخة 1.3.6: عند بعض الأجهزة كانت حماية ملف التعريب تجعل اللعبة تُظهر رسالة «fetch locale files failed» وتُغلق؛ أُلغيت الحماية فرجعت اللعبة تفتح طبيعي"
   - version: "1.3.6"
     date: 2026-11-20
     at: 2026-11-20T14:10:00+03:00
