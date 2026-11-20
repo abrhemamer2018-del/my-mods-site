@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-03
 gameRelease: 2025-11-14
-version: "1.3.5"
+version: "1.3.6"
 cover: ./cover-mw0rdoev.webp
 screenshots:
   - ./shot-mw0rgjh3152.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3.6"
+    date: 2026-11-20
+    at: 2026-11-20T14:10:00+03:00
+    notes:
+      - "إصلاح لنسخة 1.3.5: حماية ملف التعريب كانت تتوقف بعد دقيقتين، وعند بعض الأجهزة تتأخر اللعبة أكثر قبل فحص ملفاتها؛ الآن تبقى الحماية حتى ينتهي الفحص"
   - version: "1.3.5"
     date: 2026-11-20
     at: 2026-11-20T01:20:00+03:00
