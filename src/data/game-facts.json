@@ -8121,47 +8121,47 @@
   ]
  },
  "stellaris": {
-  "lines": 125781,
+  "lines": 90868,
   "terms": [
    [
+    "Empire",
+    "إمبراطورية"
+   ],
+   [
     "Energy Credits",
-    "اعتمادات الطاقة"
-   ],
-   [
-    "Alloys",
-    "السبائك"
-   ],
-   [
-    "Consumer Goods",
-    "السلع الاستهلاكية"
-   ],
-   [
-    "Influence",
-    "النفوذ"
+    "أرصدة الطاقة"
    ],
    [
     "Minerals",
     "المعادن"
    ],
    [
-    "Rare Crystals",
-    "البلورات النادرة"
+    "Food",
+    "الغذاء"
    ],
    [
-    "Volatile Motes",
-    "الجسيمات المتطايرة"
+    "Consumer Goods",
+    "السلع الاستهلاكية"
    ],
    [
-    "Exotic Gases",
-    "الغازات الغريبة"
+    "Alloys",
+    "السبائك"
    ],
    [
-    "Dark Matter",
-    "المادة المظلمة"
+    "Influence",
+    "النفوذ"
    ],
    [
-    "Living Metal",
-    "المعدن الحي"
+    "Unity",
+    "الوحدة"
+   ],
+   [
+    "Physics",
+    "الفيزياء"
+   ],
+   [
+    "Society",
+    "المجتمع"
    ]
   ]
  },
