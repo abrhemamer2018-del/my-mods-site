@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mwoxkclujvw.webp
   - ./shot-mwoxkjyxbg1.webp
   - ./shot-mwoxkokhwoc.webp
-video: https://www.youtube.com/watch?v=C7KTI94LzI8
+video: https://www.youtube.com/watch?v=gmwoBq8tZH0
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_VRising_Installer.zip
