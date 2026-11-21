@@ -9334,6 +9334,51 @@
    ]
   ]
  },
+ "victoria-3": {
+  "lines": 100003,
+  "terms": [
+   [
+    "Interest Group",
+    "جماعة المصالح"
+   ],
+   [
+    "Journal Entry",
+    "مدخل السجل"
+   ],
+   [
+    "Journal Entries",
+    "مدخلات السجل"
+   ],
+   [
+    "Diplomatic Play",
+    "مناورة دبلوماسية"
+   ],
+   [
+    "Power Bloc",
+    "التكتل"
+   ],
+   [
+    "Standard of Living",
+    "مستوى المعيشة"
+   ],
+   [
+    "Political Movement",
+    "الحركة السياسية"
+   ],
+   [
+    "Production Method",
+    "طريقة الإنتاج"
+   ],
+   [
+    "Agitator",
+    "محرّض"
+   ],
+   [
+    "Infamy",
+    "السمعة السيئة"
+   ]
+  ]
+ },
  "warhammer-40-000-space-marine-2": {
   "lines": 34267
  },
