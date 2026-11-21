@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-28
 gameRelease: 2026-10-28
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvsh804g.webp
 screenshots:
   - ./shot-mvsi107k7ij.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=eL828dBUM-4
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Probably_Stolen_Installer.zip
-    size: 0.77 MB
+    size: 0.96 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-21
+    at: 2026-11-21T05:30:00.000Z
+    notes:
+      - "يعمل على آخر تحديث للعبة: تعريب كل النصوص الجديدة التي كانت تظهر بالإنجليزية (حوارات لو وإليانور وسيربيكو، خيارات الإعدادات الجديدة، رسائل شاشة المودات، أسماء فريق العمل، عناصر جديدة)"
+      - "تعريب النصوص التي غيّر المطورون صياغتها، مع بقاء التعريب لمن يلعب على إصدار أقدم"
+      - "بعد التثبيت: من شاشة Mods فعّل التعريب، وإن ظهر «لم يتم التحميل» اضغط «مراجعة وتفعيل»"
   - version: "1.1"
     date: 2026-11-03
     at: 2026-11-03T12:20:00.000Z
