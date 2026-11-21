@@ -12,7 +12,7 @@ status: complete
 releaseDate: 2026-10-10
 addedAt: 2026-10-10T04:33:04+03:00
 gameRelease: 2015-11-09
-version: "1.2"
+version: "1.3"
 cover: ./cover-mv1ppx1n.webp
 screenshots:
   - ./shot-mv1pwnz3vde.webp
@@ -22,12 +22,20 @@ video: https://www.youtube.com/watch?v=WAMBwnpO_SI
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Fallout4_Installer.zip
-    size: 5.61 MB
+    size: 5.74 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-21
+    at: 2026-11-21T20:00:00+03:00
+    notes:
+      - "تصحيح «Spring» في مواد التصنيع: صارت «زنبرك» بدل «الربيع»، و«نبع آتوم» في Far Harbor"
+      - "إصلاح أسطر كانت تظهر فيها الأرقام والرموز بترتيب غلط، وعلامة # في الجهة الغلط"
+      - "إزالة الأقواس الزائدة من خيارات الحوار، وتصحيح النداء (يا سيدي / يا سيدتي) في عدة حوارات"
+      - "ضمان تطبيق إصلاح لافتة المهمة ووصف المهارات في كل تثبيت جديد"
   - version: "1.2"
     date: 2026-11-08
     at: 2026-11-08T09:25:00+03:00
