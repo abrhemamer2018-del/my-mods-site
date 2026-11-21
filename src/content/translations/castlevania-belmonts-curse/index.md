@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-18
 gameRelease: 2026-10-14
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvcx5yn0.webp
 screenshots:
   - ./shot-mvcw4rsmzpg.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=yMqfvXfnTYk
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Castlevania_Belmonts_Curse_Installer.zip
-    size: 1.80 MB
+    size: 1.25 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-21
+    at: 2026-11-21T12:00:00.000Z
+    notes:
+      - "يعمل على آخر تحديث للعبة: أداة التثبيت كانت ترفض بعد التحديث بأن «اللعبة غير متوافقة»"
+      - التعريب يُدمج في ملفات لعبتك نفسها، فيبقى يعمل مع التحديثات القادمة (السطر الجديد أو المتغيّر يبقى إنجليزياً حتى نعرّبه)
+      - تعريب خيار «بلا تنعيم» الجديد في إعدادات الفيديو، وتصحيح ثلاث كلمات
   - version: "1.0"
     date: 2026-10-18
     notes:
