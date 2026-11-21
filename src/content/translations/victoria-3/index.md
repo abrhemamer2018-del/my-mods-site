@@ -15,7 +15,7 @@ screenshots:
   - ./shot-mwqijh9ahbr.webp
   - ./shot-mwqik2qmzt5.webp
   - ./shot-mwqik5c0szm.webp
-  - ./shot-mwqikbuzuj9.webp
+  - ./shot-mwqmqkaa6ys.webp
 video: https://www.youtube.com/watch?v=5ftmdd1g4hE
 downloads:
   - label: تحميل مباشر
