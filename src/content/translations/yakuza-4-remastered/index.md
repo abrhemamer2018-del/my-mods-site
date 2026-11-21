@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2021-01-28
-version: "1.2"
+version: "1.3"
 cover: ./cover-mv849jfq.webp
 screenshots:
   - ./shot-mv84a2nopv1.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.3"
+    date: 2026-11-21
+    at: 2026-11-21T10:25:00.000Z
+    notes:
+      - كلام المكالمات صار داخل مربع المكالمة (سطرين بالكثير)
+      - بلاغات الشرطة صارت سطراً واحداً داخل شريطها ولا تنزل تحته
   - version: "1.2"
     date: 2026-11-21
     at: 2026-11-21T06:30:00.000Z
