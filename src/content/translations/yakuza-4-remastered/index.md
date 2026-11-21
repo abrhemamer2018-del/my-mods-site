@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2021-01-28
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv849jfq.webp
 screenshots:
   - ./shot-mv84a2nopv1.webp
@@ -20,12 +20,20 @@ video: https://www.youtube.com/watch?v=XEXau52ey6Q
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza4_Remastered_Installer.zip
-    size: 33.91 MB
+    size: 34.35 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-21
+    at: 2026-11-21T06:30:00.000Z
+    notes:
+      - وصف الشخصيات في «الملفات» صار داخل مربعه ولا ينزل تحت الإطار
+      - كلام الحوار والمكالمات صار داخل مربع الكلام (ثلاثة أسطر بالكثير)
+      - اختصار النصوص الطويلة في المهارات والقصص الجانبية والمتاجر والنصائح والحلبة لتناسب مربعاتها
+      - إصلاح الأرقام في جمل مثل «عدد المرات» ونسبة الفوز
   - version: "1.1"
     date: 2026-10-14
     notes:
