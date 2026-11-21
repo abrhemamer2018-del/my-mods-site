@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-11
 gameRelease: 2026-11-09
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwcec5im.webp
 screenshots:
   - ./shot-mwceeqtcu9x.webp
@@ -20,12 +20,19 @@ video: https://youtu.be/mVdCozKbTP8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DREADMOOR_Installer.zip
-    size: 4.83 MB
+    size: 4.93 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-21
+    at: 2026-11-21T04:40:00.000Z
+    notes:
+      - تعريب نصوص تحديث اللعبة الأخير (19 نوفمبر): خيارات الإعدادات الجديدة، رسائل جديدة، والأسماء التي غيّرها المطورون في المهام والحوار
+      - تصحيح «الركض» في قائمة التحكم، و«الصيد» صار في مكانه على اليمين
+      - أداة تثبيت محدّثة
   - version: "1.0"
     date: 2026-11-11
     notes:
