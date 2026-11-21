@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-13
 addedAt: 2026-10-13T08:12:17+03:00
 gameRelease: 2020-10-29
-version: "1.3"
+version: "1.4"
 cover: ./cover-mv6824mz.webp
 screenshots:
   - ./shot-mv683ipvmap.webp
@@ -21,12 +21,20 @@ video: https://www.youtube.com/watch?v=8jPuRaVhGEM
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TWD_Definitive_Installer.zip
-    size: 5.61 MB
+    size: 5.97 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.4"
+    date: 2026-11-21
+    at: 2026-11-21T14:35:00+03:00
+    notes:
+      - "أداة التثبيت تخبرك إن كان عندك موسم منفصل من The Walking Dead بدل «لم يتم العثور على اللعبة» (التعريب لنسخة The Telltale Definitive Series)"
+      - "زر جديد «تقرير للدعم» في أداة التثبيت، ودعم Steam Deck"
+      - "تضييق 576 سطراً (خيارات الرد والترجمة والقوائم) كانت أعرض من مكانها في الشاشة"
+      - "إصلاح أسطر: أسهم الحركة في ميشون، «Crowd Play» في سطر واحد، وأخطاء كتابة صغيرة"
   - version: "1.3"
     date: 2026-11-03
     at: 2026-11-03T16:15:00+03:00
