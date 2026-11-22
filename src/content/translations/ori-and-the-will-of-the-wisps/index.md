@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-13
 addedAt: 2026-10-13T07:24:56+03:00
 gameRelease: 2020-03-10
-version: "1.1"
+version: "1.2"
 cover: ./cover-mv66du71.webp
 screenshots:
   - ./shot-mv66eiqbcqq.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-22
+    at: 2026-11-22T10:10:00+03:00
+    notes:
+      - "أداة تثبيت جديدة نظيفة: برنامج الحماية (Windows Defender) صار يحظر النسخة السابقة بإنذار خاطئ"
+      - "التعريب نفسه لم يتغير"
   - version: "1.1"
     date: 2026-10-26
     at: 2026-10-26T03:08:44+03:00
