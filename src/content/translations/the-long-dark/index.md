@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-26
 gameRelease: 2017-08-01
-version: "1.0"
+version: "1.1"
 cover: ./cover-mvpe1rlr.webp
 screenshots:
   - ./shot-mvpe77dzcyx.webp
@@ -20,12 +20,20 @@ video: https://www.youtube.com/watch?v=o-_rvGiLNUA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_TheLongDark_Installer.zip
-    size: 178.95 MB
+    size: 179.84 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-22
+    at: 2026-11-22T14:45:00+03:00
+    notes:
+      - "WINTERMUTE صارت تتعرّب عند فتحها من قائمة اللعبة (كانت تظهر بالإنجليزي)"
+      - "تعريب تحديث اللعبة الجديد: 473 سطراً (جزيرة آنا والقطار وتسجيلات الطريق الحديدي)"
+      - "لا كلمات مقطوعة في آخر السطر بعد اليوم، والحروف العربية متلاصقة بلا فراغات"
+      - "سطر «موقع تعريبات» في قائمة WINTERMUTE"
   - version: "1.0"
     date: 2026-10-26
     notes:
