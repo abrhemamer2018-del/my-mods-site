@@ -49,8 +49,19 @@ const queueText = (pos, n) =>
   `✅ وصلت **${VOTES_NEEDED} أصوات** وهي الحين **بانتظار دورها** للمراجعة.\n📋 دورها: **${pos} من ${n}**.\n${NO_DATES}`;
 const PROGRESS_TEXT = '🛠️ **قيد التعريب**: بدأنا نشتغل عليها.\nما نعطي مواعيد، وأول ما ينزل التعريب بيوصلكم تنبيه هنا 🔔';
 const CLOSED_TEXT = '⛔ **غير ممكنة**: جربنا نعرّبها وللأسف ما نقدر حالياً.';
-const ARABIC_TEXT = '⛔ **غير ممكنة**: اللعبة فيها اللغة العربية رسمياً في Steam، فما نعرّبها.\n' +
-  'شغّل العربي من إعدادات اللغة داخل اللعبة، أو من Steam: كلك يمين على اللعبة ← خصائص ← اللغة.';
+// لعبة فيها عربي رسمي (2026-11-23): نص لطيف للمصوّتين، ونرجّع لهم أصواتهم وطلبهم (refundLog)
+const arabicWhat = (ui) => (ui ? 'اللغة العربية رسمياً' : '**ترجمة عربية رسمية للحوار**');
+const ARABIC_HOW = (ui) =>
+  (ui ? '🎮 طريقة تشغيلها: من إعدادات اللغة داخل اللعبة اختاروا العربية.'
+      : '🎮 طريقة تشغيلها: من إعدادات اللعبة اختاروا العربية في خيار الترجمة (Subtitles).') +
+  '\nوSteam يخفي بعض اللغات تحت «عرض كل اللغات» في صفحة اللعبة، عشان كذا كثير ما ينتبهون لها.';
+const ARABIC_CARD = (ui) => `ℹ️ **فيها عربي رسمي**: اللعبة فيها ${arabicWhat(ui)} في Steam، فقفلنا الطلب.\n${ARABIC_HOW(ui)}`;
+const ARABIC_THANKS = (name, ui) =>
+  `شكراً لكل اللي صوّتوا على **${name}** 🌹\n` +
+  `لما راجعنا الطلب لقينا إن اللعبة فيها ${arabicWhat(ui)} في Steam، فما تحتاج تعريب منا.\n` +
+  `${ARABIC_HOW(ui)}\n\n` +
+  'رجّعنا لكم أصواتكم على هالطلب، تقدرون تصوّتون فيها على ألعاب ثانية 👍' +
+  (ui ? '' : `\n\n💡 والقوائم اللي بالإنجليزي يترجمها لكم **تعريبات لايف** على الشاشة وأنتم تلعبون:\n${SITE_URL}/live/`);
 const EPHEMERAL = 64;
 const LIVE_TIP =
   `💡 تقدر تلعبها بالعربي الحين مع برنامج **تعريبات لايف**: يترجم نصوص أي لعبة للعربي مباشرة على الشاشة وأنت تلعب.\n` +
@@ -142,9 +153,12 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
       dm:
         `شكراً على طلبك 🌹
 ` +
-        `**${game.name}** فيها اللغة العربية رسمياً في Steam، فما نعرّبها.
+        `**${game.name}** فيها ${arabicWhat(game.arabicUi)} في Steam، فما تحتاج تعريب منا.
 ` +
-        `تقدر تشغّل العربي من إعدادات اللغة داخل اللعبة، أو من Steam: كلك يمين على اللعبة ← خصائص ← اللغة.`,
+        ARABIC_HOW(game.arabicUi) +
+        (game.arabicUi ? '' : `
+
+${LIVE_TIP}`),
     };
   }
 
@@ -323,8 +337,9 @@ https://discord.com/channels/${thread.guild_id}/${thread.id}`,
   const msg = ours && (await dc(env, 'GET', `/channels/${thread.id}/messages/${thread.id}`, undefined, true));
 
   // قبل ما تدخل المراجعة: لعبة صار فيها عربي رسمي (أو طُلبت قبل هذا الفحص) تُقفل بسببها
-  if (ready && (await hasArabic(cardAppId(msg)))) {
-    await closeArabic(env, fresh, tags);
+  const ar = ready && (await arabicOf(cardAppId(msg)));
+  if (ar) {
+    await closeArabic(env, fresh, tags, ar.ui);
     return { closed: true };
   }
   if (msg?.embeds?.[0]) {
@@ -417,15 +432,32 @@ function cardAppId(msg) {
   return e?.url?.match(/\/app\/(\d+)/)?.[1] || e?.footer?.text?.match(/Steam (\d+)/)?.[1] || null;
 }
 
-/** يقفل منشور لعبة فيها عربي رسمي: وسم «غير ممكنة» + السبب في البطاقة (يبدأ بـ⛔ فما يرسل queueTick رسالته العامة) */
-async function closeArabic(env, thread, tags) {
+/** يقفل منشور لعبة فيها عربي رسمي: وسم «غير ممكنة» + السبب في البطاقة (يبدأ بـℹ️ فما يرسل queueTick رسالته العامة)،
+ *  رسالة شكر للمصوّتين، ويرجّع أصواتهم وطلب صاحبه (يحذف سطورها من سجل الطلبات) */
+async function closeArabic(env, thread, tags, ui) {
   const keep = (thread.applied_tags || []).filter((t) => ![tags[TAGS.vote], tags[TAGS.hot], tags[TAGS.ready], tags[TAGS.queue]].includes(t));
-  await setCard(env, thread.id, ARABIC_TEXT, true);
+  await setCard(env, thread.id, ARABIC_CARD(ui), true);
   await dc(env, 'PATCH', `/channels/${thread.id}`, { applied_tags: [...keep, tags[TAGS.closed]].filter(Boolean), archived: false });
-  await say(env, thread.id, `⛔ **${thread.name}** فيها اللغة العربية رسمياً في Steam، فقفلنا الطلب.
-` +
-    'شغّل العربي من إعدادات اللغة داخل اللعبة، أو من Steam: كلك يمين على اللعبة ← خصائص ← اللغة.');
+  await say(env, thread.id, ARABIC_THANKS(thread.name, ui));
+  await refundLog(env, thread.id);
   await dc(env, 'PATCH', `/channels/${thread.id}`, { archived: true, locked: true });
+}
+
+/** يحذف من سجل الطلبات (آخر 7 أيام) سطور «طلب»/«صوّت» لهذا المنشور، فترجع للأعضاء أصواتهم وطلبهم الأسبوعي */
+async function refundLog(env, threadId) {
+  const since = Date.now() - REQUEST_EVERY;
+  let before = '';
+  for (let page = 0; page < 15; page++) {
+    const msgs = await dc(env, 'GET', `/channels/${env.DISCORD_REQUESTS_LOG}/messages?limit=100${before ? `&before=${before}` : ''}`);
+    for (const m of msgs) {
+      if (Date.parse(m.timestamp) < since) return;
+      if (m.author?.id === env.DISCORD_APP_ID && m.content.includes(`/${threadId}`)) {
+        await dc(env, 'DELETE', `/channels/${env.DISCORD_REQUESTS_LOG}/messages/${m.id}`, undefined, true);
+      }
+    }
+    if (msgs.length < 100) break;
+    before = msgs[msgs.length - 1].id;
+  }
 }
 
 /** يدخل ألعاب الطابور لما يفضى مكان، يحدّث أرقام الدور، ويبلغ المصوّتين لما صاحب السيرفر يحط
@@ -440,7 +472,7 @@ export async function queueTick(env) {
     if (hasTag(t, tags[TAGS.done])) continue;
     if (hasTag(t, tags[TAGS.closed])) {
       const old = await setCard(env, t.id, CLOSED_TEXT, true);
-      if (old !== null && !old.startsWith('⛔')) {
+      if (old !== null && !old.startsWith('⛔') && !old.startsWith('ℹ️')) {
         await say(env, t.id, `⛔ للأسف جربنا نعرّب **${t.name}** وما نقدر نعرّبها حالياً.\n\n${LIVE_TIP}`);
         await dc(env, 'PATCH', `/channels/${t.id}`, { archived: true, locked: true });
       } else if (old !== null && !t.thread_metadata?.archived) {
@@ -489,7 +521,7 @@ async function steamApp(id) {
     comingSoon: !!d.release_date?.coming_soon,
     // VAC (8) أو MMO (20) من تصنيفات Steam
     antiCheat: (d.categories || []).some((c) => c.id === 8 || c.id === 20) || /Kernel Level Anti-Cheat|Easy Anti-Cheat|BattlEye/i.test(html),
-    arabic: /\bArabic\b/i.test(d.supported_languages || '') || arabicInTable(html),
+    ...arabicLangs(d.supported_languages, html),
   };
 }
 
@@ -502,16 +534,20 @@ async function storePage(id) {
     .catch(() => '');
 }
 
-/** جدول لغات الصفحة: سطر Arabic فيه ✔ (واجهة أو صوت أو ترجمة).
- *  ‏appdetails أحياناً يسقط العربي من supported_languages والجدول يذكره (Watch_Dogs 2: ترجمة عربية، 2026-11-23) */
-function arabicInTable(html) {
-  const row = html.match(/<td[^>]*>\s*Arabic\s*<\/td>([\s\S]*?)<\/tr>/i);
-  return !!row && /&#10004;|✔/.test(row[1]);
+/** العربي الرسمي → { arabic, arabicUi }. جدول لغات الصفحة (واجهة | صوت | ترجمة) أدق: appdetails أحياناً يسقط العربي
+ *  (Watch_Dogs 2 و AC Unity/Origins: ترجمة حوار فقط، مخفية تحت «عرض كل اللغات»، 2026-11-23) */
+function arabicLangs(list, html) {
+  const row = html.match(/<td[^>]*>\s*Arabic\s*<\/td>([^]*?)<\/tr>/i);
+  const cols = row ? [...row[1].matchAll(/<td[^>]*>([^]*?)<\/td>/g)].map((m) => /&#10004;|✔/.test(m[1])) : [];
+  if (cols.some(Boolean)) return { arabic: true, arabicUi: !!cols[0] };
+  if (/\bArabic\b/i.test(list || '')) return { arabic: true, arabicUi: true };
+  return { arabic: false, arabicUi: false };
 }
 
-/** هل في اللعبة عربي رسمي؟ (لمنشورات الطلبات القديمة: رقمها من رابط Steam في البطاقة) */
-async function hasArabic(appId) {
-  return !!appId && !!(await steamApp(appId))?.arabic;
+/** العربي الرسمي للعبة من رقمها → { ui } أو null (لمنشورات الطلبات القديمة: رقمها من رابط Steam في البطاقة) */
+async function arabicOf(appId) {
+  const g = appId && (await steamApp(appId));
+  return g?.arabic ? { ui: g.arabicUi } : null;
 }
 
 /** أعلى عدد لاعبين في نفس الوقت خلال 30 يوماً: SteamCharts، ثم SteamSpy (ذروة أمس)، ثم العدد الحالي */
