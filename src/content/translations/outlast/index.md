@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-18
 gameRelease: 2013-09-04
-version: "1.0"
+version: "1.1"
 cover: ./cover-mve61czw.webp
 screenshots:
   - ./shot-mve62d4tc82.webp
@@ -18,12 +18,20 @@ video: https://www.youtube.com/watch?v=ZkSydla4sxo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Outlast_Installer.zip
-    size: 1.84 MB
+    size: 1.37 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-23
+    notes:
+      - يعمل الآن على كل نسخ اللعبة وكل المتاجر (Steam وGOG وEpic وغيرها)، بعد أن كانت أداة التثبيت ترفض النسخ غير نسخة Steam
+      - بعد أي تحديث للعبة أعد تشغيل أداة التثبيت
+      - أسطر الوثائق ورسائل الإعدادات أقصر قليلاً حتى لا يخرج أي سطر عن مكانه
+      - جملة شاشة السطوع كاملة في سطر واحد
+      - تصحيح بعض الكلمات في الترجمة
   - version: "1.0"
     date: 2026-10-18
     notes:
