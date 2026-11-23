@@ -49,6 +49,8 @@ const queueText = (pos, n) =>
   `✅ وصلت **${VOTES_NEEDED} أصوات** وهي الحين **بانتظار دورها** للمراجعة.\n📋 دورها: **${pos} من ${n}**.\n${NO_DATES}`;
 const PROGRESS_TEXT = '🛠️ **قيد التعريب**: بدأنا نشتغل عليها.\nما نعطي مواعيد، وأول ما ينزل التعريب بيوصلكم تنبيه هنا 🔔';
 const CLOSED_TEXT = '⛔ **غير ممكنة**: جربنا نعرّبها وللأسف ما نقدر حالياً.';
+const ARABIC_TEXT = '⛔ **غير ممكنة**: اللعبة فيها اللغة العربية رسمياً في Steam، فما نعرّبها.\n' +
+  'شغّل العربي من إعدادات اللغة داخل اللعبة، أو من Steam: كلك يمين على اللعبة ← خصائص ← اللغة.';
 const EPHEMERAL = 64;
 const LIVE_TIP =
   `💡 تقدر تلعبها بالعربي الحين مع برنامج **تعريبات لايف**: يترجم نصوص أي لعبة للعربي مباشرة على الشاشة وأنت تلعب.\n` +
@@ -134,6 +136,17 @@ async function handleRequest(env, it, userId, text, { steamFind, origin }) {
 
   const done = await alreadyTranslated(env, origin, game.name);
   if (done) return `✅ **${game.name}** معرّبة من قبل! تلقاها هنا:\n${done}`;
+
+  if (game.arabic) {
+    return {
+      dm:
+        `شكراً على طلبك 🌹
+` +
+        `**${game.name}** فيها اللغة العربية رسمياً في Steam، فما نعرّبها.
+` +
+        `تقدر تشغّل العربي من إعدادات اللغة داخل اللعبة، أو من Steam: كلك يمين على اللعبة ← خصائص ← اللغة.`,
+    };
+  }
 
   if (game.comingSoon) {
     return `**${game.name}** ما نزلت للحين على Steam، اطلبها بعد ما تنزل ونقيس عدد لاعبيها.`;
@@ -308,6 +321,12 @@ https://discord.com/channels/${thread.guild_id}/${thread.id}`,
 
   const label = fresh.member_count >= 50 ? '+50' : String(votes);
   const msg = ours && (await dc(env, 'GET', `/channels/${thread.id}/messages/${thread.id}`, undefined, true));
+
+  // قبل ما تدخل المراجعة: لعبة صار فيها عربي رسمي (أو طُلبت قبل هذا الفحص) تُقفل بسببها
+  if (ready && (await hasArabic(cardAppId(msg)))) {
+    await closeArabic(env, fresh, tags);
+    return { closed: true };
+  }
   if (msg?.embeds?.[0]) {
     const embed = msg.embeds[0];
     embed.fields = (embed.fields || []).map((f) => (f.name === VOTES_FIELD ? { ...f, value: label } : f));
@@ -392,6 +411,23 @@ async function setCard(env, threadId, description, removeButton = false) {
   return old;
 }
 
+/** رقم اللعبة في Steam من بطاقة الطلب (رابطها أو "Steam 123" في الذيل) */
+function cardAppId(msg) {
+  const e = msg?.embeds?.[0];
+  return e?.url?.match(/\/app\/(\d+)/)?.[1] || e?.footer?.text?.match(/Steam (\d+)/)?.[1] || null;
+}
+
+/** يقفل منشور لعبة فيها عربي رسمي: وسم «غير ممكنة» + السبب في البطاقة (يبدأ بـ⛔ فما يرسل queueTick رسالته العامة) */
+async function closeArabic(env, thread, tags) {
+  const keep = (thread.applied_tags || []).filter((t) => ![tags[TAGS.vote], tags[TAGS.hot], tags[TAGS.ready], tags[TAGS.queue]].includes(t));
+  await setCard(env, thread.id, ARABIC_TEXT, true);
+  await dc(env, 'PATCH', `/channels/${thread.id}`, { applied_tags: [...keep, tags[TAGS.closed]].filter(Boolean), archived: false });
+  await say(env, thread.id, `⛔ **${thread.name}** فيها اللغة العربية رسمياً في Steam، فقفلنا الطلب.
+` +
+    'شغّل العربي من إعدادات اللغة داخل اللعبة، أو من Steam: كلك يمين على اللعبة ← خصائص ← اللغة.');
+  await dc(env, 'PATCH', `/channels/${thread.id}`, { archived: true, locked: true });
+}
+
 /** يدخل ألعاب الطابور لما يفضى مكان، يحدّث أرقام الدور، ويبلغ المصوّتين لما صاحب السيرفر يحط
  *  «قيد التعريب» أو «غير ممكنة» بيده */
 export async function queueTick(env) {
@@ -445,24 +481,37 @@ async function steamApp(id) {
   const res = await fetch(`https://store.steampowered.com/api/appdetails?appids=${id}&cc=us&l=en`);
   const d = res.ok ? (await res.json())?.[id]?.data : null;
   if (!d || !['game', 'dlc'].includes(d.type)) return null;
+  const html = await storePage(id);
   return {
     id: String(d.steam_appid),
     name: d.name,
     image: d.header_image,
     comingSoon: !!d.release_date?.coming_soon,
     // VAC (8) أو MMO (20) من تصنيفات Steam
-    antiCheat: (d.categories || []).some((c) => c.id === 8 || c.id === 20) || (await antiCheatNotice(id)),
+    antiCheat: (d.categories || []).some((c) => c.id === 8 || c.id === 20) || /Kernel Level Anti-Cheat|Easy Anti-Cheat|BattlEye/i.test(html),
+    arabic: /\bArabic\b/i.test(d.supported_languages || '') || arabicInTable(html),
   };
 }
 
-/** صفحة اللعبة في المتجر تذكر نظام مكافحة الغش (إفصاح Steam عن Kernel، أو اسم النظام) */
-async function antiCheatNotice(id) {
-  const html = await fetch(`https://store.steampowered.com/app/${id}/?l=english&cc=us`, {
+/** صفحة اللعبة في المتجر (إنجليزي، بدون بوابة العمر) */
+async function storePage(id) {
+  return fetch(`https://store.steampowered.com/app/${id}/?l=english&cc=us`, {
     headers: { Cookie: 'birthtime=0; wants_mature_content=1; lastagecheckage=1-0-1990' },
   })
     .then((r) => (r.ok ? r.text() : ''))
     .catch(() => '');
-  return /Kernel Level Anti-Cheat|Easy Anti-Cheat|BattlEye/i.test(html);
+}
+
+/** جدول لغات الصفحة: سطر Arabic فيه ✔ (واجهة أو صوت أو ترجمة).
+ *  ‏appdetails أحياناً يسقط العربي من supported_languages والجدول يذكره (Watch_Dogs 2: ترجمة عربية، 2026-11-23) */
+function arabicInTable(html) {
+  const row = html.match(/<td[^>]*>\s*Arabic\s*<\/td>([\s\S]*?)<\/tr>/i);
+  return !!row && /&#10004;|✔/.test(row[1]);
+}
+
+/** هل في اللعبة عربي رسمي؟ (لمنشورات الطلبات القديمة: رقمها من رابط Steam في البطاقة) */
+async function hasArabic(appId) {
+  return !!appId && !!(await steamApp(appId))?.arabic;
 }
 
 /** أعلى عدد لاعبين في نفس الوقت خلال 30 يوماً: SteamCharts، ثم SteamSpy (ذروة أمس)، ثم العدد الحالي */
