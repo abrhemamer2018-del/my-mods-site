@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-15
 gameRelease: 2025-10-21
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwhoo6np.webp
 screenshots:
   - ./shot-mwhopl448nv.webp
@@ -20,12 +20,17 @@ video: https://www.youtube.com/watch?v=ZjYbWx8Fs3o
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_JWE3_Installer.zip
-    size: 3.92 MB
+    size: 4.24 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-23
+    notes:
+      - أداة التثبيت تعمل الآن مهما كانت الإضافات (DLC) التي تملكها؛ كانت تتوقف برسالة «صيغة ملف غير مفهومة» إذا لم تكن إحدى الإضافات مثبتة
+      - أداة تثبيت جديدة نظيفة في فحص Windows Defender
   - version: "1.0"
     date: 2026-11-15
     notes:
