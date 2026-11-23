@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2021-01-28
-version: "1.3"
+version: "1.4"
 cover: ./cover-mv849jfq.webp
 screenshots:
   - ./shot-mv84a2nopv1.webp
@@ -26,6 +26,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.4"
+    date: 2026-11-23
+    at: 2026-11-23T11:42:00.000Z
+    notes:
+      - إصلاح خروج اللعبة عند نزول درج المركز التجاري تحت الأرض (الفصل السابع) وفي الطريق إلى برج الألفية (الفصل الثامن)
   - version: "1.3"
     date: 2026-11-21
     at: 2026-11-21T10:25:00.000Z
