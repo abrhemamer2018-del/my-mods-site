@@ -13,7 +13,7 @@ status: complete
 releaseDate: 2026-10-07
 addedAt: 2026-10-07T22:16:49+03:00
 gameRelease: 2019-03-07
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-muyhks34.webp
 banner: ./banner-muyhkub0.webp
 screenshots:
@@ -24,12 +24,16 @@ video: https://www.youtube.com/watch?v=gFj8qt9HiZg
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DMC5_Installer.zip
-    size: 18.44 MB
+    size: 18.45 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-11-23
+    notes:
+      - تحديث ملف التثبيت لتقليل تحذيرات برامج الحماية الكاذبة (نفس التعريب)
   - version: "1.0"
     date: 2026-10-07
     notes:
