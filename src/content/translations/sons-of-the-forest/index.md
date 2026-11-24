@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-07
 addedAt: 2026-10-07T22:28:50+03:00
 gameRelease: 2024-02-22
-version: "2.0"
+version: "2.0.1"
 cover: ./cover-muyi0cld.webp
 banner: ./banner-muyi33dg.webp
 screenshots:
@@ -20,12 +20,17 @@ video: https://www.youtube.com/watch?v=IwvhH3islZw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_SonsOfTheForest_Installer.zip
-    size: 4.07 MB
+    size: 4.08 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "2.0.1"
+    date: 2026-11-24
+    at: 2026-11-24T04:30:00+03:00
+    notes:
+      - ملف تثبيت جديد نظيف بعد تنبيه حماية ويندوز على الملف القديم (نفس التعريب بلا تغيير)
   - version: "2.0"
     date: 2026-10-07
     notes:
