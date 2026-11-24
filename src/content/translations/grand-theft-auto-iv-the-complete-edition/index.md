@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-28
 gameRelease: 2020-03-24
-version: "1.1"
+version: "1.2"
 cover: ./cover-mvshw759.webp
 screenshots:
   - ./shot-mvshwihn3rh.webp
@@ -20,12 +20,19 @@ video: https://www.youtube.com/watch?v=ZQzIZkxsWYw
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_GTA4_Arabic_Installer.zip
-    size: 2.73 MB
+    size: 2.92 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-24
+    at: 2026-11-24T04:15:00+03:00
+    notes:
+      - "التعريب يظهر الآن مهما كانت لغة اللعبة في Steam أو لغة الويندوز (كان يظهر مع الإنجليزية فقط)"
+      - "تكبير الخط العربي في القوائم والترجمة والمساعدة"
+      - "إعادة ترتيب أسطر الترجمة لتملأ مكانها بعد تكبير الخط"
   - version: "1.1"
     date: 2026-11-08
     at: 2026-11-08T15:55:00+03:00
