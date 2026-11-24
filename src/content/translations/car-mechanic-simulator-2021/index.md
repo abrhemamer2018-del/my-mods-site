@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-24
 gameRelease: 2021-08-11
-version: "1.0"
+version: "1.1"
 cover: ./cover-mwup24oi.webp
 screenshots:
   - ./shot-mwup7nz3n0p.webp
@@ -25,6 +25,11 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-24
+    notes:
+      - أسماء القطع الطويلة في قائمة قطع الطلب تظهر في سطر واحد، والرمز بين القوسين لم يعد يتداخل مع الاسم
+      - مشكلات الطلب الطويلة مثل «تغيير الزيت» تظهر كاملة ولا يختفي آخرها
   - version: "1.0"
     date: 2026-11-24
     notes:
