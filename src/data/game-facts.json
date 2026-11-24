@@ -1394,6 +1394,96 @@
    ]
   ]
  },
+ "car-mechanic-simulator-2018": {
+  "lines": 2367,
+  "terms": [
+   [
+    "Serpentine Belt",
+    "حزام السربنتين"
+   ],
+   [
+    "Engine Head Cover",
+    "غطاء رأس المحرك"
+   ],
+   [
+    "Engine Block",
+    "كتلة المحرك"
+   ],
+   [
+    "Intake Manifold",
+    "مجمع السحب"
+   ],
+   [
+    "Exhaust Manifold",
+    "مجمع العادم"
+   ],
+   [
+    "Timing Cover",
+    "غطاء التوقيت"
+   ],
+   [
+    "Timing Chain",
+    "جنزير التوقيت"
+   ],
+   [
+    "Timing Belt",
+    "سير التوقيت"
+   ],
+   [
+    "Gearbox",
+    "علبة التروس"
+   ],
+   [
+    "Camshaft",
+    "عمود الكامات"
+   ]
+  ]
+ },
+ "car-mechanic-simulator-2021": {
+  "lines": 4616,
+  "terms": [
+   [
+    "Pie menu",
+    "القائمة الدائرية"
+   ],
+   [
+    "Car Lift",
+    "رافعة السيارات"
+   ],
+   [
+    "Lifter",
+    "الرافعة"
+   ],
+   [
+    "Junkyard",
+    "ساحة الخردة"
+   ],
+   [
+    "Barn",
+    "الحظيرة"
+   ],
+   [
+    "Scraps",
+    "الخردة"
+   ],
+   [
+    "Paint Shop",
+    "ورشة الطلاء"
+   ],
+   [
+    "Test Path",
+    "مسار الاختبار"
+   ],
+   [
+    "Tire Changer",
+    "جهاز تغيير الإطارات"
+   ],
+   [
+    "Wheel Balancer",
+    "جهاز موازنة العجلات"
+   ]
+  ]
+ },
  "castlevania-belmonts-curse": {
   "lines": 2517,
   "terms": [
