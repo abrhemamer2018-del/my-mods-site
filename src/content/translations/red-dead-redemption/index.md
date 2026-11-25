@@ -12,7 +12,7 @@ status: complete
 releaseDate: 2026-10-04
 addedAt: 2026-10-04T13:55:15+03:00
 gameRelease: 2024-10-29
-version: "1.1"
+version: "1.2"
 cover: ./cover-mutp0ay7.webp
 banner: ./banner-mutp2eew.webp
 screenshots:
@@ -24,12 +24,20 @@ video: https://www.youtube.com/watch?v=mnvc6uC6xZE
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_RDR_Installer.zip
-    size: 32.90 MB
+    size: 33.19 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.2"
+    date: 2026-11-25
+    at: 2026-11-25T09:30:00+03:00
+    notes:
+      - "مسافات واضحة بين الكلمات في ترجمة الحوار وأهداف المهام وصندوق المساعدة (كانت الكلمات تبدو ملتصقة)"
+      - "ترتيب صحيح لأسطر صندوق المساعدة التي فيها أزرار، وأسطر المكافآت في وصف التحديات"
+      - "تظهر الأرقام والقيم في مكانها (مثل أسرع وقت للمهمة) بدل رموز غريبة"
+      - "تصحيح أسماء وكلمات: جيك، اربط الحصان، أسماء الإحصائيات في سطر واحد"
   - version: "1.1"
     date: 2026-11-02
     at: 2026-11-02T13:10:00+03:00
