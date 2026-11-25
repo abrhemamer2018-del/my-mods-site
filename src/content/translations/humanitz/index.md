@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mww2pxn8qh8.webp
   - ./shot-mww2q6h6q33.webp
   - ./shot-mww2qex6olo.webp
+video: https://youtu.be/S7DXpgLvaH8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_HumanitZ_Installer.zip
