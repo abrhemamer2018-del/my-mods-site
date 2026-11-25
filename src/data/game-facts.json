@@ -1,4 +1,4417 @@
 {
+ "007-first-light": {
+  "lines": 41014,
+  "terms": [
+   [
+    "James Bond",
+    "جيمس بوند"
+   ],
+   [
+    "Moneypenny",
+    "موني بيني"
+   ],
+   [
+    "Greenway",
+    "غرينواي"
+   ],
+   [
+    "Cressida",
+    "كريسيدا"
+   ],
+   [
+    "Monroe",
+    "مونرو"
+   ],
+   [
+    "Isola",
+    "إيزولا"
+   ],
+   [
+    "Damien",
+    "داميان"
+   ],
+   [
+    "Selina",
+    "سيلينا"
+   ],
+   [
+    "Sir Nicholas",
+    "السير نيكولاس"
+   ],
+   [
+    "Ellis",
+    "إليس"
+   ]
+  ]
+ },
+ "7-days-to-die": {
+  "lines": 23408,
+  "terms": [
+   [
+    "Blood Moon",
+    "القمر الدموي"
+   ],
+   [
+    "Blood Moon Horde",
+    "قطيع القمر الدموي"
+   ],
+   [
+    "Navezgane",
+    "نافيزغين"
+   ],
+   [
+    "Trader Joel",
+    "التاجر جويل"
+   ],
+   [
+    "Trader Rekt",
+    "التاجر ريكت"
+   ],
+   [
+    "Trader Hugh",
+    "التاجر هيو"
+   ],
+   [
+    "Trader Bob",
+    "التاجر بوب"
+   ],
+   [
+    "Trader Jen",
+    "التاجرة جين"
+   ],
+   [
+    "Duke of Cassadore",
+    "دوق كاسادور"
+   ],
+   [
+    "Noah",
+    "نوح"
+   ]
+  ]
+ },
+ "a-way-out": {
+  "lines": 10924,
+  "terms": [
+   [
+    "Leo Caruso",
+    "ليو كاروسو"
+   ],
+   [
+    "Vincent",
+    "فنسنت"
+   ],
+   [
+    "Vincent Moretti",
+    "فنسنت موريتي"
+   ],
+   [
+    "Harvey",
+    "هارفي"
+   ],
+   [
+    "Linda",
+    "ليندا"
+   ],
+   [
+    "Alex",
+    "أليكس"
+   ],
+   [
+    "Carol",
+    "كارول"
+   ],
+   [
+    "Emily",
+    "إيميلي"
+   ],
+   [
+    "Grandpa",
+    "الجدّ"
+   ],
+   [
+    "Emeric",
+    "إيميريك"
+   ]
+  ]
+ },
+ "absolum": {
+  "lines": 5524,
+  "terms": [
+   [
+    "Absolum",
+    "أبسولوم"
+   ],
+   [
+    "Talamh",
+    "تالام"
+   ],
+   [
+    "Azra",
+    "أزرا"
+   ],
+   [
+    "Azra the Conqueror",
+    "أزرا الفاتح"
+   ],
+   [
+    "Sun King",
+    "الملك الشمس"
+   ],
+   [
+    "Uchawi",
+    "أوتشاوي"
+   ],
+   [
+    "Mother",
+    "الأم"
+   ],
+   [
+    "Root Sisters",
+    "أخوات الجذور"
+   ],
+   [
+    "Blessed Mothers",
+    "الأمهات المباركات"
+   ],
+   [
+    "Galandra",
+    "غالاندرا"
+   ]
+  ]
+ },
+ "ace-combat-7-skies-unknown": {
+  "lines": 28257,
+  "terms": [
+   [
+    "Osea",
+    "أوسيا"
+   ],
+   [
+    "Osean",
+    "أوسي"
+   ],
+   [
+    "Erusea",
+    "إروسيا"
+   ],
+   [
+    "Erusean",
+    "إروسي"
+   ],
+   [
+    "Usea",
+    "يوسيا"
+   ],
+   [
+    "Trigger",
+    "تريغر"
+   ],
+   [
+    "Count",
+    "كاونت"
+   ],
+   [
+    "Avril",
+    "أفريل"
+   ],
+   [
+    "Avril Mead",
+    "أفريل ميد"
+   ],
+   [
+    "Tabloid",
+    "تابلويد"
+   ]
+  ]
+ },
+ "age-of-empires-ii-definitive-edition": {
+  "lines": 39903,
+  "terms": [
+   [
+    "Dark Age",
+    "العصر المظلم"
+   ],
+   [
+    "Feudal Age",
+    "العصر الإقطاعي"
+   ],
+   [
+    "Castle Age",
+    "عصر القلاع"
+   ],
+   [
+    "Imperial Age",
+    "العصر الإمبراطوري"
+   ],
+   [
+    "Food",
+    "الطعام"
+   ],
+   [
+    "Wood",
+    "الخشب"
+   ],
+   [
+    "Gold",
+    "الذهب"
+   ],
+   [
+    "Stone",
+    "الحجر"
+   ],
+   [
+    "Population",
+    "السكان"
+   ],
+   [
+    "Villager",
+    "القروي"
+   ]
+  ]
+ },
+ "alice-madness-returns": {
+  "lines": 3617,
+  "terms": [
+   [
+    "Alice",
+    "أليس"
+   ],
+   [
+    "Alice Liddell",
+    "أليس ليدل"
+   ],
+   [
+    "Wonderland",
+    "بلاد العجائب"
+   ],
+   [
+    "Cheshire Cat",
+    "قط شيشاير"
+   ],
+   [
+    "Bumby",
+    "بامبي"
+   ],
+   [
+    "Angus Bumby",
+    "أنغس بامبي"
+   ],
+   [
+    "Nan Sharpe",
+    "نان شارب"
+   ],
+   [
+    "Nanny",
+    "المربية"
+   ],
+   [
+    "Hatter",
+    "القبعاتي"
+   ],
+   [
+    "Mad Hatter",
+    "القبعاتي المجنون"
+   ]
+  ]
+ },
+ "aniimo": {
+  "lines": 129701,
+  "terms": [
+   [
+    "Aniimo",
+    "أنيمو"
+   ],
+   [
+    "Pathfinder",
+    "المستكشف"
+   ],
+   [
+    "Astra",
+    "أسترا"
+   ],
+   [
+    "Idyll",
+    "آيديل"
+   ],
+   [
+    "Idyll Continent",
+    "قارة آيديل"
+   ],
+   [
+    "Bloomville",
+    "بلومفيل"
+   ],
+   [
+    "Polaris Institute",
+    "معهد بولاريس"
+   ],
+   [
+    "Prismana",
+    "بريزمانا"
+   ],
+   [
+    "Prismana Flow",
+    "تيار البريزمانا"
+   ],
+   [
+    "Prismana Form",
+    "هيئة البريزمانا"
+   ]
+  ]
+ },
+ "armored-core-vi-fires-of-rubicon": {
+  "lines": 9259,
+  "terms": [
+   [
+    "Rubicon",
+    "روبيكون"
+   ],
+   [
+    "Rubicon 3",
+    "روبيكون 3"
+   ],
+   [
+    "Rubiconian",
+    "روبيكوني"
+   ],
+   [
+    "Coral",
+    "الكورال"
+   ],
+   [
+    "Coral Release",
+    "تحرّر الكورال"
+   ],
+   [
+    "Coral convergence",
+    "تقارب الكورال"
+   ],
+   [
+    "Fires of Ibis",
+    "نيران آيبس"
+   ],
+   [
+    "Fires of Raven",
+    "نيران رايفن"
+   ],
+   [
+    "Handler Walter",
+    "المُشغِّل والتر"
+   ],
+   [
+    "Ayre",
+    "آير"
+   ]
+  ]
+ },
+ "atomic-heart": {
+  "lines": 25645,
+  "terms": [
+   [
+    "Major Nechaev",
+    "الرائد نيتشاييف"
+   ],
+   [
+    "Sergey Nechaev",
+    "سيرغي نيتشاييف"
+   ],
+   [
+    "Comrade Major",
+    "أيها الرفيق الرائد"
+   ],
+   [
+    "CHAR-les",
+    "تشار-لز"
+   ],
+   [
+    "Charles",
+    "تشارلز"
+   ],
+   [
+    "Dmitry Sechenov",
+    "دميتري سيتشينوف"
+   ],
+   [
+    "Viktor Petrov",
+    "فيكتور بيتروف"
+   ],
+   [
+    "Larisa Filatova",
+    "لاريسا فيلاتوفا"
+   ],
+   [
+    "Granny Zina",
+    "الجدة زينا"
+   ],
+   [
+    "Kollektiv",
+    "كوليكتيف"
+   ]
+  ]
+ },
+ "attack-on-titan-2-a-o-t-2": {
+  "lines": 26202,
+  "terms": [
+   [
+    "Eren Jaeger",
+    "إيرين ييغر"
+   ],
+   [
+    "Mikasa Ackermann",
+    "ميكاسا أكرمان"
+   ],
+   [
+    "Armin Arlelt",
+    "أرمين آرلرت"
+   ],
+   [
+    "Jean Kirschtein",
+    "جان كيرشتاين"
+   ],
+   [
+    "Conny Springer",
+    "كوني سبرينغر"
+   ],
+   [
+    "Sasha Braus",
+    "ساشا براوس"
+   ],
+   [
+    "Annie Leonhart",
+    "آني ليونهارت"
+   ],
+   [
+    "Reiner Braun",
+    "راينر براون"
+   ],
+   [
+    "Bertholdt Hoover",
+    "بيرتولد هوفر"
+   ],
+   [
+    "Christa Lenz",
+    "كريستا لينز"
+   ]
+  ]
+ },
+ "attack-on-titan-a-o-t-wings-of-freedom": {
+  "lines": 13049,
+  "terms": [
+   [
+    "Eren",
+    "إرين"
+   ],
+   [
+    "Jaeger",
+    "ييغر"
+   ],
+   [
+    "Eren Jaeger",
+    "إرين ييغر"
+   ],
+   [
+    "Mikasa",
+    "ميكاسا"
+   ],
+   [
+    "Ackermann",
+    "أكرمان"
+   ],
+   [
+    "Mikasa Ackermann",
+    "ميكاسا أكرمان"
+   ],
+   [
+    "Armin",
+    "أرمين"
+   ],
+   [
+    "Arlert",
+    "أرليرت"
+   ],
+   [
+    "Reiner",
+    "راينر"
+   ],
+   [
+    "Bertholdt",
+    "بيرتولت"
+   ]
+  ]
+ },
+ "baldurs-gate-3": {
+  "lines": 221937,
+  "terms": [
+   [
+    "nautiloid",
+    "نوتيلويد"
+   ],
+   [
+    "Bhaal",
+    "باول"
+   ],
+   [
+    "Vlaakith",
+    "فلاكيث"
+   ],
+   [
+    "Ketheric",
+    "كيثريك"
+   ],
+   [
+    "Selûne",
+    "سيلون"
+   ],
+   [
+    "Mystra",
+    "ميسترا"
+   ],
+   [
+    "Mizora",
+    "ميزورا"
+   ],
+   [
+    "Karsus",
+    "كارسوس"
+   ],
+   [
+    "Waterdeep",
+    "ووترديب"
+   ],
+   [
+    "Harper",
+    "الهاربر"
+   ]
+  ]
+ },
+ "barotrauma": {
+  "lines": 11479,
+  "terms": [
+   [
+    "Europa",
+    "أوروبا"
+   ],
+   [
+    "Jupiter",
+    "المشتري"
+   ],
+   [
+    "Europa Coalition",
+    "تحالف أوروبا"
+   ],
+   [
+    "Jovian Separatists",
+    "الانفصاليون الجوفيون"
+   ],
+   [
+    "Separatist",
+    "انفصالي"
+   ],
+   [
+    "Church of the Husk",
+    "كنيسة الهاسك"
+   ],
+   [
+    "Children of the Honkmother",
+    "أبناء أمّ البوق"
+   ],
+   [
+    "Husks",
+    "الهاسك"
+   ],
+   [
+    "Husk infection",
+    "عدوى الهاسك"
+   ],
+   [
+    "Jacov Subra",
+    "جاكوف سوبرا"
+   ]
+  ]
+ },
+ "batman-arkham-asylum-game-of-the-year-edition": {
+  "lines": 6835,
+  "terms": [
+   [
+    "Batman",
+    "باتمان"
+   ],
+   [
+    "Bruce Wayne",
+    "بروس واين"
+   ],
+   [
+    "The Joker",
+    "الجوكر"
+   ],
+   [
+    "Harley Quinn",
+    "هارلي كوين"
+   ],
+   [
+    "Oracle",
+    "أوراكل"
+   ],
+   [
+    "Barbara Gordon",
+    "باربرا غوردون"
+   ],
+   [
+    "Commissioner Gordon",
+    "المفوض غوردون"
+   ],
+   [
+    "Poison Ivy",
+    "بويزن آيفي"
+   ],
+   [
+    "Killer Croc",
+    "كيلر كروك"
+   ],
+   [
+    "Scarecrow",
+    "سكيركرو"
+   ]
+  ]
+ },
+ "batman-arkham-city-game-of-the-year-edition": {
+  "lines": 13668,
+  "terms": [
+   [
+    "Batman",
+    "باتمان"
+   ],
+   [
+    "Bruce Wayne",
+    "بروس واين"
+   ],
+   [
+    "Catwoman",
+    "كات وومن"
+   ],
+   [
+    "Selina Kyle",
+    "سيلينا كايل"
+   ],
+   [
+    "Robin",
+    "روبن"
+   ],
+   [
+    "Nightwing",
+    "نايتوينغ"
+   ],
+   [
+    "Alfred",
+    "ألفريد"
+   ],
+   [
+    "Oracle",
+    "أوراكل"
+   ],
+   [
+    "Joker",
+    "الجوكر"
+   ],
+   [
+    "Harley Quinn",
+    "هارلي كوين"
+   ]
+  ]
+ },
+ "batman-arkham-knight": {
+  "lines": 34988,
+  "terms": [
+   [
+    "Batman",
+    "باتمان"
+   ],
+   [
+    "Bruce Wayne",
+    "بروس واين"
+   ],
+   [
+    "Catwoman",
+    "كات وومن"
+   ],
+   [
+    "Selina Kyle",
+    "سيلينا كايل"
+   ],
+   [
+    "Robin",
+    "روبن"
+   ],
+   [
+    "Nightwing",
+    "نايتوينغ"
+   ],
+   [
+    "Alfred",
+    "ألفريد"
+   ],
+   [
+    "Oracle",
+    "أوراكل"
+   ],
+   [
+    "Joker",
+    "الجوكر"
+   ],
+   [
+    "Harley Quinn",
+    "هارلي كوين"
+   ]
+  ]
+ },
+ "batman-arkham-origins": {
+  "lines": 23497,
+  "terms": [
+   [
+    "Batman",
+    "باتمان"
+   ],
+   [
+    "Bruce Wayne",
+    "بروس واين"
+   ],
+   [
+    "Alfred",
+    "ألفريد"
+   ],
+   [
+    "Alfred Pennyworth",
+    "ألفريد بينيوورث"
+   ],
+   [
+    "Gotham City",
+    "مدينة غوثام"
+   ],
+   [
+    "Joker",
+    "الجوكر"
+   ],
+   [
+    "Penguin",
+    "البطريق"
+   ],
+   [
+    "Oswald Cobblepot",
+    "أوزوالد كوبلبوت"
+   ],
+   [
+    "Black Mask",
+    "القناع الأسود"
+   ],
+   [
+    "Roman Sionis",
+    "رومان سيونيس"
+   ]
+  ]
+ },
+ "beyond-two-souls": {
+  "lines": 4174,
+  "terms": [
+   [
+    "Jodie",
+    "جودي"
+   ],
+   [
+    "Jodie Holmes",
+    "جودي هولمز"
+   ],
+   [
+    "Aiden",
+    "أيدن"
+   ],
+   [
+    "Nathan Dawkins",
+    "ناثان داوكينز"
+   ],
+   [
+    "Cole",
+    "كول"
+   ],
+   [
+    "Cole Freeman",
+    "كول فريمان"
+   ],
+   [
+    "Ryan",
+    "رايان"
+   ],
+   [
+    "Ryan Clayton",
+    "رايان كلايتون"
+   ],
+   [
+    "Stan",
+    "ستان"
+   ],
+   [
+    "Walter",
+    "والتر"
+   ]
+  ]
+ },
+ "big-ambitions": {
+  "lines": 5678,
+  "terms": [
+   [
+    "Uncle Fred",
+    "العم فريد"
+   ],
+   [
+    "Mr. Scott",
+    "السيد سكوت"
+   ],
+   [
+    "New York City",
+    "مدينة نيويورك"
+   ],
+   [
+    "The Big Apple",
+    "التفاحة الكبيرة"
+   ],
+   [
+    "Manhattan",
+    "مانهاتن"
+   ],
+   [
+    "Story Mode",
+    "وضع القصة"
+   ],
+   [
+    "Custom Game",
+    "لعبة مخصصة"
+   ],
+   [
+    "Headquarters",
+    "المقر الرئيسي"
+   ],
+   [
+    "Wholesaler",
+    "تاجر الجملة"
+   ],
+   [
+    "Wholesale Store",
+    "متجر الجملة"
+   ]
+  ]
+ },
+ "bioshock-2-remastered": {
+  "lines": 16784,
+  "terms": [
+   [
+    "Rapture",
+    "رابتشر"
+   ],
+   [
+    "Big Daddy",
+    "بيغ دادي"
+   ],
+   [
+    "Big Daddies",
+    "البيغ دادي"
+   ],
+   [
+    "Little Sister",
+    "الأخت الصغيرة"
+   ],
+   [
+    "Big Sister",
+    "الأخت الكبرى"
+   ],
+   [
+    "Plasmid",
+    "بلازميد"
+   ],
+   [
+    "Gene Tonic",
+    "منشّط جيني"
+   ],
+   [
+    "Tonics",
+    "منشّطات"
+   ],
+   [
+    "Splicer",
+    "سبلايسر"
+   ],
+   [
+    "Subject Delta",
+    "العيّنة دلتا"
+   ]
+  ]
+ },
+ "bioshock-infinite": {
+  "lines": 12425,
+  "terms": [
+   [
+    "Booker",
+    "بوكر"
+   ],
+   [
+    "Booker DeWitt",
+    "بوكر ديويت"
+   ],
+   [
+    "Elizabeth",
+    "إليزابيث"
+   ],
+   [
+    "Comstock",
+    "كومستوك"
+   ],
+   [
+    "Zachary Hale Comstock",
+    "زكاري هيل كومستوك"
+   ],
+   [
+    "the Prophet",
+    "النبي"
+   ],
+   [
+    "Lady Comstock",
+    "السيدة كومستوك"
+   ],
+   [
+    "Annabelle",
+    "أنابيل"
+   ],
+   [
+    "Lutece",
+    "لوتيس"
+   ],
+   [
+    "Robert Lutece",
+    "روبرت لوتيس"
+   ]
+  ]
+ },
+ "bioshock-remastered": {
+  "lines": 8404,
+  "terms": [
+   [
+    "Rapture",
+    "رابتشر"
+   ],
+   [
+    "Big Daddy",
+    "بيغ دادي"
+   ],
+   [
+    "Big Daddies",
+    "البيغ دادي"
+   ],
+   [
+    "Little Sister",
+    "الأخت الصغيرة"
+   ],
+   [
+    "Plasmid",
+    "بلازميد"
+   ],
+   [
+    "Gene Tonic",
+    "منشّط جيني"
+   ],
+   [
+    "Tonics",
+    "منشّطات"
+   ],
+   [
+    "Splicer",
+    "سبلايسر"
+   ],
+   [
+    "Jack",
+    "جاك"
+   ],
+   [
+    "Atlas",
+    "أطلس"
+   ]
+  ]
+ },
+ "black-myth-wukong": {
+  "lines": 8544,
+  "terms": [
+   [
+    "Destined One",
+    "المختار"
+   ],
+   [
+    "Great Sage",
+    "الحكيم العظيم"
+   ],
+   [
+    "Sun Wukong",
+    "سون ووكونغ"
+   ],
+   [
+    "Monkey King",
+    "ملك القردة"
+   ],
+   [
+    "Tang Monk",
+    "الراهب تانغ"
+   ],
+   [
+    "Zhu Bajie",
+    "جو باجيه"
+   ],
+   [
+    "Erlang Shen",
+    "إرلانغ شين"
+   ],
+   [
+    "Keeper's Shrine",
+    "مزار الحارس"
+   ],
+   [
+    "Keeper",
+    "الحارس"
+   ],
+   [
+    "Yaoguai King",
+    "ملك الياوغواي"
+   ]
+  ]
+ },
+ "blasphemous-2": {
+  "lines": 2276,
+  "terms": [
+   [
+    "Penitent One",
+    "التائب"
+   ],
+   [
+    "Miracle",
+    "المعجزة"
+   ],
+   [
+    "Cvstodia",
+    "كوستوديا"
+   ],
+   [
+    "Tears of Atonement",
+    "دموع التكفير"
+   ],
+   [
+    "Marks of Martyrdom",
+    "علامات الاستشهاد"
+   ],
+   [
+    "Mark of Martyrdom",
+    "علامة الاستشهاد"
+   ],
+   [
+    "Mark of the Preceptor",
+    "علامة المُرشد"
+   ],
+   [
+    "Mea Culpa",
+    "ميا كولبا"
+   ],
+   [
+    "Veredicto",
+    "فيريديكتو"
+   ],
+   [
+    "Ruego al Alba",
+    "رويغو آل ألبا"
+   ]
+  ]
+ },
+ "borderlands-2": {
+  "lines": 31731,
+  "terms": [
+   [
+    "Vault Hunter",
+    "صائد الخزائن"
+   ],
+   [
+    "Vault Key",
+    "مفتاح الخزنة"
+   ],
+   [
+    "The Warrior",
+    "المحارب"
+   ],
+   [
+    "Eridium",
+    "الإيريديوم"
+   ],
+   [
+    "Eridian",
+    "إيريدي"
+   ],
+   [
+    "Pandora",
+    "باندورا"
+   ],
+   [
+    "Elpis",
+    "إلبيس"
+   ],
+   [
+    "Helios",
+    "هيليوس"
+   ],
+   [
+    "Sanctuary",
+    "سانكتشواري"
+   ],
+   [
+    "Crimson Raiders",
+    "المغيرون القرمزيون"
+   ]
+  ]
+ },
+ "borderlands-3": {
+  "lines": 89539,
+  "terms": [
+   [
+    "Vault Hunter",
+    "صائد الخزائن"
+   ],
+   [
+    "Vault Key",
+    "مفتاح الخزنة"
+   ],
+   [
+    "Great Vault",
+    "الخزنة العظمى"
+   ],
+   [
+    "Vault Card",
+    "بطاقة الخزنة"
+   ],
+   [
+    "Guardian Rank",
+    "رتبة الحارس"
+   ],
+   [
+    "Mayhem Mode",
+    "وضع الفوضى"
+   ],
+   [
+    "True Vault Hunter Mode",
+    "وضع صائد الخزائن الحقيقي"
+   ],
+   [
+    "Pandora",
+    "باندورا"
+   ],
+   [
+    "Promethea",
+    "بروميثيا"
+   ],
+   [
+    "Eden-6",
+    "إيدن-6"
+   ]
+  ]
+ },
+ "borderlands-4": {
+  "lines": 111596,
+  "terms": [
+   [
+    "Vault Hunter",
+    "صائد الخزائن"
+   ],
+   [
+    "Vault Key",
+    "مفتاح الخزنة"
+   ],
+   [
+    "Ultimate Vault Hunter",
+    "صائد الخزائن الأعلى"
+   ],
+   [
+    "True Mode",
+    "الوضع الحقيقي"
+   ],
+   [
+    "Kairos",
+    "كايروس"
+   ],
+   [
+    "Pandora",
+    "باندورا"
+   ],
+   [
+    "Elpis",
+    "إلبيس"
+   ],
+   [
+    "The Timekeeper",
+    "حارس الزمن"
+   ],
+   [
+    "The Order",
+    "الرهبنة"
+   ],
+   [
+    "Rippers",
+    "المُمزِّقون"
+   ]
+  ]
+ },
+ "borderlands-game-of-the-year-enhanced": {
+  "lines": 15469,
+  "terms": [
+   [
+    "Vault Hunter",
+    "صائد الخزنة"
+   ],
+   [
+    "Vault Key",
+    "مفتاح الخزنة"
+   ],
+   [
+    "Pandora",
+    "باندورا"
+   ],
+   [
+    "Fyrestone",
+    "فايرستون"
+   ],
+   [
+    "Arid Badlands",
+    "الأراضي القاحلة"
+   ],
+   [
+    "Dahl Headlands",
+    "مرتفعات دال"
+   ],
+   [
+    "Rust Commons",
+    "ساحات الصدأ"
+   ],
+   [
+    "Rust Commons East",
+    "ساحات الصدأ الشرقية"
+   ],
+   [
+    "Rust Commons West",
+    "ساحات الصدأ الغربية"
+   ],
+   [
+    "New Haven",
+    "نيو هيفن"
+   ]
+  ]
+ },
+ "borderlands-the-pre-sequel": {
+  "lines": 25193,
+  "terms": [
+   [
+    "Vault Hunter",
+    "صائد الخزائن"
+   ],
+   [
+    "Eridium",
+    "الإيريديوم"
+   ],
+   [
+    "Moonstone",
+    "حجر القمر"
+   ],
+   [
+    "Elpis",
+    "إلبيس"
+   ],
+   [
+    "Pandora",
+    "باندورا"
+   ],
+   [
+    "Helios",
+    "هيليوس"
+   ],
+   [
+    "Concordia",
+    "كونكورديا"
+   ],
+   [
+    "Triton Flats",
+    "سهول ترايتون"
+   ],
+   [
+    "Serenity's Waste",
+    "قفار سيرينيتي"
+   ],
+   [
+    "Regolith Range",
+    "سلسلة ريغوليث"
+   ]
+  ]
+ },
+ "call-to-arms-gates-of-hell-ostfront": {
+  "lines": 18115,
+  "terms": [
+   [
+    "Ostfront",
+    "الجبهة الشرقية"
+   ],
+   [
+    "Campaign",
+    "الحملة"
+   ],
+   [
+    "Dynamic Campaign",
+    "الحملة الديناميكية"
+   ],
+   [
+    "Conquest",
+    "الغزو"
+   ],
+   [
+    "Skirmish",
+    "مناوشة"
+   ],
+   [
+    "Multiplayer",
+    "اللعب الجماعي"
+   ],
+   [
+    "Singleplayer",
+    "اللعب الفردي"
+   ],
+   [
+    "Briefing",
+    "الإيجاز"
+   ],
+   [
+    "Platoon",
+    "فصيلة"
+   ],
+   [
+    "Battalion",
+    "كتيبة"
+   ]
+  ]
+ },
+ "car-mechanic-simulator-2018": {
+  "lines": 2367,
+  "terms": [
+   [
+    "Serpentine Belt",
+    "حزام السربنتين"
+   ],
+   [
+    "Engine Head Cover",
+    "غطاء رأس المحرك"
+   ],
+   [
+    "Engine Block",
+    "كتلة المحرك"
+   ],
+   [
+    "Intake Manifold",
+    "مجمع السحب"
+   ],
+   [
+    "Exhaust Manifold",
+    "مجمع العادم"
+   ],
+   [
+    "Timing Cover",
+    "غطاء التوقيت"
+   ],
+   [
+    "Timing Chain",
+    "جنزير التوقيت"
+   ],
+   [
+    "Timing Belt",
+    "سير التوقيت"
+   ],
+   [
+    "Gearbox",
+    "علبة التروس"
+   ],
+   [
+    "Camshaft",
+    "عمود الكامات"
+   ]
+  ]
+ },
+ "car-mechanic-simulator-2021": {
+  "lines": 4616,
+  "terms": [
+   [
+    "Pie menu",
+    "القائمة الدائرية"
+   ],
+   [
+    "Car Lift",
+    "رافعة السيارات"
+   ],
+   [
+    "Lifter",
+    "الرافعة"
+   ],
+   [
+    "Junkyard",
+    "ساحة الخردة"
+   ],
+   [
+    "Barn",
+    "الحظيرة"
+   ],
+   [
+    "Scraps",
+    "الخردة"
+   ],
+   [
+    "Paint Shop",
+    "ورشة الطلاء"
+   ],
+   [
+    "Test Path",
+    "مسار الاختبار"
+   ],
+   [
+    "Tire Changer",
+    "جهاز تغيير الإطارات"
+   ],
+   [
+    "Wheel Balancer",
+    "جهاز موازنة العجلات"
+   ]
+  ]
+ },
+ "castlevania-belmonts-curse": {
+  "lines": 2517,
+  "terms": [
+   [
+    "Rose",
+    "روز"
+   ],
+   [
+    "Trevor Belmont",
+    "تريفور بلمونت"
+   ],
+   [
+    "Belmonts",
+    "آل بلمونت"
+   ],
+   [
+    "Sypha Belnades",
+    "سايفا بلناديس"
+   ],
+   [
+    "Leon",
+    "ليون"
+   ],
+   [
+    "Joan of Arc",
+    "جان دارك"
+   ],
+   [
+    "Medusa",
+    "ميدوسا"
+   ],
+   [
+    "Talos",
+    "تالوس"
+   ],
+   [
+    "Brauner",
+    "براونر"
+   ],
+   [
+    "Carmilla",
+    "كارميلا"
+   ]
+  ]
+ },
+ "cities-skylines": {
+  "lines": 17052,
+  "terms": [
+   [
+    "Chirper",
+    "تشيربر"
+   ],
+   [
+    "Chirp",
+    "تغريدة"
+   ],
+   [
+    "Chirpy",
+    "تشيربي"
+   ],
+   [
+    "mayor",
+    "العمدة"
+   ],
+   [
+    "Residential",
+    "سكني"
+   ],
+   [
+    "Commercial",
+    "تجاري"
+   ],
+   [
+    "Industrial",
+    "صناعي"
+   ],
+   [
+    "Office",
+    "مكتبي"
+   ],
+   [
+    "zoning",
+    "تقسيم المناطق"
+   ],
+   [
+    "zone",
+    "منطقة"
+   ]
+  ]
+ },
+ "cities-skylines-ii": {
+  "lines": 21512,
+  "terms": [
+   [
+    "Chirper",
+    "تشيربر"
+   ],
+   [
+    "Chirp",
+    "تغريدة"
+   ],
+   [
+    "mayor",
+    "العمدة"
+   ],
+   [
+    "zoning",
+    "التقسيم إلى مناطق"
+   ],
+   [
+    "zone",
+    "منطقة"
+   ],
+   [
+    "Residential",
+    "سكني"
+   ],
+   [
+    "Commercial",
+    "تجاري"
+   ],
+   [
+    "Industrial",
+    "صناعي"
+   ],
+   [
+    "Office",
+    "مكاتب"
+   ],
+   [
+    "Low Density",
+    "منخفض الكثافة"
+   ]
+  ]
+ },
+ "clive-barkers-hellraiser-revival": {
+  "lines": 6075,
+  "terms": [
+   [
+    "Aidan",
+    "إيدن"
+   ],
+   [
+    "Aidan Lynch",
+    "إيدن لينش"
+   ],
+   [
+    "Sunny",
+    "صني"
+   ],
+   [
+    "Yoon Sun",
+    "يون صن"
+   ],
+   [
+    "Marlowe",
+    "مارلو"
+   ],
+   [
+    "Bruno",
+    "برونو"
+   ],
+   [
+    "Bruno Keller",
+    "برونو كيلر"
+   ],
+   [
+    "Charlotte",
+    "شارلوت"
+   ],
+   [
+    "Zora",
+    "زورا"
+   ],
+   [
+    "Sean",
+    "شون"
+   ]
+  ]
+ },
+ "command-conquer-red-alert-2-and-yuris-revenge": {
+  "lines": 9051,
+  "terms": [
+   [
+    "Yuri",
+    "يوري"
+   ],
+   [
+    "Allies",
+    "الحلفاء"
+   ],
+   [
+    "Soviets",
+    "السوفييت"
+   ],
+   [
+    "Tanya",
+    "تانيا"
+   ],
+   [
+    "Einstein",
+    "آينشتاين"
+   ],
+   [
+    "Romanov",
+    "رومانوف"
+   ],
+   [
+    "Dugan",
+    "دوغان"
+   ],
+   [
+    "Carville",
+    "كارفيل"
+   ],
+   [
+    "Zofia",
+    "زوفيا"
+   ],
+   [
+    "Lieutenant Eva",
+    "الملازم إيفا"
+   ]
+  ]
+ },
+ "conan-exiles-enhanced": {
+  "lines": 73238,
+  "terms": [
+   [
+    "Conan",
+    "كونان"
+   ],
+   [
+    "Conan the Cimmerian",
+    "كونان السيميري"
+   ],
+   [
+    "Exiled Lands",
+    "الأراضي المنفية"
+   ],
+   [
+    "Isle of Siptah",
+    "جزيرة سيبتاه"
+   ],
+   [
+    "Hyborian Age",
+    "العصر الهايبوري"
+   ],
+   [
+    "Cimmeria",
+    "سيميريا"
+   ],
+   [
+    "Stygian",
+    "ستيجي"
+   ],
+   [
+    "Stygia",
+    "ستيجيا"
+   ],
+   [
+    "Nemedian",
+    "نيميدي"
+   ],
+   [
+    "Nemedia",
+    "نيميديا"
+   ]
+  ]
+ },
+ "control-resonant": {
+  "lines": 26272,
+  "terms": [
+   [
+    "Dylan Faden",
+    "ديلان فيدن"
+   ],
+   [
+    "Jesse Faden",
+    "جيسي فيدن"
+   ],
+   [
+    "Arish",
+    "أريش"
+   ],
+   [
+    "Emily Pope",
+    "إميلي بوب"
+   ],
+   [
+    "Langston",
+    "لانغستون"
+   ],
+   [
+    "Darling",
+    "دارلينغ"
+   ],
+   [
+    "Underhill",
+    "أندرهيل"
+   ],
+   [
+    "Florez",
+    "فلوريس"
+   ],
+   [
+    "Grist",
+    "غريست"
+   ],
+   [
+    "Wilson",
+    "ويلسون"
+   ]
+  ]
+ },
+ "coral-island": {
+  "lines": 139030,
+  "terms": [
+   [
+    "Coral Island",
+    "جزيرة المرجان"
+   ],
+   [
+    "Starlet Town",
+    "بلدة ستارليت"
+   ],
+   [
+    "Pufferfish",
+    "بافرفيش"
+   ],
+   [
+    "Pufferfish Corp",
+    "شركة بافرفيش"
+   ],
+   [
+    "Pufferfish Drilling",
+    "بافرفيش للتنقيب"
+   ],
+   [
+    "Hooman",
+    "إنسي"
+   ],
+   [
+    "Pokyo",
+    "بوكيو"
+   ],
+   [
+    "San Franciskyo",
+    "سان فرانسيسكيو"
+   ],
+   [
+    "Merfolk",
+    "شعب البحر"
+   ],
+   [
+    "Merfolk Kingdom",
+    "مملكة شعب البحر"
+   ]
+  ]
+ },
+ "core-keeper": {
+  "lines": 6982,
+  "terms": [
+   [
+    "the Core",
+    "النواة"
+   ],
+   [
+    "Core Commander",
+    "قائد النواة"
+   ],
+   [
+    "Unleashed Core Commander",
+    "قائد النواة المتحرّر"
+   ],
+   [
+    "Great Wall",
+    "السور العظيم"
+   ],
+   [
+    "Ancient Shrine",
+    "الضريح القديم"
+   ],
+   [
+    "Explorer",
+    "مستكشف"
+   ],
+   [
+    "Caveling",
+    "كهفي"
+   ],
+   [
+    "Larva",
+    "يرقة"
+   ],
+   [
+    "Slime",
+    "هلام"
+   ],
+   [
+    "King Slime",
+    "ملك الهلام"
+   ]
+  ]
+ },
+ "crack": {
+  "lines": 1388,
+  "terms": [
+   [
+    "Hatch Corp",
+    "شركة هاتش"
+   ],
+   [
+    "specimen",
+    "العيّنة"
+   ],
+   [
+    "facility",
+    "المنشأة"
+   ],
+   [
+    "supervisor",
+    "المشرف"
+   ],
+   [
+    "head office",
+    "المقر الرئيسي"
+   ],
+   [
+    "employee",
+    "الموظف"
+   ],
+   [
+    "personnel",
+    "الأفراد"
+   ],
+   [
+    "crew",
+    "الطاقم"
+   ],
+   [
+    "shift",
+    "الوردية"
+   ],
+   [
+    "quota",
+    "الحصة"
+   ]
+  ]
+ },
+ "cronos-the-new-dawn": {
+  "lines": 5217,
+  "terms": [
+   [
+    "The Traveler",
+    "الرحّالة"
+   ],
+   [
+    "The Collective",
+    "الجماعة"
+   ],
+   [
+    "The Pathfinder",
+    "المستكشف"
+   ],
+   [
+    "The Warden",
+    "الحارس"
+   ],
+   [
+    "Predecessor",
+    "السلف"
+   ],
+   [
+    "Successors",
+    "الخلفاء"
+   ],
+   [
+    "Essence",
+    "الجوهر"
+   ],
+   [
+    "The Change",
+    "التحوّل"
+   ],
+   [
+    "Orphans",
+    "اليتامى"
+   ],
+   [
+    "Unmerged",
+    "غير المندمج"
+   ]
+  ]
+ },
+ "crusader-kings-iii": {
+  "lines": 276930,
+  "terms": [
+   [
+    "Prestige",
+    "المكانة"
+   ],
+   [
+    "Piety",
+    "التقوى"
+   ],
+   [
+    "Renown",
+    "الصيت"
+   ],
+   [
+    "Dread",
+    "الرهبة"
+   ],
+   [
+    "Stress",
+    "الضغط النفسي"
+   ],
+   [
+    "Opinion",
+    "الرأي"
+   ],
+   [
+    "Gold",
+    "الذهب"
+   ],
+   [
+    "Liege",
+    "السيد"
+   ],
+   [
+    "Vassal",
+    "التابع"
+   ],
+   [
+    "Realm",
+    "الدولة"
+   ]
+  ]
+ },
+ "crysis-remastered": {
+  "lines": 8806,
+  "terms": [
+   [
+    "Nomad",
+    "نوماد"
+   ],
+   [
+    "Prophet",
+    "العرّاف"
+   ],
+   [
+    "Psycho",
+    "سايكو"
+   ],
+   [
+    "Aztec",
+    "أزتك"
+   ],
+   [
+    "Jester",
+    "جيستر"
+   ],
+   [
+    "Raptor Team",
+    "فريق رابتور"
+   ],
+   [
+    "Jake Dunn",
+    "جيك دَن"
+   ],
+   [
+    "Laurence Barnes",
+    "لورنس بارنز"
+   ],
+   [
+    "Helena Rosenthal",
+    "هيلينا روزنثال"
+   ],
+   [
+    "Strickland",
+    "سترِكلاند"
+   ]
+  ]
+ },
+ "cuphead": {
+  "lines": 1072,
+  "terms": [
+   [
+    "Cuphead",
+    "كابهيد"
+   ],
+   [
+    "Mugman",
+    "ماغمان"
+   ],
+   [
+    "Ms. Chalice",
+    "الآنسة تشاليس"
+   ],
+   [
+    "Elder Kettle",
+    "الجد كيتل"
+   ],
+   [
+    "King Dice",
+    "الملك دايس"
+   ],
+   [
+    "The Devil",
+    "الشيطان"
+   ],
+   [
+    "Inkwell Isle",
+    "جزيرة المحبرة"
+   ],
+   [
+    "Inkwell Hell",
+    "جحيم المحبرة"
+   ],
+   [
+    "Inkwell Isle One",
+    "جزيرة المحبرة الأولى"
+   ],
+   [
+    "Inkwell Isle Two",
+    "جزيرة المحبرة الثانية"
+   ]
+  ]
+ },
+ "dark-souls-iii": {
+  "lines": 23049,
+  "terms": [
+   [
+    "Ashen One",
+    "الرمادي"
+   ],
+   [
+    "Unkindled",
+    "المنطفئ"
+   ],
+   [
+    "Lords of Cinder",
+    "أسياد الجمر"
+   ],
+   [
+    "Lord of Cinder",
+    "سيد الجمر"
+   ],
+   [
+    "First Flame",
+    "الشعلة الأولى"
+   ],
+   [
+    "Age of Fire",
+    "عصر النار"
+   ],
+   [
+    "Age of Dark",
+    "عصر الظلام"
+   ],
+   [
+    "Linking the Fire",
+    "ربط النار"
+   ],
+   [
+    "Bonfire",
+    "الموقد"
+   ],
+   [
+    "Ember",
+    "جذوة"
+   ]
+  ]
+ },
+ "dark-souls-remastered": {
+  "lines": 21286,
+  "terms": [
+   [
+    "Estus Flask",
+    "قارورة إستوس"
+   ],
+   [
+    "Bonfire",
+    "موقد النار"
+   ],
+   [
+    "Humanity",
+    "الإنسانية"
+   ],
+   [
+    "Hollow",
+    "مُجوَّف"
+   ],
+   [
+    "Hollowing",
+    "التجوّف"
+   ],
+   [
+    "Undead",
+    "الميت الحي"
+   ],
+   [
+    "Chosen Undead",
+    "الميت الحي المختار"
+   ],
+   [
+    "Darksign",
+    "علامة الظلام"
+   ],
+   [
+    "Lordvessel",
+    "وعاء السيد"
+   ],
+   [
+    "Lord Soul",
+    "روح السيد"
+   ]
+  ]
+ },
+ "dave-the-diver": {
+  "lines": 28498,
+  "terms": [
+   [
+    "Dave",
+    "ديف"
+   ],
+   [
+    "Cobra",
+    "كوبرا"
+   ],
+   [
+    "Bancho",
+    "بانتشو"
+   ],
+   [
+    "Duff",
+    "داف"
+   ],
+   [
+    "Dr. Bacon",
+    "د. بيكون"
+   ],
+   [
+    "Otto",
+    "أوتو"
+   ],
+   [
+    "Ellie",
+    "إيلي"
+   ],
+   [
+    "Maki",
+    "ماكي"
+   ],
+   [
+    "Sato",
+    "ساتو"
+   ],
+   [
+    "Jose",
+    "خوسيه"
+   ]
+  ]
+ },
+ "days-gone": {
+  "lines": 72584,
+  "terms": [
+   [
+    "Deacon St. John",
+    "ديكون سانت جون"
+   ],
+   [
+    "Deek",
+    "ديك"
+   ],
+   [
+    "Boozer",
+    "بوزر"
+   ],
+   [
+    "Sarah",
+    "سارة"
+   ],
+   [
+    "Rikki",
+    "ريكي"
+   ],
+   [
+    "Copeland",
+    "كوبلاند"
+   ],
+   [
+    "Iron Mike",
+    "آيرون مايك"
+   ],
+   [
+    "O'Brian",
+    "أوبراين"
+   ],
+   [
+    "Skizzo",
+    "سكيزو"
+   ],
+   [
+    "Kouri",
+    "كوري"
+   ]
+  ]
+ },
+ "dead-cells": {
+  "lines": 5412,
+  "terms": [
+   [
+    "Beheaded",
+    "مقطوع الرأس"
+   ],
+   [
+    "Cells",
+    "الخلايا"
+   ],
+   [
+    "Collector",
+    "الجامع"
+   ],
+   [
+    "Tailor",
+    "الخيّاط"
+   ],
+   [
+    "Blacksmith",
+    "الحدّاد"
+   ],
+   [
+    "Scroll of Power",
+    "مخطوطة القوة"
+   ],
+   [
+    "Boss Stem Cell",
+    "خلية الزعيم الجذعية"
+   ],
+   [
+    "Boss Cells",
+    "خلايا الزعيم"
+   ],
+   [
+    "Brutality",
+    "الوحشية"
+   ],
+   [
+    "Tactics",
+    "التكتيك"
+   ]
+  ]
+ },
+ "dead-space": {
+  "lines": 7562,
+  "terms": [
+   [
+    "Isaac",
+    "آيزاك"
+   ],
+   [
+    "Isaac Clarke",
+    "آيزاك كلارك"
+   ],
+   [
+    "Nicole",
+    "نيكول"
+   ],
+   [
+    "Nicole Brennan",
+    "نيكول برينان"
+   ],
+   [
+    "Hammond",
+    "هاموند"
+   ],
+   [
+    "Zach Hammond",
+    "زاك هاموند"
+   ],
+   [
+    "Kendra",
+    "كيندرا"
+   ],
+   [
+    "Kendra Daniels",
+    "كيندرا دانيالز"
+   ],
+   [
+    "Kyne",
+    "كاين"
+   ],
+   [
+    "Terrence Kyne",
+    "تيرينس كاين"
+   ]
+  ]
+ },
+ "deep-rock-galactic": {
+  "lines": 19064,
+  "terms": [
+   [
+    "Deep Rock Galactic",
+    "ديب روك جالاكتيك"
+   ],
+   [
+    "Hoxxes IV",
+    "هوكسيس الرابع"
+   ],
+   [
+    "Glyphid",
+    "جليفِد"
+   ],
+   [
+    "Praetorian",
+    "بريتوري"
+   ],
+   [
+    "Mactera",
+    "ماكتيرا"
+   ],
+   [
+    "Dreadnought",
+    "الجبّار"
+   ],
+   [
+    "Bulk Detonator",
+    "العملاق المفجّر"
+   ],
+   [
+    "Space Rig",
+    "المحطة الفضائية"
+   ],
+   [
+    "Mission Control",
+    "مركز القيادة"
+   ],
+   [
+    "Management",
+    "الإدارة"
+   ]
+  ]
+ },
+ "deep-rock-galactic-survivor": {
+  "lines": 1993,
+  "terms": [
+   [
+    "Deep Rock Galactic: Survivor",
+    "ديب روك جالاكتيك: سرفايفر"
+   ],
+   [
+    "Hoxxes IV",
+    "هوكسيس 4"
+   ],
+   [
+    "Karl",
+    "كارل"
+   ],
+   [
+    "Bosco",
+    "بوسكو"
+   ],
+   [
+    "Bobby",
+    "بوبي"
+   ],
+   [
+    "Mission Control",
+    "مركز التحكم"
+   ],
+   [
+    "Management",
+    "الإدارة"
+   ],
+   [
+    "Dwarf",
+    "قزم"
+   ],
+   [
+    "Dwarves",
+    "الأقزام"
+   ],
+   [
+    "Miner",
+    "عامل المنجم"
+   ]
+  ]
+ },
+ "deus-ex-human-revolution-directors-cut": {
+  "lines": 16962,
+  "terms": [
+   [
+    "Adam Jensen",
+    "آدم جنسن"
+   ],
+   [
+    "David Sarif",
+    "ديفيد ساريف"
+   ],
+   [
+    "Sarif Industries",
+    "ساريف للصناعات"
+   ],
+   [
+    "Frank Pritchard",
+    "فرانك بريتشارد"
+   ],
+   [
+    "Megan Reed",
+    "ميغان ريد"
+   ],
+   [
+    "Faridah Malik",
+    "فريدة مالك"
+   ],
+   [
+    "Hugh Darrow",
+    "هيو دارو"
+   ],
+   [
+    "Eliza Cassan",
+    "إليزا كاسان"
+   ],
+   [
+    "Zhao Yun Ru",
+    "تشاو يون رو"
+   ],
+   [
+    "Lawrence Barrett",
+    "لورنس باريت"
+   ]
+  ]
+ },
+ "devil-may-cry-5": {
+  "lines": 6719,
+  "terms": [
+   [
+    "Nero",
+    "نيرو"
+   ],
+   [
+    "Dante",
+    "دانتي"
+   ],
+   [
+    "Vergil",
+    "فيرجل"
+   ],
+   [
+    "Urizen",
+    "يوريزن"
+   ],
+   [
+    "Nico",
+    "نيكو"
+   ],
+   [
+    "Lady",
+    "ليدي"
+   ],
+   [
+    "Trish",
+    "تريش"
+   ],
+   [
+    "Kyrie",
+    "كيري"
+   ],
+   [
+    "Morrison",
+    "موريسون"
+   ],
+   [
+    "Griffon",
+    "غريفون"
+   ]
+  ]
+ },
+ "dishonored": {
+  "lines": 13845,
+  "terms": [
+   [
+    "Corvo",
+    "كورفو"
+   ],
+   [
+    "Corvo Attano",
+    "كورفو أتانو"
+   ],
+   [
+    "Dunwall",
+    "دانوول"
+   ],
+   [
+    "Empress",
+    "الإمبراطورة"
+   ],
+   [
+    "Jessamine",
+    "جيسامين"
+   ],
+   [
+    "Kaldwin",
+    "كالدوين"
+   ],
+   [
+    "Emily",
+    "إميلي"
+   ],
+   [
+    "Lord Regent",
+    "اللورد الوصي"
+   ],
+   [
+    "Burrows",
+    "باروز"
+   ],
+   [
+    "Outsider",
+    "الغريب"
+   ]
+  ]
+ },
+ "dishonored-2": {
+  "lines": 15776,
+  "terms": [
+   [
+    "Emily Kaldwin",
+    "إميلي كالدوين"
+   ],
+   [
+    "Corvo Attano",
+    "كورفو أتانو"
+   ],
+   [
+    "Delilah Copperspoon",
+    "ديليلا كوبرسبون"
+   ],
+   [
+    "The Outsider",
+    "الغريب"
+   ],
+   [
+    "Luca Abele",
+    "لوكا أبيلي"
+   ],
+   [
+    "Duke Abele",
+    "الدوق أبيلي"
+   ],
+   [
+    "Theodanis Abele",
+    "ثيودانيس أبيلي"
+   ],
+   [
+    "Kirin Jindosh",
+    "كيرين جيندوش"
+   ],
+   [
+    "Anton Sokolov",
+    "أنطون سوكولوف"
+   ],
+   [
+    "Meagan Foster",
+    "ميغان فوستر"
+   ]
+  ]
+ },
+ "dishonored-death-of-the-outsider": {
+  "lines": 13488,
+  "terms": [
+   [
+    "Billie Lurk",
+    "بيلي لورك"
+   ],
+   [
+    "Daud",
+    "داود"
+   ],
+   [
+    "Outsider",
+    "الغريب"
+   ],
+   [
+    "Mark of the Outsider",
+    "علامة الغريب"
+   ],
+   [
+    "Void",
+    "الفراغ"
+   ],
+   [
+    "Karnaca",
+    "كارناكا"
+   ],
+   [
+    "Dunwall",
+    "دَنوول"
+   ],
+   [
+    "Serkonos",
+    "سيركونوس"
+   ],
+   [
+    "Gristol",
+    "غريستول"
+   ],
+   [
+    "Empire of the Isles",
+    "إمبراطورية الجزر"
+   ]
+  ]
+ },
+ "divinity-original-sin-2-divine-ascension": {
+  "lines": 130874,
+  "terms": [
+   [
+    "Rivellon",
+    "ريفيلون"
+   ],
+   [
+    "Sourcerer",
+    "ساحر المصدر"
+   ],
+   [
+    "Source Collar",
+    "طوق المصدر"
+   ],
+   [
+    "Source points",
+    "نقاط المصدر"
+   ],
+   [
+    "Source magic",
+    "سحر المصدر"
+   ],
+   [
+    "Godwoken",
+    "مختار الآلهة"
+   ],
+   [
+    "Divine Order",
+    "النظام المقدّس"
+   ],
+   [
+    "Divinity",
+    "القداسة"
+   ],
+   [
+    "Magister",
+    "ماجستر"
+   ],
+   [
+    "Voidwoken",
+    "كائنات الفراغ"
+   ]
+  ]
+ },
+ "divinity-original-sin-enhanced-edition": {
+  "lines": 31801,
+  "terms": [
+   [
+    "Source Hunters",
+    "صائدو المصدر"
+   ],
+   [
+    "Sourcerers",
+    "سحرة المصدر"
+   ],
+   [
+    "Sourcery",
+    "سحر المصدر"
+   ],
+   [
+    "Source Temple",
+    "معبد المصدر"
+   ],
+   [
+    "Source King",
+    "ملك المصدر"
+   ],
+   [
+    "Source Points",
+    "نقاط المصدر"
+   ],
+   [
+    "Rivellon",
+    "ريفيلون"
+   ],
+   [
+    "Cyseal",
+    "سايسيل"
+   ],
+   [
+    "Black Cove",
+    "الخليج الأسود"
+   ],
+   [
+    "Silverglen",
+    "سيلفرغلين"
+   ]
+  ]
+ },
+ "doom-eternal": {
+  "lines": 13021,
+  "terms": [
+   [
+    "Doom Slayer",
+    "ذابح الهلاك"
+   ],
+   [
+    "Night Sentinels",
+    "حرّاس الليل"
+   ],
+   [
+    "Sentinel",
+    "حارس"
+   ],
+   [
+    "Maykrs",
+    "الصانعون"
+   ],
+   [
+    "Khan Maykr",
+    "خان الصانعين"
+   ],
+   [
+    "Argent Energy",
+    "طاقة الأرجنت"
+   ],
+   [
+    "Argent D'Nur",
+    "أرجنت دنور"
+   ],
+   [
+    "Praetor Suit",
+    "بدلة البريتور"
+   ],
+   [
+    "Praetor Tokens",
+    "رموز البريتور"
+   ],
+   [
+    "Sentinel Batteries",
+    "بطاريات الحرّاس"
+   ]
+  ]
+ },
+ "dreadmoor": {
+  "lines": 5323,
+  "terms": [
+   [
+    "Malcolm",
+    "مالكوم"
+   ],
+   [
+    "Gill",
+    "غيل"
+   ],
+   [
+    "Bozur",
+    "بوزور"
+   ],
+   [
+    "Estelle",
+    "إستيل"
+   ],
+   [
+    "Father Matthias",
+    "الأب ماتياس"
+   ],
+   [
+    "Nick the Mad",
+    "نيك المجنون"
+   ],
+   [
+    "Jacqueline",
+    "جاكلين"
+   ],
+   [
+    "the Baron",
+    "البارون"
+   ],
+   [
+    "Donald",
+    "دونالد"
+   ],
+   [
+    "Marielle",
+    "ماريال"
+   ]
+  ]
+ },
+ "dredge": {
+  "lines": 4557,
+  "terms": [
+   [
+    "The Marrows",
+    "جزر مارو"
+   ],
+   [
+    "Greater Marrow",
+    "مارو الكبرى"
+   ],
+   [
+    "Little Marrow",
+    "مارو الصغرى"
+   ],
+   [
+    "Gale Cliffs",
+    "منحدرات غيل"
+   ],
+   [
+    "Stellar Basin",
+    "حوض ستيلار"
+   ],
+   [
+    "Twisted Strand",
+    "الساحل الملتوي"
+   ],
+   [
+    "Devil's Spine",
+    "عمود الشيطان"
+   ],
+   [
+    "Blackstone Isle",
+    "جزيرة بلاكستون"
+   ],
+   [
+    "Ingfell",
+    "إنغفيل"
+   ],
+   [
+    "Steel Point",
+    "ستيل بوينت"
+   ]
+  ]
+ },
+ "enshrouded": {
+  "lines": 15926,
+  "terms": [
+   [
+    "Embervale",
+    "إمبرفيل"
+   ],
+   [
+    "Shroud",
+    "الضباب"
+   ],
+   [
+    "Shroud Root",
+    "جذر الضباب"
+   ],
+   [
+    "Shroud Forge",
+    "مصهر الضباب"
+   ],
+   [
+    "Shroud Spores",
+    "أبواغ الضباب"
+   ],
+   [
+    "Flameborn",
+    "وليد اللهب"
+   ],
+   [
+    "Flame Altar",
+    "مذبح اللهب"
+   ],
+   [
+    "Flame Sanctum",
+    "محراب اللهب"
+   ],
+   [
+    "Night Sanctum",
+    "محراب الليل"
+   ],
+   [
+    "Ancients",
+    "القدماء"
+   ]
+  ]
+ },
+ "enter-the-gungeon": {
+  "lines": 5945,
+  "terms": [
+   [
+    "Gungeon",
+    "الغانجن"
+   ],
+   [
+    "Gungeoneer",
+    "مغامر الغانجن"
+   ],
+   [
+    "The Breach",
+    "الثغرة"
+   ],
+   [
+    "Ammonomicon",
+    "الأمونوميكون"
+   ],
+   [
+    "Hegemony Credit",
+    "رصيد الهيمنة"
+   ],
+   [
+    "Gundead",
+    "الموتى المسلحون"
+   ],
+   [
+    "Blank",
+    "طلقة خلّب"
+   ],
+   [
+    "Dodge Roll",
+    "دحرجة المراوغة"
+   ],
+   [
+    "Synergy",
+    "تآزر"
+   ],
+   [
+    "Pilot",
+    "الطيار"
+   ]
+  ]
+ },
+ "factorio": {
+  "lines": 6669,
+  "terms": [
+   [
+    "Factoriopedia",
+    "موسوعة فاكتوريو"
+   ],
+   [
+    "engineer",
+    "المهندس"
+   ],
+   [
+    "Nauvis",
+    "نوفيس"
+   ],
+   [
+    "biter",
+    "قارض"
+   ],
+   [
+    "spitter",
+    "باصق"
+   ],
+   [
+    "worm",
+    "دودة"
+   ],
+   [
+    "spawner",
+    "عشّ"
+   ],
+   [
+    "pollution",
+    "التلوث"
+   ],
+   [
+    "research",
+    "البحث"
+   ],
+   [
+    "technology",
+    "تقنية"
+   ]
+  ]
+ },
+ "fallout-4": {
+  "lines": 167067,
+  "terms": [
+   [
+    "Commonwealth",
+    "الكومنولث"
+   ],
+   [
+    "Boston",
+    "بوسطن"
+   ],
+   [
+    "Diamond City",
+    "دايموند سيتي"
+   ],
+   [
+    "Goodneighbor",
+    "غودنيبر"
+   ],
+   [
+    "Sanctuary Hills",
+    "سانكتشوري هيلز"
+   ],
+   [
+    "Concord",
+    "كونكورد"
+   ],
+   [
+    "Red Rocket",
+    "ريد روكيت"
+   ],
+   [
+    "Vault 111",
+    "القبو 111"
+   ],
+   [
+    "Vault 81",
+    "القبو 81"
+   ],
+   [
+    "Vault 114",
+    "القبو 114"
+   ]
+  ]
+ },
+ "fallout-76": {
+  "lines": 224540,
+  "terms": [
+   [
+    "Appalachia",
+    "أبالاشيا"
+   ],
+   [
+    "West Virginia",
+    "فرجينيا الغربية"
+   ],
+   [
+    "Vault 76",
+    "الملجأ 76"
+   ],
+   [
+    "Vault-Tec",
+    "فولت-تك"
+   ],
+   [
+    "Vault Boy",
+    "فولت بوي"
+   ],
+   [
+    "Vault Dweller",
+    "ساكن الملجأ"
+   ],
+   [
+    "Overseer",
+    "المشرفة"
+   ],
+   [
+    "Responders",
+    "المستجيبون"
+   ],
+   [
+    "Free States",
+    "الولايات الحرة"
+   ],
+   [
+    "Brotherhood of Steel",
+    "أخوية الصلب"
+   ]
+  ]
+ },
+ "fallout-new-vegas": {
+  "lines": 83985,
+  "terms": [
+   [
+    "Courier",
+    "الساعي"
+   ],
+   [
+    "Mojave Wasteland",
+    "أرض موهافي القاحلة"
+   ],
+   [
+    "New Vegas",
+    "نيو فيغاس"
+   ],
+   [
+    "The Strip",
+    "الستريب"
+   ],
+   [
+    "New California Republic",
+    "جمهورية كاليفورنيا الجديدة"
+   ],
+   [
+    "Caesar's Legion",
+    "فيلق قيصر"
+   ],
+   [
+    "Legionary",
+    "جندي الفيلق"
+   ],
+   [
+    "Mr. House",
+    "السيد هاوس"
+   ],
+   [
+    "Securitron",
+    "سيكيوريترون"
+   ],
+   [
+    "Brotherhood of Steel",
+    "أخوية الفولاذ"
+   ]
+  ]
+ },
+ "far-cry": {
+  "lines": 1085,
+  "terms": [
+   [
+    "Jack Carver",
+    "جاك كارفر"
+   ],
+   [
+    "Valerie",
+    "فاليري"
+   ],
+   [
+    "Doyle",
+    "دويل"
+   ],
+   [
+    "Krieger",
+    "كريغر"
+   ],
+   [
+    "Crowe",
+    "كرو"
+   ],
+   [
+    "Trigen",
+    "ترايجن"
+   ],
+   [
+    "CryVision",
+    "رؤية كراي"
+   ],
+   [
+    "Carrier",
+    "حاملة الطائرات"
+   ],
+   [
+    "Checkpoint",
+    "نقطة الحفظ"
+   ],
+   [
+    "Objective",
+    "الهدف"
+   ]
+  ]
+ },
+ "far-cry-2": {
+  "lines": 10647,
+  "terms": [
+   [
+    "Jackal",
+    "ابن آوى"
+   ],
+   [
+    "Underground",
+    "المقاومة السرية"
+   ],
+   [
+    "buddy",
+    "رفيق"
+   ],
+   [
+    "safehouse",
+    "المخبأ"
+   ],
+   [
+    "diamonds",
+    "الماس"
+   ],
+   [
+    "malaria",
+    "الملاريا"
+   ],
+   [
+    "syrette",
+    "حقنة"
+   ],
+   [
+    "Weapon Shop",
+    "متجر الأسلحة"
+   ],
+   [
+    "Jackal Tapes",
+    "أشرطة ابن آوى"
+   ],
+   [
+    "Pala",
+    "بالا"
+   ]
+  ]
+ },
+ "far-cry-3": {
+  "lines": 16585,
+  "terms": [
+   [
+    "Jason",
+    "جيسون"
+   ],
+   [
+    "Jason Brody",
+    "جيسون برودي"
+   ],
+   [
+    "Vaas",
+    "فاس"
+   ],
+   [
+    "Vaas Montenegro",
+    "فاس مونتينيغرو"
+   ],
+   [
+    "Hoyt",
+    "هويت"
+   ],
+   [
+    "Hoyt Volker",
+    "هويت فولكر"
+   ],
+   [
+    "Citra",
+    "سيترا"
+   ],
+   [
+    "Citra Talugmai",
+    "سيترا تالوغماي"
+   ],
+   [
+    "Dennis",
+    "دينيس"
+   ],
+   [
+    "Dennis Rogers",
+    "دينيس روجرز"
+   ]
+  ]
+ },
+ "far-cry-4": {
+  "lines": 20652,
+  "terms": [
+   [
+    "Ajay Ghale",
+    "أجاي غيل"
+   ],
+   [
+    "Golden Path",
+    "الطريق الذهبي"
+   ],
+   [
+    "Kyrat",
+    "كيرات"
+   ],
+   [
+    "Kyrati",
+    "كيراتي"
+   ],
+   [
+    "Pagan Min",
+    "باغان مين"
+   ],
+   [
+    "King Min",
+    "الملك مين"
+   ],
+   [
+    "Sabal",
+    "سابال"
+   ],
+   [
+    "Amita",
+    "أميتا"
+   ],
+   [
+    "Hurk",
+    "هيرك"
+   ],
+   [
+    "Rakshasa",
+    "راكشاسا"
+   ]
+  ]
+ },
+ "fields-of-mistria": {
+  "lines": 43611,
+  "terms": [
+   [
+    "Mistria",
+    "ميستريا"
+   ],
+   [
+    "Aldaria",
+    "ألداريا"
+   ],
+   [
+    "Adeline",
+    "أديلين"
+   ],
+   [
+    "Balor",
+    "بالور"
+   ],
+   [
+    "Caldarus",
+    "كالداروس"
+   ],
+   [
+    "Celine",
+    "سيلين"
+   ],
+   [
+    "Darcy",
+    "دارسي"
+   ],
+   [
+    "Dell",
+    "ديل"
+   ],
+   [
+    "Dozy",
+    "دوزي"
+   ],
+   [
+    "Eiland",
+    "آيلاند"
+   ]
+  ]
+ },
+ "final-fantasy-resonance": {
+  "lines": 22388,
+  "terms": [
+   [
+    "Rain",
+    "رين"
+   ],
+   [
+    "Commander Rain",
+    "القائد رين"
+   ],
+   [
+    "Lasswell",
+    "لاسويل"
+   ],
+   [
+    "Fina",
+    "فينا"
+   ],
+   [
+    "Archwitch Fina",
+    "الساحرة العظمى فينا"
+   ],
+   [
+    "Jake",
+    "جيك"
+   ],
+   [
+    "Nichol",
+    "نيكول"
+   ],
+   [
+    "Sakura",
+    "ساكورا"
+   ],
+   [
+    "Raegen",
+    "ريغن"
+   ],
+   [
+    "Mechabo",
+    "ميكابو"
+   ]
+  ]
+ },
+ "final-fantasy-vii-rebirth": {
+  "lines": 47847,
+  "terms": [
+   [
+    "Cloud",
+    "كلاود"
+   ],
+   [
+    "Cloud Strife",
+    "كلاود سترايف"
+   ],
+   [
+    "Tifa",
+    "تيفا"
+   ],
+   [
+    "Tifa Lockhart",
+    "تيفا لوكهارت"
+   ],
+   [
+    "Aerith",
+    "إيريث"
+   ],
+   [
+    "Aerith Gainsborough",
+    "إيريث غينزبورو"
+   ],
+   [
+    "Barret",
+    "باريت"
+   ],
+   [
+    "Barret Wallace",
+    "باريت والاس"
+   ],
+   [
+    "Red XIII",
+    "ريد الثالث عشر"
+   ],
+   [
+    "Nanaki",
+    "ناناكي"
+   ]
+  ]
+ },
+ "final-fantasy-vii-remake-intergrade": {
+  "lines": 28321,
+  "terms": [
+   [
+    "Cloud",
+    "كلاود"
+   ],
+   [
+    "Cloud Strife",
+    "كلاود سترايف"
+   ],
+   [
+    "Barret",
+    "باريت"
+   ],
+   [
+    "Barret Wallace",
+    "باريت والاس"
+   ],
+   [
+    "Tifa",
+    "تيفا"
+   ],
+   [
+    "Tifa Lockhart",
+    "تيفا لوكهارت"
+   ],
+   [
+    "Aerith",
+    "إيريث"
+   ],
+   [
+    "Aerith Gainsborough",
+    "إيريث غينزبورو"
+   ],
+   [
+    "Yuffie",
+    "يوفي"
+   ],
+   [
+    "Yuffie Kisaragi",
+    "يوفي كيساراغي"
+   ]
+  ]
+ },
+ "frostpunk": {
+  "lines": 22093,
+  "terms": [
+   [
+    "Generator",
+    "المولّد"
+   ],
+   [
+    "Captain",
+    "القائد"
+   ],
+   [
+    "New London",
+    "لندن الجديدة"
+   ],
+   [
+    "Londoners",
+    "اللندنيون"
+   ],
+   [
+    "Frostland",
+    "الأرض المتجمدة"
+   ],
+   [
+    "Winterhome",
+    "وينترهوم"
+   ],
+   [
+    "Manchester",
+    "مانشستر"
+   ],
+   [
+    "England",
+    "إنجلترا"
+   ],
+   [
+    "Lord Craven",
+    "اللورد كريفن"
+   ],
+   [
+    "Hope",
+    "الأمل"
+   ]
+  ]
+ },
+ "frostpunk-2": {
+  "lines": 30832,
+  "terms": [
+   [
+    "Steward",
+    "القيّم"
+   ],
+   [
+    "First Citizen",
+    "المواطن الأول"
+   ],
+   [
+    "Captain",
+    "القبطان"
+   ],
+   [
+    "Generator",
+    "المولّد"
+   ],
+   [
+    "District",
+    "حيّ"
+   ],
+   [
+    "Housing District",
+    "حي السكن"
+   ],
+   [
+    "Food District",
+    "حي الطعام"
+   ],
+   [
+    "Extraction District",
+    "حي الاستخراج"
+   ],
+   [
+    "Industrial District",
+    "الحي الصناعي"
+   ],
+   [
+    "Logistics District",
+    "حي اللوجستيات"
+   ]
+  ]
+ },
+ "goat-simulator-3": {
+  "lines": 9233,
+  "terms": [
+   [
+    "Pilgor",
+    "بيلغور"
+   ],
+   [
+    "San Angora",
+    "سان أنغورا"
+   ],
+   [
+    "Goat Tower",
+    "برج الماعز"
+   ],
+   [
+    "Goat Castle",
+    "قلعة الماعز"
+   ],
+   [
+    "Goat Gear",
+    "عتاد الماعز"
+   ],
+   [
+    "Karma",
+    "الكارما"
+   ],
+   [
+    "Instinct",
+    "غريزة"
+   ],
+   [
+    "Illuminati",
+    "الإلوميناتي"
+   ],
+   [
+    "Illuminati Ranks",
+    "رتب الإلوميناتي"
+   ],
+   [
+    "Headbutt",
+    "النطح"
+   ]
+  ]
+ },
+ "god-of-war": {
+  "lines": 28387,
+  "terms": [
+   [
+    "Kratos",
+    "كريتوس"
+   ],
+   [
+    "Atreus",
+    "أتريوس"
+   ],
+   [
+    "Mimir",
+    "ميمير"
+   ],
+   [
+    "Brok",
+    "بروك"
+   ],
+   [
+    "Sindri",
+    "سيندري"
+   ],
+   [
+    "Freya",
+    "فريا"
+   ],
+   [
+    "Baldur",
+    "بالدور"
+   ],
+   [
+    "Modi",
+    "مودي"
+   ],
+   [
+    "Magni",
+    "ماغني"
+   ],
+   [
+    "Odin",
+    "أودين"
+   ]
+  ]
+ },
+ "grand-theft-auto-iv-the-complete-edition": {
+  "lines": 60295,
+  "terms": [
+   [
+    "Liberty City",
+    "ليبرتي سيتي"
+   ],
+   [
+    "Broker",
+    "بروكر"
+   ],
+   [
+    "Dukes",
+    "ديوكس"
+   ],
+   [
+    "Bohan",
+    "بوهان"
+   ],
+   [
+    "Algonquin",
+    "ألغونكوين"
+   ],
+   [
+    "Alderney",
+    "ألديرني"
+   ],
+   [
+    "Alderney City",
+    "ألديرني سيتي"
+   ],
+   [
+    "Hove Beach",
+    "هوف بيتش"
+   ],
+   [
+    "Firefly Island",
+    "جزيرة فايرفلاي"
+   ],
+   [
+    "Firefly Projects",
+    "مشاريع فايرفلاي"
+   ]
+  ]
+ },
+ "grand-theft-auto-san-andreas": {
+  "lines": 15251,
+  "terms": [
+   [
+    "Carl",
+    "كارل"
+   ],
+   [
+    "Carl Johnson",
+    "كارل جونسون"
+   ],
+   [
+    "Sweet",
+    "سويت"
+   ],
+   [
+    "Kendl",
+    "كيندل"
+   ],
+   [
+    "Big Smoke",
+    "بيغ سموك"
+   ],
+   [
+    "Ryder",
+    "رايدر"
+   ],
+   [
+    "Tenpenny",
+    "تينبيني"
+   ],
+   [
+    "Pulaski",
+    "بولاسكي"
+   ],
+   [
+    "Hernandez",
+    "هيرنانديز"
+   ],
+   [
+    "Cesar",
+    "سيزار"
+   ]
+  ]
+ },
+ "grand-theft-auto-v-enhanced": {
+  "lines": 260949,
+  "terms": [
+   [
+    "Michael",
+    "مايكل"
+   ],
+   [
+    "Franklin",
+    "فرانكلين"
+   ],
+   [
+    "Trevor",
+    "تريفور"
+   ],
+   [
+    "Lamar",
+    "لامار"
+   ],
+   [
+    "Lester",
+    "ليستر"
+   ],
+   [
+    "Amanda",
+    "أماندا"
+   ],
+   [
+    "Tracey",
+    "تريسي"
+   ],
+   [
+    "Jimmy",
+    "جيمي"
+   ],
+   [
+    "Dave Norton",
+    "ديف نورتن"
+   ],
+   [
+    "Steve Haines",
+    "ستيف هينز"
+   ]
+  ]
+ },
+ "grand-theft-auto-vice-city": {
+  "lines": 3809,
+  "terms": [
+   [
+    "Tommy",
+    "تومي"
+   ],
+   [
+    "Tommy Vercetti",
+    "تومي فيرسيتي"
+   ],
+   [
+    "Vercetti Estate",
+    "قصر فيرسيتي"
+   ],
+   [
+    "Lance",
+    "لانس"
+   ],
+   [
+    "Lance Vance",
+    "لانس فانس"
+   ],
+   [
+    "Victor Vance",
+    "فيكتور فانس"
+   ],
+   [
+    "Diaz",
+    "دياز"
+   ],
+   [
+    "Ricardo Diaz",
+    "ريكاردو دياز"
+   ],
+   [
+    "Sonny",
+    "سوني"
+   ],
+   [
+    "Sonny Forelli",
+    "سوني فوريلي"
+   ]
+  ]
+ },
+ "graveyard-keeper": {
+  "lines": 9974,
+  "terms": [
+   [
+    "Graveyard Keeper",
+    "حارس المقبرة"
+   ],
+   [
+    "Gerry",
+    "جيري"
+   ],
+   [
+    "Snake",
+    "الأفعى"
+   ],
+   [
+    "Bishop",
+    "الأسقف"
+   ],
+   [
+    "Astrologer",
+    "المنجم"
+   ],
+   [
+    "Inquisitor",
+    "المحقق"
+   ],
+   [
+    "Great Inquisitor",
+    "المحقق الأكبر"
+   ],
+   [
+    "Horadric",
+    "هورادريك"
+   ],
+   [
+    "Miss Chain",
+    "الآنسة تشين"
+   ],
+   [
+    "Ms Charm",
+    "الآنسة تشارم"
+   ]
+  ]
+ },
+ "green-hell": {
+  "lines": 5637,
+  "terms": [
+   [
+    "Green Hell",
+    "الجحيم الأخضر"
+   ],
+   [
+    "Jake Higgins",
+    "جيك هيغينز"
+   ],
+   [
+    "Doctor Higgins",
+    "الدكتور هيغينز"
+   ],
+   [
+    "Mia Higgins",
+    "ميا هيغينز"
+   ],
+   [
+    "Yabahuaca",
+    "يباهواكا"
+   ],
+   [
+    "Omolu Corp",
+    "شركة أومولو"
+   ],
+   [
+    "Ayahuasca",
+    "آياهواسكا"
+   ],
+   [
+    "Amazonia",
+    "الأمازون"
+   ],
+   [
+    "The Spirits of Amazonia",
+    "أرواح الأمازون"
+   ],
+   [
+    "Brazil",
+    "البرازيل"
+   ]
+  ]
+ },
+ "grim-dawn": {
+  "lines": 38639,
+  "terms": [
+   [
+    "Cairn",
+    "كايرن"
+   ],
+   [
+    "Erulan Empire",
+    "إمبراطورية إرولان"
+   ],
+   [
+    "Aetherial",
+    "إيثيري"
+   ],
+   [
+    "Aether",
+    "الأثير"
+   ],
+   [
+    "Aether Crystal",
+    "بلورة الأثير"
+   ],
+   [
+    "Chthonian",
+    "خثوني"
+   ],
+   [
+    "Ch'thon",
+    "خثون"
+   ],
+   [
+    "Devil's Crossing",
+    "معبر الشيطان"
+   ],
+   [
+    "Burrwitch",
+    "بيرويتش"
+   ],
+   [
+    "Homestead",
+    "هومستيد"
+   ]
+  ]
+ },
+ "hades": {
+  "lines": 25629
+ },
+ "hades-ii": {
+  "lines": 38100,
+  "terms": [
+   [
+    "Melinoë",
+    "ميلينوي"
+   ],
+   [
+    "Meli",
+    "ميلي"
+   ],
+   [
+    "Hecate",
+    "هيكاتي"
+   ],
+   [
+    "Chronos",
+    "كرونوس"
+   ],
+   [
+    "Nemesis",
+    "نيميسيس"
+   ],
+   [
+    "Eris",
+    "إيريس"
+   ],
+   [
+    "Skelly",
+    "سكيلي"
+   ],
+   [
+    "Schelemeus",
+    "شيليميوس"
+   ],
+   [
+    "Dora",
+    "دورا"
+   ],
+   [
+    "Odysseus",
+    "أوديسيوس"
+   ]
+  ]
+ },
+ "halo-the-master-chief-collection": {
+  "lines": 119414,
+  "terms": [
+   [
+    "Master Chief",
+    "ماستر تشيف"
+   ],
+   [
+    "Cortana",
+    "كورتانا"
+   ],
+   [
+    "Noble Six",
+    "نوبل سِكس"
+   ],
+   [
+    "Noble Team",
+    "فريق نوبل"
+   ],
+   [
+    "Carter",
+    "كارتر"
+   ],
+   [
+    "Emile",
+    "إميل"
+   ],
+   [
+    "Jorge",
+    "خورخي"
+   ],
+   [
+    "Halsey",
+    "هالسي"
+   ],
+   [
+    "Holland",
+    "هولاند"
+   ],
+   [
+    "Auntie Dot",
+    "العمة دوت"
+   ]
+  ]
+ },
+ "hearts-of-iron-iv": {
+  "lines": 120086,
+  "terms": [
+   [
+    "Political Power",
+    "القوة السياسية"
+   ],
+   [
+    "Manpower",
+    "القوى البشرية"
+   ],
+   [
+    "Stability",
+    "الاستقرار"
+   ],
+   [
+    "War Support",
+    "دعم الحرب"
+   ],
+   [
+    "Command Power",
+    "قوة القيادة"
+   ],
+   [
+    "Army Experience",
+    "خبرة الجيش"
+   ],
+   [
+    "Air Experience",
+    "خبرة القوات الجوية"
+   ],
+   [
+    "Navy Experience",
+    "خبرة البحرية"
+   ],
+   [
+    "National Focus",
+    "التوجه الوطني"
+   ],
+   [
+    "National Focuses",
+    "التوجهات الوطنية"
+   ]
+  ]
+ },
+ "hitman-world-of-assassination": {
+  "lines": 88226,
+  "terms": [
+   [
+    "Agent 47",
+    "العميل 47"
+   ],
+   [
+    "Diana Burnwood",
+    "ديانا بيرنوود"
+   ],
+   [
+    "International Contract Agency",
+    "وكالة العقود الدولية"
+   ],
+   [
+    "Providence",
+    "بروفيدنس"
+   ],
+   [
+    "the Partners",
+    "الشركاء"
+   ],
+   [
+    "The Constant",
+    "الثابت"
+   ],
+   [
+    "Shadow Client",
+    "العميل الخفي"
+   ],
+   [
+    "Lucas Grey",
+    "لوكاس غراي"
+   ],
+   [
+    "Olivia Hall",
+    "أوليفيا هول"
+   ],
+   [
+    "Arthur Edwards",
+    "آرثر إدواردز"
+   ]
+  ]
+ },
+ "hollow-knight": {
+  "lines": 3485,
+  "terms": [
+   [
+    "Hallownest",
+    "هالونست"
+   ],
+   [
+    "Dirtmouth",
+    "ديرتماوث"
+   ],
+   [
+    "Forgotten Crossroads",
+    "مفترق الطرق المنسي"
+   ],
+   [
+    "Greenpath",
+    "الدرب الأخضر"
+   ],
+   [
+    "Fungal Wastes",
+    "القفار الفطرية"
+   ],
+   [
+    "City of Tears",
+    "مدينة الدموع"
+   ],
+   [
+    "Crystal Peak",
+    "قمة الكريستال"
+   ],
+   [
+    "Resting Grounds",
+    "أرض الراحة"
+   ],
+   [
+    "Royal Waterways",
+    "المجاري الملكية"
+   ],
+   [
+    "Deepnest",
+    "العش العميق"
+   ]
+  ]
+ },
+ "hollow-knight-silksong": {
+  "lines": 5393,
+  "terms": [
+   [
+    "Hornet",
+    "هورنت"
+   ],
+   [
+    "Hollow Knight",
+    "هولو نايت"
+   ],
+   [
+    "Silksong",
+    "سيلكسونغ"
+   ],
+   [
+    "Pharloom",
+    "فارلوم"
+   ],
+   [
+    "Hallownest",
+    "هالونست"
+   ],
+   [
+    "Lace",
+    "ليس"
+   ],
+   [
+    "Sherma",
+    "شيرما"
+   ],
+   [
+    "Shakra",
+    "شاكرا"
+   ],
+   [
+    "Garmond",
+    "غارموند"
+   ],
+   [
+    "Zaza",
+    "زازا"
+   ]
+  ]
+ },
+ "horses-of-hoofprint-bay": {
+  "lines": 1403,
+  "terms": [
+   [
+    "Hoofprint Bay",
+    "خليج هوفبرينت"
+   ],
+   [
+    "Horses of Hoofprint Bay",
+    "خيول خليج هوفبرينت"
+   ],
+   [
+    "Hoofprint Bay Stables",
+    "إسطبلات خليج هوفبرينت"
+   ],
+   [
+    "yard",
+    "المزرعة"
+   ],
+   [
+    "stable",
+    "الإسطبل"
+   ],
+   [
+    "Main House",
+    "المنزل الرئيسي"
+   ],
+   [
+    "Riding Arena",
+    "ساحة الركوب"
+   ],
+   [
+    "Indoor Riding Arena",
+    "ساحة الركوب المغطاة"
+   ],
+   [
+    "Breeding Station",
+    "محطة التربية"
+   ],
+   [
+    "Yearling Paddock",
+    "حظيرة الحوليات"
+   ]
+  ]
+ },
+ "house-flipper-2": {
+  "lines": 11544,
+  "terms": [
+   [
+    "House Flipper 2",
+    "هاوس فليبر 2"
+   ],
+   [
+    "Pinnacove",
+    "بيناكوف"
+   ],
+   [
+    "Old Pinnacove",
+    "بيناكوف القديمة"
+   ],
+   [
+    "Pinnacove Suburbs",
+    "ضواحي بيناكوف"
+   ],
+   [
+    "Pinna Sq",
+    "ساحة بينا"
+   ],
+   [
+    "Galeport",
+    "غيلبورت"
+   ],
+   [
+    "Akamatsu Valley",
+    "وادي أكاماتسو"
+   ],
+   [
+    "Coralroot Forest",
+    "غابة كورالروت"
+   ],
+   [
+    "Crayfish Coast",
+    "ساحل كرايفيش"
+   ],
+   [
+    "Puffin Isle",
+    "جزيرة بافن"
+   ]
+  ]
+ },
  "humanitz": {
   "lines": 8755,
   "terms": [
@@ -44,48 +4457,6008 @@
    ]
   ]
  },
- "subnautica": {
-  "lines": 3839,
+ "icarus": {
+  "lines": 34716,
   "terms": [
    [
-    "Robin Ayou",
-    "روبن أيو"
+    "Icarus",
+    "إيكاروس"
    ],
    [
-    "Samantha Ayou",
-    "سامانثا أيو"
+    "Prospector",
+    "المنقّب"
    ],
    [
-    "AL-AN",
-    "آل-آن"
+    "Prospect",
+    "بعثة"
    ],
    [
-    "Marguerit Maida",
-    "مارغريت مايدا"
+    "Contractor",
+    "المتعاقد"
    ],
    [
-    "Parvan Ivanov",
-    "بارفان إيفانوف"
+    "Operator",
+    "المشغّل"
    ],
    [
-    "Danielle Valenti",
-    "دانييل فالنتي"
+    "Orbital Station",
+    "المحطة المدارية"
    ],
    [
-    "Zeta Landon",
-    "زيتا لاندون"
+    "Orbit",
+    "المدار"
    ],
    [
-    "Fred Lachance",
-    "فريد لاشانس"
+    "Dropship",
+    "مركبة الإنزال"
    ],
    [
-    "Emmanuel Desjardins",
-    "إيمانويل ديجاردان"
+    "Drop Pod",
+    "كبسولة الإنزال"
    ],
    [
-    "Vinh Pham",
-    "فين فام"
+    "Respawn Pod",
+    "كبسولة الإحياء"
+   ]
+  ]
+ },
+ "inzoi": {
+  "lines": 133727,
+  "terms": [
+   [
+    "Zois",
+    "الزوي"
+   ],
+   [
+    "Purr Coins",
+    "عملات الخرخرة"
+   ],
+   [
+    "Meow Store",
+    "متجر مياو"
+   ],
+   [
+    "Canvas",
+    "كانفاس"
+   ],
+   [
+    "Bliss Bay",
+    "بليس باي"
+   ],
+   [
+    "Dowon",
+    "دوون"
+   ],
+   [
+    "Cahaya",
+    "كاهايا"
+   ],
+   [
+    "Psycat",
+    "سايكات"
+   ],
+   [
+    "Build Mode",
+    "وضع البناء"
+   ],
+   [
+    "Build Studio",
+    "استوديو البناء"
+   ]
+  ]
+ },
+ "it-takes-two": {
+  "lines": 8009,
+  "terms": [
+   [
+    "Cody",
+    "كودي"
+   ],
+   [
+    "Rose",
+    "روز"
+   ],
+   [
+    "Dr. Hakim",
+    "د. حكيم"
+   ],
+   [
+    "Book of Love",
+    "كتاب الحب"
+   ],
+   [
+    "Cutie",
+    "كيوتي"
+   ],
+   [
+    "Moon Baboon",
+    "قرد القمر"
+   ],
+   [
+    "Miss Q",
+    "الآنسة كيو"
+   ],
+   [
+    "Wasp Queen",
+    "ملكة الدبابير"
+   ],
+   [
+    "Wasps",
+    "الدبابير"
+   ],
+   [
+    "Squirrel",
+    "السنجاب"
+   ]
+  ]
+ },
+ "judgment": {
+  "lines": 53675,
+  "terms": [
+   [
+    "Takayuki Yagami",
+    "تاكايوكي ياغامي"
+   ],
+   [
+    "Masaharu Kaito",
+    "ماساهارو كايتو"
+   ],
+   [
+    "Kyohei Hamura",
+    "كيوهي هامورا"
+   ],
+   [
+    "Ryuzo Genda",
+    "ريوزو غيندا"
+   ],
+   [
+    "Saori Shirosaki",
+    "ساوري شيروساكي"
+   ],
+   [
+    "Issei Hoshino",
+    "إيسّي هوشينو"
+   ],
+   [
+    "Mafuyu Fujii",
+    "مافويو فوجيي"
+   ],
+   [
+    "Kosuke Higashi",
+    "كوسكي هيغاشي"
+   ],
+   [
+    "Makoto Tsukumo",
+    "ماكوتو تسوكومو"
+   ],
+   [
+    "Fumiya Sugiura",
+    "فومييا سوغيورا"
+   ]
+  ]
+ },
+ "jurassic-world-evolution-2": {
+  "lines": 23523,
+  "terms": [
+   [
+    "Acrocanthosaurus",
+    "أكروكانثوصور"
+   ],
+   [
+    "Albertosaurus",
+    "ألبرتوصور"
+   ],
+   [
+    "Allosaurus",
+    "ألوصور"
+   ],
+   [
+    "Amargasaurus",
+    "أمارغاصور"
+   ],
+   [
+    "Ankylosaurus",
+    "أنكيلوصور"
+   ],
+   [
+    "Apatosaurus",
+    "أباتوصور"
+   ],
+   [
+    "Aquilops",
+    "أكويلوبس"
+   ],
+   [
+    "Archaeornithomimus",
+    "أركيورنيثوميموس"
+   ],
+   [
+    "Atrociraptor",
+    "أتروسيرابتور"
+   ],
+   [
+    "Attenborosaurus",
+    "أتنبوروصور"
+   ]
+  ]
+ },
+ "jurassic-world-evolution-3": {
+  "lines": 35210,
+  "terms": [
+   [
+    "Acrocanthosaurus",
+    "أكروكانثوصور"
+   ],
+   [
+    "Albertosaurus",
+    "ألبرتوصور"
+   ],
+   [
+    "Allosaurus",
+    "ألوصور"
+   ],
+   [
+    "Amargasaurus",
+    "أمارغاصور"
+   ],
+   [
+    "Ankylosaurus",
+    "أنكيلوصور"
+   ],
+   [
+    "Apatosaurus",
+    "أباتوصور"
+   ],
+   [
+    "Aquilops",
+    "أكويلوبس"
+   ],
+   [
+    "Archaeornithomimus",
+    "أركيورنيثوميموس"
+   ],
+   [
+    "Atrociraptor",
+    "أتروسيرابتور"
+   ],
+   [
+    "Attenborosaurus",
+    "أتنبوروصور"
+   ]
+  ]
+ },
+ "kingdom-come-deliverance": {
+  "lines": 78166,
+  "terms": [
+   [
+    "Henry",
+    "هنري"
+   ],
+   [
+    "Theresa",
+    "تيريزا"
+   ],
+   [
+    "Johanka",
+    "يوهانكا"
+   ],
+   [
+    "Radzig Kobyla",
+    "رادزيغ كوبيلا"
+   ],
+   [
+    "Hanush of Leipa",
+    "هانوش من لايبا"
+   ],
+   [
+    "Hans Capon",
+    "هانز كابون"
+   ],
+   [
+    "Divish of Talmberg",
+    "ديفيش من تالمبرغ"
+   ],
+   [
+    "Robard",
+    "روبارد"
+   ],
+   [
+    "Stephanie",
+    "ستيفاني"
+   ],
+   [
+    "Bernard",
+    "برنارد"
+   ]
+  ]
+ },
+ "legend-of-defenders": {
+  "lines": 8971,
+  "terms": [
+   [
+    "Burn",
+    "الحرق"
+   ],
+   [
+    "Burned",
+    "محترق"
+   ],
+   [
+    "Chain Thunder",
+    "سلسلة البرق"
+   ],
+   [
+    "Chill",
+    "البرودة"
+   ],
+   [
+    "Chilled",
+    "مبرَّد"
+   ],
+   [
+    "Demon Spawn",
+    "نسل الشيطان"
+   ],
+   [
+    "Drone",
+    "الطائرة المسيّرة"
+   ],
+   [
+    "Enhanced Drone",
+    "الطائرة المسيّرة المعزّزة"
+   ],
+   [
+    "Electrified",
+    "التكهرب"
+   ],
+   [
+    "Enhanced Explosion",
+    "الانفجار المعزّز"
+   ]
+  ]
+ },
+ "lies-of-p": {
+  "lines": 9335,
+  "terms": [
+   [
+    "Pinocchio",
+    "بينوكيو"
+   ],
+   [
+    "Geppetto",
+    "جيبيتو"
+   ],
+   [
+    "Sophia",
+    "صوفيا"
+   ],
+   [
+    "Gemini",
+    "جيميني"
+   ],
+   [
+    "Venigni",
+    "فينيني"
+   ],
+   [
+    "Antonia",
+    "أنطونيا"
+   ],
+   [
+    "Polendina",
+    "بولندينا"
+   ],
+   [
+    "Eugénie",
+    "أوجيني"
+   ],
+   [
+    "Alidoro",
+    "أليدورو"
+   ],
+   [
+    "Simon Manus",
+    "سايمون مانوس"
+   ]
+  ]
+ },
+ "life-is-strange-episode-1": {
+  "lines": 15732,
+  "terms": [
+   [
+    "Max Caulfield",
+    "ماكس كولفيلد"
+   ],
+   [
+    "Maxine",
+    "ماكسين"
+   ],
+   [
+    "Chloe Price",
+    "كلوي برايس"
+   ],
+   [
+    "Rachel Amber",
+    "ريتشل أمبر"
+   ],
+   [
+    "Kate Marsh",
+    "كيت مارش"
+   ],
+   [
+    "Warren Graham",
+    "وارن غراهام"
+   ],
+   [
+    "Victoria Chase",
+    "فيكتوريا تشيس"
+   ],
+   [
+    "Nathan Prescott",
+    "ناثان بريسكوت"
+   ],
+   [
+    "Sean Prescott",
+    "شون بريسكوت"
+   ],
+   [
+    "Mark Jefferson",
+    "مارك جيفرسون"
+   ]
+  ]
+ },
+ "like-a-dragon-gaiden-the-man-who-erased-his-name": {
+  "lines": 25180,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Joryu",
+    "جوريو"
+   ],
+   [
+    "Dragon of Dojima",
+    "تنين دوجيما"
+   ],
+   [
+    "Akame",
+    "أكامي"
+   ],
+   [
+    "Tsuruno",
+    "تسورونو"
+   ],
+   [
+    "Hanawa",
+    "هاناوا"
+   ],
+   [
+    "Shishido",
+    "شيشيدو"
+   ],
+   [
+    "Yoshitaka Shishido",
+    "يوشيتاكا شيشيدو"
+   ],
+   [
+    "Nishitani",
+    "نيشيتاني"
+   ],
+   [
+    "Homare Nishitani",
+    "هوماري نيشيتاني"
+   ]
+  ]
+ },
+ "like-a-dragon-infinite-wealth": {
+  "lines": 79991,
+  "terms": [
+   [
+    "Ichiban Kasuga",
+    "إيتشيبان كاسوغا"
+   ],
+   [
+    "Ichi",
+    "إيتشي"
+   ],
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Dragon of Dojima",
+    "تنين دوجيما"
+   ],
+   [
+    "Koichi Adachi",
+    "كويتشي أداتشي"
+   ],
+   [
+    "Yu Nanba",
+    "يو نانبا"
+   ],
+   [
+    "Saeko Mukoda",
+    "سايكو موكودا"
+   ],
+   [
+    "Joongi Han",
+    "جونغي هان"
+   ],
+   [
+    "Tianyou Zhao",
+    "تيانيو جاو"
+   ],
+   [
+    "Eric Tomizawa",
+    "إريك توميزاوا"
+   ]
+  ]
+ },
+ "like-a-dragon-ishin": {
+  "lines": 61533,
+  "terms": [
+   [
+    "Sakamoto Ryoma",
+    "ساكاموتو ريوما"
+   ],
+   [
+    "Saito Hajime",
+    "سايتو هاجيمي"
+   ],
+   [
+    "Hijikata Toshizo",
+    "هيجيكاتا توشيزو"
+   ],
+   [
+    "Okita Soji",
+    "أوكيتا سوجي"
+   ],
+   [
+    "Kondo Isami",
+    "كوندو إيسامي"
+   ],
+   [
+    "Nagakura Shinpachi",
+    "ناغاكورا شينباتشي"
+   ],
+   [
+    "Harada Sanosuke",
+    "هارادا سانوسوكي"
+   ],
+   [
+    "Todo Heisuke",
+    "تودو هيسوكي"
+   ],
+   [
+    "Inoue Genzaburo",
+    "إينوي غينزابورو"
+   ],
+   [
+    "Yamazaki Susumu",
+    "يامازاكي سوسومو"
+   ]
+  ]
+ },
+ "like-a-dragon-pirate-yakuza-in-hawaii": {
+  "lines": 36018,
+  "terms": [
+   [
+    "Goro Majima",
+    "غورو ماجيما"
+   ],
+   [
+    "Captain Majima",
+    "القبطان ماجيما"
+   ],
+   [
+    "Mad Dog of Shimano",
+    "كلب شيمانو المسعور"
+   ],
+   [
+    "Sea Dog",
+    "كلب البحر"
+   ],
+   [
+    "Noah Richmond",
+    "نوا ريتشموند"
+   ],
+   [
+    "Jason Hammond",
+    "جيسون هاموند"
+   ],
+   [
+    "Masaru Sawamura",
+    "ماسارو ساوامورا"
+   ],
+   [
+    "Shigaki",
+    "شيغاكي"
+   ],
+   [
+    "Taiga Saejima",
+    "تايغا سايجيما"
+   ],
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ]
+  ]
+ },
+ "little-nightmares": {
+  "lines": 292,
+  "terms": [
+   [
+    "The Maw",
+    "المَوْ"
+   ],
+   [
+    "The Depths",
+    "الأعماق"
+   ],
+   [
+    "The Residence",
+    "المسكن"
+   ],
+   [
+    "Guest Area",
+    "جناح الضيوف"
+   ],
+   [
+    "The Hideaway",
+    "المخبأ"
+   ],
+   [
+    "The Hull",
+    "هيكل السفينة"
+   ],
+   [
+    "Kitchen",
+    "المطبخ"
+   ],
+   [
+    "The Lair",
+    "الوكر"
+   ],
+   [
+    "The Lady's Quarters",
+    "جناح السيدة"
+   ],
+   [
+    "Prison",
+    "السجن"
+   ]
+  ]
+ },
+ "lost-judgment": {
+  "lines": 84455
+ },
+ "mafia-definitive-edition": {
+  "lines": 25837,
+  "terms": [
+   [
+    "Tommy Angelo",
+    "تومي أنجيلو"
+   ],
+   [
+    "Paulie",
+    "بولي"
+   ],
+   [
+    "Ennio Salieri",
+    "إنيو ساليري"
+   ],
+   [
+    "Don Salieri",
+    "الدون ساليري"
+   ],
+   [
+    "Frank Colletti",
+    "فرانك كوليتي"
+   ],
+   [
+    "Vincenzo",
+    "فينتشنزو"
+   ],
+   [
+    "Ralph",
+    "رالف"
+   ],
+   [
+    "Luigi",
+    "لويجي"
+   ],
+   [
+    "Sarah",
+    "سارة"
+   ],
+   [
+    "Lucas Bertone",
+    "لوكاس بيرتوني"
+   ]
+  ]
+ },
+ "mafia-ii-definitive-edition": {
+  "lines": 10525,
+  "terms": [
+   [
+    "Vito Scaletta",
+    "فيتو سكاليتا"
+   ],
+   [
+    "Joe Barbaro",
+    "جو باربارو"
+   ],
+   [
+    "Joey",
+    "جوي"
+   ],
+   [
+    "Henry Tomasino",
+    "هنري توماسينو"
+   ],
+   [
+    "Leo Galante",
+    "ليو غالانتي"
+   ],
+   [
+    "Eddie Scarpa",
+    "إيدي سكاربا"
+   ],
+   [
+    "Carlo Falcone",
+    "كارلو فالكوني"
+   ],
+   [
+    "Frank Vinci",
+    "فرانك فينشي"
+   ],
+   [
+    "Alberto Clemente",
+    "ألبرتو كليمنتي"
+   ],
+   [
+    "Derek Papalardo",
+    "ديريك بابالاردو"
+   ]
+  ]
+ },
+ "mafia-iii-definitive-edition": {
+  "lines": 100943,
+  "terms": [
+   [
+    "Lincoln Clay",
+    "لينكولن كلاي"
+   ],
+   [
+    "Sal Marcano",
+    "سال ماركانو"
+   ],
+   [
+    "Giorgi Marcano",
+    "جورجي ماركانو"
+   ],
+   [
+    "Lou Marcano",
+    "لو ماركانو"
+   ],
+   [
+    "Uncle Lou",
+    "العم لو"
+   ],
+   [
+    "Tommy Marcano",
+    "تومي ماركانو"
+   ],
+   [
+    "Olivia Marcano",
+    "أوليفيا ماركانو"
+   ],
+   [
+    "Thomas Burke",
+    "توماس بيرك"
+   ],
+   [
+    "Danny Burke",
+    "داني بيرك"
+   ],
+   [
+    "Nicki Burke",
+    "نيكي بيرك"
+   ]
+  ]
+ },
+ "mafia-the-old-country": {
+  "lines": 23330,
+  "terms": [
+   [
+    "Enzo",
+    "إنزو"
+   ],
+   [
+    "Enzo Favara",
+    "إنزو فافارا"
+   ],
+   [
+    "Don Torrisi",
+    "الدون توريسي"
+   ],
+   [
+    "Bernardo Torrisi",
+    "برناردو توريسي"
+   ],
+   [
+    "Isabella",
+    "إيزابيلا"
+   ],
+   [
+    "Cesare",
+    "تشيزاري"
+   ],
+   [
+    "Luca",
+    "لوكا"
+   ],
+   [
+    "Luca Trapani",
+    "لوكا تراباني"
+   ],
+   [
+    "Tino",
+    "تينو"
+   ],
+   [
+    "Tino Russo",
+    "تينو روسو"
+   ]
+  ]
+ },
+ "manor-lords": {
+  "lines": 3123,
+  "terms": [
+   [
+    "Lord",
+    "اللورد"
+   ],
+   [
+    "Baron",
+    "البارون"
+   ],
+   [
+    "Manor",
+    "القصر"
+   ],
+   [
+    "Settlement",
+    "المستوطنة"
+   ],
+   [
+    "Settlement Level",
+    "مستوى المستوطنة"
+   ],
+   [
+    "Region",
+    "الإقليم"
+   ],
+   [
+    "Regional Wealth",
+    "ثروة الإقليم"
+   ],
+   [
+    "Treasury",
+    "الخزينة"
+   ],
+   [
+    "Influence",
+    "النفوذ"
+   ],
+   [
+    "King's Favour",
+    "حظوة الملك"
+   ]
+  ]
+ },
+ "marvels-spider-man-miles-morales": {
+  "lines": 20542,
+  "terms": [
+   [
+    "Spider-Man",
+    "سبايدر مان"
+   ],
+   [
+    "Peter Parker",
+    "بيتر باركر"
+   ],
+   [
+    "Mary Jane Watson",
+    "ماري جين واتسون"
+   ],
+   [
+    "Aunt May",
+    "العمة ماي"
+   ],
+   [
+    "Miles Morales",
+    "مايلز موراليس"
+   ],
+   [
+    "Rio Morales",
+    "ريو موراليس"
+   ],
+   [
+    "Jefferson Davis",
+    "جيفرسون ديفيس"
+   ],
+   [
+    "Otto Octavius",
+    "أوتو أوكتافيوس"
+   ],
+   [
+    "Doctor Octopus",
+    "دكتور أوكتوبوس"
+   ],
+   [
+    "Doc Ock",
+    "دوك أوك"
+   ]
+  ]
+ },
+ "marvels-spider-man-remastered": {
+  "lines": 43247,
+  "terms": [
+   [
+    "Spider-Man",
+    "سبايدر مان"
+   ],
+   [
+    "Spider-Men",
+    "رجال العنكبوت"
+   ],
+   [
+    "Peter Parker",
+    "بيتر باركر"
+   ],
+   [
+    "Mary Jane Watson",
+    "ماري جين واتسون"
+   ],
+   [
+    "Aunt May",
+    "العمة ماي"
+   ],
+   [
+    "Miles Morales",
+    "مايلز موراليس"
+   ],
+   [
+    "Rio Morales",
+    "ريو موراليس"
+   ],
+   [
+    "Jefferson Davis",
+    "جيفرسون ديفيس"
+   ],
+   [
+    "Yuri Watanabe",
+    "يوري واتانابي"
+   ],
+   [
+    "Captain Watanabe",
+    "النقيب واتانابي"
+   ]
+  ]
+ },
+ "mass-effect-legendary-edition": {
+  "lines": 160502,
+  "terms": [
+   [
+    "Shepard",
+    "شيبرد"
+   ],
+   [
+    "Commander Shepard",
+    "القائد شيبرد"
+   ],
+   [
+    "Normandy",
+    "نورماندي"
+   ],
+   [
+    "Garrus",
+    "غاروس"
+   ],
+   [
+    "Garrus Vakarian",
+    "غاروس فاكاريان"
+   ],
+   [
+    "Tali",
+    "تالي"
+   ],
+   [
+    "Tali'Zorah",
+    "تالي زورا"
+   ],
+   [
+    "Liara",
+    "ليارا"
+   ],
+   [
+    "Liara T'Soni",
+    "ليارا تيسوني"
+   ],
+   [
+    "Ashley",
+    "آشلي"
+   ]
+  ]
+ },
+ "melvor-idle-2-a-runescape-adventure": {
+  "lines": 13440,
+  "terms": [
+   [
+    "Melvor",
+    "ميلفور"
+   ],
+   [
+    "Azamire",
+    "أزامير"
+   ],
+   [
+    "Woodcutting",
+    "الاحتطاب"
+   ],
+   [
+    "Fishing",
+    "صيد السمك"
+   ],
+   [
+    "Firemaking",
+    "إشعال النار"
+   ],
+   [
+    "Cooking",
+    "الطهي"
+   ],
+   [
+    "Mining",
+    "التعدين"
+   ],
+   [
+    "Smithing",
+    "الحدادة"
+   ],
+   [
+    "Crafting",
+    "الحرف"
+   ],
+   [
+    "Fletching",
+    "صناعة السهام"
+   ]
+  ]
+ },
+ "men-of-war-assault-squad-2": {
+  "lines": 8057,
+  "terms": [
+   [
+    "Terry Palmer",
+    "تيري بالمر"
+   ],
+   [
+    "Robinson",
+    "روبنسون"
+   ],
+   [
+    "Gunther Borg",
+    "غونتر بورغ"
+   ],
+   [
+    "Kuznetsov",
+    "كوزنيتسوف"
+   ],
+   [
+    "Smirnov",
+    "سميرنوف"
+   ],
+   [
+    "Petrov",
+    "بيتروف"
+   ],
+   [
+    "Grischenko",
+    "غريشينكو"
+   ],
+   [
+    "Rommel",
+    "رومل"
+   ],
+   [
+    "Afrikakorps",
+    "الفيلق الأفريقي"
+   ],
+   [
+    "Wehrmacht",
+    "الفيرماخت"
+   ]
+  ]
+ },
+ "metal-gear-solid-snake-eater": {
+  "lines": 34164,
+  "terms": [
+   [
+    "Naked Snake",
+    "نيكد سنيك"
+   ],
+   [
+    "Big Boss",
+    "بيغ بوس"
+   ],
+   [
+    "Major Zero",
+    "الرائد زيرو"
+   ],
+   [
+    "Para-Medic",
+    "بارا-ميديك"
+   ],
+   [
+    "Sigint",
+    "سيغينت"
+   ],
+   [
+    "Tatyana",
+    "تاتيانا"
+   ],
+   [
+    "Volgin",
+    "فولغين"
+   ],
+   [
+    "Colonel Volgin",
+    "العقيد فولغين"
+   ],
+   [
+    "Ocelot",
+    "أوسيلوت"
+   ],
+   [
+    "Revolver Ocelot",
+    "ريفولفر أوسيلوت"
+   ]
+  ]
+ },
+ "metal-gear-solid-v-the-phantom-pain": {
+  "lines": 54631,
+  "terms": [
+   [
+    "Snake",
+    "سنيك"
+   ],
+   [
+    "Venom Snake",
+    "فينوم سنيك"
+   ],
+   [
+    "Punished \"Venom\" Snake",
+    "بنشد \"فينوم\" سنيك"
+   ],
+   [
+    "Big Boss",
+    "بيغ بوس"
+   ],
+   [
+    "Naked Snake",
+    "نيكد سنيك"
+   ],
+   [
+    "Solid Snake",
+    "سوليد سنيك"
+   ],
+   [
+    "Kazuhira Miller",
+    "كازوهيرا ميلر"
+   ],
+   [
+    "Master Miller",
+    "ماستر ميلر"
+   ],
+   [
+    "Revolver Ocelot",
+    "ريفولفر أوسيلوت"
+   ],
+   [
+    "Quiet",
+    "كوايت"
+   ]
+  ]
+ },
+ "metro-exodus": {
+  "lines": 34658,
+  "terms": [
+   [
+    "Artyom",
+    "أرتيوم"
+   ],
+   [
+    "Anna",
+    "آنا"
+   ],
+   [
+    "Miller",
+    "ميلر"
+   ],
+   [
+    "Colonel Miller",
+    "العقيد ميلر"
+   ],
+   [
+    "Krest",
+    "كريست"
+   ],
+   [
+    "Damir",
+    "دامير"
+   ],
+   [
+    "Idiot",
+    "الأبله"
+   ],
+   [
+    "Stepan",
+    "ستيبان"
+   ],
+   [
+    "Tokarev",
+    "توكاريف"
+   ],
+   [
+    "Alyosha",
+    "أليوشا"
+   ]
+  ]
+ },
+ "middle-earth-shadow-of-mordor": {
+  "lines": 32527,
+  "terms": [
+   [
+    "Talion",
+    "تاليون"
+   ],
+   [
+    "Celebrimbor",
+    "كيليبريمبور"
+   ],
+   [
+    "Gollum",
+    "غولوم"
+   ],
+   [
+    "Sméagol",
+    "سميغول"
+   ],
+   [
+    "Ratbag",
+    "راتباغ"
+   ],
+   [
+    "Hirgon",
+    "هيرغون"
+   ],
+   [
+    "Lithariel",
+    "ليثارييل"
+   ],
+   [
+    "Marwen",
+    "ماروين"
+   ],
+   [
+    "Torvin",
+    "تورفين"
+   ],
+   [
+    "Ioreth",
+    "إيوريث"
+   ]
+  ]
+ },
+ "moon-sweepers": {
+  "lines": 2091,
+  "terms": [
+   [
+    "Lunar Surface Division",
+    "قسم سطح القمر"
+   ],
+   [
+    "Collector",
+    "المُجمِّع"
+   ],
+   [
+    "moon dust",
+    "غبار القمر"
+   ],
+   [
+    "lunar dust",
+    "الغبار القمري"
+   ],
+   [
+    "capsule",
+    "كبسولة"
+   ],
+   [
+    "hopper",
+    "الخزان"
+   ],
+   [
+    "crew",
+    "الطاقم"
+   ],
+   [
+    "shift",
+    "المناوبة"
+   ],
+   [
+    "Field Manual",
+    "الدليل الميداني"
+   ],
+   [
+    "sector",
+    "قطاع"
+   ]
+  ]
+ },
+ "mortal-shell-ii": {
+  "lines": 9451,
+  "terms": [
+   [
+    "Harbinger",
+    "النذير"
+   ],
+   [
+    "Shell",
+    "القوقعة"
+   ],
+   [
+    "Shellkeeper",
+    "حارس القواقع"
+   ],
+   [
+    "Gloom",
+    "الكآبة"
+   ],
+   [
+    "Beacon",
+    "المنارة"
+   ],
+   [
+    "Tarstone",
+    "حجر القار"
+   ],
+   [
+    "Tarforge",
+    "مِصهَر القار"
+   ],
+   [
+    "Resolve",
+    "العزيمة"
+   ],
+   [
+    "Mether",
+    "الميثر"
+   ],
+   [
+    "Blessed Mether",
+    "الميثر المباركة"
+   ]
+  ]
+ },
+ "nier-replicant-ver-1-22474487139": {
+  "lines": 16276,
+  "terms": [
+   [
+    "Nier",
+    "نير"
+   ],
+   [
+    "Yonah",
+    "يونا"
+   ],
+   [
+    "Kainé",
+    "كايني"
+   ],
+   [
+    "Emil",
+    "إميل"
+   ],
+   [
+    "Master Emil",
+    "السيد إميل"
+   ],
+   [
+    "Grimoire Weiss",
+    "غريموار فايس"
+   ],
+   [
+    "Weissey",
+    "فايسي"
+   ],
+   [
+    "Grimoire Noir",
+    "غريموار نوار"
+   ],
+   [
+    "Popola",
+    "بوبولا"
+   ],
+   [
+    "Devola",
+    "ديفولا"
+   ]
+  ]
+ },
+ "nierautomata": {
+  "lines": 16532,
+  "terms": [
+   [
+    "YoRHa",
+    "يورها"
+   ],
+   [
+    "Pod 042",
+    "بود 042"
+   ],
+   [
+    "Pod 153",
+    "بود 153"
+   ],
+   [
+    "Pods",
+    "البودات"
+   ],
+   [
+    "Bunker",
+    "المخبأ"
+   ],
+   [
+    "Commander",
+    "القائدة"
+   ],
+   [
+    "Commander White",
+    "القائدة وايت"
+   ],
+   [
+    "Operator",
+    "المشغّلة"
+   ],
+   [
+    "Resistance",
+    "المقاومة"
+   ],
+   [
+    "Resistance Camp",
+    "معسكر المقاومة"
+   ]
+  ]
+ },
+ "nioh-2-the-complete-edition": {
+  "lines": 25547,
+  "terms": [
+   [
+    "Hide",
+    "هيدي"
+   ],
+   [
+    "Tokichiro",
+    "توكيتشيرو"
+   ],
+   [
+    "Toyotomi Hideyoshi",
+    "تويوتومي هيديوشي"
+   ],
+   [
+    "Mumyo",
+    "موميو"
+   ],
+   [
+    "Oda Nobunaga",
+    "أودا نوبوناغا"
+   ],
+   [
+    "Saito Dosan",
+    "سايتو دوسان"
+   ],
+   [
+    "Saito Yoshitatsu",
+    "سايتو يوشيتاتسو"
+   ],
+   [
+    "Tokugawa Ieyasu",
+    "توكوغاوا إيياسو"
+   ],
+   [
+    "Hattori Hanzo",
+    "هاتوري هانزو"
+   ],
+   [
+    "Matsunaga Hisahide",
+    "ماتسوناغا هيساهيدي"
+   ]
+  ]
+ },
+ "nioh-complete-edition": {
+  "lines": 13361,
+  "terms": [
+   [
+    "William",
+    "ويليام"
+   ],
+   [
+    "William Adams",
+    "ويليام آدامز"
+   ],
+   [
+    "Anjin",
+    "أنجين"
+   ],
+   [
+    "Saoirse",
+    "سيرشا"
+   ],
+   [
+    "Edward Kelley",
+    "إدوارد كيلي"
+   ],
+   [
+    "John Dee",
+    "جون دي"
+   ],
+   [
+    "Hattori Hanzo",
+    "هاتوري هانزو"
+   ],
+   [
+    "Okatsu",
+    "أوكاتسو"
+   ],
+   [
+    "Tokugawa Ieyasu",
+    "توكوغاوا إيياسو"
+   ],
+   [
+    "Ishida Mitsunari",
+    "إيشيدا ميتسوناري"
+   ]
+  ]
+ },
+ "no-mans-sky": {
+  "lines": 78632
+ },
+ "no-rest-for-the-wicked": {
+  "lines": 12636,
+  "terms": [
+   [
+    "Cerim",
+    "سيريم"
+   ],
+   [
+    "Sacrament",
+    "ساكرامنت"
+   ],
+   [
+    "Isola Sacra",
+    "إيزولا ساكرا"
+   ],
+   [
+    "the Pestilence",
+    "الوباء"
+   ],
+   [
+    "Plague",
+    "الطاعون"
+   ],
+   [
+    "Inquisition",
+    "محكمة التفتيش"
+   ],
+   [
+    "Inquisitor",
+    "المحقق"
+   ],
+   [
+    "Magnus",
+    "ماغنوس"
+   ],
+   [
+    "Harol",
+    "هارول"
+   ],
+   [
+    "Phalen",
+    "فالين"
+   ]
+  ]
+ },
+ "octopath-traveler": {
+  "lines": 40261,
+  "terms": [
+   [
+    "Orsterra",
+    "أورستيرا"
+   ],
+   [
+    "Olberic",
+    "أولبيريك"
+   ],
+   [
+    "Tressa",
+    "تريسا"
+   ],
+   [
+    "Cyrus",
+    "سايرس"
+   ],
+   [
+    "Primrose",
+    "بريمروز"
+   ],
+   [
+    "H'aanit",
+    "هآنيت"
+   ],
+   [
+    "Therion",
+    "ثيريون"
+   ],
+   [
+    "Ophilia",
+    "أوفيليا"
+   ],
+   [
+    "Alfyn",
+    "ألفين"
+   ],
+   [
+    "Frostlands",
+    "أراضي الصقيع"
+   ]
+  ]
+ },
+ "omori": {
+  "lines": 18138,
+  "terms": [
+   [
+    "OMORI",
+    "أوموري"
+   ],
+   [
+    "SUNNY",
+    "صني"
+   ],
+   [
+    "AUBREY",
+    "أوبري"
+   ],
+   [
+    "BASIL",
+    "بازل"
+   ],
+   [
+    "SOMETHING",
+    "الشيء"
+   ],
+   [
+    "STRANGER",
+    "الغريب"
+   ],
+   [
+    "SWEETHEART",
+    "سويت هارت"
+   ],
+   [
+    "POLLY",
+    "بولي"
+   ],
+   [
+    "CHARLIE",
+    "تشارلي"
+   ],
+   [
+    "ANGEL",
+    "إينجل"
+   ]
+  ]
+ },
+ "once-human": {
+  "lines": 153702,
+  "terms": [
+   [
+    "Stardust",
+    "ستاردست"
+   ],
+   [
+    "Starfall",
+    "سقوط النجوم"
+   ],
+   [
+    "Starchrom",
+    "ستاركروم"
+   ],
+   [
+    "Rosetta",
+    "روزيتا"
+   ],
+   [
+    "Crystgin",
+    "كريستجين"
+   ],
+   [
+    "Mayfly",
+    "مايفلاي"
+   ],
+   [
+    "Mayflies",
+    "المايفلاي"
+   ],
+   [
+    "Meta",
+    "ميتا"
+   ],
+   [
+    "Meta-Human",
+    "ميتا-هيومن"
+   ],
+   [
+    "Deviation",
+    "انحراف"
+   ]
+  ]
+ },
+ "ori-and-the-blind-forest": {
+  "lines": 373,
+  "terms": [
+   [
+    "Naru",
+    "نارو"
+   ],
+   [
+    "Kuro",
+    "كورو"
+   ],
+   [
+    "Sein",
+    "سين"
+   ],
+   [
+    "Gumo",
+    "غومو"
+   ],
+   [
+    "Gumon",
+    "الغومون"
+   ],
+   [
+    "Nibel",
+    "نيبل"
+   ],
+   [
+    "Spirit Tree",
+    "شجرة الروح"
+   ],
+   [
+    "Ancestral Tree",
+    "شجرة الأسلاف"
+   ],
+   [
+    "Ginso Tree",
+    "شجرة جينسو"
+   ],
+   [
+    "Forlorn Ruins",
+    "الأطلال المنسية"
+   ]
+  ]
+ },
+ "ori-and-the-will-of-the-wisps": {
+  "lines": 2287,
+  "terms": [
+   [
+    "Naru",
+    "نارو"
+   ],
+   [
+    "Gumo",
+    "غومو"
+   ],
+   [
+    "Seir",
+    "سير"
+   ],
+   [
+    "Shriek",
+    "شريك"
+   ],
+   [
+    "Howl",
+    "هاول"
+   ],
+   [
+    "Mora",
+    "مورا"
+   ],
+   [
+    "Kwolok",
+    "كوولوك"
+   ],
+   [
+    "Baur",
+    "باور"
+   ],
+   [
+    "Opher",
+    "أوفر"
+   ],
+   [
+    "Tokk",
+    "توك"
+   ]
+  ]
+ },
+ "outlast": {
+  "lines": 1452,
+  "terms": [
+   [
+    "Miles Upshur",
+    "مايلز أبشر"
+   ],
+   [
+    "Waylon Park",
+    "ويلون بارك"
+   ],
+   [
+    "Chris Walker",
+    "كريس ووكر"
+   ],
+   [
+    "Father Martin",
+    "الأب مارتن"
+   ],
+   [
+    "Martin Archimbaud",
+    "مارتن أرشيمبو"
+   ],
+   [
+    "Richard Trager",
+    "ريتشارد تريجر"
+   ],
+   [
+    "Rudolf Wernicke",
+    "رودولف فيرنيكه"
+   ],
+   [
+    "Billy Hope",
+    "بيلي هوب"
+   ],
+   [
+    "Jeremy Blaire",
+    "جيريمي بلير"
+   ],
+   [
+    "Eddie Gluskin",
+    "إدي غلاسكين"
+   ]
+  ]
+ },
+ "outlast-2": {
+  "lines": 3124,
+  "terms": [
+   [
+    "Blake Langermann",
+    "بليك لانغرمان"
+   ],
+   [
+    "Lynn Langermann",
+    "لين لانغرمان"
+   ],
+   [
+    "Sullivan Knoth",
+    "سوليفان نوث"
+   ],
+   [
+    "Papa Knoth",
+    "بابا نوث"
+   ],
+   [
+    "Prophet Knoth",
+    "النبي نوث"
+   ],
+   [
+    "Marta",
+    "مارتا"
+   ],
+   [
+    "Laird",
+    "لايرد"
+   ],
+   [
+    "Nick",
+    "نيك"
+   ],
+   [
+    "Jessica Gray",
+    "جيسيكا غراي"
+   ],
+   [
+    "Jess",
+    "جيس"
+   ]
+  ]
+ },
+ "oxygen-not-included": {
+  "lines": 20400,
+  "terms": [
+   [
+    "Duplicant",
+    "مستنسخ"
+   ],
+   [
+    "Printing Pod",
+    "حجرة الطباعة"
+   ],
+   [
+    "Gravitas",
+    "غرافيتاس"
+   ],
+   [
+    "Gravitas Facility",
+    "منشأة غرافيتاس"
+   ],
+   [
+    "Spaced Out!",
+    "سبيسد آوت!"
+   ],
+   [
+    "Oxylite",
+    "أوكسيلايت"
+   ],
+   [
+    "Algae",
+    "طحالب"
+   ],
+   [
+    "Polluted Water",
+    "ماء ملوث"
+   ],
+   [
+    "Polluted Oxygen",
+    "أكسجين ملوث"
+   ],
+   [
+    "Polluted Dirt",
+    "تراب ملوث"
+   ]
+  ]
+ },
+ "pacific-drive": {
+  "lines": 9830,
+  "terms": [
+   [
+    "Zone",
+    "المنطقة"
+   ],
+   [
+    "Olympic Exclusion Zone",
+    "منطقة الحظر الأولمبية"
+   ],
+   [
+    "Olympic Peninsula",
+    "شبه الجزيرة الأولمبية"
+   ],
+   [
+    "Outer Zone",
+    "المنطقة الخارجية"
+   ],
+   [
+    "Mid-Zone",
+    "المنطقة الوسطى"
+   ],
+   [
+    "Deep Zone",
+    "المنطقة العميقة"
+   ],
+   [
+    "Oppy",
+    "أوبي"
+   ],
+   [
+    "Ophelia Turner",
+    "أوفيليا تيرنر"
+   ],
+   [
+    "Francis",
+    "فرانسيس"
+   ],
+   [
+    "Tobias",
+    "توبياس"
+   ]
+  ]
+ },
+ "palia": {
+  "lines": 114682,
+  "terms": [
+   [
+    "Palia",
+    "باليا"
+   ],
+   [
+    "Palian",
+    "بالياني"
+   ],
+   [
+    "Kilima Village",
+    "قرية كيليما"
+   ],
+   [
+    "Bahari Bay",
+    "خليج باهاري"
+   ],
+   [
+    "Elderwood",
+    "إلدروود"
+   ],
+   [
+    "Ashura",
+    "أشورا"
+   ],
+   [
+    "Auni",
+    "أوني"
+   ],
+   [
+    "Badruu",
+    "بادرو"
+   ],
+   [
+    "Caleri",
+    "كاليري"
+   ],
+   [
+    "Chayne",
+    "تشاين"
+   ]
+  ]
+ },
+ "palworld": {
+  "lines": 12464,
+  "terms": [
+   [
+    "Pals",
+    "بالات"
+   ],
+   [
+    "Pal Sphere",
+    "كرة بال"
+   ],
+   [
+    "Palbox",
+    "صندوق البالات"
+   ],
+   [
+    "Global Palbox",
+    "صندوق البالات العالمي"
+   ],
+   [
+    "Palpagos Islands",
+    "جزر بالباغوس"
+   ],
+   [
+    "Pal Essence Condenser",
+    "مكثّف جوهر البالات"
+   ],
+   [
+    "Alpha Pal",
+    "بال ألفا"
+   ],
+   [
+    "Lucky Pal",
+    "بال محظوظ"
+   ],
+   [
+    "Pal Tamer",
+    "مروّض بالات"
+   ],
+   [
+    "Base",
+    "القاعدة"
+   ]
+  ]
+ },
+ "permafrost": {
+  "lines": 14931,
+  "terms": [
+   [
+    "Permafrost Armor",
+    "درع الصقيع الدائم"
+   ],
+   [
+    "House Camp",
+    "مخيم البيت"
+   ],
+   [
+    "Moon Cult",
+    "طائفة القمر"
+   ],
+   [
+    "Moon Cultist",
+    "أحد أتباع طائفة القمر"
+   ],
+   [
+    "Moon Rock",
+    "حجر القمر"
+   ],
+   [
+    "White Hell",
+    "الجحيم الأبيض"
+   ],
+   [
+    "Hunters Glade",
+    "مرج الصيادين"
+   ],
+   [
+    "City Mall",
+    "مركز المدينة التجاري"
+   ],
+   [
+    "Horizon",
+    "هورايزن"
+   ],
+   [
+    "Solar Facility",
+    "المنشأة الشمسية"
+   ]
+  ]
+ },
+ "persona-3-reload": {
+  "lines": 100430,
+  "terms": [
+   [
+    "Makoto Yuki",
+    "ماكوتو يوكي"
+   ],
+   [
+    "Yukari Takeba",
+    "يوكاري تاكيبا"
+   ],
+   [
+    "Junpei Iori",
+    "جونبي إيوري"
+   ],
+   [
+    "Akihiko Sanada",
+    "أكيهيكو سانادا"
+   ],
+   [
+    "Mitsuru Kirijo",
+    "ميتسورو كيريجو"
+   ],
+   [
+    "Fuuka Yamagishi",
+    "فوكا ياماغيشي"
+   ],
+   [
+    "Aigis",
+    "آيغيس"
+   ],
+   [
+    "Ken Amada",
+    "كين أمادا"
+   ],
+   [
+    "Koromaru",
+    "كورومارو"
+   ],
+   [
+    "Shinjiro Aragaki",
+    "شينجيرو أراغاكي"
+   ]
+  ]
+ },
+ "persona-5-royal": {
+  "lines": 296159,
+  "terms": [
+   [
+    "Phantom Thieves of Hearts",
+    "لصوص القلوب الأشباح"
+   ],
+   [
+    "Persona",
+    "برسونا"
+   ],
+   [
+    "Metaverse",
+    "الميتافيرس"
+   ],
+   [
+    "Metaverse Navigator",
+    "ملاح الميتافيرس"
+   ],
+   [
+    "Palace",
+    "القصر"
+   ],
+   [
+    "Mementos",
+    "ميمنتوس"
+   ],
+   [
+    "Shadow",
+    "ظل"
+   ],
+   [
+    "Velvet Room",
+    "الغرفة المخملية"
+   ],
+   [
+    "Confidant",
+    "مقرّب"
+   ],
+   [
+    "Treasure",
+    "الكنز"
+   ]
+  ]
+ },
+ "phantom-blade-zero": {
+  "lines": 10128,
+  "terms": [
+   [
+    "Soul",
+    "سول"
+   ],
+   [
+    "Zuo Shang",
+    "زو شانغ"
+   ],
+   [
+    "Mu Xiaokui",
+    "مو شياوكوي"
+   ],
+   [
+    "Mu Tianmiao",
+    "مو تيانمياو"
+   ],
+   [
+    "Yu'er",
+    "يوير"
+   ],
+   [
+    "Leng Tu",
+    "لينغ تو"
+   ],
+   [
+    "Lei Dang",
+    "لي دانغ"
+   ],
+   [
+    "Inanis",
+    "إينانيس"
+   ],
+   [
+    "Xie Xiaorong",
+    "شيه شياورونغ"
+   ],
+   [
+    "Xuan Li",
+    "شوان لي"
+   ]
+  ]
+ },
+ "planet-zoo": {
+  "lines": 39138,
+  "terms": [
+   [
+    "Habitat",
+    "موطن"
+   ],
+   [
+    "Exhibit",
+    "معرض"
+   ],
+   [
+    "Conservation Credits",
+    "نقاط الحماية"
+   ],
+   [
+    "Keeper",
+    "حارس الحيوانات"
+   ],
+   [
+    "Keeper Hut",
+    "كوخ الحرّاس"
+   ],
+   [
+    "Caretaker",
+    "عامل النظافة"
+   ],
+   [
+    "Vets",
+    "أطباء بيطريون"
+   ],
+   [
+    "Vendor",
+    "بائع"
+   ],
+   [
+    "Mechanic",
+    "ميكانيكي"
+   ],
+   [
+    "Educator",
+    "مرشد تعليمي"
+   ]
+  ]
+ },
+ "planet-zoo-2": {
+  "lines": 38686,
+  "terms": [
+   [
+    "Zoos",
+    "حدائق الحيوان"
+   ],
+   [
+    "Habitat",
+    "موطن"
+   ],
+   [
+    "Exhibit",
+    "معرض"
+   ],
+   [
+    "Wildlife Reserve",
+    "محمية الحياة البرية"
+   ],
+   [
+    "Conservation Credits",
+    "نقاط الحماية"
+   ],
+   [
+    "Keeper",
+    "حارس الحيوانات"
+   ],
+   [
+    "Keeper Hut",
+    "كوخ الحرّاس"
+   ],
+   [
+    "Caretaker",
+    "عامل النظافة"
+   ],
+   [
+    "Vets",
+    "أطباء بيطريون"
+   ],
+   [
+    "Vendor",
+    "بائع"
+   ]
+  ]
+ },
+ "potato-please": {
+  "lines": 896,
+  "terms": [
+   [
+    "Comrade",
+    "الرفيق"
+   ],
+   [
+    "Ministry",
+    "الوزارة"
+   ],
+   [
+    "Ministry of Tubers",
+    "وزارة الدرنات"
+   ],
+   [
+    "Resistance",
+    "المقاومة"
+   ],
+   [
+    "Varenka",
+    "فارينكا"
+   ],
+   [
+    "Pavel",
+    "بافل"
+   ],
+   [
+    "Pavel Morozov",
+    "بافل موروزوف"
+   ],
+   [
+    "Grigori",
+    "غريغوري"
+   ],
+   [
+    "Fyodor",
+    "فيودور"
+   ],
+   [
+    "Papa",
+    "بابا"
+   ]
+  ]
+ },
+ "prey": {
+  "lines": 12566,
+  "terms": [
+   [
+    "Talos I",
+    "تالوس 1"
+   ],
+   [
+    "TranStar",
+    "ترانستار"
+   ],
+   [
+    "Typhon",
+    "التايفون"
+   ],
+   [
+    "Mimic",
+    "المحاكي"
+   ],
+   [
+    "Greater Mimic",
+    "المحاكي الأكبر"
+   ],
+   [
+    "Phantom",
+    "الشبح"
+   ],
+   [
+    "Thermal Phantom",
+    "الشبح الحراري"
+   ],
+   [
+    "Etheric Phantom",
+    "الشبح الأثيري"
+   ],
+   [
+    "Voltaic Phantom",
+    "الشبح الفولطي"
+   ],
+   [
+    "Weaver",
+    "الحائك"
+   ]
+  ]
+ },
+ "probably-stolen-cyberpunk-shopkeeper-sim": {
+  "lines": 6670,
+  "terms": [
+   [
+    "Lower Levels",
+    "الطوابق السفلى"
+   ],
+   [
+    "Upper Levels",
+    "الطوابق العليا"
+   ],
+   [
+    "Station Security",
+    "أمن المحطة"
+   ],
+   [
+    "Black Market",
+    "السوق السوداء"
+   ],
+   [
+    "Sector 13 Cartel",
+    "كارتل القطاع 13"
+   ],
+   [
+    "Neural Church",
+    "الكنيسة العصبية"
+   ],
+   [
+    "Neural Watch",
+    "المراقبة العصبية"
+   ],
+   [
+    "The Intelligence",
+    "الذكاء"
+   ],
+   [
+    "Socialist Front",
+    "الجبهة الاشتراكية"
+   ],
+   [
+    "Republic Navy",
+    "بحرية الجمهورية"
+   ]
+  ]
+ },
+ "quarantine-zone-the-last-check": {
+  "lines": 5441,
+  "terms": [
+   [
+    "Quarantine Zone",
+    "منطقة الحجر"
+   ],
+   [
+    "Checkpoint Alpha",
+    "نقطة التفتيش ألفا"
+   ],
+   [
+    "Liquidation",
+    "التصفية"
+   ],
+   [
+    "Liquidation Zone",
+    "منطقة التصفية"
+   ],
+   [
+    "Laboratory",
+    "المختبر"
+   ],
+   [
+    "Block",
+    "المجمّع"
+   ],
+   [
+    "Evacuation",
+    "الإجلاء"
+   ],
+   [
+    "Survivor",
+    "ناجٍ"
+   ],
+   [
+    "Infected",
+    "مصاب"
+   ],
+   [
+    "Uninfected",
+    "غير مصاب"
+   ]
+  ]
+ },
+ "queens-domain": {
+  "lines": 1948,
+  "terms": [
+   [
+    "Queen's Domain",
+    "مملكة الملكة"
+   ],
+   [
+    "Beruim",
+    "بيرويم"
+   ],
+   [
+    "Prince Beruim",
+    "الأمير بيرويم"
+   ],
+   [
+    "Siraatsu",
+    "سيراتسو"
+   ],
+   [
+    "Queen Siraatsu",
+    "الملكة سيراتسو"
+   ],
+   [
+    "Castle Siraatsu",
+    "قلعة سيراتسو"
+   ],
+   [
+    "House Abraon",
+    "آل أبراون"
+   ],
+   [
+    "King Abraon",
+    "الملك أبراون"
+   ],
+   [
+    "Kingdom of Epha",
+    "مملكة إيفا"
+   ],
+   [
+    "Isle of Neasied",
+    "جزيرة نياسيد"
+   ]
+  ]
+ },
+ "raft": {
+  "lines": 2118,
+  "terms": [
+   [
+    "Raft",
+    "الطوف"
+   ],
+   [
+    "rafter",
+    "صاحب طوف"
+   ],
+   [
+    "Plastic hook",
+    "خطّاف بلاستيكي"
+   ],
+   [
+    "Scrap hook",
+    "خطّاف خردة"
+   ],
+   [
+    "Titanium hook",
+    "خطّاف تيتانيوم"
+   ],
+   [
+    "Plank",
+    "لوح خشب"
+   ],
+   [
+    "Palm Leaf",
+    "سعف نخيل"
+   ],
+   [
+    "Thatch",
+    "قش"
+   ],
+   [
+    "Rope",
+    "حبل"
+   ],
+   [
+    "Nail",
+    "مسمار"
+   ]
+  ]
+ },
+ "ready-or-not": {
+  "lines": 83635,
+  "terms": [
+   [
+    "Los Suenos",
+    "لوس سوينوس"
+   ],
+   [
+    "Tactical Operations Center",
+    "مركز العمليات التكتيكية"
+   ],
+   [
+    "Rules of Engagement",
+    "قواعد الاشتباك"
+   ],
+   [
+    "Commander Mode",
+    "وضع القائد"
+   ],
+   [
+    "Quick Play",
+    "اللعب السريع"
+   ],
+   [
+    "Roster",
+    "قائمة الضباط"
+   ],
+   [
+    "Headquarters",
+    "المقر"
+   ],
+   [
+    "Quartermaster",
+    "أمين التجهيزات"
+   ],
+   [
+    "Detective",
+    "المحقق"
+   ],
+   [
+    "Chief",
+    "رئيس الشرطة"
+   ]
+  ]
+ },
+ "red-dead-redemption": {
+  "lines": 48213
+ },
+ "red-dead-redemption-2": {
+  "lines": 191720,
+  "terms": [
+   [
+    "Arthur Morgan",
+    "آرثر مورغان"
+   ],
+   [
+    "Dutch van der Linde",
+    "داتش فان دير ليند"
+   ],
+   [
+    "John Marston",
+    "جون مارستون"
+   ],
+   [
+    "Hosea",
+    "هوزيا"
+   ],
+   [
+    "Sadie",
+    "سايدي"
+   ],
+   [
+    "Micah",
+    "مايكا"
+   ],
+   [
+    "Charles",
+    "تشارلز"
+   ],
+   [
+    "Javier",
+    "خافيير"
+   ],
+   [
+    "Bill",
+    "بيل"
+   ],
+   [
+    "Lenny",
+    "ليني"
+   ]
+  ]
+ },
+ "resident-evil": {
+  "lines": 2027,
+  "terms": [
+   [
+    "Chris Redfield",
+    "كريس ريدفيلد"
+   ],
+   [
+    "Jill Valentine",
+    "جيل فالنتاين"
+   ],
+   [
+    "Barry Burton",
+    "باري بيرتون"
+   ],
+   [
+    "Rebecca Chambers",
+    "ريبيكا تشامبرز"
+   ],
+   [
+    "Albert Wesker",
+    "ألبرت ويسكر"
+   ],
+   [
+    "Richard Aiken",
+    "ريتشارد أيكن"
+   ],
+   [
+    "Brad Vickers",
+    "براد فيكرز"
+   ],
+   [
+    "Joseph",
+    "جوزيف"
+   ],
+   [
+    "Kenneth",
+    "كينيث"
+   ],
+   [
+    "Forest",
+    "فورست"
+   ]
+  ]
+ },
+ "resident-evil-0": {
+  "lines": 1890,
+  "terms": [
+   [
+    "Rebecca Chambers",
+    "ريبيكا تشامبرز"
+   ],
+   [
+    "Billy Coen",
+    "بيلي كوين"
+   ],
+   [
+    "Albert Wesker",
+    "ألبرت ويسكر"
+   ],
+   [
+    "William Birkin",
+    "ويليام بيركن"
+   ],
+   [
+    "James Marcus",
+    "جيمس ماركوس"
+   ],
+   [
+    "Edward Dewey",
+    "إدوارد ديوي"
+   ],
+   [
+    "Enrico Marini",
+    "إنريكو ماريني"
+   ],
+   [
+    "Richard Aiken",
+    "ريتشارد أيكن"
+   ],
+   [
+    "Kenneth Sullivan",
+    "كينيث سوليفان"
+   ],
+   [
+    "Forest Speyer",
+    "فوريست سباير"
+   ]
+  ]
+ },
+ "resident-evil-4-2005": {
+  "lines": 1576,
+  "terms": [
+   [
+    "Leon S. Kennedy",
+    "ليون إس. كينيدي"
+   ],
+   [
+    "Ashley Graham",
+    "آشلي غراهام"
+   ],
+   [
+    "Ada Wong",
+    "إيدا وونغ"
+   ],
+   [
+    "Luis Sera",
+    "لويس سيرا"
+   ],
+   [
+    "Ramon Salazar",
+    "رامون سالازار"
+   ],
+   [
+    "Osmund Saddler",
+    "أوزموند سادلر"
+   ],
+   [
+    "Jack Krauser",
+    "جاك كراوزر"
+   ],
+   [
+    "Bitores Mendez",
+    "بيتوريس منديز"
+   ],
+   [
+    "Ingrid Hunnigan",
+    "إنغريد هانيغان"
+   ],
+   [
+    "Albert Wesker",
+    "ألبرت ويسكر"
+   ]
+  ]
+ },
+ "resident-evil-5": {
+  "lines": 5053,
+  "terms": [
+   [
+    "Chris",
+    "كريس"
+   ],
+   [
+    "Chris Redfield",
+    "كريس ريدفيلد"
+   ],
+   [
+    "Sheva",
+    "شيفا"
+   ],
+   [
+    "Sheva Alomar",
+    "شيفا ألومار"
+   ],
+   [
+    "Wesker",
+    "ويسكر"
+   ],
+   [
+    "Albert Wesker",
+    "ألبرت ويسكر"
+   ],
+   [
+    "Jill",
+    "جيل"
+   ],
+   [
+    "Jill Valentine",
+    "جيل فالنتاين"
+   ],
+   [
+    "Excella",
+    "إكسيلا"
+   ],
+   [
+    "Excella Gionne",
+    "إكسيلا جيوني"
+   ]
+  ]
+ },
+ "resident-evil-6": {
+  "lines": 9941,
+  "terms": [
+   [
+    "Leon",
+    "ليون"
+   ],
+   [
+    "Leon S. Kennedy",
+    "ليون س. كينيدي"
+   ],
+   [
+    "Helena",
+    "هيلينا"
+   ],
+   [
+    "Helena Harper",
+    "هيلينا هاربر"
+   ],
+   [
+    "Deborah",
+    "ديبورا"
+   ],
+   [
+    "Chris",
+    "كريس"
+   ],
+   [
+    "Chris Redfield",
+    "كريس ريدفيلد"
+   ],
+   [
+    "Piers",
+    "بيرس"
+   ],
+   [
+    "Piers Nivans",
+    "بيرس نيفانز"
+   ],
+   [
+    "Jake",
+    "جيك"
+   ]
+  ]
+ },
+ "resident-evil-revelations": {
+  "lines": 4197,
+  "terms": [
+   [
+    "Jill Valentine",
+    "جيل فالنتاين"
+   ],
+   [
+    "Chris Redfield",
+    "كريس ريدفيلد"
+   ],
+   [
+    "Parker Luciani",
+    "باركر لوتشياني"
+   ],
+   [
+    "Jessica Sherawat",
+    "جيسيكا شيراوات"
+   ],
+   [
+    "Keith Lumley",
+    "كيث لوملي"
+   ],
+   [
+    "Quint Ketcham",
+    "كوينت كيتشام"
+   ],
+   [
+    "Raymond Vester",
+    "رايموند فيستر"
+   ],
+   [
+    "Clive R. O'Brian",
+    "كلايف أوبرايان"
+   ],
+   [
+    "Morgan Lansdale",
+    "مورغان لانسديل"
+   ],
+   [
+    "Rachael Foley",
+    "رايتشل فولي"
+   ]
+  ]
+ },
+ "robocop-rogue-city": {
+  "lines": 9374,
+  "terms": [
+   [
+    "RoboCop",
+    "روبوكوب"
+   ],
+   [
+    "Alex Murphy",
+    "أليكس مورفي"
+   ],
+   [
+    "Anne Lewis",
+    "آن لويس"
+   ],
+   [
+    "Sgt. Warren Reed",
+    "الرقيب وارن ريد"
+   ],
+   [
+    "Dr. Olivia Blanche",
+    "د. أوليفيا بلانش"
+   ],
+   [
+    "Max Becker",
+    "ماكس بيكر"
+   ],
+   [
+    "Ulysses Washington",
+    "يوليسيس واشنطن"
+   ],
+   [
+    "Wendell Antonowsky",
+    "ويندل أنتونوفسكي"
+   ],
+   [
+    "Old Man",
+    "العجوز"
+   ],
+   [
+    "Samantha Ortiz",
+    "سامانثا أورتيز"
+   ]
+  ]
+ },
+ "rv-there-yet": {
+  "lines": 2333,
+  "terms": [
+   [
+    "Winch",
+    "الونش"
+   ],
+   [
+    "Checkpoint",
+    "نقطة التفتيش"
+   ],
+   [
+    "Hatch",
+    "الكوّة"
+   ],
+   [
+    "Session",
+    "الجلسة"
+   ],
+   [
+    "Host",
+    "المضيف"
+   ],
+   [
+    "Crossplay",
+    "اللعب المشترك بين المنصات"
+   ],
+   [
+    "Lobby",
+    "الردهة"
+   ],
+   [
+    "Mabutts Valley",
+    "وادي مابَتس"
+   ],
+   [
+    "Mt. Yurbuttsk",
+    "جبل يوربَتسك"
+   ],
+   [
+    "St. Búttin Bay",
+    "خليج سانت بوتين"
+   ]
+  ]
+ },
+ "sally-face-episode-one": {
+  "lines": 6102,
+  "terms": [
+   [
+    "Sally Face",
+    "سالي فيس"
+   ],
+   [
+    "Sal Fisher",
+    "سال فيشر"
+   ],
+   [
+    "Henry",
+    "هنري"
+   ],
+   [
+    "Larry",
+    "لاري"
+   ],
+   [
+    "Larry Johnson",
+    "لاري جونسون"
+   ],
+   [
+    "Lisa",
+    "ليزا"
+   ],
+   [
+    "Todd",
+    "تود"
+   ],
+   [
+    "Todd Morrison",
+    "تود موريسون"
+   ],
+   [
+    "Neil",
+    "نيل"
+   ],
+   [
+    "Ashley",
+    "آشلي"
+   ]
+  ]
+ },
+ "satisfactory": {
+  "lines": 1104,
+  "terms": [
+   [
+    "AI Limiter",
+    "محدد الذكاء الاصطناعي"
+   ],
+   [
+    "AWESOME Shop",
+    "متجر المكافآت"
+   ],
+   [
+    "AWESOME Sink",
+    "حوض المكافآت"
+   ],
+   [
+    "Alien Protein",
+    "بروتين كائن فضائي"
+   ],
+   [
+    "Alternate Recipe",
+    "الوصفة البديلة"
+   ],
+   [
+    "Biofuel",
+    "وقود حيوي"
+   ],
+   [
+    "Black Powder",
+    "المسحوق الأسود"
+   ],
+   [
+    "Blueprint",
+    "المخطط"
+   ],
+   [
+    "Boombox",
+    "مشغل الموسيقى"
+   ],
+   [
+    "Build Gun",
+    "مسدس البناء"
+   ]
+  ]
+ },
+ "scarlet-nexus": {
+  "lines": 31945,
+  "terms": [
+   [
+    "Yuito",
+    "يويتو"
+   ],
+   [
+    "Yuito Sumeragi",
+    "يويتو سوميراغي"
+   ],
+   [
+    "Kasane",
+    "كاساني"
+   ],
+   [
+    "Kasane Randall",
+    "كاساني راندال"
+   ],
+   [
+    "Hanabi",
+    "هانابي"
+   ],
+   [
+    "Hanabi Ichijo",
+    "هانابي إيتشيجو"
+   ],
+   [
+    "Tsugumi",
+    "تسوغومي"
+   ],
+   [
+    "Tsugumi Nazar",
+    "تسوغومي نازار"
+   ],
+   [
+    "Luka",
+    "لوكا"
+   ],
+   [
+    "Luka Travers",
+    "لوكا ترافرز"
+   ]
+  ]
+ },
+ "schedule-i": {
+  "lines": 3474,
+  "terms": [
+   [
+    "Downtown",
+    "وسط المدينة"
+   ],
+   [
+    "Docks",
+    "الأرصفة"
+   ],
+   [
+    "Suburbia",
+    "الضواحي"
+   ],
+   [
+    "Uptown",
+    "أبتاون"
+   ],
+   [
+    "Laundromat",
+    "المغسلة"
+   ],
+   [
+    "Car Wash",
+    "مغسلة السيارات"
+   ],
+   [
+    "Post Office",
+    "مكتب البريد"
+   ],
+   [
+    "Cartel",
+    "الكارتيل"
+   ],
+   [
+    "dead drop",
+    "نقطة التسليم السرية"
+   ],
+   [
+    "dealer",
+    "موزّع"
+   ]
+  ]
+ },
+ "scrap-mechanic": {
+  "lines": 3811,
+  "terms": [
+   [
+    "Mechanic",
+    "الميكانيكي"
+   ],
+   [
+    "Lorenzo",
+    "لورينزو"
+   ],
+   [
+    "Hubert",
+    "هيوبرت"
+   ],
+   [
+    "Phae",
+    "فاي"
+   ],
+   [
+    "Axobot",
+    "أكسوبوت"
+   ],
+   [
+    "Wonk",
+    "وونك"
+   ],
+   [
+    "Wonk Enterprises",
+    "مؤسسات وونك"
+   ],
+   [
+    "Mechanic Station",
+    "محطة الميكانيكي"
+   ],
+   [
+    "Hideout",
+    "المخبأ"
+   ],
+   [
+    "Warehouse",
+    "المستودع"
+   ]
+  ]
+ },
+ "sekiro-shadows-die-twice-goty-edition": {
+  "lines": 18021,
+  "terms": [
+   [
+    "Wolf",
+    "الذئب"
+   ],
+   [
+    "Sekiro",
+    "سيكيرو"
+   ],
+   [
+    "Kuro",
+    "كورو"
+   ],
+   [
+    "Divine Heir",
+    "الوريث الإلهي"
+   ],
+   [
+    "Isshin Ashina",
+    "إيشين آشينا"
+   ],
+   [
+    "Isshin, the Sword Saint",
+    "إيشين، قدّيس السيف"
+   ],
+   [
+    "Genichiro Ashina",
+    "غينيتشيرو آشينا"
+   ],
+   [
+    "Great Shinobi",
+    "الشينوبي العظيم"
+   ],
+   [
+    "Emma",
+    "إيما"
+   ],
+   [
+    "Sculptor",
+    "النحّات"
+   ]
+  ]
+ },
+ "shift-at-midnight": {
+  "lines": 4362,
+  "terms": [
+   [
+    "Midnight Town",
+    "ميدنايت تاون"
+   ],
+   [
+    "Midnight Uni",
+    "جامعة ميدنايت"
+   ],
+   [
+    "Joe's Diner",
+    "مطعم جو"
+   ],
+   [
+    "Lucky Penny",
+    "لاكي بيني"
+   ],
+   [
+    "Junior Bears",
+    "جونيور بيرز"
+   ],
+   [
+    "Willowbrook Lane",
+    "شارع ويلوبروك"
+   ],
+   [
+    "The Dentist",
+    "طبيب الأسنان"
+   ],
+   [
+    "MARIONETTE",
+    "الدمية المتحركة"
+   ],
+   [
+    "*Hic*",
+    "*هِك*"
+   ],
+   [
+    "Sheriff",
+    "الشريف"
+   ]
+  ]
+ },
+ "sifu": {
+  "lines": 3172,
+  "terms": [
+   [
+    "Sifu",
+    "المعلّم"
+   ],
+   [
+    "Kung Fu",
+    "الكونغ فو"
+   ],
+   [
+    "Pak Mei",
+    "باك مِي"
+   ],
+   [
+    "Wude",
+    "الوو دي"
+   ],
+   [
+    "Yang",
+    "يانغ"
+   ],
+   [
+    "Fajar",
+    "فجر"
+   ],
+   [
+    "Sean",
+    "شون"
+   ],
+   [
+    "Kuroki",
+    "كوروكي"
+   ],
+   [
+    "Jinfeng",
+    "جينفنغ"
+   ],
+   [
+    "Fengjie",
+    "فنغجي"
+   ]
+  ]
+ },
+ "silent-hill-2": {
+  "lines": 4258,
+  "terms": [
+   [
+    "Silent Hill",
+    "سايلنت هيل"
+   ],
+   [
+    "James",
+    "جيمس"
+   ],
+   [
+    "James Sunderland",
+    "جيمس ساندرلاند"
+   ],
+   [
+    "Mary",
+    "ماري"
+   ],
+   [
+    "Maria",
+    "ماريا"
+   ],
+   [
+    "Angela",
+    "أنجيلا"
+   ],
+   [
+    "Angela Orosco",
+    "أنجيلا أوروسكو"
+   ],
+   [
+    "Eddie",
+    "إدي"
+   ],
+   [
+    "Eddie Dombrowski",
+    "إدي دومبروفسكي"
+   ],
+   [
+    "Laura",
+    "لورا"
+   ]
+  ]
+ },
+ "silent-hill-f": {
+  "lines": 4418,
+  "terms": [
+   [
+    "Shimizu Hinako",
+    "شيميزو هيناكو"
+   ],
+   [
+    "Fox Hinako",
+    "هيناكو الثعلب"
+   ],
+   [
+    "Hinako's Shadow",
+    "ظلّ هيناكو"
+   ],
+   [
+    "Iwai Shu",
+    "إيواي شو"
+   ],
+   [
+    "Rinko",
+    "رينكو"
+   ],
+   [
+    "Sakuko",
+    "ساكوكو"
+   ],
+   [
+    "Junko",
+    "جونكو"
+   ],
+   [
+    "Shimizu Kimie",
+    "شيميزو كيميه"
+   ],
+   [
+    "Shimizu Kanta",
+    "شيميزو كانتا"
+   ],
+   [
+    "Kotoyuki",
+    "كوتويوكي"
+   ]
+  ]
+ },
+ "slay-the-princess-the-pristine-cut": {
+  "lines": 14052,
+  "terms": [
+   [
+    "The Princess",
+    "الأميرة"
+   ],
+   [
+    "The Narrator",
+    "الراوي"
+   ],
+   [
+    "Voice of the Hero",
+    "صوت البطل"
+   ],
+   [
+    "Voice of the Contrarian",
+    "صوت المعاند"
+   ],
+   [
+    "Voice of the Cold",
+    "صوت البارد"
+   ],
+   [
+    "Voice of the Broken",
+    "صوت المحطَّم"
+   ],
+   [
+    "Voice of the Hunted",
+    "صوت المطارَد"
+   ],
+   [
+    "Voice of the Skeptic",
+    "صوت المتشكك"
+   ],
+   [
+    "Voice of the Stubborn",
+    "صوت العنيد"
+   ],
+   [
+    "Voice of the Smitten",
+    "صوت المتيَّم"
+   ]
+  ]
+ },
+ "slay-the-spire": {
+  "lines": 4367,
+  "terms": [
+   [
+    "the Spire",
+    "البرج"
+   ],
+   [
+    "Ironclad",
+    "الحديدي"
+   ],
+   [
+    "The Silent",
+    "الصامتة"
+   ],
+   [
+    "The Defect",
+    "المعطوب"
+   ],
+   [
+    "The Watcher",
+    "المراقِبة"
+   ],
+   [
+    "Neow",
+    "نيو"
+   ],
+   [
+    "Merchant",
+    "التاجر"
+   ],
+   [
+    "Corrupt Heart",
+    "القلب الفاسد"
+   ],
+   [
+    "Exordium",
+    "المستهل"
+   ],
+   [
+    "The City",
+    "المدينة"
+   ]
+  ]
+ },
+ "slay-the-spire-2": {
+  "lines": 20002,
+  "terms": [
+   [
+    "the Spire",
+    "البرج"
+   ],
+   [
+    "Spireborn",
+    "ابن البرج"
+   ],
+   [
+    "The Ironclad",
+    "الحديدي"
+   ],
+   [
+    "The Silent",
+    "الصامتة"
+   ],
+   [
+    "The Defect",
+    "المعطوب"
+   ],
+   [
+    "The Necrobinder",
+    "مستعبدة الموتى"
+   ],
+   [
+    "The Regent",
+    "الوصي"
+   ],
+   [
+    "Osty",
+    "أوستي"
+   ],
+   [
+    "Neow",
+    "نيو"
+   ],
+   [
+    "Merchant",
+    "التاجر"
+   ]
+  ]
+ },
+ "sleeping-dogs-definitive-edition": {
+  "lines": 19471,
+  "terms": [
+   [
+    "Wei Shen",
+    "وي شين"
+   ],
+   [
+    "Jackie Ma",
+    "جاكي ما"
+   ],
+   [
+    "Sun On Yee",
+    "سن أون يي"
+   ],
+   [
+    "Hong Kong",
+    "هونغ كونغ"
+   ],
+   [
+    "Water Street",
+    "ووتر ستريت"
+   ],
+   [
+    "Kennedy Town",
+    "كينيدي تاون"
+   ],
+   [
+    "North Point",
+    "نورث بوينت"
+   ],
+   [
+    "Aberdeen",
+    "أبردين"
+   ],
+   [
+    "Kowloon",
+    "كولون"
+   ],
+   [
+    "Victoria Peak",
+    "فيكتوريا بيك"
+   ]
+  ]
+ },
+ "sons-of-the-forest": {
+  "lines": 1121,
+  "terms": [
+   [
+    "Kelvin",
+    "كلفن"
+   ],
+   [
+    "Virginia",
+    "فرجينيا"
+   ],
+   [
+    "Timmy",
+    "تيمي"
+   ],
+   [
+    "Puffton",
+    "بافتون"
+   ],
+   [
+    "Edward Puffton",
+    "إدوارد بافتون"
+   ],
+   [
+    "Holosprings",
+    "هولوسبرينغز"
+   ],
+   [
+    "Solafite",
+    "سولافايت"
+   ],
+   [
+    "GPS Tracker",
+    "جهاز التتبع"
+   ],
+   [
+    "GPS Locator",
+    "محدد المواقع"
+   ],
+   [
+    "Cannibal",
+    "آكل لحوم البشر"
+   ]
+  ]
+ },
+ "split-fiction": {
+  "lines": 12599,
+  "terms": [
+   [
+    "Mio Hudson",
+    "ميو هدسون"
+   ],
+   [
+    "Zoe Foster",
+    "زوي فوستر"
+   ],
+   [
+    "Rader",
+    "رايدر"
+   ],
+   [
+    "J.D. Rader",
+    "جيه دي رايدر"
+   ],
+   [
+    "Rader Publishing",
+    "دار رايدر للنشر"
+   ],
+   [
+    "The Machine",
+    "الآلة"
+   ],
+   [
+    "Dark Mio",
+    "ميو المظلمة"
+   ],
+   [
+    "Ella",
+    "إيلا"
+   ],
+   [
+    "Mr. Hammer",
+    "السيد هامر"
+   ],
+   [
+    "Monkey King",
+    "ملك القرود"
+   ]
+  ]
+ },
+ "star-wars-outlaws": {
+  "lines": 201268
+ },
+ "stardew-valley": {
+  "lines": 15445
+ },
+ "starfield": {
+  "lines": 202744
+ },
+ "state-of-decay-2-juggernaut-edition": {
+  "lines": 125685,
+  "terms": [
+   [
+    "Juggernaut Edition",
+    "إصدار الجاغرنوت"
+   ],
+   [
+    "zombie",
+    "زومبي"
+   ],
+   [
+    "zeds",
+    "زومبيات"
+   ],
+   [
+    "feral",
+    "الوحشي"
+   ],
+   [
+    "bloater",
+    "المنتفخ"
+   ],
+   [
+    "screamer",
+    "الصارخ"
+   ],
+   [
+    "juggernauts",
+    "الجاغرنوتات"
+   ],
+   [
+    "plague zombie",
+    "زومبي الطاعون"
+   ],
+   [
+    "Blood Plague",
+    "طاعون الدم"
+   ],
+   [
+    "Plague Heart",
+    "قلب الطاعون"
+   ]
+  ]
+ },
+ "stellaris": {
+  "lines": 90868,
+  "terms": [
+   [
+    "Empire",
+    "إمبراطورية"
+   ],
+   [
+    "Energy Credits",
+    "أرصدة الطاقة"
+   ],
+   [
+    "Minerals",
+    "المعادن"
+   ],
+   [
+    "Food",
+    "الغذاء"
+   ],
+   [
+    "Consumer Goods",
+    "السلع الاستهلاكية"
+   ],
+   [
+    "Alloys",
+    "السبائك"
+   ],
+   [
+    "Influence",
+    "النفوذ"
+   ],
+   [
+    "Unity",
+    "الوحدة"
+   ],
+   [
+    "Physics",
+    "الفيزياء"
+   ],
+   [
+    "Society",
+    "المجتمع"
+   ]
+  ]
+ },
+ "stray": {
+  "lines": 1529,
+  "terms": [
+   [
+    "Momo",
+    "مومو"
+   ],
+   [
+    "Elliot",
+    "إليوت"
+   ],
+   [
+    "Grandma",
+    "الجدة"
+   ],
+   [
+    "Clementine",
+    "كليمنتين"
+   ],
+   [
+    "Seamus",
+    "شيموس"
+   ],
+   [
+    "Zbaltazar",
+    "زبالتازار"
+   ],
+   [
+    "Morusque",
+    "موروسك"
+   ],
+   [
+    "Blazer",
+    "بليزر"
+   ],
+   [
+    "Azooz",
+    "عزوز"
+   ],
+   [
+    "Guardian",
+    "الحارس"
+   ]
+  ]
+ },
+ "styx-blades-of-greed": {
+  "lines": 5285,
+  "terms": [
+   [
+    "Styx",
+    "ستيكس"
+   ],
+   [
+    "Wren",
+    "رين"
+   ],
+   [
+    "Helledryn",
+    "هيليدرين"
+   ],
+   [
+    "Djarak",
+    "دجاراك"
+   ],
+   [
+    "Jasper",
+    "جاسبر"
+   ],
+   [
+    "Irving",
+    "إرفينغ"
+   ],
+   [
+    "Lyssril",
+    "ليسريل"
+   ],
+   [
+    "Akheron",
+    "أكيرون"
+   ],
+   [
+    "Geoffroi",
+    "جوفروا"
+   ],
+   [
+    "Harlow",
+    "هارلو"
+   ]
+  ]
+ },
+ "subnautica": {
+  "lines": 3100,
+  "terms": [
+   [
+    "Subnautica",
+    "سبنوتيكا"
+   ],
+   [
+    "Aurora",
+    "أورورا"
+   ],
+   [
+    "Alterra",
+    "ألتيرا"
+   ],
+   [
+    "Degasi",
+    "ديغاسي"
+   ],
+   [
+    "Sunbeam",
+    "صنبيم"
+   ],
+   [
+    "Mercury II",
+    "ميركوري 2"
+   ],
+   [
+    "Precursor",
+    "السلف"
+   ],
+   [
+    "Kharaa",
+    "خارا"
+   ],
+   [
+    "Seamoth",
+    "سيموث"
+   ],
+   [
+    "Cyclops",
+    "سايكلوبس"
+   ]
+  ]
+ },
+ "supermarket-simulator": {
+  "lines": 481,
+  "terms": [
+   [
+    "Supermarket Simulator",
+    "محاكي السوبرماركت"
+   ],
+   [
+    "Restocker",
+    "عامل التعبئة"
+   ],
+   [
+    "Cashier",
+    "أمين الصندوق"
+   ],
+   [
+    "Janitor",
+    "عامل النظافة"
+   ],
+   [
+    "Courier",
+    "عامل التوصيل"
+   ],
+   [
+    "Security Guard",
+    "حارس الأمن"
+   ],
+   [
+    "Customer Helper",
+    "مساعد الزبائن"
+   ],
+   [
+    "Ice Cream Helper",
+    "مساعد الآيس كريم"
+   ],
+   [
+    "Baker",
+    "الخبّاز"
+   ],
+   [
+    "Shoplifter",
+    "سارق المتجر"
+   ]
+  ]
+ },
+ "terraria": {
+  "lines": 14923,
+  "terms": [
+   [
+    "Terraria",
+    "تيراريا"
+   ],
+   [
+    "Guide",
+    "المرشد"
+   ],
+   [
+    "Merchant",
+    "التاجر"
+   ],
+   [
+    "Nurse",
+    "الممرضة"
+   ],
+   [
+    "Demolitionist",
+    "خبير المتفجرات"
+   ],
+   [
+    "Dye Trader",
+    "تاجر الأصباغ"
+   ],
+   [
+    "Angler",
+    "الصياد الصغير"
+   ],
+   [
+    "Zoologist",
+    "عالمة الحيوان"
+   ],
+   [
+    "Dryad",
+    "الدريادة"
+   ],
+   [
+    "Painter",
+    "الرسام"
+   ]
+  ]
+ },
+ "the-blood-of-dawnwalker": {
+  "lines": 52743,
+  "terms": [
+   [
+    "Coen",
+    "كوين"
+   ],
+   [
+    "Brencis",
+    "برينسيس"
+   ],
+   [
+    "Knyaz Brencis",
+    "الكنياز برينسيس"
+   ],
+   [
+    "Boyar Ambrus",
+    "البويار أمبروس"
+   ],
+   [
+    "Boyar Bakir",
+    "البويار باكير"
+   ],
+   [
+    "Vale Sangora",
+    "وادي سانغورا"
+   ],
+   [
+    "Svartrau",
+    "سفارتراو"
+   ],
+   [
+    "Laslea",
+    "لاسليا"
+   ],
+   [
+    "Greifberg",
+    "غرايفبرغ"
+   ],
+   [
+    "Parlita",
+    "بارليتا"
+   ]
+  ]
+ },
+ "the-elder-scrolls-iv-oblivion-remastered": {
+  "lines": 54923,
+  "terms": [
+   [
+    "Tamriel",
+    "تامريل"
+   ],
+   [
+    "Cyrodiil",
+    "سيروديل"
+   ],
+   [
+    "Imperial City",
+    "المدينة الإمبراطورية"
+   ],
+   [
+    "Oblivion Gate",
+    "بوابة أوبليفيون"
+   ],
+   [
+    "Mehrunes Dagon",
+    "ميهرونز داغون"
+   ],
+   [
+    "Uriel Septim",
+    "أوريل سبتيم"
+   ],
+   [
+    "Jauffre",
+    "جوفري"
+   ],
+   [
+    "Akatosh",
+    "أكاتوش"
+   ],
+   [
+    "Nine Divines",
+    "الآلهة التسعة"
+   ],
+   [
+    "Talos",
+    "تالوس"
+   ]
+  ]
+ },
+ "the-elder-scrolls-v-skyrim-special-edition": {
+  "lines": 91390,
+  "terms": [
+   [
+    "Skyrim",
+    "سكايريم"
+   ],
+   [
+    "Tamriel",
+    "تامرييل"
+   ],
+   [
+    "Dragonborn",
+    "ابن التنين"
+   ],
+   [
+    "Dovahkiin",
+    "دوفاكين"
+   ],
+   [
+    "Thu'um",
+    "الثووم"
+   ],
+   [
+    "Shout",
+    "صرخة"
+   ],
+   [
+    "Word of Power",
+    "كلمة قوة"
+   ],
+   [
+    "Dragon Soul",
+    "روح تنين"
+   ],
+   [
+    "Greybeards",
+    "ذوو اللحى الرمادية"
+   ],
+   [
+    "High Hrothgar",
+    "هاي هروثغار"
+   ]
+  ]
+ },
+ "the-evil-within": {
+  "lines": 3881,
+  "terms": [
+   [
+    "Sebastian Castellanos",
+    "سيباستيان كاستيانوس"
+   ],
+   [
+    "Juli Kidman",
+    "جولي كيدمان"
+   ],
+   [
+    "Joseph Oda",
+    "جوزيف أودا"
+   ],
+   [
+    "Marcelo Jimenez",
+    "مارسيلو خيمينيز"
+   ],
+   [
+    "Ruvik",
+    "روفيك"
+   ],
+   [
+    "Ruben Victoriano",
+    "روبن فيكتوريانو"
+   ],
+   [
+    "Laura",
+    "لورا"
+   ],
+   [
+    "Leslie Withers",
+    "ليزلي ويذرز"
+   ],
+   [
+    "Tatiana",
+    "تاتيانا"
+   ],
+   [
+    "Myra",
+    "مايرا"
+   ]
+  ]
+ },
+ "the-evil-within-2": {
+  "lines": 5045,
+  "terms": [
+   [
+    "Sebastian",
+    "سيباستيان"
+   ],
+   [
+    "Sebastian Castellanos",
+    "سيباستيان كاستيانوس"
+   ],
+   [
+    "Lily",
+    "ليلي"
+   ],
+   [
+    "Myra",
+    "مايرا"
+   ],
+   [
+    "Kidman",
+    "كيدمان"
+   ],
+   [
+    "Juli Kidman",
+    "جولي كيدمان"
+   ],
+   [
+    "Stefano",
+    "ستيفانو"
+   ],
+   [
+    "Stefano Valentini",
+    "ستيفانو فالنتيني"
+   ],
+   [
+    "Theodore",
+    "ثيودور"
+   ],
+   [
+    "Father Theodore",
+    "الأب ثيودور"
+   ]
+  ]
+ },
+ "the-last-of-us-part-i": {
+  "terms": [
+   [
+    "Runners",
+    "العدّاؤون"
+   ],
+   [
+    "Speedrun",
+    "السباق السريع"
+   ],
+   [
+    "Permadeath",
+    "الموت الدائم"
+   ],
+   [
+    "Workbench",
+    "طاولة العمل"
+   ],
+   [
+    "Get him!",
+    "أمسكوه!"
+   ],
+   [
+    "I got him!",
+    "أصبته!"
+   ],
+   [
+    "Hey, man",
+    "يا رجل"
+   ],
+   [
+    "Down here",
+    "هنا في الأسفل"
+   ],
+   [
+    "Safe (strongbox)",
+    "خزنة"
+   ],
+   [
+    "Anti-aliasing",
+    "تنعيم الحواف"
+   ]
+  ]
+ },
+ "the-last-of-us-part-ii": {
+  "lines": 148297,
+  "terms": [
+   [
+    "Ellie",
+    "إيلي"
+   ],
+   [
+    "Abby",
+    "آبي"
+   ],
+   [
+    "Joel",
+    "جويل"
+   ],
+   [
+    "Dina",
+    "دينا"
+   ],
+   [
+    "Jesse",
+    "جيسي"
+   ],
+   [
+    "Tommy",
+    "تومي"
+   ],
+   [
+    "Maria",
+    "ماريا"
+   ],
+   [
+    "Yara",
+    "يارا"
+   ],
+   [
+    "Owen",
+    "أوين"
+   ],
+   [
+    "Manny",
+    "ماني"
+   ]
+  ]
+ },
+ "the-long-dark": {
+  "lines": 21021,
+  "terms": [
+   [
+    "Great Bear Island",
+    "جزيرة الدب العظيم"
+   ],
+   [
+    "Mystery Lake",
+    "بحيرة الغموض"
+   ],
+   [
+    "Pleasant Valley",
+    "الوادي البهيج"
+   ],
+   [
+    "Coastal Highway",
+    "الطريق الساحلي"
+   ],
+   [
+    "Desolation Point",
+    "نقطة الخراب"
+   ],
+   [
+    "Timberwolf Mountain",
+    "جبل الذئب الرمادي"
+   ],
+   [
+    "Forlorn Muskeg",
+    "المستنقع المهجور"
+   ],
+   [
+    "Broken Railroad",
+    "السكة المحطمة"
+   ],
+   [
+    "Hushed River Valley",
+    "وادي النهر الصامت"
+   ],
+   [
+    "Mountain Town",
+    "بلدة الجبل"
+   ]
+  ]
+ },
+ "the-walking-dead-the-telltale-definitive-series": {
+  "lines": 81911,
+  "terms": [
+   [
+    "Lee Everett",
+    "لي إيفريت"
+   ],
+   [
+    "Clementine",
+    "كليمنتاين"
+   ],
+   [
+    "Clem",
+    "كليم"
+   ],
+   [
+    "Kenny",
+    "كيني"
+   ],
+   [
+    "Javier",
+    "خافيير"
+   ],
+   [
+    "Javi",
+    "خافي"
+   ],
+   [
+    "Alvin Jr.",
+    "ألفين الصغير"
+   ],
+   [
+    "Michonne",
+    "ميشون"
+   ],
+   [
+    "David",
+    "ديفيد"
+   ],
+   [
+    "Lilly",
+    "ليلي"
+   ]
+  ]
+ },
+ "the-witcher-2-assassins-of-kings-enhanced-edition": {
+  "lines": 39641,
+  "terms": [
+   [
+    "Geralt",
+    "غيرالت"
+   ],
+   [
+    "Geralt of Rivia",
+    "غيرالت الريفي"
+   ],
+   [
+    "White Wolf",
+    "الذئب الأبيض"
+   ],
+   [
+    "Gwynbleidd",
+    "غوينبلايد"
+   ],
+   [
+    "witcher",
+    "ويتشر"
+   ],
+   [
+    "Kingslayer",
+    "قاتل الملوك"
+   ],
+   [
+    "Triss",
+    "تريس"
+   ],
+   [
+    "Triss Merigold",
+    "تريس ميريغولد"
+   ],
+   [
+    "Vernon Roche",
+    "فيرنون روش"
+   ],
+   [
+    "Iorveth",
+    "يورفيث"
+   ]
+  ]
+ },
+ "the-witcher-enhanced-edition-directors-cut": {
+  "lines": 35208,
+  "terms": [
+   [
+    "Geralt",
+    "غيرالت"
+   ],
+   [
+    "Geralt of Rivia",
+    "غيرالت الريفي"
+   ],
+   [
+    "witcher",
+    "صائد وحوش"
+   ],
+   [
+    "Kaer Morhen",
+    "كاير مورهين"
+   ],
+   [
+    "Vesemir",
+    "فيسيمير"
+   ],
+   [
+    "Lambert",
+    "لامبرت"
+   ],
+   [
+    "Eskel",
+    "إسكيل"
+   ],
+   [
+    "Triss",
+    "تريس"
+   ],
+   [
+    "Triss Merigold",
+    "تريس ميريغولد"
+   ],
+   [
+    "Shani",
+    "شاني"
+   ]
+  ]
+ },
+ "the-wolf-among-us-remastered": {
+  "lines": 25115,
+  "terms": [
+   [
+    "Bigby Wolf",
+    "بيغبي وولف"
+   ],
+   [
+    "Big Bad Wolf",
+    "الذئب الشرير الكبير"
+   ],
+   [
+    "Snow White",
+    "سنو وايت"
+   ],
+   [
+    "Ichabod Crane",
+    "إيكابود كرين"
+   ],
+   [
+    "Mr. Toad",
+    "السيد تود"
+   ],
+   [
+    "Beauty",
+    "بيوتي"
+   ],
+   [
+    "Beast",
+    "بيست"
+   ],
+   [
+    "Woodsman",
+    "الحطّاب"
+   ],
+   [
+    "Faith",
+    "فيث"
+   ],
+   [
+    "Lily",
+    "ليلي"
+   ]
+  ]
+ },
+ "total-war-pharaoh": {
+  "lines": 71930,
+  "terms": [
+   [
+    "Pharaoh",
+    "فرعون"
+   ],
+   [
+    "Egypt",
+    "مصر"
+   ],
+   [
+    "Egyptian",
+    "مصري"
+   ],
+   [
+    "Lower Egypt",
+    "مصر السفلى"
+   ],
+   [
+    "Upper Egypt",
+    "مصر العليا"
+   ],
+   [
+    "Hittite",
+    "حيثي"
+   ],
+   [
+    "Hatti",
+    "حاتي"
+   ],
+   [
+    "Hattusa",
+    "حاتوشا"
+   ],
+   [
+    "Canaan",
+    "كنعان"
+   ],
+   [
+    "Canaanite",
+    "كنعاني"
+   ]
+  ]
+ },
+ "total-war-shogun-2": {
+  "lines": 43204,
+  "terms": [
+   [
+    "daimyo",
+    "دايميو"
+   ],
+   [
+    "shogun",
+    "الشوغون"
+   ],
+   [
+    "Shogunate",
+    "الشوغونية"
+   ],
+   [
+    "samurai",
+    "ساموراي"
+   ],
+   [
+    "Emperor",
+    "الإمبراطور"
+   ],
+   [
+    "Imperial",
+    "إمبراطوري"
+   ],
+   [
+    "clan",
+    "عشيرة"
+   ],
+   [
+    "Realm Divide",
+    "انقسام المملكة"
+   ],
+   [
+    "Rise of the Samurai",
+    "صعود الساموراي"
+   ],
+   [
+    "Fall of the Samurai",
+    "سقوط الساموراي"
+   ]
+  ]
+ },
+ "total-war-three-kingdoms": {
+  "lines": 101637,
+  "terms": [
+   [
+    "Three Kingdoms",
+    "الممالك الثلاث"
+   ],
+   [
+    "Han dynasty",
+    "سلالة هان"
+   ],
+   [
+    "Emperor Xian",
+    "الإمبراطور شيان"
+   ],
+   [
+    "Cao Cao",
+    "تساو تساو"
+   ],
+   [
+    "Liu Bei",
+    "ليو باي"
+   ],
+   [
+    "Guan Yu",
+    "قوان يو"
+   ],
+   [
+    "Zhang Fei",
+    "تشانغ في"
+   ],
+   [
+    "Sun Jian",
+    "سون جيان"
+   ],
+   [
+    "Sun Ce",
+    "سون تسه"
+   ],
+   [
+    "Sun Quan",
+    "سون تشوان"
+   ]
+  ]
+ },
+ "trails-in-the-sky-1st-chapter": {
+  "lines": 59579,
+  "terms": [
+   [
+    "Estelle",
+    "إستيل"
+   ],
+   [
+    "Estelle Bright",
+    "إستيل برايت"
+   ],
+   [
+    "Joshua",
+    "جوشوا"
+   ],
+   [
+    "Joshua Bright",
+    "جوشوا برايت"
+   ],
+   [
+    "Cassius",
+    "كاسيوس"
+   ],
+   [
+    "Cassius Bright",
+    "كاسيوس برايت"
+   ],
+   [
+    "Scherazard",
+    "شيرازارد"
+   ],
+   [
+    "Schera",
+    "شيرا"
+   ],
+   [
+    "Olivier",
+    "أوليفييه"
+   ],
+   [
+    "Aina",
+    "آينا"
+   ]
+  ]
+ },
+ "trails-in-the-sky-2nd-chapter": {
+  "lines": 81485,
+  "terms": [
+   [
+    "Estelle",
+    "إستيل"
+   ],
+   [
+    "Estelle Bright",
+    "إستيل برايت"
+   ],
+   [
+    "Joshua",
+    "جوشوا"
+   ],
+   [
+    "Joshua Bright",
+    "جوشوا برايت"
+   ],
+   [
+    "Cassius",
+    "كاسيوس"
+   ],
+   [
+    "Cassius Bright",
+    "كاسيوس برايت"
+   ],
+   [
+    "Scherazard",
+    "شيرازارد"
+   ],
+   [
+    "Schera",
+    "شيرا"
+   ],
+   [
+    "Olivier",
+    "أوليفييه"
+   ],
+   [
+    "Aina",
+    "آينا"
+   ]
+  ]
+ },
+ "two-point-hospital": {
+  "lines": 10641,
+  "terms": [
+   [
+    "Two Point County",
+    "مقاطعة تو بوينت"
+   ],
+   [
+    "Two Point Health Ministry",
+    "وزارة الصحة في تو بوينت"
+   ],
+   [
+    "Two Point Radio",
+    "إذاعة تو بوينت"
+   ],
+   [
+    "Two Point Squabbler",
+    "صحيفة تو بوينت سكوابلر"
+   ],
+   [
+    "Kudosh",
+    "كودوش"
+   ],
+   [
+    "Hospital Level",
+    "مستوى المستشفى"
+   ],
+   [
+    "Hospital Reputation",
+    "سمعة المستشفى"
+   ],
+   [
+    "Cure Rate",
+    "نسبة الشفاء"
+   ],
+   [
+    "Superbug",
+    "الجرثومة الخارقة"
+   ],
+   [
+    "Superbug Initiative",
+    "مبادرة الجرثومة الخارقة"
+   ]
+  ]
+ },
+ "uncharted-legacy-of-thieves-collection": {
+  "lines": 7387,
+  "terms": [
+   [
+    "Uncharted",
+    "أنتشارتد"
+   ],
+   [
+    "Nathan Drake",
+    "ناثان دريك"
+   ],
+   [
+    "Nate",
+    "نيت"
+   ],
+   [
+    "Samuel Drake",
+    "صامويل دريك"
+   ],
+   [
+    "Sully",
+    "سولي"
+   ],
+   [
+    "Victor Sullivan",
+    "فيكتور سوليفان"
+   ],
+   [
+    "Elena Fisher",
+    "إيلينا فيشر"
+   ],
+   [
+    "Rafe Adler",
+    "رايف آدلر"
+   ],
+   [
+    "Nadine Ross",
+    "نادين روس"
+   ],
+   [
+    "Chloe Frazer",
+    "كلوي فريزر"
+   ]
+  ]
+ },
+ "v-rising": {
+  "lines": 7885,
+  "terms": [
+   [
+    "Dracula",
+    "دراكولا"
+   ],
+   [
+    "Vardoran",
+    "فاردوران"
+   ],
+   [
+    "Castle Heart",
+    "قلب القلعة"
+   ],
+   [
+    "Blood Essence",
+    "جوهر الدم"
+   ],
+   [
+    "Leech",
+    "الامتصاص"
+   ],
+   [
+    "Ignite",
+    "الاشتعال"
+   ],
+   [
+    "Chill",
+    "البرودة"
+   ],
+   [
+    "Freeze",
+    "التجمّد"
+   ],
+   [
+    "Static",
+    "الشحنة"
+   ],
+   [
+    "Condemn",
+    "الإدانة"
+   ]
+  ]
+ },
+ "valor-mortis": {
+  "lines": 3953,
+  "terms": [
+   [
+    "William Dowsett",
+    "ويليام داوسِت"
+   ],
+   [
+    "Napoleon Bonaparte",
+    "نابليون بونابرت"
+   ],
+   [
+    "Petit Corporal",
+    "العريف الصغير"
+   ],
+   [
+    "Lucjan Skawiński",
+    "لوتسيان سكافينسكي"
+   ],
+   [
+    "Maria Walewska",
+    "ماريا فاليفسكا"
+   ],
+   [
+    "James Stewart",
+    "جيمس ستيوارت"
+   ],
+   [
+    "Louis Moreau",
+    "لويس مورو"
+   ],
+   [
+    "Shrike",
+    "الصُّرَد"
+   ],
+   [
+    "Thomas",
+    "توماس"
+   ],
+   [
+    "Charles",
+    "تشارلز"
+   ]
+  ]
+ },
+ "victoria-3": {
+  "lines": 100003,
+  "terms": [
+   [
+    "Interest Group",
+    "جماعة المصالح"
+   ],
+   [
+    "Journal Entry",
+    "مدخل السجل"
+   ],
+   [
+    "Journal Entries",
+    "مدخلات السجل"
+   ],
+   [
+    "Diplomatic Play",
+    "مناورة دبلوماسية"
+   ],
+   [
+    "Power Bloc",
+    "التكتل"
+   ],
+   [
+    "Standard of Living",
+    "مستوى المعيشة"
+   ],
+   [
+    "Political Movement",
+    "الحركة السياسية"
+   ],
+   [
+    "Production Method",
+    "طريقة الإنتاج"
+   ],
+   [
+    "Agitator",
+    "محرّض"
+   ],
+   [
+    "Infamy",
+    "السمعة السيئة"
+   ]
+  ]
+ },
+ "warhammer-40-000-space-marine-2": {
+  "lines": 34267
+ },
+ "watch-dogs": {
+  "lines": 39673,
+  "terms": [
+   [
+    "Aiden Pearce",
+    "أيدن بيرس"
+   ],
+   [
+    "Nicky",
+    "نيكي"
+   ],
+   [
+    "Jackson",
+    "جاكسون"
+   ],
+   [
+    "Lena",
+    "لينا"
+   ],
+   [
+    "Clara",
+    "كلارا"
+   ],
+   [
+    "Jordi",
+    "جوردي"
+   ],
+   [
+    "T-Bone",
+    "تي-بون"
+   ],
+   [
+    "Damien",
+    "داميان"
+   ],
+   [
+    "Maurice",
+    "موريس"
+   ],
+   [
+    "Lucky Quinn",
+    "لاكي كوين"
+   ]
+  ]
+ },
+ "well-dweller": {
+  "lines": 1447,
+  "terms": [
+   [
+    "Glimmer",
+    "غليمر"
+   ],
+   [
+    "Egbert",
+    "إغبرت"
+   ],
+   [
+    "Thistle",
+    "ثيسل"
+   ],
+   [
+    "Thimble",
+    "ثيمبل"
+   ],
+   [
+    "Thistle and Thimble",
+    "ثيسل وثيمبل"
+   ],
+   [
+    "Mother Bird",
+    "الأم"
+   ],
+   [
+    "Whisper",
+    "ويسبر"
+   ],
+   [
+    "Magda",
+    "ماغدا"
+   ],
+   [
+    "Irma",
+    "إيرما"
+   ],
+   [
+    "Ilda",
+    "إلدا"
+   ]
+  ]
+ },
+ "where-winds-meet": {
+  "lines": 4543,
+  "terms": [
+   [
+    "Wanderer",
+    "الجوّال"
+   ],
+   [
+    "Dear Wanderer",
+    "عزيزي الجوّال"
+   ],
+   [
+    "Jianghu",
+    "الجيانغهو"
+   ],
+   [
+    "Kaifeng",
+    "كايفنغ"
+   ],
+   [
+    "Qinghe",
+    "تشينغخه"
+   ],
+   [
+    "Qingzhou",
+    "تشينغتشو"
+   ],
+   [
+    "Liangzhou",
+    "ليانغتشو"
+   ],
+   [
+    "Jiangnan",
+    "جيانغنان"
+   ],
+   [
+    "Hexi",
+    "خهشي"
+   ],
+   [
+    "Qinchuan",
+    "تشينتشوان"
+   ]
+  ]
+ },
+ "wolfenstein-ii-the-new-colossus": {
+  "lines": 13322,
+  "terms": [
+   [
+    "Blazkowicz",
+    "بلازكوفيتش"
+   ],
+   [
+    "Blazko",
+    "بلازكو"
+   ],
+   [
+    "Terror-Billy",
+    "بيلي الإرهابي"
+   ],
+   [
+    "Anya",
+    "آنيا"
+   ],
+   [
+    "Grace",
+    "غريس"
+   ],
+   [
+    "Set Roth",
+    "سيت روث"
+   ],
+   [
+    "Fergus",
+    "فيرغوس"
+   ],
+   [
+    "Wyatt",
+    "وايت"
+   ],
+   [
+    "Max Hass",
+    "ماكس هاس"
+   ],
+   [
+    "Sigrun",
+    "سيغرون"
+   ]
+  ]
+ },
+ "wolfenstein-the-new-order": {
+  "lines": 5522,
+  "terms": [
+   [
+    "B.J. Blazkowicz",
+    "بي جي بلازكوفيتش"
+   ],
+   [
+    "Blazko",
+    "بلازكو"
+   ],
+   [
+    "William J. Blazkowicz",
+    "ويليام جي بلازكوفيتش"
+   ],
+   [
+    "Fergus Reid",
+    "فيرغس ريد"
+   ],
+   [
+    "Probst Wyatt III",
+    "بروبست وايت الثالث"
+   ],
+   [
+    "Anya Oliwa",
+    "أنيا أوليفا"
+   ],
+   [
+    "Set Roth",
+    "سيت روث"
+   ],
+   [
+    "Klaus Kreutz",
+    "كلاوس كرويتس"
+   ],
+   [
+    "Caroline Becker",
+    "كارولين بيكر"
+   ],
+   [
+    "Max Hass",
+    "ماكس هاس"
+   ]
+  ]
+ },
+ "wolfenstein-the-old-blood": {
+  "lines": 2529,
+  "terms": [
+   [
+    "B.J. Blazkowicz",
+    "بي جي بلازكوفيتش"
+   ],
+   [
+    "Blazko",
+    "بلازكو"
+   ],
+   [
+    "William J. Blazkowicz",
+    "ويليام جي بلازكوفيتش"
+   ],
+   [
+    "Billy Boy",
+    "بيلي بوي"
+   ],
+   [
+    "Wesley",
+    "ويسلي"
+   ],
+   [
+    "Agent One",
+    "العميل الأول"
+   ],
+   [
+    "Agent Two",
+    "العميلة الثانية"
+   ],
+   [
+    "Pippa",
+    "بيبا"
+   ],
+   [
+    "Pippa Shepherd",
+    "بيبا شيبرد"
+   ],
+   [
+    "Kessler",
+    "كيسلر"
+   ]
+  ]
+ },
+ "wolfenstein-youngblood": {
+  "lines": 11943,
+  "terms": [
+   [
+    "Jess",
+    "جيس"
+   ],
+   [
+    "Jessica",
+    "جيسيكا"
+   ],
+   [
+    "Soph",
+    "صوف"
+   ],
+   [
+    "Sophia",
+    "صوفيا"
+   ],
+   [
+    "Blazkowicz",
+    "بلازكوفيتش"
+   ],
+   [
+    "B.J. Blazkowicz",
+    "بي جي بلازكوفيتش"
+   ],
+   [
+    "Terror-Billy",
+    "بيلي الإرهابي"
+   ],
+   [
+    "Terror Twins",
+    "التوأمان الإرهابيتان"
+   ],
+   [
+    "Anya",
+    "أنيا"
+   ],
+   [
+    "Abby",
+    "آبي"
+   ]
+  ]
+ },
+ "xcom-2": {
+  "lines": 12950,
+  "terms": [
+   [
+    "ADVENT",
+    "أدفنت"
+   ],
+   [
+    "Avenger",
+    "الأفنجر"
+   ],
+   [
+    "Elders",
+    "الشيوخ"
+   ],
+   [
+    "Skyranger",
+    "سكاي رينجر"
+   ],
+   [
+    "Commander",
+    "القائد"
+   ],
+   [
+    "Resistance",
+    "المقاومة"
+   ],
+   [
+    "Avatar Project",
+    "مشروع الأفاتار"
+   ],
+   [
+    "Shadow Chamber",
+    "غرفة الظل"
+   ],
+   [
+    "Codex",
+    "كودكس"
+   ],
+   [
+    "Dark Event",
+    "حدث مظلم"
+   ]
+  ]
+ },
+ "yakuza-0": {
+  "lines": 73398,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Goro Majima",
+    "غورو ماجيما"
+   ],
+   [
+    "Akira Nishikiyama",
+    "أكيرا نيشيكياما"
+   ],
+   [
+    "Nishiki",
+    "نيشيكي"
+   ],
+   [
+    "Makoto Makimura",
+    "ماكوتو ماكيمورا"
+   ],
+   [
+    "Shigeru Tachibana",
+    "شيغيرو تاتشيبانا"
+   ],
+   [
+    "Tetsu Tachibana",
+    "تيتسو تاتشيبانا"
+   ],
+   [
+    "Tachibana Real Estate",
+    "تاتشيبانا للعقارات"
+   ],
+   [
+    "Osamu Kashiwagi",
+    "أوسامو كاشيواغي"
+   ],
+   [
+    "Shintaro Kazama",
+    "شينتارو كازاما"
+   ]
+  ]
+ },
+ "yakuza-0-directors-cut": {
+  "lines": 106146,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Goro Majima",
+    "غورو ماجيما"
+   ],
+   [
+    "Akira Nishikiyama",
+    "أكيرا نيشيكياما"
+   ],
+   [
+    "Nishiki",
+    "نيشيكي"
+   ],
+   [
+    "Makoto Makimura",
+    "ماكوتو ماكيمورا"
+   ],
+   [
+    "Shigeru Tachibana",
+    "شيغيرو تاتشيبانا"
+   ],
+   [
+    "Tetsu Tachibana",
+    "تيتسو تاتشيبانا"
+   ],
+   [
+    "Tachibana Real Estate",
+    "تاتشيبانا للعقارات"
+   ],
+   [
+    "Osamu Kashiwagi",
+    "أوسامو كاشيواغي"
+   ],
+   [
+    "Shintaro Kazama",
+    "شينتارو كازاما"
+   ]
+  ]
+ },
+ "yakuza-3-remastered": {
+  "lines": 80344,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Uncle Kaz",
+    "العم كاز"
+   ],
+   [
+    "Haruka Sawamura",
+    "هاروكا ساوامورا"
+   ],
+   [
+    "Taichi",
+    "تايتشي"
+   ],
+   [
+    "Mitsuo",
+    "ميتسو"
+   ],
+   [
+    "Shiro",
+    "شيرو"
+   ],
+   [
+    "Koji",
+    "كوجي"
+   ],
+   [
+    "Izumi",
+    "إيزومي"
+   ],
+   [
+    "Ayako",
+    "أياكو"
+   ],
+   [
+    "Saki",
+    "ساكي"
+   ]
+  ]
+ },
+ "yakuza-4-remastered": {
+  "lines": 93049,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Kiryu-san",
+    "كيريو-سان"
+   ],
+   [
+    "Shun Akiyama",
+    "شون أكياما"
+   ],
+   [
+    "Akiyama-san",
+    "أكياما-سان"
+   ],
+   [
+    "Taiga Saejima",
+    "تايغا سايجيما"
+   ],
+   [
+    "Masayoshi Tanimura",
+    "ماسايوشي تانيمورا"
+   ],
+   [
+    "Haruka Sawamura",
+    "هاروكا ساوامورا"
+   ],
+   [
+    "Lily",
+    "ليلي"
+   ],
+   [
+    "Hana",
+    "هانا"
+   ],
+   [
+    "Goro Majima",
+    "غورو ماجيما"
+   ]
+  ]
+ },
+ "yakuza-5-remastered": {
+  "lines": 122425,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Taichi Suzuki",
+    "تايتشي سوزوكي"
+   ],
+   [
+    "Taiga Saejima",
+    "تايغا سايجيما"
+   ],
+   [
+    "Shun Akiyama",
+    "شون أكياما"
+   ],
+   [
+    "Haruka Sawamura",
+    "هاروكا ساوامورا"
+   ],
+   [
+    "Tatsuo Shinada",
+    "تاتسو شينادا"
+   ],
+   [
+    "Daigo Dojima",
+    "دايغو دوجيما"
+   ],
+   [
+    "Goro Majima",
+    "غورو ماجيما"
+   ],
+   [
+    "Mirei Park",
+    "ميري بارك"
+   ],
+   [
+    "Kurosawa",
+    "كوروساوا"
+   ]
+  ]
+ },
+ "yakuza-6-the-song-of-life": {
+  "lines": 29959,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Haruka Sawamura",
+    "هاروكا ساوامورا"
+   ],
+   [
+    "Haruto",
+    "هاروتو"
+   ],
+   [
+    "Tsuyoshi Nagumo",
+    "تسويوشي ناغومو"
+   ],
+   [
+    "Yuta Usami",
+    "يوتا أوسامي"
+   ],
+   [
+    "Kiyomi",
+    "كيومي"
+   ],
+   [
+    "Toru Hirose",
+    "تورو هيروسي"
+   ],
+   [
+    "Tagashira",
+    "تاغاشيرا"
+   ],
+   [
+    "Someya",
+    "سومييا"
+   ],
+   [
+    "Iwami",
+    "إيوامي"
+   ]
+  ]
+ },
+ "yakuza-kiwami": {
+  "lines": 69313,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Akira Nishikiyama",
+    "أكيرا نيشيكياما"
+   ],
+   [
+    "Nishiki",
+    "نيشيكي"
+   ],
+   [
+    "Yumi Sawamura",
+    "يومي ساوامورا"
+   ],
+   [
+    "Haruka Sawamura",
+    "هاروكا ساوامورا"
+   ],
+   [
+    "Goro Majima",
+    "غورو ماجيما"
+   ],
+   [
+    "Shintaro Kazama",
+    "شينتارو كازاما"
+   ],
+   [
+    "Makoto Date",
+    "ماكوتو داتي"
+   ],
+   [
+    "Futoshi Shimano",
+    "فوتوشي شيمانو"
+   ],
+   [
+    "Sohei Dojima",
+    "سوهي دوجيما"
+   ]
+  ]
+ },
+ "yakuza-kiwami-3-dark-ties": {
+  "lines": 39336,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Kiryu-san",
+    "كيريو-سان"
+   ],
+   [
+    "Uncle Kaz",
+    "العم كاز"
+   ],
+   [
+    "Dragon of Dojima",
+    "تنين دوجيما"
+   ],
+   [
+    "Yoshitaka Mine",
+    "يوشيتاكا ميني"
+   ],
+   [
+    "Haruka",
+    "هاروكا"
+   ],
+   [
+    "Rikiya",
+    "ريكيا"
+   ],
+   [
+    "Shimabukuro",
+    "شيمابوكورو"
+   ],
+   [
+    "Daigo",
+    "دايغو"
+   ],
+   [
+    "Majima",
+    "ماجيما"
+   ]
+  ]
+ },
+ "yakuza-like-a-dragon": {
+  "lines": 59672,
+  "terms": [
+   [
+    "Ichiban Kasuga",
+    "إيتشيبان كاسوغا"
+   ],
+   [
+    "Ichi",
+    "إيتشي"
+   ],
+   [
+    "Masumi Arakawa",
+    "ماسومي أراكاوا"
+   ],
+   [
+    "Masato Arakawa",
+    "ماساتو أراكاوا"
+   ],
+   [
+    "Nanba",
+    "نانبا"
+   ],
+   [
+    "Koichi Adachi",
+    "كويتشي أداتشي"
+   ],
+   [
+    "Saeko",
+    "سايكو"
+   ],
+   [
+    "Saeko Mukoda",
+    "سايكو موكودا"
+   ],
+   [
+    "Joon-gi Han",
+    "جون-غي هان"
+   ],
+   [
+    "Zhao",
+    "جاو"
+   ]
+  ]
+ },
+ "yakuzaiwami2": {
+  "lines": 33590,
+  "terms": [
+   [
+    "Kazuma Kiryu",
+    "كازوما كيريو"
+   ],
+   [
+    "Haruka Sawamura",
+    "هاروكا ساوامورا"
+   ],
+   [
+    "Kaoru Sayama",
+    "كاورو ساياما"
+   ],
+   [
+    "Ryuji Goda",
+    "ريوجي غودا"
+   ],
+   [
+    "Jin Goda",
+    "جين غودا"
+   ],
+   [
+    "Goro Majima",
+    "غورو ماجيما"
+   ],
+   [
+    "Daigo Dojima",
+    "دايغو دوجيما"
+   ],
+   [
+    "Makoto Date",
+    "ماكوتو داتي"
+   ],
+   [
+    "Kashiwagi",
+    "كاشيواغي"
+   ],
+   [
+    "Terada",
+    "تيرادا"
+   ]
+  ]
+ },
+ "zed-zone": {
+  "lines": 7186,
+  "terms": [
+   [
+    "Raiders",
+    "الغزاة"
+   ],
+   [
+    "New Order Legion",
+    "فيلق النظام الجديد"
+   ],
+   [
+    "Iron Order",
+    "النظام الحديدي"
+   ],
+   [
+    "Evolutionary Science Society",
+    "جمعية العلوم التطورية"
+   ],
+   [
+    "Genesis",
+    "جينيسيس"
+   ],
+   [
+    "Deadzone",
+    "المنطقة الميتة"
+   ],
+   [
+    "Foundry",
+    "المسبك"
+   ],
+   [
+    "Wreckport",
+    "ميناء الحطام"
+   ],
+   [
+    "Infected",
+    "المصابون"
+   ],
+   [
+    "quarantine zone",
+    "منطقة الحجر الصحي"
    ]
   ]
  }
