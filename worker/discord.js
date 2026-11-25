@@ -695,7 +695,13 @@ async function background(env, it, work) {
     try {
       const ch = await dc(env, 'POST', '/users/@me/channels', { recipient_id: userId });
       await dc(env, 'POST', `/channels/${ch.id}/messages`, { content: content.dm, allowed_mentions: { parse: [] } });
-      await fetch(original, { method: 'DELETE' });
+      // رسالة خاصة باللاعب (Ephemeral) تدله على الخاص، عشان ما يحسب إن البوت ما رد
+      content = 'أرسلنا لك الرد في الخاص 📩';
+      await fetch(original, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content, allowed_mentions: { parse: [] } }),
+      });
       return;
     } catch (err) {
       console.log('DM failed', err.message);
