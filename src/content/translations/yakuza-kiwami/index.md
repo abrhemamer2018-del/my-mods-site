@@ -8,19 +8,25 @@ platforms:
 status: complete
 releaseDate: 2026-10-17
 gameRelease: 2025-12-11
-version: "1.3"
+version: "1.4"
 cover: ./cover-mvchbsql.webp
 screenshots: []
 video: https://www.youtube.com/watch?v=oz1E9OJjxb8
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Yakuza_Kiwami_Installer.zip
-    size: 7.16 MB
+    size: 7.37 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.4"
+    date: 2026-11-25
+    at: 2026-11-25T11:47:44+03:00
+    notes:
+      - "إصلاح ضربات الحماس (Heat Actions): ما كانت تشتغل ولا تظهر أيقونتها، فيعلق تدريب الزقاق في بداية اللعبة"
+      - "الحوارات ترجع تنكتب حرف حرف مثل قبل، لين نجهّز طريقة أضمن تظهرها دفعة وحدة"
   - version: "1.3"
     date: 2026-11-04
     at: 2026-11-04T01:08:53+03:00
