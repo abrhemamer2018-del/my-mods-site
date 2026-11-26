@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2021-01-28
-version: "1.4"
+version: "1.5"
 cover: ./cover-mv849jfq.webp
 screenshots:
   - ./shot-mv84a2nopv1.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.5"
+    date: 2026-11-26
+    at: 2026-11-26T04:56:00.000Z
+    notes:
+      - رجعت ترجمة مشهد الدفتر في بداية جزء كيريو (كانت تختفي بعد ما يسلّمه هامازاكي الدفتر)
+      - حذف علامات التنصيص الزائدة من 17 جملة في المشاهد
   - version: "1.4"
     date: 2026-11-23
     at: 2026-11-23T11:42:00.000Z
