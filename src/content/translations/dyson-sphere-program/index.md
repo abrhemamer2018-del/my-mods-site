@@ -16,7 +16,7 @@ screenshots:
   - ./shot-mwxtoed9l5n.webp
   - ./shot-mwxtoef5un8.webp
   - ./shot-mwxtoehnyj8.webp
-video: https://www.youtube.com/watch?v=Eh-voJ3TSt8
+video: https://youtu.be/CcN9UwCassA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_DysonSphereProgram_Installer.zip
