@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-10-14
 gameRelease: 2021-01-28
-version: "1.5"
+version: "1.6"
 cover: ./cover-mv849jfq.webp
 screenshots:
   - ./shot-mv84a2nopv1.webp
@@ -26,6 +26,12 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.6"
+    date: 2026-11-26
+    at: 2026-11-26T06:12:00.000Z
+    notes:
+      - إصلاح خروج اللعبة في الفصل الأخير لكيريو بعد الطلوع بالمصعد في كامورو هيلز
+      - اختصار أسماء الأشياء اللي تلتقطها أو تكسرها عشان ما توقف اللعبة
   - version: "1.5"
     date: 2026-11-26
     at: 2026-11-26T04:56:00.000Z
