@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-11
 addedAt: 2026-10-11T19:36:08+03:00
 gameRelease: 2012-10-08
-version: "1.0"
+version: "1.1"
 cover: ./cover-mv41mb5w.webp
 screenshots:
   - ./shot-mv41mwnmuyv.webp
@@ -19,12 +19,19 @@ video: https://www.youtube.com/watch?v=hbZI08Wxd-k
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Dishonored_Installer.zip
-    size: 24.57 MB
+    size: 11.92 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1"
+    date: 2026-11-26
+    at: 2026-11-26T10:50:00.000Z
+    notes:
+      - يشتغل مع آخر تحديث للعبة على ستيم
+      - إصلاح الأسطر المقلوبة والكلمات الملتصقة في بطاقات الشرح والدفتر والرسائل
+      - وصف المرحلة في شاشة التحميل يظهر كامل
   - version: "1.0"
     date: 2026-10-11
     notes:
