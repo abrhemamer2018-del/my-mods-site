@@ -8,7 +8,7 @@ platforms:
 status: complete
 releaseDate: 2026-11-08
 gameRelease: 2013-10-24
-version: "1.1"
+version: "1.1.1"
 cover: ./cover-mw7qpttz.webp
 screenshots:
   - ./shot-mw7quchgz4g.webp
@@ -26,6 +26,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.1.1"
+    date: 2026-11-26
+    notes:
+      - "أداة تثبيت جديدة لا تُظهر تحذير الحماية عند التحميل (نفس محتوى التعريب)"
   - version: "1.1"
     date: 2026-11-10
     notes:
