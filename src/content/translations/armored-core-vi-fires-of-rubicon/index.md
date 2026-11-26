@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-07
 addedAt: 2026-10-07T22:12:08+03:00
 gameRelease: 2023-08-24
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-muyh6hag.webp
 banner: ./banner-muyh6k7t.webp
 screenshots:
@@ -21,12 +21,19 @@ video: https://www.youtube.com/watch?v=kQJb8He0pYA
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_AC6_Installer.zip
-    size: 7.14 MB
+    size: 7.61 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-11-26
+    at: 2026-11-26T20:30:00+03:00
+    notes:
+      - أداة التثبيت تجد اللعبة تلقائياً في Steam (كانت تطلب اختيار المجلد يدوياً)
+      - خطوات التشغيل في الأداة أوضح ومرقّمة
+      - أسطر الأوصاف والشروح مقسّمة على عرض مربعاتها الحقيقي، واختصار الأوصاف وأسماء المهام الطويلة
   - version: "1.0"
     date: 2026-10-07
     notes:
