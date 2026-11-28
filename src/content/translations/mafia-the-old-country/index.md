@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-06
 addedAt: 2026-10-07T02:32:38+03:00
 gameRelease: 2025-08-07
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-muxbcrdr.webp
 banner: ./banner-muy10x7d.webp
 screenshots:
@@ -21,12 +21,16 @@ video: https://www.youtube.com/watch?v=1J8tQ-0a8mo
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_MafiaTOC_Installer.zip
-    size: 2.40 MB
+    size: 2.41 MB
 requirements: []
 team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-11-28
+    notes:
+      - "أداة تثبيت جديدة لا تُظهر تحذير الحماية عند التحميل (نفس محتوى التعريب)"
   - version: "1.0"
     date: 2026-10-06
     notes:
