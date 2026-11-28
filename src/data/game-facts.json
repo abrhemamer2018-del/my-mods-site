@@ -7976,6 +7976,51 @@
    ]
   ]
  },
+ "sid-meiers-civilization-v": {
+  "lines": 20643,
+  "terms": [
+   [
+    "Civilization",
+    "الحضارة"
+   ],
+   [
+    "City-State",
+    "دولة المدينة"
+   ],
+   [
+    "Great Person",
+    "الشخصية العظيمة"
+   ],
+   [
+    "Great People",
+    "الشخصيات العظيمة"
+   ],
+   [
+    "Great General",
+    "القائد العظيم"
+   ],
+   [
+    "Great Admiral",
+    "الأميرال العظيم"
+   ],
+   [
+    "Great Scientist",
+    "العالِم العظيم"
+   ],
+   [
+    "Great Engineer",
+    "المهندس العظيم"
+   ],
+   [
+    "Great Merchant",
+    "التاجر العظيم"
+   ],
+   [
+    "Great Artist",
+    "الفنان العظيم"
+   ]
+  ]
+ },
  "sifu": {
   "lines": 3172,
   "terms": [
