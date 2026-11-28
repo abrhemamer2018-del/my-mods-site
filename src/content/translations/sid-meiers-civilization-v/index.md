@@ -16,6 +16,7 @@ screenshots:
   - ./shot-mx07ux61qlk.webp
   - ./shot-mx07v448uxi.webp
   - ./shot-mx07valm7xl.webp
+video: https://youtu.be/UhPjtv_Vwrc
 downloads:
   - label: تحميل مباشر
     url: https://github.com/abrhemamer2017-debug/files/releases/download/downloads/Tarib_Civilization_V_Installer.zip
