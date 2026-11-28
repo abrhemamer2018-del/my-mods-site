@@ -9,7 +9,7 @@ status: complete
 releaseDate: 2026-10-11
 addedAt: 2026-10-11T08:06:07+03:00
 gameRelease: 2022-09-14
-version: "1.0"
+version: "1.0.1"
 cover: ./cover-mv3cv7jy.webp
 screenshots:
   - ./shot-mv3cx08rlm6.webp
@@ -27,6 +27,10 @@ team:
   - name: IBRAHIM ALOBAIDI
     role: معرب العاب
 changelog:
+  - version: "1.0.1"
+    date: 2026-11-28
+    notes:
+      - "أداة تثبيت جديدة لا تُظهر تحذير الحماية عند التحميل (نفس محتوى التعريب)"
   - version: "1.0"
     date: 2026-10-11
     notes:
